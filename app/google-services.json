@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:944935285606:android:8543117e122607c3b04ea7",
+        "mobilesdk_app_id": "1:944935285606:android:eb99a58802c12f2cb04ea7",
         "android_client_info": {
           "package_name": "it.uniba.dib.sms22239"
         }
       },
       "oauth_client": [
         {
-          "client_id": "944935285606-6lre56iqkrqb6m73o6i8i90ogk3f65jp.apps.googleusercontent.com",
+          "client_id": "944935285606-5v82f90u4uqunin4ldm8dtq7tghq993m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "it.uniba.dib.sms22239",
-            "certificate_hash": "f896d9d51d35f438b0f0b6156f36bd6d3e249274"
+            "certificate_hash": "70d2642a6fec414795cbf2488a38ab42dac8034c"
           }
         },
         {

@@ -74,7 +74,7 @@ public class GoogleSignInActivity extends MainActivity {
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"error:"+e.getMessage(),Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 finish();
             }
@@ -97,7 +97,7 @@ public class GoogleSignInActivity extends MainActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             progressDialog.dismiss();
-                            Toast.makeText(GoogleSignInActivity.this,""+task.getException(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GoogleSignInActivity.this,"errore:"+task.getException(),Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
