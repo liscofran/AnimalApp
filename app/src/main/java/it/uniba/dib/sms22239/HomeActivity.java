@@ -182,7 +182,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     public boolean OnOptionsItemSelected(@NonNull MenuItem item)
     {
         if(item.getItemId()==android.R.id.home)
