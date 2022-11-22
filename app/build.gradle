@@ -46,13 +46,4 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
 // permette di creare delle view circle nelle activity
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-    // Material Design
-// Rounded Image View
-    implementation 'com.makeramen:roundedimageview:2.3.0'
-// Navigation Component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-
 }

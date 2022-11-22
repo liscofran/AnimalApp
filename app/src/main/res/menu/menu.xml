@@ -37,6 +37,7 @@
         android:title="Lingua"
         android:id="@+id/lingua"
         app:showAsAction="never"/>
+    */
 
     <group android:id="@+id/first">
         <item android:id="@+id/profile"
