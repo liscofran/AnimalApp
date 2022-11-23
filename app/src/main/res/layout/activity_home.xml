@@ -6,9 +6,42 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".HomeActivity"
-    android:id="@+id/drawerLayout">
+    android:id="@+id/drawer_layout">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#2196F3"
+        app:title="Navigation View"
+        app:titleTextColor="#fff"/>
+
+         <RelativeLayout
+        android:layout_width="match_parent"
+             android:layout_below="@+id/toolbar"
+             android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Hello World ! "/>
+        </RelativeLayout>
+     </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            app:headerLayout="@layout/header"
+            app:itemIconTint="@drawable/nav_bg"
+            app:itemTextColor="@drawable/nav_bg"
+            app:menu="@menu/item_file" />
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -95,4 +128,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-</androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>

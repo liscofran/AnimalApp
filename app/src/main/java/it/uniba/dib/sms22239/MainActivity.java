@@ -2,16 +2,11 @@ package it.uniba.dib.sms22239;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -23,15 +18,11 @@ import java.util.*;
 import java.io.*;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
- NavigationView navigationView;
-DrawerLayout drawerLayout;
-Toolbar toolbar;
 
     TextView createnewAccount;
 
@@ -86,58 +77,6 @@ Toolbar toolbar;
             }
         });
 
-        navigationView=findViewById(R.id.navigation_view);
-        drawerLayout=findViewById(R.id.drawer_layout);
-        toolbar=findViewById(R.id.toolbar);
-
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle
-                (MainActivity.this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
-                    case R.id.gallery:
-                        Toast.makeText(MainActivity.this,"Gallery Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.slideshow:
-                        Toast.makeText(MainActivity.this,"Slideshow Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.share:
-                        Toast.makeText(MainActivity.this,"Share Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.rate:
-                        Toast.makeText(MainActivity.this,"Rate Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.privacy:
-                        Toast.makeText(MainActivity.this,"Privacy Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.exit:
-                        Toast.makeText(MainActivity.this,"Exit Selected",Toast.LENGTH_SHORT).show();
-                        break;
-
-                }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
-
-
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else
-        {
-            super.onBackPressed();
-        }
     }
 
     private void perforLogin()
