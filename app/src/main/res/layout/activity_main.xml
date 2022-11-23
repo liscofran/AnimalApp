@@ -7,42 +7,6 @@
     android:background="@drawable/bg"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#2196F3"
-        app:title="Navigation View"
-        app:titleTextColor="#fff"/>
-
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            app:headerLayout="@layout/header"
-            app:itemIconTint="@drawable/nav_bg"
-            app:itemTextColor="@drawable/nav_bg"
-            app:menu="@menu/item_file" />
-    </androidx.drawerlayout.widget.DrawerLayout>
-
-
     <View
         android:id="@+id/view3"
         android:layout_width="0dp"
