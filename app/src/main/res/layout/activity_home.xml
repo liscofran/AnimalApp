@@ -20,18 +20,16 @@
             android:orientation="horizontal"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:background="@color/red"
+            android:background="@color/green"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageMenu"
                 android:layout_width="30dp"
                 android:layout_height="45dp"
-
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_menu"
-                app:tint="@color/blu"/>
+                android:src="@drawable/ic_menu" />
 
             <TextView
                 android:id="@+id/textTitle"
@@ -48,11 +46,25 @@
                 android:id="@+id/imageHome"
                 android:layout_width="35dp"
                 android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="90dp"
+                android:src="@drawable/animal_logo" />
+
+            <ImageView
+                android:id="@+id/imageprofile"
+                android:layout_width="35dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/animal_logo"
-                app:tint="@color/blu"/>
+                android:src="@drawable/ic_profile"/>
+
+            <ImageView
+                android:id="@+id/imageimpostazioni"
+                android:layout_width="35dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_baseline_settings_24"/>
 
 
         </LinearLayout>

@@ -73,41 +73,45 @@ public class HomeActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
-        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
-        NavigationUI.setupWithNavController(navigationView, navController);
-    }
-        /*
+        // NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
+        // NavigationUI.setupWithNavController(navigationView, navController);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.profile:
-                        Toast.makeText(HomeActivity.this, "Gallery Selected", Toast.LENGTH_SHORT).show();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            {
+                switch (item.getItemId())
+                {
+                    case R.id.search:
+                        Toast.makeText(HomeActivity.this, "Search Selected", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.slideshow:
-                        Toast.makeText(HomeActivity.this, "Slideshow Selected", Toast.LENGTH_SHORT).show();
+                    case R.id.offerta:
+                        Intent navOfferta = new Intent(HomeActivity.this, Second_Activity.class);
+                        startActivity(navOfferta);
                         break;
                     case R.id.share:
                         Toast.makeText(HomeActivity.this, "Share Selected", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.rate:
-                        Toast.makeText(HomeActivity.this, "Rate Selected", Toast.LENGTH_SHORT).show();
+                    case R.id.setting:
+                        Toast.makeText(HomeActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.privacy:
-                        Toast.makeText(HomeActivity.this, "Privacy Selected", Toast.LENGTH_SHORT).show();
+                    case R.id.lingua:
+                        Toast.makeText(HomeActivity.this, "Lingua Selected", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.exit:
-                        Toast.makeText(HomeActivity.this, "Exit Selected", Toast.LENGTH_SHORT).show();
+                    case R.id.profile:
+                        Toast.makeText(HomeActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.logout:
+                        logout();
+                        break;
+                    default:
                         break;
                 }
-
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
-
             }
         });
     }
-
     @Override
     public void onBackPressed() {
 
@@ -145,60 +149,27 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
-    // azioni dei singoli item presenti nel file menu.xml
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            drawerLayout.openDrawer(GravityCompat.START);
-            return true;
+        @Override
+        protected void onStart() {
+            super.onStart();
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (user == null) {
+                irMain();
+            }
         }
-        return true;
-    }
-*/
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
+
+        private void logout() {
+            mAuth.signOut();
             irMain();
         }
-    }
 
-    private void logout() {
-        mAuth.signOut();
-        irMain();
-    }
-
-    private void irMain() {
-        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-}
-/*
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.offerta:
-                Intent navHome = new Intent(HomeActivity.this, Second_Activity.class);
-                startActivity(navHome);
-                return true;
-            case R.id.share:
-                Toast.makeText(this, "Condividi è stato premuto", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.setting:
-                Toast.makeText(this, "Impostazioni è stato premuto", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.home:
-                Toast.makeText(this, "Home è stato premuto", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.lingua:
-                Toast.makeText(this, "Lingua è stato premuto", Toast.LENGTH_SHORT).show();
-                break;
+        private void irMain() {
+            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(HomeActivity.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
+            finish();
         }
-        return super.onOptionsItemSelected(item);
-    }
-*/
+}
 
 
 
