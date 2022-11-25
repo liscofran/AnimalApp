@@ -7,6 +7,9 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 
 import android.annotation.SuppressLint;
@@ -23,11 +26,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class HomeActivity extends AppCompatActivity
-{
+public class HomeActivity extends AppCompatActivity {
 
     Button btnLogout;
-    Toolbar toolbar;
     FirebaseAuth mAuth;
     Button btnIntent;
     NavigationView navigationView;
@@ -38,11 +39,19 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar = findViewById(R.id.myToolBar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("AnimalApp");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);//serve per inserire l'icona del menu per la navigation view
+        drawerLayout = findViewById(R.id.drawer_layout);
+        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        findViewById(R.id.imageHome).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, Second_Activity.class));
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         btnLogout = findViewById(R.id.btnLogout);
@@ -62,22 +71,17 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-
         navigationView = findViewById(R.id.navigation_view);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        toolbar = findViewById(R.id.toolbar);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
-                (HomeActivity.this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
+        navigationView.setItemIconTintList(null);
+        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
+        NavigationUI.setupWithNavController(navigationView, navController);
+    }
+        /*
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.gallery:
+                    case R.id.profile:
                         Toast.makeText(HomeActivity.this, "Gallery Selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.slideshow:
@@ -95,7 +99,6 @@ public class HomeActivity extends AppCompatActivity
                     case R.id.exit:
                         Toast.makeText(HomeActivity.this, "Exit Selected", Toast.LENGTH_SHORT).show();
                         break;
-
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -105,88 +108,81 @@ public class HomeActivity extends AppCompatActivity
         });
     }
 
-                                                             @Override
-                                                             public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
 
-                                                                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                                                                     drawerLayout.closeDrawer(GravityCompat.START);
-                                                                 } else {
-                                                                     super.onBackPressed();
-                                                                 }
-                                                             }
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
-                                                             // per creare le icone dell'actionBar
-                                                             @Override
-                                                             public boolean onCreateOptionsMenu(Menu menu) {
-                                                                 MenuInflater inflater = getMenuInflater();
-                                                                 inflater.inflate(R.menu.menu, menu);
+    // per creare le icone dell'actionBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
 
-                                                                 MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
-                                                                     @Override
-                                                                     public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                                                                         Toast.makeText(HomeActivity.this, "Search is Expanded", Toast.LENGTH_SHORT).show();
-                                                                         return true;
-                                                                     }
+        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                Toast.makeText(HomeActivity.this, "Search is Expanded", Toast.LENGTH_SHORT).show();
+                return true;
+            }
 
-                                                                     @Override
-                                                                     public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                                                                         Toast.makeText(HomeActivity.this, "Search is Collapse", Toast.LENGTH_SHORT).show();
-                                                                         return true;
-                                                                     }
-                                                                 };
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                Toast.makeText(HomeActivity.this, "Search is Collapse", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        };
 
-                                                                 menu.findItem(R.id.search).setOnActionExpandListener(onActionExpandListener);
-                                                                 SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-                                                                 searchView.setQueryHint("Cerca...");
+        menu.findItem(R.id.search).setOnActionExpandListener(onActionExpandListener);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setQueryHint("Cerca...");
 
-                                                                 return true;
-                                                             }
+        return true;
+    }
 
+    // azioni dei singoli item presenti nel file menu.xml
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
+            return true;
+        }
+        return true;
+    }
+*/
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            irMain();
+        }
+    }
 
-                                                             // azioni dei singoli item presenti nel file menu.xml
-                                                             @Override
-                                                             public boolean onOptionsItemSelected(@NonNull MenuItem item)
-                                                             {
-                                                                 if (item.getItemId() == android.R.id.home)
-                                                                 {
-                                                                     drawerLayout.openDrawer(GravityCompat.START);
-                                                                     return true;
-                                                                 }
-                                                                 return true;
-                                                             }
+    private void logout() {
+        mAuth.signOut();
+        irMain();
+    }
 
-                                                             @Override
-                                                             protected void onStart()
-                                                             {
-                                                                 super.onStart();
-                                                                 FirebaseUser user = mAuth.getCurrentUser();
-                                                                 if (user == null)
-                                                                 {
-                                                                     irMain();
-                                                                 }
-                                                             }
-
-                                                             private void logout()
-                                                             {
-                                                                 mAuth.signOut();
-                                                                 irMain();
-                                                             }
-
-                                                             private void irMain()
-                                                             {
-                                                                 Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                                                                 startActivity(intent);
-                                                                 finish();
-                                                             }
-                                                         }
-
+    private void irMain() {
+        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}
 /*
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.offerta:
-                Toast.makeText(this, "Offerta è stato premuto", Toast.LENGTH_SHORT).show();
-                break;
+                Intent navHome = new Intent(HomeActivity.this, Second_Activity.class);
+                startActivity(navHome);
+                return true;
             case R.id.share:
                 Toast.makeText(this, "Condividi è stato premuto", Toast.LENGTH_SHORT).show();
                 break;
@@ -202,7 +198,7 @@ public class HomeActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
- */;
+*/
 
 
 

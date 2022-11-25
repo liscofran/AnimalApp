@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
-    android:background="@color/blu">
+    android:layout_height="wrap_content"
+    android:background="@color/blu"
+    android:padding="20dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/profileImage_header"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/username_header"
@@ -26,6 +26,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/profileImage_header"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="@+id/profileImage_header"
         app:layout_constraintTop_toBottomOf="@+id/profileImage_header" />
 

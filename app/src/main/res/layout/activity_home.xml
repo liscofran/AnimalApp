@@ -8,124 +8,103 @@
     tools:context=".HomeActivity"
     android:id="@+id/drawer_layout">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#2196F3"
-        app:title="Navigation View"
-        app:titleTextColor="#fff"/>
-
-         <RelativeLayout
-        android:layout_width="match_parent"
-             android:layout_below="@+id/toolbar"
-             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Hello World ! "/>
-        </RelativeLayout>
-     </RelativeLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            app:headerLayout="@layout/header"
-            app:itemIconTint="@drawable/nav_bg"
-            app:itemTextColor="@drawable/nav_bg"
-            app:menu="@menu/item_file" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="-74dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:id="@+id/layoutToolBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <include
-                layout="@layout/appbar" />
-
-            <TextView
-                android:id="@+id/benvenuto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Benvenuto nella mia app"
-                android:textColor="@color/black"
-                android:textSize="30dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.609" />
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Logout"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.512"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
-
-            <Button
-                android:id="@+id/btnIntent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Vai in Second Activity"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.539"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
-                app:layout_constraintVertical_bias="0.342" />
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@color/red"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/btnGoogle"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="152dp"
-                android:layout_marginBottom="348dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/foto"/>
+                android:id="@+id/imageMenu"
+                android:layout_width="30dp"
+                android:layout_height="45dp"
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="65dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/benvenuto"
-                app:layout_constraintVertical_bias="1.0" />
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_menu"
+                app:tint="@color/blu"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_gravity="center_vertical"
+                android:text="AnimalApp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    </ScrollView>
+            <ImageView
+                android:id="@+id/imageHome"
+                android:layout_width="35dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/animal_logo"
+                app:tint="@color/blu"/>
+
+
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/navHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutToolBar"
+            app:layout_constraintVertical_bias="0.0"
+            app:navGraph="@navigation/main"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/btnIntent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Vai in Second Activity"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutToolBar" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutToolBar"
+            app:layout_constraintVertical_bias="0.384" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        app:headerLayout="@layout/drawer_header"
+        app:itemIconTint="@drawable/nav_bg"
+        app:itemTextColor="@drawable/nav_bg"
+        app:menu="@menu/menu"/>
+
     </androidx.drawerlayout.widget.DrawerLayout>
