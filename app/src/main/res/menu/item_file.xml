@@ -4,34 +4,40 @@
     tools:showIn="navigation_view">
 
         <group android:checkableBehavior="single">
-            <item android:id="@+id/gallery"
+            <item android:id="@+id/profile"
                 android:icon="@drawable/ic_profile"
-                android:title="Profile"/>
+                android:title="Profilo"/>
             <item
-                android:icon="@drawable/ic_baseline_slideshow_24"
-                android:id="@+id/slideshow"
-                android:title="Slide Show"/>
+                android:icon="@drawable/ic_offer"
+                android:id="@+id/offerta"
+                android:title="Offerta"/>
+            <item
+                android:icon="@drawable/ic_search"
+                android:id="@+id/search"
+                android:title="Cerca"/>
 
         </group>
     <item android:title="Communicate">
         <menu>
     <item
-        android:icon="@drawable/ic_baseline_screen_share_24"
+        android:icon="@drawable/ic_share"
         android:id="@+id/share"
-        android:title="Share"/>
+        android:title="Condividi"/>
+
     <item
-        android:icon="@drawable/ic_baseline_star_rate_24"
-        android:id="@+id/rate"
-        android:title="Rate"/>
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:id="@+id/setting"
+        android:title="Impostazioni"/>
+
     <item
-        android:icon="@drawable/ic_baseline_privacy_tip_24"
-        android:id="@+id/privacy"
-        android:title="Privacy"/>
+        android:icon="@drawable/ic_lingua"
+        android:id="@+id/lingua"
+        android:title="Lingua"/>
 
     <item
         android:icon="@drawable/ic_baseline_exit_to_app_24"
-        android:id="@+id/exit"
-        android:title="Exit"/>
+        android:id="@+id/logout"
+        android:title="Logout"/>
 
         </menu>
     </item>

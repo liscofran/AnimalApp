@@ -117,6 +117,6 @@
         app:headerLayout="@layout/drawer_header"
         app:itemIconTint="@drawable/nav_bg"
         app:itemTextColor="@drawable/nav_bg"
-        app:menu="@menu/menu"/>
+        app:menu="@menu/item_file"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
