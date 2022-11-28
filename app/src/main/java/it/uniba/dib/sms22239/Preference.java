@@ -15,8 +15,6 @@ public class Preference extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.prefs);
         Load_setting();
-
-
     }
 
     private void Load_setting() {
