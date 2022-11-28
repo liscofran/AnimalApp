@@ -56,8 +56,6 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         //Tv = findViewById(R.id.textTitle);
-        Load_setting();
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
@@ -125,7 +123,7 @@ public class HomeActivity extends AppCompatActivity {
                         findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Load_setting();
+                            startActivity(new Intent(HomeActivity.this, Preference.class));
                         }
 
                     });
@@ -148,29 +146,6 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private void Load_setting() {
-
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean chk_night = sp.getBoolean("NIGHT", false);
-        if (chk_night) {
-            drawerLayout.setBackgroundColor(Color.parseColor("#222222"));
-           // Tv.setTextColor(Color.parseColor("#ffffff"));
-        } else {
-            drawerLayout.setBackgroundColor(Color.parseColor("#ffffff"));
-            //Tv.setTextColor(Color.parseColor("#000000"));
-        }
-
-
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -232,7 +207,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Load_setting();
         super.onResume();
     }
 }
