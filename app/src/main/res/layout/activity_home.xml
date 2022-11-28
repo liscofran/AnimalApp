@@ -69,18 +69,6 @@
 
         </LinearLayout>
 
-        <fragment
-            android:id="@+id/navHostFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutToolBar"
-            app:layout_constraintVertical_bias="0.0"
-            app:navGraph="@navigation/main"
-            tools:layout_editor_absoluteX="0dp" />
-
         <Button
             android:id="@+id/btnIntent"
             android:layout_width="wrap_content"
@@ -117,6 +105,15 @@
         app:headerLayout="@layout/drawer_header"
         app:itemIconTint="@drawable/nav_bg"
         app:itemTextColor="@drawable/nav_bg"
-        app:menu="@menu/item_file"/>
+        app:menu="@menu/item_file">
+
+        <fragment
+            android:id="@+id/navHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/main" />
+    </com.google.android.material.navigation.NavigationView>
 
     </androidx.drawerlayout.widget.DrawerLayout>

@@ -22,11 +22,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -42,7 +44,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     // Also add the dependency for the Google Play services library and specify its version
@@ -56,4 +57,12 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     //Rounded Image View
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'androidx.preference:preference:1.1.0'
+
+    // Add this for versions
+    def nav_version = "2.3.0"
+
+    // Navigation Components
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }
