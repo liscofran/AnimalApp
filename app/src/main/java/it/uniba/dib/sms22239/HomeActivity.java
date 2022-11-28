@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -118,7 +119,16 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "Share Selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.setting:
-                        Toast.makeText(HomeActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(HomeActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
+
+
+                        findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Load_setting();
+                        }
+
+                    });
                         break;
                     case R.id.lingua:
                         Toast.makeText(HomeActivity.this, "Lingua Selected", Toast.LENGTH_SHORT).show();
