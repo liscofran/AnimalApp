@@ -1,11 +1,13 @@
 package it.uniba.dib.sms22239;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
+import android.preference.*;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
@@ -29,7 +31,7 @@ public class Preference extends PreferenceActivity {
         }
 
 
-        CheckBoxPreference chk_night_instant = (CheckBoxPreference) findPreference("NIGHT");
+        SwitchPreference chk_night_instant = (SwitchPreference) findPreference("NIGHT");
         chk_night_instant.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(android.preference.Preference prefs, Object obj) {
@@ -45,7 +47,6 @@ public class Preference extends PreferenceActivity {
                 return true;
             }
         });
-
 
         ListPreference LP = (ListPreference) findPreference("ORIENTATION");
 
@@ -87,7 +88,14 @@ public class Preference extends PreferenceActivity {
             }
         });
 
-
+        android.preference.Preference about_us = findPreference("About_Us");
+        about_us.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(android.preference.Preference preference) {
+                startActivity(new Intent(Preference.this,Chisiamo.class));
+                return true;
+            }
+        });
     }
 
     @Override
