@@ -54,12 +54,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
         //Tv = findViewById(R.id.textTitle);
+        drawerLayout = findViewById(R.id.drawer_layout);
         Load_setting();
 
-
-        drawerLayout = findViewById(R.id.drawer_layout);
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,13 +119,14 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.setting:
                         //Toast.makeText(HomeActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
 
-                        findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Load_setting();
-                            }
 
-                        });
+                        findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(HomeActivity.this, Preference.class));
+                        }
+
+                    });
                         break;
                     case R.id.lingua:
                         Toast.makeText(HomeActivity.this, "Lingua Selected", Toast.LENGTH_SHORT).show();
@@ -146,7 +145,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-
     private void Load_setting() {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -181,6 +179,8 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+
+
     // per creare le icone dell'actionBar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -208,26 +208,26 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
+        @Override
+        protected void onStart() {
+            super.onStart();
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (user == null) {
+                irMain();
+            }
+        }
+
+        private void logout() {
+            mAuth.signOut();
             irMain();
         }
-    }
 
-    private void logout() {
-        mAuth.signOut();
-        irMain();
-    }
-
-    private void irMain() {
-        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(HomeActivity.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
-        finish();
-    }
+        private void irMain() {
+            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(HomeActivity.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
     @Override
     protected void onResume() {
@@ -235,4 +235,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onResume();
     }
 }
+
+
 
