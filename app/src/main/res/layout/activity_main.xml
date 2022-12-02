@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg1"
     tools:context=".MainActivity">
 
     <View
@@ -44,7 +44,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/custom_button_v2"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="10dp"
                 android:ems="10"
@@ -66,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/custom_button_v2"
                 android:drawableLeft="@drawable/ic_baseline_security_24"
                 android:drawablePadding="10dp"
                 android:ems="10"
@@ -98,7 +98,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/custom_button_v2"
+                android:backgroundTint="#F1EEEE"
                 android:text="Login"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
