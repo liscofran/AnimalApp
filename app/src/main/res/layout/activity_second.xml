@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Toolbar Verde <!-->
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".Second_Activity"
-    android:id="@+id/drawer_layout">
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/layoutToolBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/layoutToolBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/appbar">
+    android:layout_height="?actionBarSize"
+    android:orientation="horizontal"
+    android:background="@color/green"
+    app:layout_constraintTop_toTopOf="parent">
 
     <!-- DrawerLayout <!-->
     <ImageView
@@ -90,19 +77,4 @@
         app:layout_constraintRight_toRightOf="parent"
         android:src="@drawable/ic_baseline_settings_24"/>
 
-    </android.support.v7.widget.Toolbar>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white"
-        app:headerLayout="@layout/drawer_header"
-        app:itemIconTint="@drawable/nav_bg"
-        app:itemTextColor="@drawable/nav_bg"
-        app:menu="@menu/item_file">
-    </com.google.android.material.navigation.NavigationView>
-</androidx.drawerlayout.widget.DrawerLayout>
