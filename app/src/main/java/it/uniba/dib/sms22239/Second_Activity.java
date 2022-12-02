@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,9 +13,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -22,11 +28,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Second_Activity extends AppCompatActivity
 {
+    RelativeLayout relativeLayout;
 
     private FirebaseAuth mAuth;
-    private NavigationView navigationView;
-    private DrawerLayout drawerLayout;
-    private Toolbar toolbar;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,79 +40,70 @@ public class Second_Activity extends AppCompatActivity
         setContentView(R.layout.activity_second);
 
         mAuth = FirebaseAuth.getInstance();
-        //Bottone Drawer che apre la barra laterale
-        drawerLayout = findViewById(R.id.drawer_layout);
-        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener()
-        {
+        relativeLayout= findViewById(R.id.second_relative_layout); //importante per il tema
+        Load_setting();
+
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-
-        //Bottone Home
-        findViewById(R.id.imageHome).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
                 startActivity(new Intent(Second_Activity.this, HomeActivity.class));
             }
         });
-        findViewById(R.id.imageimpostazioni).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Second_Activity.this, Second_Activity.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Second_Activity.this, Preference.class));
             }
         });
 
-        navigationView = findViewById(R.id.navigation_view);
-        navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {
-                switch (item.getItemId())
-                {
-                    case R.id.search:
-                        Toast.makeText(Second_Activity.this, "Search Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.offerta:
-                        Intent navOfferta = new Intent(Second_Activity.this, HomeActivity.class);
-                        startActivity(navOfferta);
-                        break;
-                    case R.id.share:
-                        Toast.makeText(Second_Activity.this, "Share Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.setting:
-                        //Toast.makeText(HomeActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
+    }
 
+    private void Load_setting() {
 
-                        findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(Second_Activity.this, Preference.class));
-                            }
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean chk_night = sp.getBoolean("NIGHT", false);
+        if (chk_night) {
+            relativeLayout.setBackgroundColor(Color.parseColor("#222222"));
+            // Tv.setTextColor(Color.parseColor("#ffffff"));
+        } else {
+            relativeLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            //Tv.setTextColor(Color.parseColor("#000000"));
+        }
 
-                        });
-                        break;
-                    case R.id.lingua:
-                        Toast.makeText(Second_Activity.this, "Lingua Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.profile:
-                        Toast.makeText(Second_Activity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.logout:
-                        logout();
-                        break;
-                    default:
-                        break;
-                }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
-
+        String orien = sp.getString("ORIENTATION", "false");
+        if ("1".equals(orien)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
+        } else if ("2".equals(orien)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else if ("3".equals(orien)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
 
     }
 
@@ -122,5 +117,11 @@ public class Second_Activity extends AppCompatActivity
         startActivity(intent);
         Toast.makeText(Second_Activity.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        Load_setting();
+        super.onResume();
     }
 }

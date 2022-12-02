@@ -10,12 +10,14 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -37,126 +39,80 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class HomeActivity extends AppCompatActivity {
 
     Button btnLogout;
     FirebaseAuth mAuth;
     Button btnIntent;
-    NavigationView navigationView;
-    DrawerLayout drawerLayout;
-
-    private LinearLayout ml;
-    //private TextView Tv;
+    Toolbar toolbar;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        mAuth = FirebaseAuth.getInstance();
 
-        //Tv = findViewById(R.id.textTitle);
-        drawerLayout = findViewById(R.id.drawer_layout);
+        relativeLayout= findViewById(R.id.home_relative_layout); //importante per il tema
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         Load_setting();
 
-        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
+
             }
         });
-        findViewById(R.id.imageHome).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, Second_Activity.class));
             }
         });
-        findViewById(R.id.imageimpostazioni).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, Preference.class));
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
-        btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
-
-        btnIntent = findViewById(R.id.btnIntent);
-
-        btnIntent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Second_Activity.class));
-            }
-        });
-
-        navigationView = findViewById(R.id.navigation_view);
-        navigationView.setItemIconTintList(null);
-        // NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
-        // NavigationUI.setupWithNavController(navigationView, navController);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {
-                switch (item.getItemId())
-                {
-                    case R.id.search:
-                        Toast.makeText(HomeActivity.this, "Search Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.offerta:
-                        Intent navOfferta = new Intent(HomeActivity.this, Second_Activity.class);
-                        startActivity(navOfferta);
-                        break;
-                    case R.id.share:
-                        Toast.makeText(HomeActivity.this, "Share Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.setting:
-                        //Toast.makeText(HomeActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
-
-
-                        findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(HomeActivity.this, Preference.class));
-                        }
-
-                    });
-                        break;
-                    case R.id.lingua:
-                        Toast.makeText(HomeActivity.this, "Lingua Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.profile:
-                        Toast.makeText(HomeActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.logout:
-                        logout();
-                        break;
-                    default:
-                        break;
-                }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
     }
+
     private void Load_setting() {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean chk_night = sp.getBoolean("NIGHT", false);
         if (chk_night) {
-            drawerLayout.setBackgroundColor(Color.parseColor("#222222"));
+            relativeLayout.setBackgroundColor(Color.parseColor("#222222"));
             // Tv.setTextColor(Color.parseColor("#ffffff"));
         } else {
-            drawerLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            relativeLayout.setBackgroundColor(Color.parseColor("#ffffff"));
             //Tv.setTextColor(Color.parseColor("#000000"));
         }
-
 
         String orien = sp.getString("ORIENTATION", "false");
         if ("1".equals(orien)) {
@@ -167,45 +123,6 @@ public class HomeActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-
-
-    // per creare le icone dell'actionBar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                Toast.makeText(HomeActivity.this, "Search is Expanded", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                Toast.makeText(HomeActivity.this, "Search is Collapse", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        };
-
-        menu.findItem(R.id.search).setOnActionExpandListener(onActionExpandListener);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setQueryHint("Cerca...");
-
-        return true;
     }
 
         @Override
