@@ -7,6 +7,14 @@
     android:id="@+id/second_relative_layout"
     >
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </FrameLayout>
+
     <include layout="@layout/toolbar"/>
 
 </RelativeLayout>

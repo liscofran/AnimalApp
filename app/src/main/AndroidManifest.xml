@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Second_Activity"
+            android:name=".Profile_Activity"
             android:exported="false"
             android:parentActivityName=".HomeActivity">
             <meta-data
@@ -61,7 +61,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Preference" />
 
         <meta-data
             android:name="preloaded_fonts"

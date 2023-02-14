@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Enable Dark Theme">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="NIGHT"
-        android:summaryOff="Dark Theme is deactivated"
-        android:summaryOn="Dark Theme is activated"
-        android:title="Dark Theme"
-        android:icon="@drawable/ic_theme"/>
-</PreferenceCategory>
 
 <PreferenceCategory android:title="Screen Orientation">
 
