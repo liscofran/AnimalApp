@@ -7,14 +7,64 @@
     android:id="@+id/second_relative_layout"
     >
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar1" />
 
-    </FrameLayout>
 
-    <include layout="@layout/toolbar"/>
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border"
+        android:src="@drawable/eprofile"
+        android:layout_below="@id/toolbar1"
+        android:layout_marginTop="30dp"
+        app:layout_constraintVertical_bias="5"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        />
+
+
+    <TextView
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome Utente"
+        android:textSize="24sp"
+        android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/bio_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breve descrizione del profilo"
+        android:textSize="16sp"
+        android:layout_below="@id/name_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="emi.nem@gmail.comm"
+        android:layout_below="@id/bio_text"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp" />
+
+
+    <Button
+        android:id="@+id/edit_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modifica profilo"
+        android:layout_below="@id/user_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
 
 </RelativeLayout>
