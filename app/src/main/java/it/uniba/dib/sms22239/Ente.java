@@ -8,17 +8,14 @@ public class Ente extends User
 {
     public String ragione_sociale;
     public String partita_iva;
-    private DatabaseReference mDatabase;
 
     public Ente() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
     public void writeNewUser(Ente ente, String email, String password, String id) {
-
         ente.email = email;
         ente.password= password;
-
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Ente").child("E" + id).setValue(ente);
