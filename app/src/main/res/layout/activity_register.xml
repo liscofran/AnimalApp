@@ -104,6 +104,23 @@
                 app:layout_constraintStart_toStartOf="@+id/inputEmail"
                 app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:layout_constraintStart_toStartOf="@+id/inputConformPassword"
+                app:layout_constraintTop_toBottomOf="@+id/inputConformPassword" />
+            <!--
+            <string-array name="my_spinner_options">
+                <item>Opzione 1</item>
+                <item>Opzione 2</item>
+                <item>Opzione 3</item>
+            </string-array>
+            -->
+
             <Button
                 android:id="@+id/btnRegister"
                 android:layout_width="0dp"

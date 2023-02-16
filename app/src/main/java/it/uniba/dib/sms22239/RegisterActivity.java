@@ -1,6 +1,5 @@
 package it.uniba.dib.sms22239;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
-
+    Spinner spinner;
+    Boolean flag;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    String selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,22 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        spinner = findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.reg_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedItem = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                flag = false;
+            }
+        });
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -66,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email=inputEmail.getText().toString();
         String password=inputPassword.getText().toString();
         String confirmPassword=inputCConformPassword.getText().toString();
+        flag = true;
 
 
         if(!email.matches(emailPattern))
@@ -89,13 +110,29 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
-                    if(task.isSuccessful())
+                    if(task.isSuccessful() && flag == true)
                     {
+                        switch(selectedItem)
+                        {
+                            case "Proprietario":
+                                Proprietario prop = new Proprietario();
+                                prop.writeNewUser(prop, email, password);
+                                break;
+                            case "Ente":
+                                Ente ente = new Ente();
+                                ente.writeNewUser(ente, email, password);
+                                break;
+                            case "Veterinario":
+                                Veterinario vet = new Veterinario();
+                                vet.writeNewUser(vet, email, password);
+                                break;
+                            default:
+                                break;
+                        }
+
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        User user = new User();
-                        user.writeNewUser(email,password);
-                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Completa il tuo profilo !", Toast.LENGTH_SHORT).show();
                     }else
                     {
                         progressDialog.dismiss();

@@ -20,4 +20,11 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- Opzioni Registrazione -->
+    <string-array name="reg_options">
+        <item>Proprietario</item>
+        <item>Ente</item>
+        <item>Veterinario</item>
+    </string-array>
 </resources>
