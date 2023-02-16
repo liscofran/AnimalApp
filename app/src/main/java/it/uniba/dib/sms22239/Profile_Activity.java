@@ -52,9 +52,19 @@ public class Profile_Activity extends AppCompatActivity
 
         //se l'utente esiste , prende la mail dal database e la visualizza sul profilo
         if (currentUser != null) {
-            String email = currentUser.getEmail();
+            String email = currentUser.getUid();
             TextView emailTextView = findViewById(R.id.user_email);
             emailTextView.setText(email);
+        }
+
+        Bundle bundle = getIntent().getExtras();
+
+        // Controlla se il Bundle contiene il valore della nuova email
+        if (bundle != null && bundle.containsKey("newEmail")) {
+            String newEmail = bundle.getString("newEmail");
+
+            // Imposta il testo della TextView con la nuova email
+            profileEmail.setText(newEmail);
         }
 
         // Imposta l'immagine del profilo
@@ -66,6 +76,7 @@ public class Profile_Activity extends AppCompatActivity
             public void onClick(View view) {
                 Intent intent = new Intent(Profile_Activity.this, EditProfileActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -149,20 +160,17 @@ public class Profile_Activity extends AppCompatActivity
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == EDIT_PROFILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // Recupera il Bundle restituito da EditProfileActivity
+        if (resultCode == Activity.RESULT_OK) {
             Bundle bundle = data.getExtras();
-
-            // Legge la nuova email dal Bundle
             String newEmail = bundle.getString("newEmail");
 
-            // Aggiorna l'interfaccia utente con la nuova email
-            profileEmail.setText(newEmail);
-
+            TextView userEmailTextView = findViewById(R.id.user_email);
+            userEmailTextView.setText(newEmail);
         }
+
     }
 
 

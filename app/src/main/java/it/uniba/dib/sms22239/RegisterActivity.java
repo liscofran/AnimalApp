@@ -107,6 +107,9 @@ public class RegisterActivity extends AppCompatActivity {
             progressDialog.show();
 
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
@@ -116,15 +119,17 @@ public class RegisterActivity extends AppCompatActivity {
                         {
                             case "Proprietario":
                                 Proprietario prop = new Proprietario();
-                                prop.writeNewUser(prop, email, password);
+                                prop.writeNewUser(prop, email, password, currentUser.getUid());
+
                                 break;
                             case "Ente":
                                 Ente ente = new Ente();
-                                ente.writeNewUser(ente, email, password);
+                                ente.writeNewUser(ente, email, password, currentUser.getUid());
+
                                 break;
                             case "Veterinario":
                                 Veterinario vet = new Veterinario();
-                                vet.writeNewUser(vet, email, password);
+                                vet.writeNewUser(vet, email, password, currentUser.getUid());
                                 break;
                             default:
                                 break;
