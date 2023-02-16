@@ -113,13 +113,6 @@
                 android:spinnerMode="dropdown"
                 app:layout_constraintStart_toStartOf="@+id/inputConformPassword"
                 app:layout_constraintTop_toBottomOf="@+id/inputConformPassword" />
-            <!--
-            <string-array name="my_spinner_options">
-                <item>Opzione 1</item>
-                <item>Opzione 2</item>
-                <item>Opzione 3</item>
-            </string-array>
-            -->
 
             <Button
                 android:id="@+id/btnRegister"
