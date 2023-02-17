@@ -1,60 +1,33 @@
 package it.uniba.dib.sms22239;
-
-import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
 
 
-public class HomeActivity extends AppCompatActivity {
 
-    Button btnLogout;
-    FirebaseAuth mAuth;
-    Button btnIntent;
-    Toolbar toolbar;
+public class QRcode extends AppCompatActivity {
     RelativeLayout relativeLayout;
+    private CodeScanner mCodeScanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        mAuth = FirebaseAuth.getInstance();
+        setContentView(R.layout.qrcode0);
 
+        //toolbar
         relativeLayout= findViewById(R.id.home_relative_layout); //importante per il tema
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -64,14 +37,14 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(QRcode.this, HomeActivity.class));
             }
         });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, Profile_Activity.class));
+                startActivity(new Intent(QRcode.this, Preference.class));
             }
         });
 
@@ -84,29 +57,61 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, RegistrazioneAnimale.class));
             }
         });
+
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, QRcode.class));
+                startActivity(new Intent(QRcode.this, QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, Preference.class));
+                startActivity(new Intent(QRcode.this, QRcode.class));
             }
         });
 
+
+
+        CodeScannerView scannerView = findViewById(R.id.scanner_view);
+        mCodeScanner = new CodeScanner(this, scannerView);
+        mCodeScanner.setDecodeCallback(result -> runOnUiThread(() -> Toast.makeText(QRcode.this, result.getText(), Toast.LENGTH_SHORT).show()));
+        scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mCodeScanner.startPreview();
+    }
+
+    @Override
+    protected void onPause() {
+        mCodeScanner.releaseResources();
+        super.onPause();
+    }
+
+    public static void scanQRCode(Context context) {
+        Intent intent = new Intent(context, QRcode.class);
+        context.startActivity(intent);
     }
 
     private void Load_setting() {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean chk_night = sp.getBoolean("NIGHT", false);
+        if (chk_night) {
+            relativeLayout.setBackgroundColor(Color.parseColor("#222222"));
+            // Tv.setTextColor(Color.parseColor("#ffffff"));
+        } else {
+            relativeLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            //Tv.setTextColor(Color.parseColor("#000000"));
+        }
 
         String orien = sp.getString("ORIENTATION", "false");
         if ("1".equals(orien)) {
@@ -119,33 +124,4 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
-            irMain();
-        }
-    }
-
-    private void logout() {
-        mAuth.signOut();
-        irMain();
-    }
-
-    private void irMain() {
-        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(HomeActivity.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
-        finish();
-    }
-
-    @Override
-    protected void onResume() {
-        Load_setting();
-        super.onResume();
-    }
 }
-
-
-
