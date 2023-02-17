@@ -27,12 +27,12 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
                 android:fontFamily="@font/aldrich"
                 android:text="Registrati"
                 android:textColor="@color/white"
                 android:textSize="44sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/inputEmail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,31 +41,23 @@
                 android:id="@+id/inputEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="24dp"
                 android:background="@drawable/custom_button_v2"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="10dp"
-                android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:padding="20dp"
-                android:paddingTop="13dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="13dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/inputPassword"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
                 android:id="@+id/inputPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/custom_button_v2"
                 android:drawableLeft="@drawable/ic_baseline_security_24"
                 android:drawablePadding="10dp"
@@ -73,20 +65,17 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="20dp"
-                android:paddingTop="13dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="13dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/inputEmail"
                 app:layout_constraintStart_toStartOf="@+id/inputEmail"
-                app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+                app:layout_constraintBottom_toTopOf="@id/inputConformPassword"
+                app:layout_constraintTop_toBottomOf="@id/inputEmail"/>
 
             <EditText
                 android:id="@+id/inputConformPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="96dp"
                 android:background="@drawable/custom_button_v2"
                 android:drawableLeft="@drawable/ic_baseline_security_24"
                 android:drawablePadding="10dp"
@@ -94,23 +83,21 @@
                 android:hint="Conferma Password"
                 android:inputType="textPassword"
                 android:padding="20dp"
-                android:paddingTop="13dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="13dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/inputEmail"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/inputEmail"
-                app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+                app:layout_constraintBottom_toTopOf="@+id/spinner1"
+                app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+                app:layout_constraintStart_toStartOf="@+id/inputPassword"
+                app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
             <Spinner
                 android:id="@+id/spinner1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+                app:layout_constraintEnd_toEndOf="@+id/inputConformPassword"
                 app:layout_constraintStart_toStartOf="@+id/inputConformPassword"
                 app:layout_constraintTop_toBottomOf="@+id/inputConformPassword" />
 
@@ -118,29 +105,39 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="60dp"
                 android:background="@drawable/custom_button_v2"
                 android:text="Registrati"
                 android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/alreadyHaveaccount"
                 app:layout_constraintEnd_toEndOf="@+id/inputConformPassword"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/inputConformPassword"
-                app:layout_constraintTop_toBottomOf="@+id/inputConformPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
             <TextView
                 android:id="@+id/alreadyHaveaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hai già un account?"
-                android:layout_marginTop="16dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/btnRegister"
                 app:layout_constraintStart_toStartOf="@+id/btnRegister"
-                app:layout_constraintTop_toBottomOf="@+id/btnRegister"/>
+                app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.10" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.90"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

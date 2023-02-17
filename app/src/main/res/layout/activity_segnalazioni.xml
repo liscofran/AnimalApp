@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar1" />
+
+    <TextView
+        android:id="@+id/segnalazioni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Segnalazioni"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
+        app:layout_constraintBottom_toTopOf="@id/view"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/segnalazioni"
+        app:layout_constraintBottom_toTopOf="@id/creasegnalazione"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/creasegnalazione"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v2"
+        android:drawableLeft="@drawable/ic_plus"
+        android:drawablePadding="10dp"
+        android:hint="Crea Segnalazione"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintBottom_toTopOf="@id/miesegnalazione"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/miesegnalazione"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v2"
+        android:drawableLeft="@drawable/ic_share"
+        android:drawablePadding="10dp"
+        android:hint="Le mie Segnalazioni"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/ricercasegnalazioni"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/creasegnalazione" />
+
+    <EditText
+        android:id="@+id/ricercasegnalazioni"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v2"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:hint="Ricerca Segnalazioni"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/miesegnalazione"
+        app:layout_constraintBottom_toTopOf="@id/offerte"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/offerte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Offerte"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ricercasegnalazioni"
+        app:layout_constraintBottom_toTopOf="@id/view2"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/offerte"
+        app:layout_constraintBottom_toTopOf="@id/creaofferta"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/creaofferta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v2"
+        android:drawableLeft="@drawable/ic_baseline_local_offer_24"
+        android:drawablePadding="10dp"
+        android:hint="Crea Offerta"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/view2"
+        app:layout_constraintBottom_toTopOf="@id/mieofferte"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/mieofferte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v2"
+        android:drawableLeft="@drawable/ic_baseline_local_offer_24"
+        android:drawablePadding="10dp"
+        android:hint="Le mie Offerte"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/creaofferta"
+        app:layout_constraintBottom_toTopOf="@id/ricercaofferte"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/ricercaofferte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v2"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:hint="Ricerca Offerte"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/mieofferte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

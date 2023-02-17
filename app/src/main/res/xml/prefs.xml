@@ -22,4 +22,11 @@
             android:key="About_Us"
             android:icon="@drawable/ic_info"/>
     </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Logout">
+        <Preference
+            android:title="Logout"
+            android:key="Logout"
+            android:icon="@drawable/ic_logout"/>
+    </PreferenceCategory>
 </PreferenceScreen>

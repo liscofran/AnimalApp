@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText inputEmail,inputPassword;
     Button btnLogin;
+    TextView forgotPassword;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         inputPassword=findViewById(R.id.inputPassword);
         btnLogin=findViewById(R.id.btnLogin);
         btnGoogle = findViewById(R.id.btnGoogle);
+        forgotPassword=findViewById(R.id.forgotPassword);
         progressDialog= new ProgressDialog(this);
         mAuth= FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
@@ -73,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
             {
                 Intent intent= new Intent(MainActivity.this, GoogleSignInActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ResetPassword.class);
                 startActivity(intent);
             }
         });

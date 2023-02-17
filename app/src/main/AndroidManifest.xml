@@ -32,6 +32,8 @@
             android:exported="true">
         </activity>
 
+        <activity android:name=".ResetPassword"
+            android:exported="false" />
         <activity
             android:name=".Preference"
             android:exported="false" />

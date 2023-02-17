@@ -10,13 +10,18 @@ import android.preference.ListPreference;
 import android.preference.*;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Preference extends PreferenceActivity {
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.prefs);
         Load_setting();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void Load_setting() {
@@ -71,11 +76,32 @@ public class Preference extends PreferenceActivity {
                 return true;
             }
         });
+
+        android.preference.Preference logout = findPreference("Logout");
+        logout.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(android.preference.Preference preference) {
+                logout();
+                return true;
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         Load_setting();
         super.onResume();
+    }
+
+    private void logout() {
+        mAuth.signOut();
+        irMain();
+    }
+
+    private void irMain() {
+        Intent intent = new Intent(Preference.this, MainActivity.class);
+        startActivity(intent);
+        Toast.makeText(Preference.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }
