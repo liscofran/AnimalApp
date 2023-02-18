@@ -17,9 +17,10 @@ public class Veterinario extends User
     public void writeNewUser(Veterinario vet, String email, String password, String id) {
         vet.email = email;
         vet.password= password;
+        vet.classe="Veterinario";
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Veterinario").child("V" +id).setValue(vet);
-        vet.userId = "V" +id;
+        mDatabase.child("User").child(id).setValue(vet);
+        vet.userId = id;
     }
 }

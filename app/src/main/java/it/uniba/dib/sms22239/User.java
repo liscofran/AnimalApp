@@ -7,6 +7,7 @@ public abstract class User {
     public String email;
     public String password;
     public String userId;
+    public String classe;
     protected DatabaseReference mDatabase;
 
     public User() {

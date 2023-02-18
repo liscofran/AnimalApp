@@ -16,9 +16,11 @@ public class Proprietario extends User
     public void writeNewUser(Proprietario prop, String email, String password, String id) {
         prop.email = email;
         prop.password= password;
+        prop.classe="Proprietario";
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Proprietario").child("P" +id).setValue(prop);
-        prop.userId = "P" +id;
+        mDatabase.child("User").child(id).setValue(prop);
+        prop.userId = id;
     }
 }

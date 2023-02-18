@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green"
+    android:elevation="4dp"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_marginRight="40px"
+        android:orientation="horizontal">
+
+        <!-- home <!-->
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/profile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- profilo<!-->
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/home"
+            app:layout_constraintRight_toLeftOf="@+id/annunci"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- annunci <!-->
+        <ImageView
+            android:id="@+id/annunci"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_offer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/pet"
+            app:layout_constraintRight_toLeftOf="@+id/profile"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <!-- pet <!-->
+        <ImageView
+            android:id="@+id/pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_pets_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/annunci"
+            app:layout_constraintRight_toLeftOf="@+id/qr"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- qr <!-->
+        <ImageView
+            android:id="@+id/qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_qr_code_scanner_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/pet"
+            app:layout_constraintRight_toLeftOf="@+id/scheda"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- scheda <!-->
+        <ImageView
+            android:id="@+id/scheda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="?attr/actionModePasteDrawable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/qr"
+            app:layout_constraintRight_toLeftOf="@+id/impostazioni"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- impostazioni <!-->
+        <ImageView
+            android:id="@+id/impostazioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_settings_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/scheda"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.Toolbar>
+
