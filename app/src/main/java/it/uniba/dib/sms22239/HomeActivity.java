@@ -69,6 +69,7 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, Segnalazioni.class));
             }
         });
 
