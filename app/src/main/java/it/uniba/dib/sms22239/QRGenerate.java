@@ -6,10 +6,10 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,45 +44,19 @@ public class QRGenerate extends AppCompatActivity {
 
         Load_setting();
 
-        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(QRGenerate.this, HomeActivity.class));
-            }
+        findViewById(R.id.home).setOnClickListener(view -> startActivity(new Intent(QRGenerate.this, HomeActivity.class)));
+
+        findViewById(R.id.profile).setOnClickListener(view -> startActivity(new Intent(QRGenerate.this, Profile_Activity.class)));
+
+        findViewById(R.id.annunci).setOnClickListener(view -> {
         });
 
-        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(QRGenerate.this, Profile_Activity.class));
-            }
+        findViewById(R.id.pet).setOnClickListener(view -> {
         });
 
-        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+        findViewById(R.id.qr).setOnClickListener(view -> startActivity(new Intent(QRGenerate.this, QRcode.class)));
 
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
-        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(QRGenerate.this, QRcode.class));
-            }
-        });
-
-        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(QRGenerate.this, Preference.class));
-            }
-        });
+        findViewById(R.id.impostazioni).setOnClickListener(view -> startActivity(new Intent(QRGenerate.this, Preference.class)));
 
     }
 
@@ -120,6 +94,7 @@ public class QRGenerate extends AppCompatActivity {
     }
 
 
+    @Nullable
     private Bitmap encodeAsBitmap(String data) throws WriterException {
         BitMatrix result;
         try {
