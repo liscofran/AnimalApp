@@ -11,19 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Segnalazioni extends AppCompatActivity {
 
     Button creasegnalazione;
+    Button creaofferta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segnalazioni);
-        creasegnalazione = findViewById(R.id.creasegnalazione);
-        creasegnalazione.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Segnalazioni.this,CreaSegnalazione.class);
-                startActivity(intent);
-            }
-        });
+
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +36,7 @@ public class Segnalazioni extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Segnalazioni.this, RegistrazioneAnimale.class));
+                startActivity(new Intent(Segnalazioni.this, RegistrazioneAnimale0.class));
             }
         });
 
@@ -57,6 +51,26 @@ public class Segnalazioni extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Segnalazioni.this, Preference.class));
+            }
+        });
+
+        creasegnalazione = findViewById(R.id.creasegnalazione);
+
+        creasegnalazione.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Segnalazioni.this,CreaSegnalazione.class);
+                startActivity(intent);
+            }
+        });
+
+        creaofferta = findViewById(R.id.creaofferta);
+
+        creaofferta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Segnalazioni.this,CreaOfferta.class);
+                startActivity(intent);
             }
         });
 

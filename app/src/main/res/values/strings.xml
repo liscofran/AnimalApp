@@ -27,4 +27,12 @@
         <item>Ente</item>
         <item>Veterinario</item>
     </string-array>
+
+    <!-- Opzioni Categoria -->
+    <string-array name="reg_categoria">
+        <item></item>
+        <item>Opzione 1</item>
+        <item>Opzione 2</item>
+        <item>Opzione 3</item>
+    </string-array>
 </resources>

@@ -84,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v2"
-                android:drawableLeft="@drawable/ic_baseline_security_24"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="10dp"
                 android:hint="Conferma Email"
                 android:inputType="textEmailAddress"

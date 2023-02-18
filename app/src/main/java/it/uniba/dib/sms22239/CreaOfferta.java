@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreaSegnalazione extends AppCompatActivity {
+public class CreaOfferta extends AppCompatActivity {
 
+    ImageButton backBtn2;
     private CheckBox checkBox1;
     private CheckBox checkBox2;
     private CheckBox checkBox3;
@@ -22,17 +24,17 @@ public class CreaSegnalazione extends AppCompatActivity {
     Spinner spinner2;
     Spinner spinner3;
     String selectedItem;
-    ImageButton backBtn;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_creasegnalazione);
+        setContentView(R.layout.activity_creaofferta);
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreaSegnalazione.this,HomeActivity.class);
+                Intent intent = new Intent(CreaOfferta.this,HomeActivity.class);
                 startActivity(intent);
             }
         });
@@ -40,34 +42,34 @@ public class CreaSegnalazione extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreaSegnalazione.this, Profile_Activity.class));
+                startActivity(new Intent(CreaOfferta.this, Profile_Activity.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreaSegnalazione.this, RegistrazioneAnimale0.class));
+                startActivity(new Intent(CreaOfferta.this, RegistrazioneAnimale0.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreaSegnalazione.this, QRcode.class));
+                startActivity(new Intent(CreaOfferta.this, QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreaSegnalazione.this, Preference.class));
+                startActivity(new Intent(CreaOfferta.this, Preference.class));
             }
         });
 
-        backBtn = findViewById(R.id.backBtn);
+        backBtn2 = findViewById(R.id.back);
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -131,13 +133,13 @@ public class CreaSegnalazione extends AppCompatActivity {
                         onNothingSelected(parent);
                         break;
                     case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
                         break;
                     case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
                         break;
                     case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
@@ -145,7 +147,7 @@ public class CreaSegnalazione extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nella Categoria", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nella Categoria", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -164,13 +166,13 @@ public class CreaSegnalazione extends AppCompatActivity {
                         onNothingSelected(parent);
                         break;
                     case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
                         break;
                     case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
                         break;
                     case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
@@ -178,7 +180,7 @@ public class CreaSegnalazione extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nella Provincia", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nella Provincia", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -197,13 +199,13 @@ public class CreaSegnalazione extends AppCompatActivity {
                         onNothingSelected(parent);
                         break;
                     case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
                         break;
                     case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
                         break;
                     case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreaOfferta.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
@@ -211,8 +213,9 @@ public class CreaSegnalazione extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nell'Oggetto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nell'Oggetto", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
