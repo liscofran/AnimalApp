@@ -71,7 +71,7 @@ public class QRcode extends AppCompatActivity {
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(QRcode.this, QRcode.class));
+                startActivity(new Intent(QRcode.this, Preference.class));
             }
         });
 

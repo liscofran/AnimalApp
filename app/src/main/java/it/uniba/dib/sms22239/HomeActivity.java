@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, RegistrazioneAnimale.class));
+                startActivity(new Intent(HomeActivity.this, PetActivity.class));
             }
         });
 

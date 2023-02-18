@@ -70,7 +70,6 @@ dependencies {
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
     implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
     implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:18.1.0'
     implementation 'com.google.zxing:core:3.4.1'
