@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -38,19 +40,20 @@ public class HomeActivity extends AppCompatActivity {
     RelativeLayout relativeLayout;
     String userType;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Load_setting();
 
-
-        relativeLayout= findViewById(R.id.home_relative_layout); //importante per il tema
+       /* relativeLayout= findViewById(R.id.home_relative_layout); //importante per il tema
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Load_setting();
+        LoadSettings();
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,13 +90,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.scheda).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, SchedaActivity.class));
+            }
+        });
+
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, Preference.class));
             }
         });
-
+        */
     }
 
     private void Load_setting() {
@@ -108,42 +118,17 @@ public class HomeActivity extends AppCompatActivity {
         } else if ("3".equals(orien)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        @Override
+        protected void onStart() {
+            super.onStart();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
 
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
-
-/*
-        if((myRef = database.getReference("Veterinario").child("V"+user.getUid())) != null)
-        {
-            // è un veterinario, carico il fragment corrispondente
-            VeterinarioFragment veterinarioFragment = new VeterinarioFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, veterinarioFragment)
-                    .commit();
-        }
-        else if(((myRef = database.getReference("Proprietario").child("P"+user.getUid())) != null)
-        || (myRef = database.getReference("Ente").child("E"+user.getUid())) != null)
-        {
-            // è un proprietario, carico il fragment corrispondente
-            ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, proprietarioFragment)
-                    .commit();
-        }
-        else
-        {
-            //poi metteremo un errore se ci va
-        }*/
-
-
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+            
         Query query = myRef.orderByChild("classe");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -168,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.fragment_container, proprietarioFragment)
                                     .commit();
-                        }
+                           }
                     }
                 } else {
                     // L'utente non è stato trovato
@@ -201,8 +186,8 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Load_setting();
         super.onResume();
+        Load_setting();
     }
 
 
@@ -210,6 +195,9 @@ public class HomeActivity extends AppCompatActivity {
         return userType;
     }
 }
+
+
+
 
 
 
