@@ -1,6 +1,5 @@
 package it.uniba.dib.sms22239;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
