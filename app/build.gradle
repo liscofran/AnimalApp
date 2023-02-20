@@ -63,7 +63,7 @@ dependencies {
     //Rounded Image View
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'androidx.preference:preference:1.2.0'
-
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
     // Add this for versions
     def nav_version = "2.3.0"
 

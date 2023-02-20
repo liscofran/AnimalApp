@@ -1,11 +1,13 @@
 package it.uniba.dib.sms22239;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,8 +23,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Profile_Activity extends AppCompatActivity
 {
@@ -30,55 +39,66 @@ public class Profile_Activity extends AppCompatActivity
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
     private FirebaseAuth mAuth;
 
-    private ImageView profileImage;
-    private TextView profileName;
-    private TextView profileEmail;
     private Button editProfileButton;
 
-    @SuppressLint("MissingInflatedId")
+
+    private FirebaseRecyclerOptions<Proprietario> options;
+    private FirebaseRecyclerAdapter<Proprietario, MyViewHolder> adapter;
+    private RecyclerView recyclerView;
+
+   private TextView mNomeTextView;
+   private TextView mCognomeTextView;
+    private TextView mEmailTextView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //con queste 2 righe si prende l'istanza attuale da firebase
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        setContentView(R.layout.activity_profile2);
 
-        setContentView(R.layout.activity_profile);
-        profileImage = findViewById(R.id.profile_image);
-        profileName = findViewById(R.id.name_text);
-        profileEmail = findViewById(R.id.user_email);
-        editProfileButton = findViewById(R.id.edit_profile_button);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference mDatabase;
 
-        //se l'utente esiste , prende la mail dal database e la visualizza sul profilo
-        if (currentUser != null) {
-            String email = currentUser.getUid();
-            TextView emailTextView = findViewById(R.id.user_email);
-            emailTextView.setText(email);
-        }
 
-        Bundle bundle = getIntent().getExtras();
+        // Recupera il riferimento al database
+        mDatabase = database.getInstance().getReference().child("Proprietario").child(user.getUid());
 
-        // Controlla se il Bundle contiene il valore della nuova email
-        if (bundle != null && bundle.containsKey("newEmail")) {
-            String newEmail = bundle.getString("newEmail");
+        mNomeTextView = findViewById(R.id.user_nome);
+        mCognomeTextView = findViewById(R.id.user_cognome);
+        mEmailTextView = findViewById(R.id.user_email);
 
-            // Imposta il testo della TextView con la nuova email
-            profileEmail.setText(newEmail);
-        }
-
-        // Imposta l'immagine del profilo
-        profileImage.setImageResource(R.drawable.eprofile);
-
-        // Imposta un listener di clic sul pulsante di modifica profilo
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
+        // Recupera i dati dal database e popola le viste
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Profile_Activity.this, EditProfileActivity.class);
-                startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("nome").getValue(String.class);
+                String cognome = dataSnapshot.child("cognome").getValue(String.class);
+                String email = dataSnapshot.child("email").getValue(String.class);
+
+
+                mNomeTextView.setText(name);
+                mCognomeTextView.setText(cognome);
+                mEmailTextView.setText(email);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+
+
+//        editProfileButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Profile.this, EditProfileActivity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -88,7 +108,7 @@ public class Profile_Activity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Profile_Activity.this, HomeActivity.class));
-            }
+           }
         });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
