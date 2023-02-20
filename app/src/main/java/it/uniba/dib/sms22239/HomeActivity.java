@@ -139,7 +139,8 @@ public class HomeActivity extends AppCompatActivity {
                     String classe = snapshot.child("classe").getValue(String.class);
 
                     // L'utente è stato trovato
-                    if (classe != null) {
+                    if (classe != null)
+                    {
                         // Verifica il valore dell'attributo "classe"
                         if (classe.equals("Veterinario")) {
                             // Lanciare il VeterinarioFragment
@@ -147,17 +148,23 @@ public class HomeActivity extends AppCompatActivity {
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.fragment_container, new VeterinarioFragment());
                             fragmentTransaction.commit();
-                        } else if (classe.equals("Proprietario") || classe.equals("Ente")) {
+                        }
+                        else
+                        {
                             // Lanciare il ProprietarioFragment
                             ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.fragment_container, proprietarioFragment)
                                     .commit();
-                           }
+                        }
                     }
-                } else {
-                    // L'utente non è stato trovato
-                    Log.d("User", "Utente non trovato");
+                }
+                else
+                {
+                    ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, proprietarioFragment)
+                            .commit();
                 }
             }
 
