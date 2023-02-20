@@ -8,4 +8,14 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:text="Benvenuto proprietario"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
 </LinearLayout>

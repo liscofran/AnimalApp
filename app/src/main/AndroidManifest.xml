@@ -1,17 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
+        android:required="false"/>
 
     <application
         android:allowBackup="true"
@@ -22,75 +19,79 @@
         android:roundIcon="@mipmap/animal_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalApp"
-        tools:targetApi="31" >
-        <activity
-            android:name=".Profile_Activity"
-            android:exported="false" />
+        tools:targetApi="31">
         <activity
             android:name=".PetActivity"
-            android:exported="false" >
+            android:exported="false">
         </activity>
         <activity
             android:name=".QRcode"
-            android:exported="false"
-            android:label="Scansione QRCode" >
+            android:label="Scansione QRCode"
+            android:exported="false">
         </activity>
-        <activity
-            android:name=".Segnalazioni"
-            android:exported="false" />
-        <activity
-            android:name=".CreaSegnalazione"
-            android:exported="false" />
-        <activity
-            android:name=".CreaOfferta"
-            android:exported="false" />
+        <activity android:name=".Segnalazioni"
+            android:exported="false"/>
+        <activity android:name=".CreaSegnalazione"
+            android:exported="false"/>
+        <activity android:name=".CreaOfferta"
+            android:exported="false"/>
+
         <activity
             android:name=".RegistrazioneAnimale0"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".QRGenerate"
-            android:exported="true" >
+            android:exported="true">
         </activity>
-        <activity
-            android:name=".ResetPassword"
+
+        <activity android:name=".ResetPassword"
             android:exported="false" />
         <activity
             android:name=".Preference"
             android:exported="false" />
         <activity
             android:name=".Chisiamo"
-            android:exported="false" >
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Profile_Activity"
+            android:exported="false"
+            android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".GoogleSignInActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -106,5 +107,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>
