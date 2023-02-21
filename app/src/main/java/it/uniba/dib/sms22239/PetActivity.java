@@ -22,7 +22,7 @@ public class PetActivity extends AppCompatActivity {
         aggiungiAnimaleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PetActivity.this, RegistrazioneAnimale0.class);
+                Intent intent = new Intent(PetActivity.this, RegistrazioneAnimale.class);
                 intent.putExtra("ANIMAL_NAME", "Leone"); // sostituisci con il nome dell'animale dell'utente
                 startActivity(intent);
             }

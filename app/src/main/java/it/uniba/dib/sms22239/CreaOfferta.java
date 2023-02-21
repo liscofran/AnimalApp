@@ -49,7 +49,7 @@ public class CreaOfferta extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreaOfferta.this, RegistrazioneAnimale0.class));
+                startActivity(new Intent(CreaOfferta.this, RegistrazioneAnimale.class));
             }
         });
 
@@ -147,7 +147,7 @@ public class CreaOfferta extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nella Categoria", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nella Categoria", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -180,7 +180,7 @@ public class CreaOfferta extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nella Provincia", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nella Provincia", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -213,7 +213,7 @@ public class CreaOfferta extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nell'Oggetto", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CreaOfferta.this, "Non hai effettuato nessuna selezione nell'Oggetto", Toast.LENGTH_SHORT).show();
             }
         });
 

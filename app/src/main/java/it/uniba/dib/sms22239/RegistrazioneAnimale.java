@@ -16,11 +16,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.text.CharacterIterator;
-import java.text.ParseException;
 import java.text.StringCharacterIterator;
 
 
-public class RegistrazioneAnimale0 extends AppCompatActivity {
+public class RegistrazioneAnimale extends AppCompatActivity {
     EditText inputNome, inputRazza, inputData;
     RadioGroup inputSesso;
     String sesso;
@@ -34,7 +33,6 @@ public class RegistrazioneAnimale0 extends AppCompatActivity {
         inputRazza=findViewById(R.id.register_animal_species);
         inputData=findViewById(R.id.register_animal_birthdate);
         inputSesso = (RadioGroup) findViewById(R.id.register_animal_sex);
-        ;
 
         inputSesso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -76,8 +74,8 @@ public class RegistrazioneAnimale0 extends AppCompatActivity {
                 }
 
                 ani.writeNewAnimal(ani, nome, razza, currentUser.getUid(), sesso, data);
-                Intent intent = new Intent(RegistrazioneAnimale0.this, QRGenerate.class);
-                intent.putExtra("ANIMAL_NAME", "Leone"); // sostituisci con il nome dell'animale dell'utente
+                Intent intent = new Intent(RegistrazioneAnimale.this, QRGenerate.class);
+                intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);
             }
         });
@@ -88,7 +86,7 @@ public class RegistrazioneAnimale0 extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneAnimale0.this, HomeActivity.class));
+                startActivity(new Intent(RegistrazioneAnimale.this, HomeActivity.class));
             }
         });
     }

@@ -47,7 +47,7 @@ public class CreaSegnalazione extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreaSegnalazione.this, RegistrazioneAnimale0.class));
+                startActivity(new Intent(CreaSegnalazione.this, RegistrazioneAnimale.class));
             }
         });
 
