@@ -3,15 +3,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
+import android.Manifest;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -21,6 +24,7 @@ import com.budiyev.android.codescanner.CodeScannerView;
 public class QRcode extends AppCompatActivity {
     RelativeLayout relativeLayout;
     private CodeScanner mCodeScanner;
+    private static final int CAMERA_PERMISSION_REQUEST = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +85,10 @@ public class QRcode extends AppCompatActivity {
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(result -> runOnUiThread(() -> Toast.makeText(QRcode.this, result.getText(), Toast.LENGTH_SHORT).show()));
         scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
-
+        
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST);
+        }
     }
 
     @Override
@@ -122,6 +129,20 @@ public class QRcode extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case CAMERA_PERMISSION_REQUEST: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // autorizzazione concessa, procedere con l'utilizzo della fotocamera
+                } else {
+                    // autorizzazione negata, mostrare un messaggio di errore o richiedere l'autorizzazione di nuovo
+                }
+                return;
+            }
+        }
     }
 
 }
