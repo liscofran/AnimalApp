@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment_animal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/second_relative_layout"
+        >
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/border"
+            android:src="@drawable/leone"
+            android:layout_marginTop="100dp"
+            app:layout_constraintVertical_bias="5"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:id="@+id/Profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifica Dati"
+            android:textSize="24sp"
+            android:layout_below="@id/profile_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+
+            />
+
+        <EditText
+            android:id="@+id/animal_nome"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Profile_text"
+            android:background="@drawable/custom_button_v3"
+            android:drawableLeft="@drawable/ic_profile2"
+            android:ems="16"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Inserisci il Nome"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/animal_razza"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/animal_nome"
+            android:background="@drawable/custom_button_v3"
+            android:drawableLeft="@drawable/ic_profile2"
+            android:ems="16"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginTop="20dp"
+            android:hint="Inserisci la razza"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/animal_sesso"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/animal_razza"
+            android:background="@drawable/custom_button_v3"
+            android:drawableLeft="@drawable/ic_profile2"
+            android:ems="16"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginTop="20dp"
+            android:hint="Inserisci il codice fiscale"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@id/profile_image"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/save_animal_button"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:ems="16"
+            android:text="Salva" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

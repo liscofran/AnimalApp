@@ -28,6 +28,15 @@ public class PetActivity extends AppCompatActivity {
             }
         });
 
+        Button visualizzaAnimaleButton = findViewById(R.id.see_animal_button);
+        visualizzaAnimaleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PetActivity.this, Animal_Activity.class);
+                startActivity(intent);
+            }
+        });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
