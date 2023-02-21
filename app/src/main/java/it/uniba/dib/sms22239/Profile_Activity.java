@@ -35,71 +35,18 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Profile_Activity extends AppCompatActivity
 {
-    RelativeLayout relativeLayout;
-    private static final int EDIT_PROFILE_REQUEST_CODE = 1;
-    private FirebaseAuth mAuth;
-
-    private Button editProfileButton;
-
-    private FirebaseRecyclerOptions<Proprietario> options;
-    private FirebaseRecyclerAdapter<Proprietario, MyViewHolder> adapter;
-    private RecyclerView recyclerView;
-    private FirebaseDatabase mDatabase;
-   private TextView mNomeTextView;
-   private TextView mCognomeTextView;
-    private TextView mEmailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile2);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        DatabaseReference mDatabase;
-
-
-        // Recupera il riferimento al database
-        mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
-
-        mNomeTextView = findViewById(R.id.user_nome);
-        mCognomeTextView = findViewById(R.id.user_cognome);
-        mEmailTextView = findViewById(R.id.user_email);
-
-        // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child("cognome").getValue(String.class);
-                String email = dataSnapshot.child("email").getValue(String.class);
-
-                //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mCognomeTextView.setText(cognome);
-                mEmailTextView.setText(email);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-        findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Profile_Activity.this, EditProfileActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        mAuth = FirebaseAuth.getInstance();
-
         Load_setting();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile());
+        fragmentTransaction.commit();
+
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,17 +104,6 @@ public class Profile_Activity extends AppCompatActivity
 
     }
 
-    private void logout() {
-        mAuth.signOut();
-        irMain();
-    }
-
-    private void irMain() {
-        Intent intent = new Intent(Profile_Activity.this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(Profile_Activity.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
-        finish();
-    }
 
     @Override
     protected void onResume() {
@@ -175,20 +111,6 @@ public class Profile_Activity extends AppCompatActivity
         super.onResume();
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == Activity.RESULT_OK) {
-            Bundle bundle = data.getExtras();
-            String newEmail = bundle.getString("newEmail");
-
-            TextView userEmailTextView = findViewById(R.id.user_email);
-            userEmailTextView.setText(newEmail);
-        }
-
-    }
 
 
 }
