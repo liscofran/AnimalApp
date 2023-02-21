@@ -37,7 +37,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".RegistrazioneAnimale0"
+            android:name=".RegistrazioneAnimale"
             android:exported="false"
             android:windowSoftInputMode="adjustPan">
         </activity>

@@ -30,8 +30,8 @@ public class QRGenerate extends AppCompatActivity {
 
         imageView = findViewById(R.id.qr_code_image_view);
 
-        // Retrieve the animal name from the intent
-        String animalName = getIntent().getStringExtra("ANIMAL_NAME");
+        // Retrieve the animal code from the intent
+        String animalName = getIntent().getStringExtra("ANIMAL_CODE");
 
         // Generate the QR code and set it to the ImageView
         try {

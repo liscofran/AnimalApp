@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +35,7 @@ public class Segnalazioni extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Segnalazioni.this, RegistrazioneAnimale0.class));
+                startActivity(new Intent(Segnalazioni.this, RegistrazioneAnimale.class));
             }
         });
 
