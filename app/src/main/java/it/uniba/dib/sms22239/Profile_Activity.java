@@ -41,11 +41,10 @@ public class Profile_Activity extends AppCompatActivity
 
     private Button editProfileButton;
 
-
     private FirebaseRecyclerOptions<Proprietario> options;
     private FirebaseRecyclerAdapter<Proprietario, MyViewHolder> adapter;
     private RecyclerView recyclerView;
-
+    private FirebaseDatabase mDatabase;
    private TextView mNomeTextView;
    private TextView mCognomeTextView;
     private TextView mEmailTextView;
@@ -62,27 +61,25 @@ public class Profile_Activity extends AppCompatActivity
 
 
         // Recupera il riferimento al database
-        mDatabase = database.getInstance().getReference().child("Proprietario").child(user.getUid());
+        mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
         mNomeTextView = findViewById(R.id.user_nome);
         mCognomeTextView = findViewById(R.id.user_cognome);
         mEmailTextView = findViewById(R.id.user_email);
 
         // Recupera i dati dal database e popola le viste
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                 String email = dataSnapshot.child("email").getValue(String.class);
 
-
+                //set delle variabili recuperate al layout
                 mNomeTextView.setText(name);
                 mCognomeTextView.setText(cognome);
                 mEmailTextView.setText(email);
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -91,14 +88,14 @@ public class Profile_Activity extends AppCompatActivity
 
 
 
-//        editProfileButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Profile.this, EditProfileActivity.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+        findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profile_Activity.this, EditProfileActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
 
