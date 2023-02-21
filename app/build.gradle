@@ -53,7 +53,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
-    // permette di creare delle view circle nelle activity
+// permette di creare delle view circle nelle activity
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //Material design
     implementation 'com.google.android.material:material:1.9.0-alpha01'
@@ -64,7 +64,6 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
-
     // Add this for versions
     def nav_version = "2.3.0"
 
