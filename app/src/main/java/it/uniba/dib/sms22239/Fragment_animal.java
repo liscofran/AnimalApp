@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 
 public class Fragment_animal extends Fragment {
     RelativeLayout relativeLayout;
@@ -53,8 +55,6 @@ public class Fragment_animal extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -69,6 +69,8 @@ public class Fragment_animal extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -76,7 +78,7 @@ public class Fragment_animal extends Fragment {
 
 
         // Recupera il riferimento al database
-        mDatabase = database.getInstance().getReference().child("Animale").child("313294572");
+        mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
         midproprietarioTextView = getView().findViewById(R.id.animal_proprietario);
         mNomeTextView = getView().findViewById(R.id.animal_nome);
@@ -87,7 +89,7 @@ public class Fragment_animal extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String proprietario = "WgtD7SZNukN0FokaBwVRPprZ2hm2";
+                String proprietario = dataSnapshot.child("Id_utente").getValue(String.class);
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);

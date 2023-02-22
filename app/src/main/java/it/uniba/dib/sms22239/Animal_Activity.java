@@ -41,6 +41,7 @@ public class Animal_Activity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal);
         Load_setting();
+        String idAnimal = getIntent().getStringExtra("ANIMAL_CODE");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

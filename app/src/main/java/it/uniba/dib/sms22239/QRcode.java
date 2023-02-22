@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.Manifest;
@@ -15,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 
@@ -25,6 +25,7 @@ public class QRcode extends AppCompatActivity {
     RelativeLayout relativeLayout;
     private CodeScanner mCodeScanner;
     private static final int CAMERA_PERMISSION_REQUEST = 100;
+    private String qrCodeResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +84,31 @@ public class QRcode extends AppCompatActivity {
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
-        mCodeScanner.setDecodeCallback(result -> runOnUiThread(() -> Toast.makeText(QRcode.this, result.getText(), Toast.LENGTH_SHORT).show()));
+        mCodeScanner.setDecodeCallback(result ->{ qrCodeResult = result.getText();runOnUiThread(() -> Toast.makeText(QRcode.this, qrCodeResult, Toast.LENGTH_SHORT).show());});
         scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
-        
+
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST);
         }
+
+
+
+        Button StartButton = findViewById(R.id.start_button);
+        StartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(qrCodeResult!=null)
+                {
+                    Intent intent = new Intent(QRcode.this, Animal_Activity.class);
+                    intent.putExtra("ANIMAL_CODE", qrCodeResult);
+                    startActivity(intent);
+                }
+                else
+                {Toast.makeText(QRcode.this, "QRcode non scansionato", Toast.LENGTH_SHORT).show();}
+            }
+        });
+
     }
 
     @Override
