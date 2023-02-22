@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
-
 public class RegistrazioneAnimale extends AppCompatActivity {
     EditText inputNome, inputRazza, inputData;
     RadioGroup inputSesso;
@@ -27,15 +26,15 @@ public class RegistrazioneAnimale extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrazione_animale_0);
+        setContentView(R.layout.activity_registrazione_animale);
 
         inputNome=findViewById(R.id.register_animal_name);
         inputRazza=findViewById(R.id.register_animal_species);
         inputData=findViewById(R.id.register_animal_birthdate);
-        inputSesso = (RadioGroup) findViewById(R.id.register_animal_sex);
+        inputSesso = findViewById(R.id.register_animal_sex);
 
-        inputSesso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
+        inputSesso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Get the selected radio button from the group

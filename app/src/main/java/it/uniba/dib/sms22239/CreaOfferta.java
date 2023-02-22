@@ -1,6 +1,5 @@
 package it.uniba.dib.sms22239;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +22,7 @@ public class CreaOfferta extends AppCompatActivity {
     Spinner spinner1;
     String selectedItem;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,6 @@ public class CreaOfferta extends AppCompatActivity {
         });
 
         backBtn2 = findViewById(R.id.back);
-
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,6 +145,5 @@ public class CreaOfferta extends AppCompatActivity {
                 Toast.makeText(CreaOfferta.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

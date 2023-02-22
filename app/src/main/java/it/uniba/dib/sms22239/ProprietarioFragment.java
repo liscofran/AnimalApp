@@ -5,28 +5,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-public class ProprietarioFragment extends Fragment {
-    
+public class ProprietarioFragment extends Fragment
+{
+    public ProprietarioFragment()
+    {
 
-    public ProprietarioFragment() {}
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View view = inflater.inflate(R.layout.fragment_proprietario, container, false);
         // qui puoi inizializzare le tue view o aggiungere ulteriori operazioni
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         View toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar((Toolbar) toolbar);
@@ -48,7 +50,7 @@ public class ProprietarioFragment extends Fragment {
         getView().findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(  getActivity(), Segnalazioni.class));
+                startActivity(new Intent(  getActivity(), SegnalazioniActivity.class));
             }
         });
 
@@ -74,5 +76,4 @@ public class ProprietarioFragment extends Fragment {
         });
 
     }
-
 }

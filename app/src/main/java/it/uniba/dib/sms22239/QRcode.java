@@ -1,5 +1,4 @@
 package it.uniba.dib.sms22239;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -19,8 +18,6 @@ import androidx.core.content.ContextCompat;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 
-
-
 public class QRcode extends AppCompatActivity {
     RelativeLayout relativeLayout;
     private CodeScanner mCodeScanner;
@@ -30,7 +27,7 @@ public class QRcode extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qrcode0);
+        setContentView(R.layout.activity_qrcode);
 
         //toolbar
         relativeLayout= findViewById(R.id.home_relative_layout); //importante per il tema
@@ -80,19 +77,14 @@ public class QRcode extends AppCompatActivity {
             }
         });
 
-
-
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(result ->{ qrCodeResult = result.getText();runOnUiThread(() -> Toast.makeText(QRcode.this, qrCodeResult, Toast.LENGTH_SHORT).show());});
         scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
 
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST);
         }
-
-
 
         Button StartButton = findViewById(R.id.start_button);
         StartButton.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +100,6 @@ public class QRcode extends AppCompatActivity {
                 {Toast.makeText(QRcode.this, "QRcode non scansionato", Toast.LENGTH_SHORT).show();}
             }
         });
-
     }
 
     @Override
@@ -121,11 +112,6 @@ public class QRcode extends AppCompatActivity {
     protected void onPause() {
         mCodeScanner.releaseResources();
         super.onPause();
-    }
-
-    public static void scanQRCode(Context context) {
-        Intent intent = new Intent(context, QRcode.class);
-        context.startActivity(intent);
     }
 
     private void Load_setting() {

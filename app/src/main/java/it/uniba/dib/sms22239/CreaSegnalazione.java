@@ -144,6 +144,5 @@ public class CreaSegnalazione extends AppCompatActivity {
                 Toast.makeText(CreaSegnalazione.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

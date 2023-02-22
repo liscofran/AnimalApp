@@ -1,52 +1,29 @@
 package it.uniba.dib.sms22239;
 
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class Profile_Activity extends AppCompatActivity
 {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile2);
+        setContentView(R.layout.activity_profile_user);
         Load_setting();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile());
         fragmentTransaction.commit();
-
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +66,8 @@ public class Profile_Activity extends AppCompatActivity
 
     }
 
-    private void Load_setting() {
-
+    private void Load_setting()
+    {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         String orien = sp.getString("ORIENTATION", "false");
@@ -101,16 +78,12 @@ public class Profile_Activity extends AppCompatActivity
         } else if ("3".equals(orien)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-
     }
 
-
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         Load_setting();
         super.onResume();
     }
-
-
-
 }

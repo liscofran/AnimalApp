@@ -17,20 +17,15 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import it.uniba.dib.sms22239.databinding.ActivityResetBinding;
 
-public class ResetPassword extends AppCompatActivity {
-
-    //View binding
+public class ResetPassword extends AppCompatActivity
+{
     private ActivityResetBinding binding;
-
-    //firebase auth
     private FirebaseAuth firebaseAuth;
-
-    //progress dialog
     private ProgressDialog progressDialog;
-
     Button btnEmail;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         binding = ActivityResetBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

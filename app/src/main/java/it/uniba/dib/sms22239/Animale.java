@@ -2,11 +2,6 @@ package it.uniba.dib.sms22239;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Random;
 
 public class Animale
@@ -19,7 +14,7 @@ public class Animale
     public String Id_utente;
 
     public Animale() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+
     }
 
     public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data)

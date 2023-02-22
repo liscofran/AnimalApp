@@ -14,18 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.*;
-import java.io.*;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity
+{
     TextView createnewAccount;
-
     EditText inputEmail,inputPassword;
     Button btnLogin;
     TextView forgotPassword;
@@ -35,15 +32,13 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser mUser;
     ImageView btnGoogle;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createnewAccount=findViewById(R.id.createNewAccount);
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         inputEmail=findViewById(R.id.inputEmail);
         inputPassword=findViewById(R.id.inputPassword);
         btnLogin=findViewById(R.id.btnLogin);
@@ -78,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
     {
         String email=inputEmail.getText().toString();
         String password=inputPassword.getText().toString();
-
 
         if(!email.matches(emailPattern))
         {

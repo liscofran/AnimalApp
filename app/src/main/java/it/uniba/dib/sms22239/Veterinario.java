@@ -2,7 +2,6 @@ package it.uniba.dib.sms22239;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class Veterinario extends User
 {
     public String nome;
@@ -10,7 +9,7 @@ public class Veterinario extends User
     public String partita_iva;
 
     public Veterinario() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+
     }
 
     public void writeNewUser(Veterinario vet, String email, String password, String id) {

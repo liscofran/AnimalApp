@@ -3,29 +3,28 @@ package it.uniba.dib.sms22239;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
-import android.preference.*;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Preference extends PreferenceActivity {
+public class Preference extends PreferenceActivity
+{
     FirebaseAuth mAuth;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.prefs);
         Load_setting();
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void Load_setting() {
-
+    private void Load_setting()
+    {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         ListPreference LP = (ListPreference) findPreference("ORIENTATION");

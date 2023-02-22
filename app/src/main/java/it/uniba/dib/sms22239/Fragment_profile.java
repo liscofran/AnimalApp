@@ -1,6 +1,5 @@
 package it.uniba.dib.sms22239;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,17 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,40 +22,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class Fragment_profile extends Fragment {
-    RelativeLayout relativeLayout;
-    private static final int EDIT_PROFILE_REQUEST_CODE = 1;
+public class Fragment_profile extends Fragment
+{
     private FirebaseAuth mAuth;
-
-    private Button editProfileButton;
-
-    private FirebaseRecyclerOptions<Proprietario> options;
-    private FirebaseRecyclerAdapter<Proprietario, MyViewHolder> adapter;
-    private RecyclerView recyclerView;
-    private FirebaseDatabase mDatabase;
     private TextView mNomeTextView;
     private TextView mCognomeTextView;
     private TextView mcodfiscaleTextView;
-
 
     public Fragment_profile() {
         // Required empty public constructor
     }
 
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         return inflater.inflate(R.layout.fragment_profile, container, false);
-
     }
 
     @Override
@@ -73,7 +54,6 @@ public class Fragment_profile extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference mDatabase;
 
-
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
@@ -82,9 +62,11 @@ public class Fragment_profile extends Fragment {
         mcodfiscaleTextView =  getView().findViewById(R.id.user_codicefiscale);
 
         // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
@@ -95,7 +77,8 @@ public class Fragment_profile extends Fragment {
                 mcodfiscaleTextView.setText(codfiscale);
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
 
             }
         });

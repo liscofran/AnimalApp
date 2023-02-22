@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Segnalazioni extends AppCompatActivity {
+public class SegnalazioniActivity extends AppCompatActivity {
 
     Button creasegnalazione;
     Button creaofferta;
@@ -21,7 +21,7 @@ public class Segnalazioni extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Segnalazioni.this,HomeActivity.class);
+                Intent intent = new Intent(SegnalazioniActivity.this,HomeActivity.class);
                 startActivity(intent);
             }
         });
@@ -29,28 +29,28 @@ public class Segnalazioni extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Segnalazioni.this, Profile_Activity.class));
+                startActivity(new Intent(SegnalazioniActivity.this, Profile_Activity.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Segnalazioni.this, RegistrazioneAnimale.class));
+                startActivity(new Intent(SegnalazioniActivity.this, RegistrazioneAnimale.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Segnalazioni.this, QRcode.class));
+                startActivity(new Intent(SegnalazioniActivity.this, QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Segnalazioni.this, Preference.class));
+                startActivity(new Intent(SegnalazioniActivity.this, Preference.class));
             }
         });
 
@@ -59,7 +59,7 @@ public class Segnalazioni extends AppCompatActivity {
         creasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Segnalazioni.this,CreaSegnalazione.class);
+                Intent intent = new Intent(SegnalazioniActivity.this,CreaSegnalazione.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class Segnalazioni extends AppCompatActivity {
         creaofferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Segnalazioni.this,CreaOfferta.class);
+                Intent intent = new Intent(SegnalazioniActivity.this,CreaOfferta.class);
                 startActivity(intent);
             }
         });
@@ -79,7 +79,7 @@ public class Segnalazioni extends AppCompatActivity {
         ricercasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Segnalazioni.this,RicercaSegnalazione.class);
+                Intent intent = new Intent(SegnalazioniActivity.this,RicercaSegnalazione.class);
                 startActivity(intent);
             }
         });

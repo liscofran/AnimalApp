@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.*;
 
-public class RicercaSegnalazione extends AppCompatActivity {
-
+public class RicercaSegnalazione extends AppCompatActivity
+{
     private RecyclerView recyclerView;
     private SearchView searchView;
     private ArrayList<LanguageData> mList = new ArrayList<LanguageData>();

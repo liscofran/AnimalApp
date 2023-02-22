@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,8 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-public class QRGenerate extends AppCompatActivity {
+public class QRGenerate extends AppCompatActivity
+{
     FirebaseAuth mAuth;
 
     private ImageView imageView;
@@ -60,8 +60,8 @@ public class QRGenerate extends AppCompatActivity {
 
     }
 
-    private void Load_setting() {
-
+    private void Load_setting()
+    {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         String orien = sp.getString("ORIENTATION", "false");
@@ -72,19 +72,6 @@ public class QRGenerate extends AppCompatActivity {
         } else if ("3".equals(orien)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-
-    }
-
-    private void logout() {
-        mAuth.signOut();
-        irMain();
-    }
-
-    private void irMain() {
-        Intent intent = new Intent(QRGenerate.this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(QRGenerate.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
-        finish();
     }
 
     @Override
@@ -92,7 +79,6 @@ public class QRGenerate extends AppCompatActivity {
         Load_setting();
         super.onResume();
     }
-
 
     @Nullable
     private Bitmap encodeAsBitmap(String data) throws WriterException {
@@ -116,5 +102,4 @@ public class QRGenerate extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         return bitmap;
     }
-
 }
