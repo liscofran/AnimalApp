@@ -3,7 +3,8 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.INTERNET"/> <!--Ricordarci di chiedere i permessi anche per External storage -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -33,8 +34,6 @@
         <activity android:name=".CreaSegnalazione"
             android:exported="false"/>
         <activity android:name=".CreaOfferta"
-            android:exported="false"/>
-        <activity android:name=".RicercaSegnalazione"
             android:exported="false"/>
 
         <activity

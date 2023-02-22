@@ -89,11 +89,20 @@ public class HomeActivity extends AppCompatActivity
                         }
                         else
                         {
-                            // Lanciare il ProprietarioFragment
-                            ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_container, proprietarioFragment)
-                                    .commit();
+                            if (classe.equals("Proprietario")) {
+                                // Lanciare il ProprietarioFragment
+                                ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, proprietarioFragment)
+                                        .commit();
+                            }
+                            else {
+                                // Lanciare l enteFragment
+                                EnteFragment enteFragment = new EnteFragment();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, enteFragment)
+                                        .commit();
+                            }
                         }
                     }
                 }
