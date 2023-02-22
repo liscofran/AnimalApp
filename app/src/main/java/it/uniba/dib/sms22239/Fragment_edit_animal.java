@@ -74,8 +74,8 @@ public class Fragment_edit_animal extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         //FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference mDatabase;
-
-        mDatabase = database.getInstance().getReference().child("Animale").child("313294572");
+        String idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
         // Collega i componenti dell'interfaccia con le variabili
         EditText editName = getView().findViewById(R.id.animal_nome);
@@ -94,7 +94,7 @@ public class Fragment_edit_animal extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //recupero dati e assegnazione alle variabili
-                String proprietario = "WgtD7SZNukN0FokaBwVRPprZ2hm2";
+                String proprietario = dataSnapshot.child("Id_utente").getValue(String.class);
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
