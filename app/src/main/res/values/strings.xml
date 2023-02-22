@@ -30,9 +30,8 @@
 
     <!-- Opzioni Categoria -->
     <string-array name="reg_categoria">
-        <item></item>
-        <item>Opzione 1</item>
-        <item>Opzione 2</item>
-        <item>Opzione 3</item>
+        <item>Categoria</item>
+        <item>Cerco</item>
+        <item>Offro</item>
     </string-array>
 </resources>

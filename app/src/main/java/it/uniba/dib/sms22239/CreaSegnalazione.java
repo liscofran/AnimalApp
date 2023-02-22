@@ -19,8 +19,6 @@ public class CreaSegnalazione extends AppCompatActivity {
     private CheckBox checkBox2;
     private CheckBox checkBox3;
     Spinner spinner1;
-    Spinner spinner2;
-    Spinner spinner3;
     String selectedItem;
     ImageButton backBtn;
 
@@ -127,92 +125,25 @@ public class CreaSegnalazione extends AppCompatActivity {
                 selectedItem = (String) parent.getItemAtPosition(position);
                 switch(selectedItem)
                 {
-                    case "":
+                    case "Categoria":
                         onNothingSelected(parent);
                         break;
-                    case "Opzione 1":
+                    case "Offro":
                         Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
                         break;
-                    case "Opzione 2":
+                    case "Cerco":
                         Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
                         break;
-                    case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
-                        break;
                     default:
+                        onNothingSelected(parent);
                         break;
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nella Categoria", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreaSegnalazione.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
             }
         });
 
-        //Spinner Provincia
-        spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.reg_categoria, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch(selectedItem)
-                {
-                    case "":
-                        onNothingSelected(parent);
-                        break;
-                    case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nella Provincia", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //Spinner Oggetto
-        spinner3 = findViewById(R.id.spinner3);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.reg_categoria, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
-        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch(selectedItem)
-                {
-                    case "":
-                        onNothingSelected(parent);
-                        break;
-                    case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nell'Oggetto", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }
