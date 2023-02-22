@@ -39,18 +39,18 @@ public class RegistrazioneAnimale extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Get the selected radio button from the group
                 RadioButton radioButton1 = (RadioButton) group.findViewById(R.id.register_animal_male);
-                if (radioButton1 != null) {
+                if (radioButton1.isChecked()) {
                     sesso = "Maschio";
                 }
                 RadioButton radioButton2 = (RadioButton) group.findViewById(R.id.register_animal_female);
-                if (radioButton2 != null) {
+                if (radioButton2.isChecked()) {
                     sesso = "Femmina";
                 }
             }
         });
 
-        final Button[] generaAnimaleButton = {findViewById(R.id.register_animal_button)};
-        generaAnimaleButton[0].setOnClickListener(new View.OnClickListener() {
+        final Button generaAnimaleButton = findViewById(R.id.register_animal_button);
+        generaAnimaleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
