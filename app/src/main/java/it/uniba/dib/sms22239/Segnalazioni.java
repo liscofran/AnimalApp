@@ -11,6 +11,7 @@ public class Segnalazioni extends AppCompatActivity {
 
     Button creasegnalazione;
     Button creaofferta;
+    Button ricercasegnalazione;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,16 @@ public class Segnalazioni extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Segnalazioni.this,CreaOfferta.class);
+                startActivity(intent);
+            }
+        });
+
+        ricercasegnalazione = findViewById(R.id.ricercasegnalazioni);
+
+        ricercasegnalazione.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Segnalazioni.this,RicercaSegnalazione.class);
                 startActivity(intent);
             }
         });
