@@ -1,8 +1,5 @@
 package it.uniba.dib.sms22239;
 
-
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,15 +21,6 @@ public class PetActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PetActivity.this, RegistrazioneAnimale.class);
                 intent.putExtra("ANIMAL_NAME", "Leone"); // sostituisci con il nome dell'animale dell'utente
-                startActivity(intent);
-            }
-        });
-
-        Button visualizzaAnimaleButton = findViewById(R.id.see_animal_button);
-        visualizzaAnimaleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PetActivity.this, Animal_Activity.class);
                 startActivity(intent);
             }
         });
