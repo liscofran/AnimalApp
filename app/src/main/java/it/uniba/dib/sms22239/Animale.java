@@ -17,12 +17,13 @@ public class Animale
     public String sesso;
     public String data;
     public String Id_utente;
+    public String immagine;
 
     public Animale() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data)
+    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data, String immagine)
     {
         ani.nome = nome;
         ani.razza = razza;
@@ -34,8 +35,18 @@ public class Animale
         Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
         int tmp = Math.abs(random.nextInt()); // generare un numero casuale
 
+        ani.Id = Integer.toString(tmp);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Animale").child(Integer.toString(tmp)).setValue(ani);
-        ani.Id = Integer.toString(tmp);
+    }
+
+    public void setImmagine(String id)
+    {
+        this.immagine = id;
+    }
+
+    public String getImmagine()
+    {
+        return this.immagine;
     }
 }

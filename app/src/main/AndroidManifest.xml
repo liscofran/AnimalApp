@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/> <!--Ricordarci di chiedere i permessi anche per External storage -->
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
+        android:required="false"/>
 
     <application
         android:allowBackup="true"
@@ -24,38 +20,37 @@
         android:theme="@style/Theme.AnimalApp"
         tools:targetApi="31">
         <activity
-            android:name=".Veterinario_Activity"
-            android:exported="false"
-            android:label="@string/title_activity_veterinario"
-            android:theme="@style/Theme.AnimalApp.NoActionBar" />
-        <activity
             android:name=".PetActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+        </activity>
         <activity
             android:name=".QRcode"
-            android:exported="false"
-            android:label="Scansione QRCode"></activity>
-        <activity
-            android:name=".SegnalazioniActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CreaSegnalazione"
-            android:exported="false" />
-        <activity
-            android:name=".CreaOfferta"
-            android:exported="false" />
-        <activity
-            android:name=".Ente_Activity"
-            android:exported="false" />
+            android:label="Scansione QRCode"
+            android:exported="false">
+        </activity>
+        <activity android:name=".SegnalazioniActivity"
+            android:exported="false"/>
+        <activity android:name=".CreaSegnalazione"
+            android:exported="false"/>
+        <activity android:name=".CreaOfferta"
+            android:exported="false"/>
+        <activity android:name=".RicercaSegnalazione"
+            android:exported="false"/>
+
         <activity
             android:name=".RegistrazioneAnimale"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity
             android:name=".QRGenerate"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
-            android:name=".ResetPassword"
+            android:name=".Animal_Activity"
+            android:exported="true">
+        </activity>
+
+        <activity android:name=".ResetPassword"
             android:exported="false" />
         <activity
             android:name=".Preference"
@@ -96,6 +91,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -110,10 +106,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

@@ -6,7 +6,8 @@
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true"
     android:layout_marginHorizontal="8dp"
-    app:cardElevation="12dp">
+    app:cardElevation="12dp"
+    android:id="@+id/card">
 
     <RelativeLayout
         android:layout_width="match_parent"

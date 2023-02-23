@@ -2,10 +2,13 @@ package it.uniba.dib.sms22239;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.content.Intent;
@@ -19,7 +22,8 @@ public class PetActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     MainAdapter mainAdapter;
-    private SearchView searchView;
+    SearchView searchView;
+    MainAdapter.OnItemClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,22 +61,27 @@ public class PetActivity extends AppCompatActivity {
                 mysearch(newText);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 mysearch(newText);
                 return false;
             }
         });
-
         FirebaseRecyclerOptions<Animale> options =
                 new FirebaseRecyclerOptions.Builder<Animale>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale"),Animale.class)
                         .build();
-
-        mainAdapter = new MainAdapter(options);
+        mainAdapter = new MainAdapter(options, new MainAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Animale animale = mainAdapter.getItem(position);
+                String animalId = animale.Id;
+                Intent intent = new Intent(PetActivity.this, Animal_Activity.class);
+                intent.putExtra("ANIMAL_CODE",animalId);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(mainAdapter);
-
     }
     @Override
     protected void onStart() {
@@ -93,7 +102,7 @@ public class PetActivity extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale").orderByChild("razza").startAt(str).endAt(str+"\uf8ff"),Animale.class)
                         .build();
 
-        mainAdapter = new MainAdapter(options);
+        mainAdapter = new MainAdapter(options,listener);
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
     }

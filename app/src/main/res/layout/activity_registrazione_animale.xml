@@ -91,12 +91,34 @@
                 android:minHeight="48dp" />
 
             <Button
+                android:id="@+id/button_choose_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scegli immagine" />
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_above="@id/progress_bar"
+                android:layout_marginLeft="170dp"
+                 />
+
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/button_choose_image"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="16dp" />
+
+            <Button
                 android:id="@+id/register_animal_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registra" />
-
-
 
         </LinearLayout>
 
