@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-public class EnteFragment extends Fragment
+public class VeterinarioFragment extends Fragment
 {
-    public EnteFragment()
+    public VeterinarioFragment()
     {
 
     }
@@ -21,7 +21,7 @@ public class EnteFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_ente, container, false);
+        View view = inflater.inflate(R.layout.fragment_veterinario, container, false);
         // qui puoi inizializzare le tue view o aggiungere ulteriori operazioni
         return view;
     }
@@ -43,7 +43,7 @@ public class EnteFragment extends Fragment
         getView().findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(  getActivity(),Ente_Activity.class));
+                startActivity(new Intent(  getActivity(), Veterinario_Activity.class));
             }
         });
 

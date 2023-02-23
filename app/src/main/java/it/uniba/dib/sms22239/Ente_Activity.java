@@ -22,7 +22,7 @@ public class Ente_Activity extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new Fragment_ente());
+        fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_ente());
         fragmentTransaction.commit();
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
@@ -35,7 +35,7 @@ public class Ente_Activity extends AppCompatActivity
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Ente_Activity.this, Profile_Activity.class));
+                startActivity(new Intent(Ente_Activity.this, Ente_Activity.class));
             }
         });
 

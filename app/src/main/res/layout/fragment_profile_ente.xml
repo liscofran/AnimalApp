@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Fragment_profile_ente">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +23,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <EditText
+        <TextView
             android:id="@+id/Profile_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,14 +36,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <EditText
+        <TextView
             android:id="@+id/ente_nome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
             android:drawablePadding="10dp"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            android:hint="Inserisci Nome.."
+            android:hint="Campo Nome mancante"
             app:layout_constraintTop_toBottomOf="@id/Profile_text"
             app:layout_constraintBottom_toTopOf="@id/ente_tipo"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"
@@ -51,7 +52,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
-        <EditText
+        <TextView
             android:id="@+id/ente_tipo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -59,7 +60,7 @@
             app:drawableLeftCompat="@drawable/ic_profile2"
             android:drawablePadding="10dp"
             android:padding="20dp"
-            android:hint="Inserisci il tipo"
+            android:hint="campo tipo mancante"
             app:layout_constraintStart_toStartOf="@id/ente_nome"
             app:layout_constraintEnd_toEndOf="@+id/ente_nome"
             app:layout_constraintTop_toBottomOf="@id/ente_nome"
@@ -67,31 +68,21 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
-        <EditText
+        <TextView
             android:id="@+id/ente_localita"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
             android:padding="20dp"
             android:drawablePadding="10dp"
-            android:hint="Inserisci la localita"
+            android:hint="Campo localita mancante"
             app:layout_constraintTop_toBottomOf="@id/ente_tipo"
-            app:layout_constraintBottom_toTopOf="@id/save_profile_button"
+            app:layout_constraintBottom_toTopOf="@id/edit_button"
             app:layout_constraintStart_toStartOf="@id/ente_nome"
             app:layout_constraintEnd_toEndOf="@+id/ente_nome"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2" />
-
-        <Button
-            android:id="@+id/save_profile_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Salva"
-            app:layout_constraintTop_toBottomOf="@id/ente_localita"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/guideline5"
-            app:layout_constraintRight_toRightOf="@id/guideline4" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -106,6 +97,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.90" />
+
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifica"
+            app:layout_constraintTop_toBottomOf="@id/ente_localita"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guideline5"
+            app:layout_constraintRight_toRightOf="@id/guideline4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

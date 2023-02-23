@@ -15,4 +15,13 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
+
+    <style name="Theme.AnimalApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AnimalApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AnimalApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

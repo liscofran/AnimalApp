@@ -22,14 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class Fragment_ente extends Fragment
+public class Fragment_profile_ente extends Fragment
 {
     private FirebaseAuth mAuth;
     private TextView mNomeTextView;
     private TextView mtipoTextView;
     private TextView  mlocalitaTextView;
 
-    public Fragment_ente() {
+    public Fragment_profile_ente() {
         // Required empty public constructor
     }
 
@@ -42,7 +42,7 @@ public class Fragment_ente extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_ente, container, false);
+        return inflater.inflate(R.layout.fragment_profile_ente, container, false);
     }
 
     @Override

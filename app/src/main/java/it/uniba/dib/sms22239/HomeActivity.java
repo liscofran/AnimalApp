@@ -82,10 +82,10 @@ public class HomeActivity extends AppCompatActivity
                         // Verifica il valore dell'attributo "classe"
                         if (classe.equals("Veterinario")) {
                             // Lanciare il VeterinarioFragment
-                            FragmentManager fragmentManager = getSupportFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment_container, new VeterinarioFragment());
-                            fragmentTransaction.commit();
+                            VeterinarioFragment veterinarioFragment = new VeterinarioFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, veterinarioFragment)
+                                    .commit();
                         }
                         else
                         {
