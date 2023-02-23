@@ -250,7 +250,7 @@ public class CreaSegnalazione extends AppCompatActivity {
                 checkVeterinario = checkBox3.isChecked();
 
 
-                sgn.writeSegnalazione(sgn, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
+                sgn.writeSegnalazione(sgn, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario );
                 Intent intent = new Intent(CreaSegnalazione.this, SegnalazioniActivity.class);
                 startActivity(intent);
             }

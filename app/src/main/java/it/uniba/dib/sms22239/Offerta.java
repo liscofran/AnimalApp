@@ -26,7 +26,7 @@ public class Offerta {
         off.checkProprietario = checkProprietario ;
         off.checkEnte = checkEnte;
         off.checkVeterinario = checkVeterinario;
-        off.uid = uid;
+
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -35,7 +35,7 @@ public class Offerta {
             return;
         }
 
-        String uid = user.getUid();
+        off.uid = user.getUid();
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Offerte").push().setValue(off);

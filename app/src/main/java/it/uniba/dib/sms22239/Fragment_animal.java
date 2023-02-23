@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -93,5 +95,33 @@ public class Fragment_animal extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        ImageButton shareButton = view.findViewById(R.id.share_button);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Recupera i dati dall'interfaccia utente
+                String nome = mNomeTextView.getText().toString();
+                String razza = mrazzaTextView.getText().toString();
+                String sesso = msessoTextView.getText().toString();
+                String proprietario = midproprietarioTextView.getText().toString();
+
+                // Costruisci la stringa di testo per la condivisione
+                String shareText = "Nome: " + nome + "\n" +
+                        "Razza: " + razza + "\n" +
+                        "Sesso: " + sesso + "\n" +
+                        "Proprietario: " + proprietario;
+
+                // Crea l'intento per la condivisione
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
     }
+
+
+
 }

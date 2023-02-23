@@ -48,7 +48,7 @@ public class Segnalazione {
         sgn.checkProprietario = checkProprietario ;
         sgn.checkEnte = checkEnte;
         sgn.checkVeterinario = checkVeterinario;
-        sgn.uid = uid;
+
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -57,7 +57,7 @@ public class Segnalazione {
             return;
         }
 
-        String uid = user.getUid();
+        sgn.uid = user.getUid();
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Segnalazioni").push().setValue(sgn);
