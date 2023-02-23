@@ -28,15 +28,12 @@ public class CreaSegnalazione extends AppCompatActivity {
     private CheckBox checkBox2;
     private CheckBox checkBox3;
     Spinner spinner1;
-    Spinner spinner2;
-    Spinner spinner3;
     String selectedItem;
     ImageButton backBtn;
 
 
     String categoria;
     EditText inputOggetto, inputProvincia, inputDescrizione;
-    String visibile;
     boolean checkProprietario, checkEnte, checkVeterinario;
 
     @Override

@@ -7,11 +7,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CreaOfferta extends AppCompatActivity {
 
@@ -22,11 +26,19 @@ public class CreaOfferta extends AppCompatActivity {
     Spinner spinner1;
     String selectedItem;
 
+    String categoria;
+    EditText inputOggetto, inputProvincia, inputDescrizione;
+    boolean checkProprietario, checkEnte, checkVeterinario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creaofferta);
+
+        inputOggetto = findViewById(R.id.oggettotext);
+        inputProvincia = findViewById(R.id.provinciatext);
+        inputDescrizione = findViewById(R.id.descrizione);
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +156,33 @@ public class CreaOfferta extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(CreaOfferta.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        final ImageButton generaOfferta = findViewById(R.id.submitBtn);
+        generaOfferta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+                Offerta off = new Offerta();
+
+
+                categoria = spinner1.getSelectedItem().toString();
+                String oggetto = inputOggetto.getText().toString();
+                String provincia = inputProvincia.getText().toString();
+                String descrizione = inputDescrizione.getText().toString();
+                checkProprietario = checkBox1.isChecked();
+                checkEnte = checkBox2.isChecked();
+                checkVeterinario = checkBox3.isChecked();
+
+
+                off.writeOfferta(off, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
+                Intent intent = new Intent(CreaOfferta.this, SegnalazioniActivity.class);
+                startActivity(intent);
+            }
+
+
         });
     }
 }
