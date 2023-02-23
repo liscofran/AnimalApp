@@ -29,13 +29,12 @@
             android:label="Scansione QRCode"
             android:exported="false">
         </activity>
-        <activity android:name=".Segnalazioni"
+        <activity android:name=".SegnalazioniActivity"
             android:exported="false"/>
         <activity android:name=".CreaSegnalazione"
             android:exported="false"/>
         <activity android:name=".CreaOfferta"
             android:exported="false"/>
-
         <activity
             android:name=".RegistrazioneAnimale"
             android:exported="false"
