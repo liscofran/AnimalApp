@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/profile_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="152dp"
+            android:layout_height="151dp"
             android:background="@drawable/custom_button_v3"
             android:src="@drawable/ente"
             app:layout_constraintTop_toTopOf="parent"
