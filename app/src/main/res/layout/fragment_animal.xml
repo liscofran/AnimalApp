@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".Fragment_animal">
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/second_relative_layout">
+    tools:context=".Fragment_animal">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/second_relative_layout">
 
 
         <ImageButton
@@ -24,121 +24,132 @@ tools:context=".Fragment_animal">
             android:background="@android:color/transparent"
             android:src="@drawable/ic_share" />
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="160dp"
-        android:layout_height="140dp"
-        android:background="@drawable/custom_button_v3"
-        android:src="@drawable/leone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/Profile_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            android:background="@drawable/custom_button_v3"
+            android:src="@drawable/leone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/Profile_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
-    <TextView
-        android:id="@+id/Profile_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dati Animale"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
-        app:layout_constraintBottom_toTopOf="@id/animal_proprietario"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <TextView
+            android:id="@+id/Profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dati Animale"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@id/profile_image"
+            app:layout_constraintBottom_toTopOf="@id/animal_proprietario"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
-    <TextView
-        android:id="@+id/animal_proprietario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v2"
-        android:drawablePadding="10dp"
-        app:drawableLeftCompat="@drawable/ic_profile2"
-        android:hint="Campo proprietario mancante"
-        app:layout_constraintTop_toBottomOf="@id/Profile_text"
-        app:layout_constraintBottom_toTopOf="@id/animal_nome"
-        app:layout_constraintLeft_toLeftOf="@id/guideline5"
-        app:layout_constraintRight_toRightOf="@id/guideline4"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black" />
+        <TextView
+            android:id="@+id/animal_proprietario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_v2"
+            android:drawablePadding="10dp"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            android:hint="Campo proprietario mancante"
+            app:layout_constraintTop_toBottomOf="@id/Profile_text"
+            app:layout_constraintBottom_toTopOf="@id/animal_nome"
+            app:layout_constraintLeft_toLeftOf="@id/guideline5"
+            app:layout_constraintRight_toRightOf="@id/guideline4"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-    <TextView
-        android:id="@+id/animal_nome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v2"
-        app:drawableLeftCompat="@drawable/ic_profile2"
-        android:drawablePadding="10dp"
-        android:padding="20dp"
-        android:hint="campo nome mancante"
-        app:layout_constraintStart_toStartOf="@id/animal_proprietario"
-        app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
-        app:layout_constraintTop_toBottomOf="@id/animal_proprietario"
-        app:layout_constraintBottom_toTopOf="@id/animal_razza"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black" />
+        <TextView
+            android:id="@+id/animal_nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_v2"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            android:drawablePadding="10dp"
+            android:padding="20dp"
+            android:hint="campo nome mancante"
+            app:layout_constraintStart_toStartOf="@id/animal_proprietario"
+            app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
+            app:layout_constraintTop_toBottomOf="@id/animal_proprietario"
+            app:layout_constraintBottom_toTopOf="@id/animal_razza"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-    <TextView
-        android:id="@+id/animal_razza"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v2"
-        android:padding="20dp"
-        android:drawablePadding="10dp"
-        android:hint="Campo razza mancante"
-        app:layout_constraintStart_toStartOf="@id/animal_nome"
-        app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-        app:layout_constraintTop_toBottomOf="@id/animal_nome"
-        app:layout_constraintBottom_toTopOf="@id/animal_sesso"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:drawableLeftCompat="@drawable/ic_profile2" />
+        <TextView
+            android:id="@+id/animal_razza"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_v2"
+            android:padding="20dp"
+            android:drawablePadding="10dp"
+            android:hint="Campo razza mancante"
+            app:layout_constraintStart_toStartOf="@id/animal_nome"
+            app:layout_constraintEnd_toEndOf="@+id/animal_nome"
+            app:layout_constraintTop_toBottomOf="@id/animal_nome"
+            app:layout_constraintBottom_toTopOf="@id/animal_sesso"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2" />
 
-    <TextView
-        android:id="@+id/animal_sesso"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v2"
-        android:padding="20dp"
-        android:drawablePadding="10dp"
-        android:hint="Campo sesso mancante"
-        app:layout_constraintTop_toBottomOf="@id/animal_razza"
-        app:layout_constraintBottom_toTopOf="@id/edit_button"
-        app:layout_constraintStart_toStartOf="@id/animal_proprietario"
-        app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:drawableLeftCompat="@drawable/ic_profile2" />
+        <TextView
+            android:id="@+id/animal_sesso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_v2"
+            android:padding="20dp"
+            android:drawablePadding="10dp"
+            android:hint="Campo sesso mancante"
+            app:layout_constraintTop_toBottomOf="@id/animal_razza"
+            app:layout_constraintBottom_toTopOf="@id/edit_button"
+            app:layout_constraintStart_toStartOf="@id/animal_proprietario"
+            app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.90" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
 
-    <Button
-        android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modifica"
-        android:background="@drawable/custom_button_v2"
-        app:layout_constraintTop_toBottomOf="@id/animal_sesso"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/guideline5"
-        app:layout_constraintRight_toRightOf="@id/guideline4" />
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifica"
+            android:background="@drawable/custom_button_v2"
+            app:layout_constraintTop_toBottomOf="@id/animal_sesso"
+            app:layout_constraintBottom_toTopOf="@id/spese_animal_button"
+            app:layout_constraintLeft_toLeftOf="@id/guideline5"
+            app:layout_constraintRight_toRightOf="@id/guideline4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/spese_animal_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="openSpesaActivity"
+            android:text="Apri Spese" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>

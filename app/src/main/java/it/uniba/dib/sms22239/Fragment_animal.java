@@ -120,8 +120,15 @@ public class Fragment_animal extends Fragment {
                 startActivity(sendIntent);
             }
         });
+
+        getView().findViewById(R.id.spese_animal_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Spese.class);
+                startActivity(intent);
+            }
+        });
+
     }
-
-
 
 }
