@@ -62,6 +62,17 @@
                 android:inputType="number"
                 android:minHeight="48dp" />
 
+            <EditText
+                android:id="@+id/add_item_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Data di acquisto (AAAA-MM-GG)"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+
+
             <Button
                 android:id="@+id/add_item_button"
                 android:layout_width="match_parent"

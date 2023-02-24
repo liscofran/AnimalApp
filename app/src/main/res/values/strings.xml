@@ -14,12 +14,14 @@
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
 
-    <string-array name="filter_options">
-        <item>Tutte le spese</item>
-        <item>Spese settimanali</item>
-        <item>Spese mensili</item>
-        <item>Filtra per oggetto</item>
+    <string-array name="date_filter_options">
+        <item>Tutti</item>
+        <item>Oggi</item>
+        <item>Ultima Settimana</item>
+        <item>Ultimo Mese</item>
+        <item>Ultimo Anno</item>
     </string-array>
+
 
 
     <!-- Sync Preferences -->
