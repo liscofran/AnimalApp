@@ -4,130 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_profile_veterinario">
+    tools:context=".Fragment_profile">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/second_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/second_relative_layout">
+        android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/prova2"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline16"
+            app:layout_constraintEnd_toEndOf="@id/guideline14"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline15"
+            app:layout_constraintTop_toTopOf="@id/guideline62"
+            app:layout_constraintVertical_bias="0.0"/>
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/prova3"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/profile_image"
+            app:layout_constraintTop_toTopOf="@id/profile_image"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="150dp"
-            android:layout_height="140dp"
-            android:background="@drawable/custom_button_v3"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@drawable/circle_shape"
             android:src="@drawable/veterinarioimage"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/Profile_text"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+            app:layout_constraintBottom_toTopOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
-            android:id="@+id/Profile_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dati"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@id/profile_image"
-            app:layout_constraintBottom_toTopOf="@id/vet_nome"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <EditText
             android:id="@+id/vet_nome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
             android:drawablePadding="10dp"
+            android:hint="Nome da compilare"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            android:hint="Inserisci Nome.."
-            app:layout_constraintTop_toBottomOf="@id/Profile_text"
             app:layout_constraintBottom_toTopOf="@id/vet_cognome"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"
             app:layout_constraintRight_toRightOf="@id/guideline4"
-            android:padding="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline62" />
 
-        <EditText
+        <TextView
             android:id="@+id/vet_cognome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
-            android:drawableLeft="@drawable/ic_profile2"
             android:drawablePadding="10dp"
+            android:hint="Cognome da compilare"
             android:padding="20dp"
-            android:hint="Inserisci Cognome.."
-            app:layout_constraintStart_toStartOf="@id/vet_nome"
-            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
-            app:layout_constraintTop_toBottomOf="@id/vet_nome"
-            app:layout_constraintBottom_toTopOf="@id/vet_codicefiscale"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            app:layout_constraintBottom_toTopOf="@+id/vet_codicefiscale"
+            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
+            app:layout_constraintStart_toStartOf="@id/vet_nome"
+            app:layout_constraintTop_toBottomOf="@+id/vet_nome" />
 
-        <EditText
+        <TextView
             android:id="@+id/vet_codicefiscale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
-            android:padding="20dp"
             android:drawablePadding="10dp"
-            android:hint="Inserisci Codice Fiscale"
-            app:layout_constraintTop_toBottomOf="@id/vet_cognome"
-            app:layout_constraintBottom_toTopOf="@id/vet_email"
-            app:layout_constraintStart_toStartOf="@id/vet_nome"
-            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
-            app:drawableLeftCompat="@drawable/id_card"
+            android:hint="Codice fiscale da compilare"
+            android:padding="20dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            app:layout_constraintBottom_toTopOf="@+id/vet_email"
+            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
+            app:layout_constraintStart_toStartOf="@id/vet_nome"
+            app:layout_constraintTop_toBottomOf="@+id/vet_cognome"/>
 
-        <EditText
+        <TextView
             android:id="@+id/vet_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
-            android:drawableLeft="@drawable/i_baseline_email_black_24"
-            android:padding="20dp"
             android:drawablePadding="10dp"
-            android:hint="Inserisci Email"
-            app:layout_constraintTop_toBottomOf="@id/vet_codicefiscale"
-            app:layout_constraintBottom_toTopOf="@id/vet_titolostudio"
-            app:layout_constraintStart_toStartOf="@id/vet_nome"
-            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
+            android:hint="Email da compilare"
+            android:padding="20dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            app:layout_constraintBottom_toTopOf="@+id/vet_titolostudio"
+            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
+            app:layout_constraintStart_toStartOf="@id/vet_nome"
+            app:layout_constraintTop_toBottomOf="@+id/vet_codicefiscale"/>
 
-        <EditText
+
+        <TextView
             android:id="@+id/vet_titolostudio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v2"
-            app:drawableLeftCompat="?attr/actionModePasteDrawable"
             android:drawablePadding="10dp"
-            android:hint="Inserisci Titolo di studio"
-            app:layout_constraintTop_toBottomOf="@id/vet_email"
-            app:layout_constraintBottom_toTopOf="@id/edit_button"
-            app:layout_constraintStart_toStartOf="@id/vet_nome"
-            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
+            android:hint="Titolo di studio da compilare"
             android:padding="20dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black" />
-
-
-        <Button
-            android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Modifica"
-            app:layout_constraintTop_toBottomOf="@id/vet_titolostudio"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/guideline5"
-            app:layout_constraintRight_toRightOf="@id/guideline4"/>
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            app:layout_constraintBottom_toTopOf="@+id/guideline16"
+            app:layout_constraintEnd_toEndOf="@+id/vet_nome"
+            app:layout_constraintStart_toStartOf="@id/vet_nome"
+            app:layout_constraintTop_toBottomOf="@id/vet_email" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -136,12 +137,105 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.10" />
 
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.90" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.90" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/prova4"
+            android:text="Modifica"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guideline5"
+            app:layout_constraintRight_toRightOf="@id/guideline4"
+            app:layout_constraintTop_toBottomOf="@id/vet_titolostudio" />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toTopOf="@+id/profile_image"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Benvenuto"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline62"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.30" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
