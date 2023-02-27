@@ -2,11 +2,6 @@ package it.uniba.dib.sms22239;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Random;
 
 public class Animale
@@ -20,16 +15,17 @@ public class Animale
     public String immagine;
 
     public Animale() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+
     }
 
-    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data, String immagine)
+    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data)
     {
         ani.nome = nome;
         ani.razza = razza;
         ani.sesso = sesso;
         ani.Id_utente = Id_utente;
         ani.data = data;
+
 
         long seed = System.currentTimeMillis(); // ottenere il tempo corrente
         Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
@@ -38,15 +34,5 @@ public class Animale
         ani.Id = Integer.toString(tmp);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Animale").child(Integer.toString(tmp)).setValue(ani);
-    }
-
-    public void setImmagine(String id)
-    {
-        this.immagine = id;
-    }
-
-    public String getImmagine()
-    {
-        return this.immagine;
     }
 }

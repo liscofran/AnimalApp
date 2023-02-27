@@ -1,6 +1,5 @@
 package it.uniba.dib.sms22239;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;

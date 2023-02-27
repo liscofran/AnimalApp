@@ -25,7 +25,7 @@ public class Animal_Activity extends AppCompatActivity
         fragmentTransaction.replace(R.id.fragment_container, new Fragment_animal());
         fragmentTransaction.commit();
 
-
+        
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

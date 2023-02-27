@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Fragment_animal extends Fragment {
-    private FirebaseAuth mAuth;
-
     private TextView mNomeTextView;
     private TextView mrazzaTextView;
     private TextView msessoTextView;
@@ -63,6 +61,15 @@ public class Fragment_animal extends Fragment {
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView =  getView().findViewById(R.id.animal_razza);
         msessoTextView =  getView().findViewById(R.id.animal_sesso);
+        MaterialButton backBtn = getView().findViewById(R.id.back);
+
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -112,7 +119,7 @@ public class Fragment_animal extends Fragment {
                         "Sesso: " + sesso + "\n" +
                         "Proprietario: " + proprietario;
 
-                // Crea l'intento per la condivisione
+                // Crea l'intent per la condivisione
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
@@ -128,7 +135,5 @@ public class Fragment_animal extends Fragment {
                 startActivity(intent);
             }
         });
-
     }
-
 }

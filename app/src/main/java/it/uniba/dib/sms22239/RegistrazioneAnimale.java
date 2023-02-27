@@ -1,6 +1,5 @@
 package it.uniba.dib.sms22239;
 
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,13 +13,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -110,9 +107,8 @@ public class RegistrazioneAnimale extends AppCompatActivity {
                 String razza = inputRazza.getText().toString();
                 String datatmp = inputData.getText().toString();
                 String data = "";
-                String immagine = "";
-                CharacterIterator it = new StringCharacterIterator(datatmp);
 
+                CharacterIterator it = new StringCharacterIterator(datatmp);
                 while (it.current() != CharacterIterator.DONE)
                 {
                     if(it.getIndex() == 4 || it.getIndex() == 6 )
@@ -123,13 +119,15 @@ public class RegistrazioneAnimale extends AppCompatActivity {
                     it.next();
                 }
 
-                ani.writeNewAnimal(ani, nome, razza, currentUser.getUid(), sesso, data, immagine);
 
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(RegistrazioneAnimale.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
-                    uploadFile(ani);
+                    ani = uploadFile(ani);
                 }
+
+                ani.writeNewAnimal(ani, nome, razza, currentUser.getUid(), sesso, data);
+
                 Intent intent = new Intent(RegistrazioneAnimale.this, QRGenerate.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);
@@ -163,7 +161,7 @@ public class RegistrazioneAnimale extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.with(this).load(mImageUri).into(mImageView);
+           Picasso.get().load(mImageUri).into(mImageView);
         }
     }
 
@@ -173,13 +171,12 @@ public class RegistrazioneAnimale extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private void uploadFile(Animale animale) {
+    private Animale uploadFile(Animale animale) {
         if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
+            long time = System.currentTimeMillis();
+            animale.immagine = time + "." + getFileExtension(mImageUri);
+            StorageReference fileReference = mStorageRef.child(animale.immagine);
 
-
-            animale.immagine = String.valueOf(fileReference);
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -193,10 +190,6 @@ public class RegistrazioneAnimale extends AppCompatActivity {
                             }, 500);
 
                             Toast.makeText(RegistrazioneAnimale.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload("Animale " + animale.Id,
-                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                            String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadId).setValue(upload);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -215,6 +208,6 @@ public class RegistrazioneAnimale extends AppCompatActivity {
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
+        return animale;
     }
-
 }
