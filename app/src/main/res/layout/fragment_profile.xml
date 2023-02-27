@@ -6,22 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Fragment_profile">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/second_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-        <!--            <ImageView-->
-        <!--                android:id="@+id/imageView4"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="0dp"-->
-        <!--                android:src="@drawable/prova22"-->
-        <!--                app:layout_constraintBottom_toTopOf="@+id/imageView2"-->
-        <!--                app:layout_constraintEnd_toStartOf="@+id/guideline51"-->
-        <!--                app:layout_constraintStart_toStartOf="@+id/guideline50"-->
-        <!--                app:layout_constraintTop_toTopOf="@+id/guideline61" />-->
 
         <ImageView
             android:id="@+id/imageView2"
@@ -37,40 +25,16 @@
 
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/profile_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/prova3"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-            app:layout_constraintEnd_toEndOf="@id/guideline4"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/profile_image"
-            app:layout_constraintTop_toTopOf="@id/profile_image"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:background="@drawable/circle_shape"
+            android:scaleType="centerCrop"
             android:src="@drawable/eprofile"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/Profile_text"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="Informazioni"-->
-        <!--                android:textColor="@color/black"-->
-        <!--                android:textSize="24sp"-->
-        <!--                android:textStyle="bold"-->
-        <!--                app:layout_constraintBottom_toBottomOf="@+id/imageView4"-->
-        <!--                app:layout_constraintEnd_toEndOf="@+id/imageView4"-->
-        <!--                app:layout_constraintStart_toStartOf="@+id/imageView4"-->
-        <!--                app:layout_constraintTop_toTopOf="@+id/imageView4" />-->
 
         <TextView
             android:id="@+id/user_nome"
@@ -193,24 +157,9 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/baseline_arrow_back_24"
-            app:layout_constraintBottom_toTopOf="@+id/profile_image"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Benvenuto"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="@+id/imageView3"
-            />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline61"
@@ -231,6 +180,26 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.80" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline63"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.22" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline67"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.30" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
