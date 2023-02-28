@@ -58,6 +58,13 @@ public class Spese extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Spese.this, Activity_Crea_Oggetto_Spesa.class));
+            }
+        });
+
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

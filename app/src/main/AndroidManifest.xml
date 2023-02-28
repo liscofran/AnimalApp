@@ -120,7 +120,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Main"
+            android:name=".Spese"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity_Crea_Oggetto_Spesa"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

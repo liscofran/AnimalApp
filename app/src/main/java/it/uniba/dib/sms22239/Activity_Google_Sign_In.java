@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class Activity_Google_Sign_In extends Activity_Main {
+public class Activity_Google_Sign_In extends MainActivity {
 
     private static final int RC_SIGN_IN = 101;
 

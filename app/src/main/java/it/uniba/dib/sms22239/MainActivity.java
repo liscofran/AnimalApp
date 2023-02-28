@@ -20,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Activity_Main extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
 {
     TextView createnewAccount;
     EditText inputEmail,inputPassword;
@@ -52,7 +52,7 @@ public class Activity_Main extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(Activity_Main.this, Activity_Register.class));
+                startActivity(new Intent(MainActivity.this, Activity_Register.class));
             }
         });
 
@@ -68,7 +68,7 @@ public class Activity_Main extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent= new Intent(Activity_Main.this, Activity_Google_Sign_In.class);
+                Intent intent= new Intent(MainActivity.this, Activity_Google_Sign_In.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -77,7 +77,7 @@ public class Activity_Main extends AppCompatActivity
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Main.this, Activity_Reset_Password.class);
+                Intent intent = new Intent(MainActivity.this, Activity_Reset_Password.class);
                 startActivity(intent);
             }
         });
@@ -111,11 +111,11 @@ public class Activity_Main extends AppCompatActivity
                     {
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        Toast.makeText(Activity_Main.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     }else
                     {
                         progressDialog.dismiss();
-                        Toast.makeText(Activity_Main.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -124,7 +124,7 @@ public class Activity_Main extends AppCompatActivity
 
     private void sendUserToNextActivity()
     {
-        Intent intent = new Intent(Activity_Main.this, Activity_Home.class);
+        Intent intent = new Intent(MainActivity.this, Activity_Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

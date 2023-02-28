@@ -173,18 +173,6 @@
             tools:ignore="MissingConstraints" />
 
         <ImageButton
-            android:id="@+id/spese_animal_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/prova4"
-            android:text="Spese"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline50"
-            tools:layout_editor_absoluteY="576dp"
-            tools:ignore="MissingConstraints" />
-
-
-        <ImageButton
             android:id="@+id/share_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -234,6 +222,17 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline62"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="211dp" />
+
+        <Button
+            android:id="@+id/spese_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/animal_sesso"
+            android:text="Spese"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/guideline4"
+            app:layout_constraintLeft_toRightOf="@id/guideline5"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

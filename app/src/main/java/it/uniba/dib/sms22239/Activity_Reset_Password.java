@@ -89,7 +89,7 @@ public class Activity_Reset_Password extends AppCompatActivity
                 progressDialog.dismiss();
                 Toast.makeText(Activity_Reset_Password.this, "Istruzioni per il reset della password inviati a " + email, Toast.LENGTH_SHORT).show();
                 Toast.makeText(Activity_Reset_Password.this,"Password cambiata con successo a " + email,Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Activity_Reset_Password.this, Activity_Main.class);
+                Intent intent = new Intent(Activity_Reset_Password.this, MainActivity.class);
                 startActivity(intent);
 
             }

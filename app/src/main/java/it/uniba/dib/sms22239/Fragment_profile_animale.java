@@ -136,11 +136,10 @@ public class Fragment_profile_animale extends Fragment {
         });
 
 
-        getView().findViewById(R.id.spese_animal_button).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Spese.class);
-                startActivity(intent);
+                startActivity( new Intent(getActivity(), Spese.class));
             }
         });
     }
