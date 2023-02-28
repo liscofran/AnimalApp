@@ -71,7 +71,8 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Controlla se l'utente esiste nel database Firebase
-                if (snapshot.exists()) {
+                if (snapshot.exists())
+                {
                     // Recupera il valore dell'attributo "classe"
                     String classe = snapshot.child("classe").getValue(String.class);
 
@@ -79,29 +80,29 @@ public class HomeActivity extends AppCompatActivity
                     if (classe != null)
                     {
                         // Verifica il valore dell'attributo "classe"
-                        if (classe.equals("Veterinario")) {
+                        if (classe.equals("Veterinario"))
+                        {
                             // Lanciare il VeterinarioFragment
                             VeterinarioFragment veterinarioFragment = new VeterinarioFragment();
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.fragment_container, veterinarioFragment)
                                     .commit();
                         }
+                        else if(classe.equals("Proprietario"))
+                        {
+                            // Lanciare il ProprietarioFragment
+                            ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, proprietarioFragment)
+                                    .commit();
+                        }
                         else
                         {
-                            if (classe.equals("Proprietario")) {
-                                // Lanciare il ProprietarioFragment
-                                ProprietarioFragment proprietarioFragment = new ProprietarioFragment();
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_container, proprietarioFragment)
-                                        .commit();
-                            }
-                            else {
                                 // Lanciare l enteFragment
                                 EnteFragment enteFragment = new EnteFragment();
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_container, enteFragment)
                                         .commit();
-                            }
                         }
                     }
                 }

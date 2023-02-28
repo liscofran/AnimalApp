@@ -4,6 +4,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.content.Intent;
@@ -63,10 +65,14 @@ public class PetActivity extends AppCompatActivity {
                 return false;
             }
         });
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        
         FirebaseRecyclerOptions<Animale> options =
                 new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale"),Animale.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()),Animale.class)
                         .build();
+        
         mainAdapter = new MainAdapter(options, new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
