@@ -6,7 +6,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Segnalazione {
-    public String categoria;
     public String oggetto;
     public String provincia;
     public String descrizione;
@@ -17,10 +16,6 @@ public class Segnalazione {
 
 
     public Segnalazione() {
-    }
-
-    public String getCategoria() {
-        return categoria;
     }
 
     public String getOggetto() {
@@ -39,9 +34,8 @@ public class Segnalazione {
         return uid;
     }
 
-    public void writeSegnalazione(Segnalazione sgn, String categoria, String oggetto, String provincia, String descrizione, boolean checkProprietario, boolean checkEnte, boolean checkVeterinario) {
+    public void writeSegnalazione(Segnalazione sgn, String oggetto, String provincia, String descrizione, boolean checkProprietario, boolean checkEnte, boolean checkVeterinario) {
 
-        sgn.categoria = categoria;
         sgn.oggetto = oggetto;
         sgn.provincia = provincia;
         sgn.descrizione = descrizione;

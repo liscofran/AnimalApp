@@ -27,12 +27,10 @@ public class CreaSegnalazione extends AppCompatActivity {
     private CheckBox checkBox1;
     private CheckBox checkBox2;
     private CheckBox checkBox3;
-    Spinner spinner1;
     String selectedItem;
     ImageButton backBtn;
 
 
-    String categoria;
     EditText inputOggetto, inputProvincia, inputDescrizione;
     boolean checkProprietario, checkEnte, checkVeterinario;
 
@@ -132,105 +130,6 @@ public class CreaSegnalazione extends AppCompatActivity {
             }
         });
 
-        //Spinner Categoria
-        spinner1 = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.reg_categoria, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch (selectedItem) {
-                    case "":
-                        onNothingSelected(parent);
-                        break;
-                    case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nella Categoria", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //Spinner Provincia
-        /* spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.reg_categoria, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch (selectedItem) {
-                    case "":
-                        onNothingSelected(parent);
-                        break;
-                    case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nella Provincia", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        //Spinner Oggetto
-        //spinner3 = findViewById(R.id.spinner3);
-        /*ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.reg_categoria, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
-        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch (selectedItem) {
-                    case "":
-                        onNothingSelected(parent);
-                        break;
-                    case "Opzione 1":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 2":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 2", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Opzione 3":
-                        Toast.makeText(CreaSegnalazione.this, "Hai selezionato Opzione 3", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(CreaSegnalazione.this, "Non hai effettuato nessuna selezione nell'Oggetto", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
         final ImageButton generaSegnalazione = findViewById(R.id.submitBtn);
         generaSegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,8 +139,6 @@ public class CreaSegnalazione extends AppCompatActivity {
 
                 Segnalazione sgn = new Segnalazione();
 
-
-                categoria = spinner1.getSelectedItem().toString();
                 String oggetto = inputOggetto.getText().toString();
                 String provincia = inputProvincia.getText().toString();
                 String descrizione = inputDescrizione.getText().toString();
@@ -250,7 +147,7 @@ public class CreaSegnalazione extends AppCompatActivity {
                 checkVeterinario = checkBox3.isChecked();
 
 
-                sgn.writeSegnalazione(sgn, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario );
+                sgn.writeSegnalazione(sgn, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario );
                 Intent intent = new Intent(CreaSegnalazione.this, SegnalazioniActivity.class);
                 startActivity(intent);
             }

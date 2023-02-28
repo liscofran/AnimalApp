@@ -19,12 +19,12 @@
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
         android:background="@android:color/transparent"
         android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar1"
+        android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/spinner1"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar1" />
+
 
     <TextView
         android:id="@+id/segnalazioni"
@@ -35,56 +35,48 @@
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
-        app:layout_constraintBottom_toTopOf="@+id/spinner1"/>
-
-
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintTop_toBottomOf="@+id/segnalazioni"
-        app:layout_constraintBottom_toTopOf="@+id/oggetto"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
 
     <TextView
         android:id="@+id/oggetto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/textview_border"
         android:hint="Oggetto"
         android:padding="20dp"
-        android:textColor="@color/black"
-        android:textSize="15dp"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
+        android:textSize="15dp"
         android:textStyle="bold"
-        android:background="@drawable/textview_border"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/provincia"
-        app:layout_constraintTop_toBottomOf="@id/spinner1"
-        app:layout_constraintBottom_toTopOf="@id/oggettotext"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.227" />
 
     <TextView
         android:id="@+id/provincia"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/textview_border"
         android:hint="Provincia"
-        android:textStyle="bold"
         android:padding="20dp"
-        android:textSize="15dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:background="@drawable/textview_border"
-        app:layout_constraintTop_toBottomOf="@id/spinner1"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/oggetto"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/provinciatext"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
 
     <EditText
         android:id="@+id/provinciatext"
@@ -103,10 +95,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_v3"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/oggetto"
-        app:layout_constraintStart_toStartOf="@id/oggetto"
+        app:layout_constraintBottom_toTopOf="@+id/descrizione"
         app:layout_constraintEnd_toEndOf="@id/oggetto"
-        app:layout_constraintBottom_toTopOf="@+id/descrizione"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/oggetto"
+        app:layout_constraintTop_toBottomOf="@+id/oggetto"
+        app:layout_constraintVertical_bias="0.481" />
 
     <EditText
         android:id="@+id/descrizione"
