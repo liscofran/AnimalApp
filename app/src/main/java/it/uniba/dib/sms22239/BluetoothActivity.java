@@ -52,7 +52,7 @@ public class BluetoothActivity extends AppCompatActivity {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Il dispositivo non supporta il Bluetooth", Toast.LENGTH_SHORT).show();
-            finish();
+
 
         }
 
@@ -94,7 +94,6 @@ public class BluetoothActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e(TAG, "Errore durante la connessione al dispositivo Bluetooth", e);
             Toast.makeText(this, "Errore durante la connessione al dispositivo Bluetooth", Toast.LENGTH_SHORT).show();
-            finish();
 
         }
 
@@ -167,7 +166,7 @@ public class BluetoothActivity extends AppCompatActivity {
             } else {
                 // L'utente ha rifiutato l'attivazione del Bluetooth
                 Toast.makeText(this, "Il Bluetooth è disabilitato, l'applicazione verrà chiusa", Toast.LENGTH_SHORT).show();
-                finish();
+
             }
         }
     }
