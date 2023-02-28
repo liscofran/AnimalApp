@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -32,18 +33,22 @@ public class BluetoothActivity extends AppCompatActivity {
     private InputStream mmInputStream;
     private OutputStream mmOutputStream;
     private volatile boolean stopWorker;
-
+    private Button mButton;
     private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
-
         mTextView = findViewById(R.id.text_view);
-        Button mButton = findViewById(R.id.button);
+        mButton = findViewById(R.id.button);
 
+
+    }
+    @Override
+    protected void onStart() {
         // Verifica se il dispositivo Android supporta il Bluetooth
+        super.onStart();
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Il dispositivo non supporta il Bluetooth", Toast.LENGTH_SHORT).show();
@@ -54,7 +59,7 @@ public class BluetoothActivity extends AppCompatActivity {
         // Abilita il Bluetooth sul dispositivo Android se non è già abilitato
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
