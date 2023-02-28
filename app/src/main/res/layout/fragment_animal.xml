@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/second_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingClass">
 
 
         <ImageView
@@ -168,7 +169,8 @@
             android:text="Modifica"
             app:layout_constraintEnd_toStartOf="@+id/guideline50"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="576dp" />
+            tools:layout_editor_absoluteY="576dp"
+            tools:ignore="MissingConstraints" />
 
         <ImageButton
             android:id="@+id/spese_animal_button"
@@ -178,7 +180,8 @@
             android:text="Spese"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline50"
-            tools:layout_editor_absoluteY="576dp" />
+            tools:layout_editor_absoluteY="576dp"
+            tools:ignore="MissingConstraints" />
 
 
         <ImageButton
@@ -219,6 +222,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
+
+        <Button
+            android:id="@+id/bluetooth_button"
+            android:layout_width="143dp"
+            android:layout_height="41dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dp"
+            android:text="bluetooth"
+            app:layout_constraintBottom_toTopOf="@+id/guideline62"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="211dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

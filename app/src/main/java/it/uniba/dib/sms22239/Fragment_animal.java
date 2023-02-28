@@ -12,8 +12,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
@@ -103,6 +105,13 @@ public class Fragment_animal extends Fragment {
             }
         });
 
+        getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), BluetoothActivity.class));
+            }
+        });
+
         ImageButton shareButton = view.findViewById(R.id.share_button);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +136,7 @@ public class Fragment_animal extends Fragment {
                 startActivity(sendIntent);
             }
         });
+
 
         getView().findViewById(R.id.spese_animal_button).setOnClickListener(new View.OnClickListener() {
             @Override
