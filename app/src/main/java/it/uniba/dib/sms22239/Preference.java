@@ -71,7 +71,7 @@ public class Preference extends PreferenceActivity
         about_us.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(android.preference.Preference preference) {
-                startActivity(new Intent(Preference.this,Chisiamo.class));
+                startActivity(new Intent(Preference.this, Activity_Chi_Siamo.class));
                 return true;
             }
         });
@@ -98,7 +98,7 @@ public class Preference extends PreferenceActivity
     }
 
     private void irMain() {
-        Intent intent = new Intent(Preference.this, MainActivity.class);
+        Intent intent = new Intent(Preference.this, Activity_Main.class);
         startActivity(intent);
         Toast.makeText(Preference.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
         finish();

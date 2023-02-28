@@ -3,40 +3,38 @@ package it.uniba.dib.sms22239;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class Spese extends AppCompatActivity {
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
+
+public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
+
+    EditText inputData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spese);
+        setContentView(R.layout.activity_crea_oggetto_spesa);
 
         // Imposta la Toolbar come action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea l'intento per aprire la pagina "activity_crea_oggetto_spesa"
-                Intent intent = new Intent(Spese.this, Activity_Crea_Oggetto_Spesa.class);
-                startActivity(intent);
-            }
-        });
-
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Spese.this, Activity_Home.class));
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Home.class));
             }
         });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Spese.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
@@ -61,13 +59,31 @@ public class Spese extends AppCompatActivity {
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Spese.this, Preference.class));
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Preference.class));
             }
         });
 
+        findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String datatmp = inputData.getText().toString();
+                String data = "";
+                CharacterIterator it = new StringCharacterIterator(datatmp);
+
+                while (it.current() != CharacterIterator.DONE)
+                {
+                    if(it.getIndex() == 4 || it.getIndex() == 6 )
+                    {
+                        data = data + "/";
+                    }
+                    data = data + it.current();
+                    it.next();
+                }
+
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Spese.class));
+            }
+        });
 
     }
-
-
-
 }

@@ -35,7 +35,7 @@ public class Fragment_profile_veterinario extends Fragment {
     private Button editProfileButton;
 
     private FirebaseRecyclerOptions<Proprietario> options;
-    private FirebaseRecyclerAdapter<Proprietario, MyViewHolder> adapter;
+    private FirebaseRecyclerAdapter<Proprietario, Animal_View_Holder> adapter;
     private RecyclerView recyclerView;
     private FirebaseDatabase mDatabase;
     private TextView mNomeTextView;
