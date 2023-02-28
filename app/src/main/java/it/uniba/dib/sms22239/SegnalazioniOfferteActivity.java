@@ -2,22 +2,19 @@ package it.uniba.dib.sms22239;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class SegnalazioniActivity extends AppCompatActivity {
+public class SegnalazioniOfferteActivity extends AppCompatActivity {
 
     Button creasegnalazione;
     Button creaofferta;
     Button ricercasegnalazione;
+    Button miesegnalazioni;
 
     String categoria;
     String oggetto;
@@ -29,12 +26,12 @@ public class SegnalazioniActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_segnalazioni);
+        setContentView(R.layout.activity_segnalazioniofferte);
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SegnalazioniActivity.this,HomeActivity.class);
+                Intent intent = new Intent(SegnalazioniOfferteActivity.this,HomeActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,28 +39,28 @@ public class SegnalazioniActivity extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SegnalazioniActivity.this, Profile_Activity.class));
+                startActivity(new Intent(SegnalazioniOfferteActivity.this, Profile_Activity.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SegnalazioniActivity.this, RegistrazioneAnimale.class));
+                startActivity(new Intent(SegnalazioniOfferteActivity.this, RegistrazioneAnimale.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SegnalazioniActivity.this, QRcode.class));
+                startActivity(new Intent(SegnalazioniOfferteActivity.this, QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SegnalazioniActivity.this, Preference.class));
+                startActivity(new Intent(SegnalazioniOfferteActivity.this, Preference.class));
             }
         });
 
@@ -72,7 +69,7 @@ public class SegnalazioniActivity extends AppCompatActivity {
         creasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SegnalazioniActivity.this,CreaSegnalazione.class);
+                Intent intent = new Intent(SegnalazioniOfferteActivity.this,RegistrazioneSegnalazione.class);
                 startActivity(intent);
             }
         });
@@ -82,7 +79,7 @@ public class SegnalazioniActivity extends AppCompatActivity {
         creaofferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SegnalazioniActivity.this,CreaOfferta.class);
+                Intent intent = new Intent(SegnalazioniOfferteActivity.this,CreaOfferta.class);
                 startActivity(intent);
             }
         });
@@ -92,7 +89,17 @@ public class SegnalazioniActivity extends AppCompatActivity {
         ricercasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SegnalazioniActivity.this,RicercaSegnalazione.class);
+                Intent intent = new Intent(SegnalazioniOfferteActivity.this,RicercaSegnalazione.class);
+                startActivity(intent);
+            }
+        });
+
+        miesegnalazioni = findViewById(R.id.miesegnalazioni);
+
+        miesegnalazioni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SegnalazioniOfferteActivity.this,SegnalazioneActivity.class);
                 startActivity(intent);
             }
         });

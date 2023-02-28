@@ -50,7 +50,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/miesegnalazione"
+        app:layout_constraintBottom_toTopOf="@id/miesegnalazioni"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view" />
@@ -58,7 +58,7 @@
 
 
     <Button
-        android:id="@+id/miesegnalazione"
+        android:id="@+id/miesegnalazioni"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
@@ -87,7 +87,7 @@
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/miesegnalazione"
+        app:layout_constraintTop_toBottomOf="@id/miesegnalazioni"
         app:layout_constraintBottom_toTopOf="@id/offerte"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

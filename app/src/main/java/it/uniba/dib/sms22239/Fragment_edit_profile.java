@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -68,6 +70,16 @@ public class Fragment_edit_profile extends Fragment {
         mNomeTextView = getView().findViewById(R.id.user_nome);
         mCognomeTextView = getView().findViewById(R.id.user_cognome);
         mcodfiscaleTextView = getView().findViewById(R.id.user_codicefiscale);
+
+        Button backBtn = getView().findViewById(R.id.back);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),Profile_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         // Recupera i dati dal database e popola i campi
         mDatabase.addValueEventListener(new ValueEventListener()

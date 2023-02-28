@@ -178,7 +178,7 @@ public class CreaOfferta extends AppCompatActivity {
 
 
                 off.writeOfferta(off, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
-                Intent intent = new Intent(CreaOfferta.this, SegnalazioniActivity.class);
+                Intent intent = new Intent(CreaOfferta.this, SegnalazioniOfferteActivity.class);
                 startActivity(intent);
             }
 

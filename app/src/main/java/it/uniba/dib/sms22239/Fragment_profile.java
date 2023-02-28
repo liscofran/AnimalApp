@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,6 +61,16 @@ public class Fragment_profile extends Fragment
         mNomeTextView = getView().findViewById(R.id.user_nome);
         mCognomeTextView =  getView().findViewById(R.id.user_cognome);
         mcodfiscaleTextView =  getView().findViewById(R.id.user_codicefiscale);
+
+        Button backBtn = getView().findViewById(R.id.back);
+
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()

@@ -26,7 +26,6 @@ public class Animale
         ani.Id_utente = Id_utente;
         ani.data = data;
 
-
         long seed = System.currentTimeMillis(); // ottenere il tempo corrente
         Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
         int tmp = Math.abs(random.nextInt()); // generare un numero casuale

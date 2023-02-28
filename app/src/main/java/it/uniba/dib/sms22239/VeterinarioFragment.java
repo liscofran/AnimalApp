@@ -55,7 +55,7 @@ public class VeterinarioFragment extends Fragment {
         getView().findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(  getActivity(), SegnalazioniActivity.class));
+                startActivity(new Intent(  getActivity(), SegnalazioniOfferteActivity.class));
             }
         });
 

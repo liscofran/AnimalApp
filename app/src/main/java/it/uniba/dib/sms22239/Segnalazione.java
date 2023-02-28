@@ -13,6 +13,7 @@ public class Segnalazione {
     public boolean checkEnte;
     public boolean checkVeterinario;
     public String uid;
+    public String immagine;
 
 
     public Segnalazione() {
