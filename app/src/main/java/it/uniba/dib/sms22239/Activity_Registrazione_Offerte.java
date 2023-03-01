@@ -5,28 +5,21 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -41,10 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
-
-public class RegistrazioneOfferte extends AppCompatActivity {
+public class Activity_Registrazione_Offerte extends AppCompatActivity {
 
     ImageButton backBtn2;
     CheckBox proprietario;
@@ -95,7 +85,7 @@ public class RegistrazioneOfferte extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrazioneOfferte.this, HomeActivity.class);
+                Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -103,28 +93,35 @@ public class RegistrazioneOfferte extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, Profile_Activity.class));
+                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_Profile_Proprietario_Ente.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, RegistrazioneAnimale.class));
+                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, QRcode.class));
+                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, Preference.class));
+                startActivity(new Intent(Activity_Registrazione_Offerte.this, Preference.class));
             }
         });
 
@@ -195,10 +192,10 @@ public class RegistrazioneOfferte extends AppCompatActivity {
                         onNothingSelected(parent);
                         break;
                     case "Offro":
-                        Toast.makeText(RegistrazioneOfferte.this, "Hai selezionato Offro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Registrazione_Offerte.this, "Hai selezionato Offro", Toast.LENGTH_SHORT).show();
                         break;
                     case "Cerco":
-                        Toast.makeText(RegistrazioneOfferte.this, "Hai selezionato Cerco", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Registrazione_Offerte.this, "Hai selezionato Cerco", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         onNothingSelected(parent);
@@ -207,7 +204,7 @@ public class RegistrazioneOfferte extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(RegistrazioneOfferte.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Registrazione_Offerte.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -229,12 +226,12 @@ public class RegistrazioneOfferte extends AppCompatActivity {
 
 
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(RegistrazioneOfferte.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile(off);
                 }
                 off.writeOfferta(off, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
-                Intent intent = new Intent(RegistrazioneOfferte.this, SegnalazioniOfferteActivity.class);
+                Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class);
                 startActivity(intent);
             }
         });
@@ -279,13 +276,13 @@ public class RegistrazioneOfferte extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(RegistrazioneOfferte.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Activity_Registrazione_Offerte.this, "Upload successful", Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(RegistrazioneOfferte.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Registrazione_Offerte.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
