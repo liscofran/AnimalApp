@@ -34,7 +34,7 @@ public class SegnalazioneActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MainAdapterSegnalazione mainAdapterSegnalazione;
     SearchView searchView;
-    MainAdapter.OnItemClickListener listener;
+    MainAdapterSegnalazione.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
@@ -143,10 +143,10 @@ public class SegnalazioneActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Segnalazione> options =
                 new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazione").orderByChild("Categoria").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
                         .build();
 
-        mainAdapterSegnalazione = new MainAdapterSegnalazione(options, (MainAdapterSegnalazione.OnItemClickListener) listener);
+        mainAdapterSegnalazione = new MainAdapterSegnalazione(options,listener);
         mainAdapterSegnalazione.startListening();
         recyclerView.setAdapter(mainAdapterSegnalazione);
     }

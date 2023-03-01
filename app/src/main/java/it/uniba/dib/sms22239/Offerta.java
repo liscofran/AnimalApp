@@ -15,6 +15,7 @@ public class Offerta {
     public boolean checkEnte;
     public boolean checkVeterinario;
     public String uid;
+    public String immagine;
 
 
     public void writeOfferta(Offerta off, String categoria, String oggetto, String provincia, String descrizione, boolean checkProprietario, boolean checkEnte, boolean checkVeterinario) {
