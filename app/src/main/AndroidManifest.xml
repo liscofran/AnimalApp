@@ -32,85 +32,102 @@
         android:theme="@style/Theme.AnimalApp"
         tools:targetApi="31">
         <activity
-            android:name=".Veterinario_Activity"
+            android:name=".Activity_Profilo_Veterinario"
             android:exported="false"
             android:label="@string/title_activity_veterinario"
             android:theme="@style/Theme.AnimalApp.NoActionBar" />
         <activity
-            android:name=".PetActivity"
-            android:exported="false"></activity>
+            android:name=".Activity_Miei_Animali"
+            android:exported="false"/>
         <activity
-            android:name=".SegnalazioneActivity"
-            android:exported="false"></activity>
+            android:name=".Activity_Segnalazione"
+            android:exported="false"/>
         <activity
-            android:name=".RegistrazioneSegnalazione"
-            android:exported="false"></activity>
+            android:name=".Activity_Registrazione_Segnalazione"
+            android:exported="false"/>
         <activity
-            android:name=".BluetoothActivity"
-            android:exported="false">
+            android:name=".Activity_Bluetooth"
+            android:exported="false"/>
 
-        </activity>
         <activity
-            android:name=".QRcode"
+            android:name=".Activity_Animali"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Activity_QRcode"
             android:exported="false"
-            android:label="Scansione QRCode"></activity>
+            android:label="Scansione QRCode"/>
         <activity
-            android:name=".SegnalazioniOfferteActivity"
+            android:name=".Activity_Segnalazioni_Offerte"
             android:exported="false" />
         <activity
-            android:name=".CreaOfferta"
+            android:name=".Activity_Crea_Offerta"
             android:exported="false" />
         <activity
-            android:name=".Ente_Activity"
+            android:name=".Activity_Ente"
             android:exported="false" />
         <activity
-            android:name=".Animal_Activity"
+            android:name=".Activity_Animal_Profile"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".RegistrazioneAnimale"
+            android:name=".Activity_Registrazione_Animale"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".QRGenerate"
-            android:exported="true"></activity>
+            android:name=".Activity_QRGenerate"
+            android:exported="true"/>
         <activity
-            android:name=".ResetPassword"
+            android:name=".Activity_Reset_Password"
             android:exported="false" />
         <activity
             android:name=".Preference"
             android:exported="false" />
         <activity
-            android:name=".Chisiamo"
+            android:name=".Activity_Chi_Siamo"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Profile_Activity"
+            android:name=".Activity_Profile_Proprietario_Ente"
             android:exported="false"
-            android:parentActivityName=".HomeActivity">
+            android:parentActivityName=".Activity_Home">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".GoogleSignInActivity"
+            android:name=".Activity_Google_Sign_In"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activity_Register"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".Activity_Home"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Spese"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity_Crea_Oggetto_Spesa"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

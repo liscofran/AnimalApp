@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 public class Spese extends AppCompatActivity {
@@ -24,7 +21,7 @@ public class Spese extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Crea l'intento per aprire la pagina "activity_crea_oggetto_spesa"
-                Intent intent = new Intent(Spese.this, CreaOggettoSpesa.class);
+                Intent intent = new Intent(Spese.this, Activity_Crea_Oggetto_Spesa.class);
                 startActivity(intent);
             }
         });
@@ -32,14 +29,14 @@ public class Spese extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Spese.this, HomeActivity.class));
+                startActivity(new Intent(Spese.this, Activity_Home.class));
             }
         });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Spese.this, Profile_Activity.class));
+                startActivity(new Intent(Spese.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
@@ -58,6 +55,13 @@ public class Spese extends AppCompatActivity {
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            }
+        });
+
+        findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Spese.this, Activity_Crea_Oggetto_Spesa.class));
             }
         });
 

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,14 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class Fragment_profile_ente extends Fragment
+public class Fragment_profile_proprietario extends Fragment
 {
     private FirebaseAuth mAuth;
     private TextView mNomeTextView;
-    private TextView mtipoTextView;
-    private TextView  mlocalitaTextView;
+    private TextView mCognomeTextView;
+    private TextView mcodfiscaleTextView;
 
-    public Fragment_profile_ente() {
+    public Fragment_profile_proprietario() {
         // Required empty public constructor
     }
 
@@ -42,7 +43,7 @@ public class Fragment_profile_ente extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_profile_ente, container, false);
+        return inflater.inflate(R.layout.fragment_profile_proprietario, container, false);
     }
 
     @Override
@@ -57,9 +58,19 @@ public class Fragment_profile_ente extends Fragment
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
-        mNomeTextView = getView().findViewById(R.id.ente_nome);
-        mtipoTextView =  getView().findViewById(R.id.ente_tipo);
-        mlocalitaTextView =  getView().findViewById(R.id.ente_localita);
+        mNomeTextView = getView().findViewById(R.id.user_nome);
+        mCognomeTextView =  getView().findViewById(R.id.user_cognome);
+        mcodfiscaleTextView =  getView().findViewById(R.id.user_codicefiscale);
+
+        Button backBtn = getView().findViewById(R.id.back);
+
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -68,13 +79,13 @@ public class Fragment_profile_ente extends Fragment
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 String name = dataSnapshot.child("nome").getValue(String.class);
-                String tipo = dataSnapshot.child("tipo").getValue(String.class);
-                String localita = dataSnapshot.child("localita").getValue(String.class);
+                String cognome = dataSnapshot.child("cognome").getValue(String.class);
+                String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
                 //set delle variabili recuperate al layout
                 mNomeTextView.setText(name);
-                mtipoTextView.setText(tipo);
-                mlocalitaTextView.setText(localita);
+                mCognomeTextView.setText(cognome);
+                mcodfiscaleTextView.setText(codfiscale);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
@@ -83,12 +94,12 @@ public class Fragment_profile_ente extends Fragment
             }
         });
 
-        getView().findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
+            getView().findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_edit_ente_profile());
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_edit_profile_proprietario());
                 fragmentTransaction.commit();
             }
         });

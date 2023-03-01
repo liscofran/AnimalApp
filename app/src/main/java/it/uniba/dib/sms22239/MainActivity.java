@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                startActivity(new Intent(MainActivity.this, Activity_Register.class));
             }
         });
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent= new Intent(MainActivity.this, GoogleSignInActivity.class);
+                Intent intent= new Intent(MainActivity.this, Activity_Google_Sign_In.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ResetPassword.class);
+                Intent intent = new Intent(MainActivity.this, Activity_Reset_Password.class);
                 startActivity(intent);
             }
         });
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity
 
     private void sendUserToNextActivity()
     {
-        Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+        Intent intent = new Intent(MainActivity.this, Activity_Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

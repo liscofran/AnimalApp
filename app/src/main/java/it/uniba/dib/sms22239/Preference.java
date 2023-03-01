@@ -71,7 +71,7 @@ public class Preference extends PreferenceActivity
         about_us.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(android.preference.Preference preference) {
-                startActivity(new Intent(Preference.this,Chisiamo.class));
+                startActivity(new Intent(Preference.this, Activity_Chi_Siamo.class));
                 return true;
             }
         });
