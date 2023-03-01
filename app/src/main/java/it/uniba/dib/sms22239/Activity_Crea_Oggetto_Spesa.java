@@ -31,7 +31,8 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Home.class));
+                Intent intent = new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Home.class);
+                startActivity(intent);
             }
         });
 
@@ -45,18 +46,21 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_QRcode.class));
             }
         });
 

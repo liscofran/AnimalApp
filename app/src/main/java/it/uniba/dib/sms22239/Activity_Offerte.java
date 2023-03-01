@@ -1,35 +1,22 @@
 package it.uniba.dib.sms22239;
 
-import android.view.Menu;
-import android.view.MenuItem;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class OfferteActivity extends AppCompatActivity {
+public class Activity_Offerte extends AppCompatActivity {
 
     RecyclerView recyclerView;
     MainAdapterOfferte mainAdapterOfferte;
@@ -51,7 +38,7 @@ public class OfferteActivity extends AppCompatActivity {
         aggiungiOfferte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OfferteActivity.this, RegistrazioneOfferte.class);
+                Intent intent = new Intent(Activity_Offerte.this, Activity_Registrazione_Offerte.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +46,43 @@ public class OfferteActivity extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OfferteActivity.this, Activity_Home.class));
+                Intent intent = new Intent(Activity_Offerte.this, Activity_Home.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Offerte.this, Activity_Profile_Proprietario_Ente.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Offerte.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Offerte.this, Activity_Animali.class));
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Offerte.this, Activity_QRcode.class));
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Offerte.this, Preference.class));
             }
         });
 
@@ -97,7 +120,7 @@ public class OfferteActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Offerta offerta = mainAdapterOfferte.getItem(position);
                 String offertaId = offerta.uid;
-                Intent intent = new Intent(OfferteActivity.this, Activity_Animali.class);
+                Intent intent = new Intent(Activity_Offerte.this, Activity_Animali.class);
                 intent.putExtra("OFFERTA_CODE",offertaId);
                 startActivity(intent);
             }
