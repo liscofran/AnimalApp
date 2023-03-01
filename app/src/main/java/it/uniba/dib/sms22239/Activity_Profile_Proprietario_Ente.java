@@ -28,8 +28,9 @@ public class Activity_Profile_Proprietario_Ente extends AppCompatActivity
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Home.class));
-           }
+                Intent intent = new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Home.class);
+                startActivity(intent);
+            }
         });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
@@ -42,18 +43,21 @@ public class Activity_Profile_Proprietario_Ente extends AppCompatActivity
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_QRcode.class));
             }
         });
 

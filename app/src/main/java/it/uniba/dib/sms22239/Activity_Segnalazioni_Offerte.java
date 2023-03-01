@@ -37,7 +37,7 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Segnalazioni_Offerte.this, Activity_Registrazione_Animale.class));
+                startActivity(new Intent(Activity_Segnalazioni_Offerte.this, Activity_Animali.class));
             }
         });
 

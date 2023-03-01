@@ -87,10 +87,17 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Segnalazione.this, Activity_Registrazione_Animale.class));
+                startActivity(new Intent(Activity_Registrazione_Segnalazione.this, Activity_Animali.class));
             }
         });
 

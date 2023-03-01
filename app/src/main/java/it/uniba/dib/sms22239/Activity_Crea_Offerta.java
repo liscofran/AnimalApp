@@ -58,7 +58,7 @@ public class Activity_Crea_Offerta extends AppCompatActivity {
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Crea_Offerta.this, Activity_Registrazione_Animale.class));
+                startActivity(new Intent(Activity_Crea_Offerta.this, Activity_Animali.class));
             }
         });
 

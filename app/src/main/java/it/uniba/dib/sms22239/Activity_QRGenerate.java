@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -44,19 +45,48 @@ public class Activity_QRGenerate extends AppCompatActivity
 
         Load_setting();
 
-        findViewById(R.id.home).setOnClickListener(view -> startActivity(new Intent(Activity_QRGenerate.this, Activity_Home.class)));
-
-        findViewById(R.id.profile).setOnClickListener(view -> startActivity(new Intent(Activity_QRGenerate.this, Activity_Profile_Proprietario_Ente.class)));
-
-        findViewById(R.id.annunci).setOnClickListener(view -> {
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_QRGenerate.this, Activity_Home.class);
+                startActivity(intent);
+            }
         });
 
-        findViewById(R.id.pet).setOnClickListener(view -> {
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_QRGenerate.this, Activity_Profile_Proprietario_Ente.class));
+            }
         });
 
-        findViewById(R.id.qr).setOnClickListener(view -> startActivity(new Intent(Activity_QRGenerate.this, Activity_QRcode.class)));
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_QRGenerate.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
 
-        findViewById(R.id.impostazioni).setOnClickListener(view -> startActivity(new Intent(Activity_QRGenerate.this, Preference.class)));
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_QRGenerate.this, Activity_Animali.class));
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_QRGenerate.this, Activity_QRcode.class));
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_QRGenerate.this, Preference.class));
+            }
+        });
 
     }
 

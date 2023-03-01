@@ -39,29 +39,31 @@ public class Activity_QRcode extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_QRcode.this, Activity_Home.class));
+                Intent intent = new Intent(Activity_QRcode.this, Activity_Home.class);
+                startActivity(intent);
             }
         });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_QRcode.this, Preference.class));
+                startActivity(new Intent(Activity_QRcode.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_QRcode.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Activity_QRcode.this, Activity_Animali.class));
             }
         });
-
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override

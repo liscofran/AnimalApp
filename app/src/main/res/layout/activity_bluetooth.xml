@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar1" />
+
     <TextView
         android:id="@+id/text_view"
         android:layout_width="match_parent"

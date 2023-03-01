@@ -51,7 +51,43 @@ public class Activity_Miei_Animali extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Miei_Animali.this, Activity_Home.class));
+                Intent intent = new Intent(Activity_Miei_Animali.this, Activity_Home.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Miei_Animali.this, Activity_Profile_Proprietario_Ente.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Miei_Animali.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Miei_Animali.this, Activity_Animali.class));
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Miei_Animali.this, Activity_QRcode.class));
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Miei_Animali.this, Preference.class));
             }
         });
 
@@ -109,10 +145,13 @@ public class Activity_Miei_Animali extends AppCompatActivity {
     }
 
     private void mysearch(String str) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+
         FirebaseRecyclerOptions<Animale> options =
                 new FirebaseRecyclerOptions.Builder<Animale>()
                         .setQuery(FirebaseDatabase.getInstance().getReference()
-                        .child("Animale").orderByChild("razza").startAt(str).endAt(str+"\uf8ff"),Animale.class)
+                        .child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()).startAt(str).endAt(str+"\uf8ff"),Animale.class)
                         .build();
 
         mainAdapter = new Main_Adapter(options,listener);
