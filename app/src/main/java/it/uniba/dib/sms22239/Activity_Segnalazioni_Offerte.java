@@ -13,6 +13,7 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
     Button creaofferta;
     Button ricercasegnalazione;
     Button miesegnalazioni;
+    Button mieofferte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,16 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Crea_Offerta.class);
+                startActivity(intent);
+            }
+        });
+
+        mieofferte = findViewById(R.id.mieofferte);
+
+        mieofferte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this,OfferteActivity.class);
                 startActivity(intent);
             }
         });

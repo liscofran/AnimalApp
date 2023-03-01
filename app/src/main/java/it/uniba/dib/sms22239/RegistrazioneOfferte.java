@@ -95,7 +95,7 @@ public class RegistrazioneOfferte extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrazioneOfferte.this, HomeActivity.class);
+                Intent intent = new Intent(RegistrazioneOfferte.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -103,21 +103,21 @@ public class RegistrazioneOfferte extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, Profile_Activity.class));
+                startActivity(new Intent(RegistrazioneOfferte.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, RegistrazioneAnimale.class));
+                startActivity(new Intent(RegistrazioneOfferte.this, Activity_Registrazione_Animale.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrazioneOfferte.this, QRcode.class));
+                startActivity(new Intent(RegistrazioneOfferte.this, Activity_QRcode.class));
             }
         });
 
@@ -234,7 +234,7 @@ public class RegistrazioneOfferte extends AppCompatActivity {
                     uploadFile(off);
                 }
                 off.writeOfferta(off, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
-                Intent intent = new Intent(RegistrazioneOfferte.this, SegnalazioniOfferteActivity.class);
+                Intent intent = new Intent(RegistrazioneOfferte.this, Activity_Segnalazioni_Offerte.class);
                 startActivity(intent);
             }
         });

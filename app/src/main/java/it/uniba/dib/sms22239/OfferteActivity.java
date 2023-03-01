@@ -59,7 +59,7 @@ public class OfferteActivity extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OfferteActivity.this, HomeActivity.class));
+                startActivity(new Intent(OfferteActivity.this, Activity_Home.class));
             }
         });
 
@@ -97,7 +97,7 @@ public class OfferteActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Offerta offerta = mainAdapterOfferte.getItem(position);
                 String offertaId = offerta.uid;
-                Intent intent = new Intent(OfferteActivity.this, Animal_Activity.class);
+                Intent intent = new Intent(OfferteActivity.this, Activity_Animali.class);
                 intent.putExtra("OFFERTA_CODE",offertaId);
                 startActivity(intent);
             }

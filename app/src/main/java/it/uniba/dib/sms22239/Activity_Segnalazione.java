@@ -1,28 +1,40 @@
 package it.uniba.dib.sms22239;
 
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Activity_Segnalazione extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Main_Adapter_Segnalazione mainAdapterSegnalazione;
     SearchView searchView;
-    Main_Adapter.OnItemClickListener listener;
+    Main_Adapter_Segnalazione.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
@@ -47,43 +59,7 @@ public class Activity_Segnalazione extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Segnalazione.this, Activity_Home.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Segnalazione.this, Activity_Profile_Proprietario_Ente.class));
-            }
-        });
-
-        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Segnalazione.this, Activity_Segnalazioni_Offerte.class));
-            }
-        });
-
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Segnalazione.this, Activity_Animali.class));
-            }
-        });
-
-        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Segnalazione.this, Activity_QRcode.class));
-            }
-        });
-
-        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Segnalazione.this, Preference.class));
+                startActivity(new Intent(Activity_Segnalazione.this, Activity_Home.class));
             }
         });
 
@@ -139,13 +115,12 @@ public class Activity_Segnalazione extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Segnalazione>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid").equalTo(mUser.getUid()),Segnalazione.class)
                         .build();
-
         mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Segnalazione segnalazione = mainAdapterSegnalazione.getItem(position);
                 String segnalazioneId = segnalazione.uid;
-                Intent intent = new Intent(Activity_Segnalazione.this, Activity_Animal_Profile.class);
+                Intent intent = new Intent(Activity_Segnalazione.this, Activity_Animali.class);
                 intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
                 startActivity(intent);
             }
@@ -168,10 +143,10 @@ public class Activity_Segnalazione extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Segnalazione> options =
                 new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazione").orderByChild("Categoria").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
                         .build();
 
-        mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options, (Main_Adapter_Segnalazione.OnItemClickListener) listener);
+        mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options,listener);
         mainAdapterSegnalazione.startListening();
         recyclerView.setAdapter(mainAdapterSegnalazione);
     }
