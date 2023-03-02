@@ -1,7 +1,6 @@
 package it.uniba.dib.sms22239;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
@@ -18,11 +17,9 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainAdapterOfferte extends FirebaseRecyclerAdapter<Offerta,MainAdapterOfferte.myViewHolder> {
+public class Main_Adapter_Offerte extends FirebaseRecyclerAdapter<Offerta, Main_Adapter_Offerte.myViewHolder> {
 
 
     public interface OnItemClickListener {
@@ -31,7 +28,7 @@ public class MainAdapterOfferte extends FirebaseRecyclerAdapter<Offerta,MainAdap
 
     private OnItemClickListener listener;
 
-    public MainAdapterOfferte(@NonNull FirebaseRecyclerOptions<Offerta> options, OnItemClickListener listener) {
+    public Main_Adapter_Offerte(@NonNull FirebaseRecyclerOptions<Offerta> options, OnItemClickListener listener) {
         super(options);
         this.listener = listener;
     }

@@ -34,12 +34,12 @@
         android:background="@color/white"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/segnalazioni"
-        app:layout_constraintBottom_toTopOf="@id/crea_animale"
+        app:layout_constraintBottom_toTopOf="@id/crea_segnalazione"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/crea_animale"
+        android:id="@+id/crea_segnalazione"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
@@ -50,7 +50,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/miei_animali"
+        app:layout_constraintBottom_toTopOf="@id/mie_segnalazioni"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view" />
@@ -58,7 +58,7 @@
 
 
     <Button
-        android:id="@+id/miei_animali"
+        android:id="@+id/mie_segnalazioni"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
@@ -69,14 +69,14 @@
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/album_animali"
+        app:layout_constraintBottom_toTopOf="@id/ricerca_segnalazione"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/crea_animale" />
+        app:layout_constraintTop_toBottomOf="@id/crea_segnalazione" />
 
     <Button
-        android:id="@+id/album_animali"
+        android:id="@+id/ricerca_segnalazione"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
@@ -87,7 +87,7 @@
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/miei_animali"
+        app:layout_constraintTop_toBottomOf="@id/mie_segnalazioni"
         app:layout_constraintBottom_toTopOf="@id/offerte"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -102,7 +102,7 @@
         android:textStyle="italic"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/album_animali"
+        app:layout_constraintTop_toBottomOf="@+id/ricerca_segnalazione"
         app:layout_constraintBottom_toTopOf="@id/view2"/>
 
     <View

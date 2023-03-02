@@ -40,10 +40,22 @@
             android:name=".Activity_Miei_Animali"
             android:exported="false"/>
         <activity
+            android:name=".Activity_Album_Animali"
+            android:exported="false"/>
+        <activity
             android:name=".Activity_Segnalazione"
             android:exported="false"/>
         <activity
+            android:name=".Activity_Offerte"
+            android:exported="false"/>
+        <activity
+            android:name=".Activity_Ricerca_Offerta"
+            android:exported="false"/>
+        <activity
             android:name=".Activity_Registrazione_Segnalazione"
+            android:exported="false"/>
+        <activity
+            android:name=".Activity_Ricerca_Segnalazione"
             android:exported="false"/>
         <activity
             android:name=".Activity_Bluetooth"

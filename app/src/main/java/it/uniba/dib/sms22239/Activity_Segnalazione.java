@@ -65,36 +65,13 @@ public class Activity_Segnalazione extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        /*
-        mUploads = new ArrayList<>();
-
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Uploads");
-
-
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot postsnapshot: snapshot.getChildren())
-                {
-                    Upload upload = postsnapshot.getValue(Upload.class);
-                    mUploads.add(upload);
-                }
-                mainAdapter
-            }
-
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(PetActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        })
-
-*/
-
         searchView = findViewById(R.id.searchView);
 
+
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newText) {
@@ -126,10 +103,12 @@ public class Activity_Segnalazione extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(mainAdapterSegnalazione);
+
     }
+
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         mainAdapterSegnalazione.startListening();
     }
 
