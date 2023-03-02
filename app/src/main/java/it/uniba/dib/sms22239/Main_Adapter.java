@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
@@ -28,6 +32,18 @@ public class Main_Adapter extends FirebaseRecyclerAdapter<Animale, Main_Adapter.
     public Main_Adapter(@NonNull FirebaseRecyclerOptions<Animale> options, OnItemClickListener listener) {
         super(options);
         this.listener = listener;
+    }
+
+    @Override
+    public DatabaseReference getRef(int position) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+
+        Query query = super.getRef(position)
+                .orderByChild("Id_utente")
+                .equalTo(mUser.getUid());
+
+        return query.getRef();
     }
 
     @Override

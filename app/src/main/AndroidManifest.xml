@@ -73,6 +73,9 @@
             android:name=".Activity_Segnalazioni_Offerte"
             android:exported="false" />
         <activity
+            android:name=".Activity_Proprieta"
+            android:exported="false" />
+        <activity
             android:name=".Activity_Crea_Offerta"
             android:exported="false" />
         <activity

@@ -61,6 +61,7 @@ public class Fragment_profile_animale extends Fragment {
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView =  getView().findViewById(R.id.animal_razza);
         msessoTextView =  getView().findViewById(R.id.animal_sesso);
+        //ImageButton bluetoothbtn = getView().findViewById(R.id.bluetooth_button);
         MaterialButton backBtn = getView().findViewById(R.id.back);
 
         backBtn.setOnClickListener(new View.OnClickListener()
@@ -110,6 +111,22 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
+        getView().findViewById(R.id.proprieta).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Activity_Proprieta.class);
+                intent.putExtra("ANIMAL_CODE", idAnimal);
+                startActivity(intent);
+            }
+        });
+
+        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity( new Intent(getActivity(), Spese.class));
+            }
+        });
+
         ImageButton shareButton = view.findViewById(R.id.share_button);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,14 +149,6 @@ public class Fragment_profile_animale extends Fragment {
                 sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
-            }
-        });
-
-
-        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity( new Intent(getActivity(), Spese.class));
             }
         });
     }

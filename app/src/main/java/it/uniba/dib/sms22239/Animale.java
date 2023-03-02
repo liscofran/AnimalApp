@@ -13,6 +13,8 @@ public class Animale
     public String data;
     public String Id_utente;
     public String immagine;
+    public String prop;
+    public String descprop;
 
     public Animale() {
 
@@ -25,6 +27,8 @@ public class Animale
         ani.sesso = sesso;
         ani.Id_utente = Id_utente;
         ani.data = data;
+        ani.prop = "Nessuna";
+        ani.descprop = "Da inserire...";
 
         long seed = System.currentTimeMillis(); // ottenere il tempo corrente
         Random random = new Random(seed); // creare un oggetto Random con il tempo come seme

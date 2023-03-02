@@ -7,6 +7,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -111,6 +112,8 @@ public class Activity_Miei_Animali extends AppCompatActivity {
                 return false;
             }
         });
+
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         
@@ -148,10 +151,20 @@ public class Activity_Miei_Animali extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
 
-        FirebaseRecyclerOptions<Animale> options =
+        /*FirebaseRecyclerOptions<Animale> options =
                 new FirebaseRecyclerOptions.Builder<Animale>()
                         .setQuery(FirebaseDatabase.getInstance().getReference()
-                        .child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()).startAt(str).endAt(str+"\uf8ff"),Animale.class)
+                        .child("Animale").orderByChild("razza").orderByChild("Id_utente").equalTo(mUser.getUid()).startAt(str).endAt(str+"\uf8ff"),Animale.class)
+                        .build();*/
+        Query query = FirebaseDatabase.getInstance().getReference()
+                .child("Animale")
+                .orderByChild("razza")
+                .startAt(str)
+                .endAt(str+"\uf8ff");
+
+        FirebaseRecyclerOptions<Animale> options =
+                new FirebaseRecyclerOptions.Builder<Animale>()
+                        .setQuery(query, Animale.class)
                         .build();
 
         mainAdapter = new Main_Adapter(options,listener);

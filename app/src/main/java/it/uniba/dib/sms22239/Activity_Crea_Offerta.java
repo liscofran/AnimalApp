@@ -129,7 +129,7 @@ public class Activity_Crea_Offerta extends AppCompatActivity {
         //Spinner Categoria
         spinner1 = findViewById(R.id.spinner1);
         spinner1.setPrompt("");
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.reg_categoria, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoria_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
