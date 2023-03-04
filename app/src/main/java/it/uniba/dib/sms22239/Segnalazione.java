@@ -5,8 +5,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Random;
+
 public class Segnalazione {
     public String oggetto;
+
+    public String idSegnalazione;
     public String provincia;
     public String descrizione;
     public boolean checkProprietario;
@@ -52,9 +56,14 @@ public class Segnalazione {
             return;
         }
 
-        sgn.uid = user.getUid();
+        long seed = System.currentTimeMillis(); // ottenere il tempo corrente
+        Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
+        int tmp = Math.abs(random.nextInt()); // generare un numero casuale
 
+        sgn.idSegnalazione = Integer.toString(tmp);
+        sgn.uid = user.getUid();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Segnalazioni").push().setValue(sgn);
+        mDatabase.child("Segnalazioni").child(Integer.toString(tmp)).setValue(sgn);
     }
+
 }

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -13,7 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.*;
 
@@ -112,11 +118,12 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
             @Override
             public void onItemClick(int position) {
                 Segnalazione segnalazione = mainAdapterRicercaSegnalazione.getItem(position);
-                String segnalazioneId = segnalazione.uid;
-                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Animali.class);
+                String segnalazioneId = segnalazione.idSegnalazione;
+                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profilo_Segnalazione.class);
                 intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
                 startActivity(intent);
             }
+
         });
         recyclerView.setAdapter(mainAdapterRicercaSegnalazione);
     }
