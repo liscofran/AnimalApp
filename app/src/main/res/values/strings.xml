@@ -60,4 +60,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_profilo_segnalazione_senza_modifica">
+        Activity_Profilo_Segnalazione_senza_modifica
+    </string>
 </resources>

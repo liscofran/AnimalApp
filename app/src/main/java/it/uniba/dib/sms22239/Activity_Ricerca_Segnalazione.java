@@ -119,7 +119,7 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
             public void onItemClick(int position) {
                 Segnalazione segnalazione = mainAdapterRicercaSegnalazione.getItem(position);
                 String segnalazioneId = segnalazione.idSegnalazione;
-                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profilo_Segnalazione.class);
+                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profilo_Segnalazione_senza_modifica.class);
                 intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
                 startActivity(intent);
             }

@@ -90,20 +90,20 @@ public class Activity_Segnalazione extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Segnalazione> options =
                 new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid").equalTo(mUser.getUid()),Segnalazione.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid"),Segnalazione.class)
                         .build();
         mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Segnalazione segnalazione = mainAdapterSegnalazione.getItem(position);
-                String segnalazioneId = segnalazione.uid;
-                Intent intent = new Intent(Activity_Segnalazione.this, Activity_Animali.class);
+                String segnalazioneId = segnalazione.idSegnalazione;
+                Intent intent = new Intent(Activity_Segnalazione.this, Activity_Profilo_Segnalazione.class);
                 intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
                 startActivity(intent);
             }
+
         });
         recyclerView.setAdapter(mainAdapterSegnalazione);
-
     }
 
     @Override
