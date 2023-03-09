@@ -12,7 +12,9 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
     Button creasegnalazione;
     Button creaofferta;
     Button ricercasegnalazione;
+    Button ricercaofferta;
     Button miesegnalazioni;
+    Button mieofferte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
             }
         });
 
-        creasegnalazione = findViewById(R.id.crea_animale);
+        creasegnalazione = findViewById(R.id.crea_segnalazione);
 
         creasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +77,17 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
             }
         });
 
-        ricercasegnalazione = findViewById(R.id.album_animali);
+        mieofferte = findViewById(R.id.mieofferte);
+
+        mieofferte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this,Activity_Offerte.class);
+                startActivity(intent);
+            }
+        });
+
+        ricercasegnalazione = findViewById(R.id.ricerca_segnalazione);
 
         ricercasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,12 +97,22 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
             }
         });
 
-        miesegnalazioni = findViewById(R.id.miei_animali);
+        miesegnalazioni = findViewById(R.id.mie_segnalazioni);
 
         miesegnalazioni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Segnalazione.class);
+                startActivity(intent);
+            }
+        });
+
+        ricercaofferta = findViewById(R.id.ricercaofferte);
+
+        ricercaofferta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Ricerca_Offerta.class);
                 startActivity(intent);
             }
         });

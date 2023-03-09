@@ -193,6 +193,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
                 }
                 sgn.writeSegnalazione(sgn, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
                 Intent intent = new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class);
+                intent.putExtra("SEGNALAZIONE_CODE", sgn.idSegnalazione);
                 startActivity(intent);
 
             }

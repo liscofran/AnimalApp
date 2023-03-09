@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -15,20 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.*;
 
-public class Activity_Ricerca_Segnalazione extends AppCompatActivity
+public class Activity_Ricerca_Offerta extends AppCompatActivity
 {
     RecyclerView recyclerView;
-    Main_Adapter_Segnalazione mainAdapterRicercaSegnalazione;
+    Main_Adapter_Offerte mainAdapterRicercaOfferta;
     SearchView searchView;
-    Main_Adapter_Segnalazione.OnItemClickListener listener;
+    Main_Adapter_Offerte.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
@@ -41,10 +35,10 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Home.class);
+                Intent intent = new Intent(Activity_Ricerca_Offerta.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -52,42 +46,41 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Segnalazione.this, Activity_Segnalazioni_Offerte.class));
+                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Segnalazione.this, Activity_Animali.class));
+                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Segnalazione.this, Activity_QRcode.class));
+                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Segnalazione.this, Preference.class));
+                startActivity(new Intent(Activity_Ricerca_Offerta.this, Preference.class));
             }
         });
 
         recyclerView = findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchView = findViewById(R.id.searchView);
-
 
     }
 
@@ -110,46 +103,45 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
         mAuth= FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
 
-        FirebaseRecyclerOptions<Segnalazione> options =
-                new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid"),Segnalazione.class)
+        FirebaseRecyclerOptions<Offerta> options =
+                new FirebaseRecyclerOptions.Builder<Offerta>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte"),Offerta.class)
                         .build();
-        mainAdapterRicercaSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
+        mainAdapterRicercaOfferta = new Main_Adapter_Offerte(options, new Main_Adapter_Offerte.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Segnalazione segnalazione = mainAdapterRicercaSegnalazione.getItem(position);
-                String segnalazioneId = segnalazione.idSegnalazione;
-                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profilo_Segnalazione.class);
-                intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
+                Offerta offerta = mainAdapterRicercaOfferta.getItem(position);
+                String offertaId = offerta.uid;
+                Intent intent = new Intent(Activity_Ricerca_Offerta.this, Activity_Animali.class);
+                intent.putExtra("SEGNALAZIONE_CODE",offertaId);
                 startActivity(intent);
             }
-
         });
-        recyclerView.setAdapter(mainAdapterRicercaSegnalazione);
+        recyclerView.setAdapter(mainAdapterRicercaOfferta);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mainAdapterRicercaSegnalazione.startListening();
+        mainAdapterRicercaOfferta.startListening();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mainAdapterRicercaSegnalazione.stopListening();
+        mainAdapterRicercaOfferta.stopListening();
     }
 
     private void mysearch(String str) {
 
-        FirebaseRecyclerOptions<Segnalazione> options =
-                new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
+        FirebaseRecyclerOptions<Offerta> options =
+                new FirebaseRecyclerOptions.Builder<Offerta>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
                         .build();
 
-        mainAdapterRicercaSegnalazione = new Main_Adapter_Segnalazione(options,listener);
-        mainAdapterRicercaSegnalazione.startListening();
-        recyclerView.setAdapter(mainAdapterRicercaSegnalazione);
+        mainAdapterRicercaOfferta = new Main_Adapter_Offerte(options,listener);
+        mainAdapterRicercaOfferta.startListening();
+        recyclerView.setAdapter(mainAdapterRicercaOfferta);
     }
 /*
     private void filterList(String query) {
