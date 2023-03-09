@@ -19,11 +19,8 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crea_oggetto_spesa);
 
-<<<<<<< HEAD
         String idAnimal = getIntent().getStringExtra("ANIMAL_CODE");
 
-=======
->>>>>>> origin/main
         inputData = findViewById(R.id.add_item_date);
         inputNome = findViewById(R.id.add_item_name);
         inputPrezzo = findViewById(R.id.add_item_price);
@@ -36,12 +33,7 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
                 startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Home.class));
-=======
-                Intent intent = new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Home.class);
-                startActivity(intent);
->>>>>>> origin/main
             }
         });
 
@@ -55,30 +47,21 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-=======
                 startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Segnalazioni_Offerte.class));
->>>>>>> origin/main
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-=======
                 startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Animali.class));
->>>>>>> origin/main
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-=======
                 startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_QRcode.class));
->>>>>>> origin/main
             }
         });
 
@@ -111,13 +94,9 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
                     it.next();
                 }
 
-<<<<<<< HEAD
                 og.writeNewOggetto(og, nome,prezzo,quantita,data, idAnimal);
                 startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Spese.class));
-=======
-                og.writeNewOggetto(og, nome,prezzo,quantita,data);
-                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Spese.class));
->>>>>>> origin/main
+
             }
         });
 
