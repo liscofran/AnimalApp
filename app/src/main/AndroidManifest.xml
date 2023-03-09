@@ -120,7 +120,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Spese"
+            android:name=".Activity_Spese"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

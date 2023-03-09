@@ -11,8 +11,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.PropertyName;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
-
 public class Oggetto_Spesa {
     @PropertyName("nome")
     public String nome;
@@ -33,34 +31,15 @@ public class Oggetto_Spesa {
 
     }
 
-    public void writeNewOggetto (Oggetto_Spesa os, String nome, double prezzo, int quantita, String dataAcquisto)
+    public void writeNewOggetto(Oggetto_Spesa os, String nome, double prezzo, int quantita, String dataAcquisto, String id_animale)
     {
         os.nome = nome;
         os.prezzo = prezzo;
         os.quantita = quantita;
         os.dataAcquisto = dataAcquisto;
+        os.id_animale = id_animale;
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        String animaleId = "idDellAnimaleDaRecuperare";
-        mDatabase.child("Animale").child(animaleId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Recupera l'ID dell'animale
-                    os.id_animale = dataSnapshot.getKey();
-                    // Fare qualcosa con l'ID dell'animale qui
-                } else {
-                    // L'animale non esiste nel database
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Si è verificato un errore durante la lettura del valore dal database
-            }
-        });
-
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         mDatabase.child("Oggetti").push().setValue(os);

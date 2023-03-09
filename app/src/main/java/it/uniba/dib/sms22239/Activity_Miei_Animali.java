@@ -31,6 +31,7 @@ public class Activity_Miei_Animali extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         Button aggiungiAnimaleButton = findViewById(R.id.add_animal_button);
         aggiungiAnimaleButton.setOnClickListener(new View.OnClickListener() {
             @Override
