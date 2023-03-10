@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import it.uniba.dib.sms22239.Activities.Activity_Chi_Siamo;
+import it.uniba.dib.sms22239.Activities.MainActivity;
+
 public class Preference extends PreferenceActivity
 {
     FirebaseAuth mAuth;

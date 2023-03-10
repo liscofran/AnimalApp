@@ -1,12 +1,10 @@
 package it.uniba.dib.sms22239;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+
+import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 
 public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, Main_Adapter_Spese.My_View_Holder_Spesa> {
 

@@ -18,6 +18,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import it.uniba.dib.sms22239.Models.Segnalazione;
 
 public class Main_Adapter_Segnalazione extends FirebaseRecyclerAdapter<Segnalazione, Main_Adapter_Segnalazione.myViewHolder> {
 

@@ -20,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
+import it.uniba.dib.sms22239.Models.Animale;
 
 public class Main_Adapter extends FirebaseRecyclerAdapter<Animale, Main_Adapter.myViewHolder> {
 

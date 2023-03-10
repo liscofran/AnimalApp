@@ -33,133 +33,133 @@
         android:theme="@style/Theme.AnimalApp"
         tools:targetApi="31">
         <activity
-            android:name=".Activity_Profilo_Segnalazione_senza_modifica"
+            android:name=".Activities.Activity_Profilo_Segnalazione_senza_modifica"
             android:exported="false"
             android:label="@string/title_activity_profilo_segnalazione_senza_modifica"
             android:theme="@style/Theme.AnimalApp.NoActionBar" />
         <activity
-            android:name=".Activity_profilo_Offerta"
+            android:name=".Activities.Activity_profilo_Offerta"
             android:exported="false" />
         <activity
-            android:name=".Activity_Profilo_Segnalazione"
+            android:name=".Activities.Activity_Profilo_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activity_Profilo_Veterinario"
+            android:name=".Activities.Activity_Profilo_Veterinario"
             android:exported="false"
             android:label="@string/title_activity_veterinario"
             android:theme="@style/Theme.AnimalApp.NoActionBar" />
         <activity
-            android:name=".Activity_Miei_Animali"
+            android:name=".Activities.Activity_Miei_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activity_Album_Animali"
+            android:name=".Activities.Activity_Album_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activity_Segnalazione"
+            android:name=".Activities.Activity_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activity_Offerte"
+            android:name=".Activities.Activity_Offerte"
             android:exported="false" />
         <activity
-            android:name=".Activity_Ricerca_Offerta"
+            android:name=".Activities.Activity_Ricerca_Offerta"
             android:exported="false" />
         <activity
-            android:name=".Activity_Registrazione_Segnalazione"
+            android:name=".Activities.Activity_Registrazione_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activity_Ricerca_Segnalazione"
+            android:name=".Activities.Activity_Ricerca_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activity_Bluetooth"
+            android:name=".Activities.Activity_Bluetooth"
             android:exported="false" />
         <activity
-            android:name=".Activity_Animali"
+            android:name=".Activities.Activity_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activity_QRcode"
+            android:name=".Activities.Activity_QRcode"
             android:exported="false"
             android:label="Scansione QRCode" />
         <activity
-            android:name=".Activity_Segnalazioni_Offerte"
+            android:name=".Activities.Activity_Segnalazioni_Offerte"
             android:exported="false" />
         <activity
-            android:name=".Activity_Proprieta"
+            android:name=".Activities.Activity_Proprieta"
             android:exported="false" />
         <activity
-            android:name=".Activity_Crea_Offerta"
+            android:name=".Activities.Activity_Crea_Offerta"
             android:exported="false" />
         <activity
-            android:name=".Activity_Ente"
+            android:name=".Activities.Activity_Ente"
             android:exported="false" />
         <activity
-            android:name=".Activity_Animal_Profile"
+            android:name=".Activities.Activity_Animal_Profile"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity_Registrazione_Animale"
+            android:name=".Activities.Activity_Registrazione_Animale"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity_QRGenerate"
+            android:name=".Activities.Activity_QRGenerate"
             android:exported="true" />
         <activity
-            android:name=".Activity_Reset_Password"
+            android:name=".Activities.Activity_Reset_Password"
             android:exported="false" />
         <activity
             android:name=".Preference"
             android:exported="false" />
         <activity
-            android:name=".Activity_Chi_Siamo"
+            android:name=".Activities.Activity_Chi_Siamo"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Profile_Proprietario_Ente"
+            android:name=".Activities.Activity_Profile_Proprietario_Ente"
             android:exported="false"
-            android:parentActivityName=".Activity_Home">
+            android:parentActivityName=".Activities.Activity_Home">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Google_Sign_In"
+            android:name=".Activities.Activity_Google_Sign_In"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Register"
+            android:name=".Activities.Activity_Register"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Home"
+            android:name=".Activities.Activity_Home"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Spese"
+            android:name=".Activities.Activity_Spese"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity_Crea_Oggetto_Spesa"
+            android:name=".Activities.Activity_Crea_Oggetto_Spesa"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
