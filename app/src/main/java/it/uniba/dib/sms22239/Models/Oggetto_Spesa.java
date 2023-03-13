@@ -6,7 +6,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.PropertyName;
 
+import java.util.Random;
+
 public class Oggetto_Spesa {
+
+    @PropertyName("id")
+    public String id;
+
     @PropertyName("nome")
     public String nome;
 
@@ -34,10 +40,16 @@ public class Oggetto_Spesa {
         os.dataAcquisto = dataAcquisto;
         os.id_animale = id_animale;
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Random rand = new Random();
 
-        mDatabase.child("Oggetti").push().setValue(os);
+        // Generare un numero casuale
+        int randomNumber = rand.nextInt();
+
+        os.id = String.valueOf(randomNumber);
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("Oggetti").child(id).setValue(os);
 
     }
 }
