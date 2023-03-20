@@ -70,6 +70,9 @@
             android:name=".Activities.Activity_Ricerca_Segnalazione"
             android:exported="false" />
         <activity
+            android:name=".Activities.Activity_Multimedia"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_Bluetooth"
             android:exported="false" />
         <activity

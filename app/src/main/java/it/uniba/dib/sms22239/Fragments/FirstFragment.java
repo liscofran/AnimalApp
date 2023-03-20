@@ -1,4 +1,4 @@
-package it.uniba.dib.sms22239;
+package it.uniba.dib.sms22239.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {

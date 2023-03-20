@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Fragment_Testo">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/costraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/Testi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Visualizza Testi"
+            app:layout_constraintBottom_toTopOf="@id/NomeTesti"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/NomeTesti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Inserire il nome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Testi" />
+
+        <ImageButton
+            android:id="@+id/DownloadTesti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/download"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/NomeTesti" />
+
+        <ImageButton
+            android:id="@+id/UploadTesti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/upload"
+            app:layout_constraintLeft_toRightOf="@id/DownloadTesti"
+            app:layout_constraintTop_toBottomOf="@id/NomeTesti" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

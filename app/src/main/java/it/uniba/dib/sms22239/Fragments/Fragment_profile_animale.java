@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
+import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
+import it.uniba.dib.sms22239.Activities.Activity_Proprieta;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.Fragments.Fragment_edit_animal_profile;
 import it.uniba.dib.sms22239.R;
@@ -140,11 +142,26 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
+        getView().findViewById(R.id.proprieta).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Activity_Proprieta.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
+                startActivity(intent);            }
+        });
+
         getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_Spese.class);
                 intent.putExtra("ANIMAL_CODE",idAnimal);
+                startActivity(intent);            }
+        });
+
+        getView().findViewById(R.id.multimedia).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
                 startActivity(intent);            }
         });
     }

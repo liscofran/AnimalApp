@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/animal_list_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/titolo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleziona il tipo di File:"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/spinner1"/>
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf="@+id/titolo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        />
+
+
+   <ImageButton
+       android:id="@+id/back"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/ic_baseline_arrow_back_24"
+       android:background="@android:color/transparent"
+       android:padding="5dp"
+       app:layout_constraintTop_toBottomOf="@id/toolbar"
+       app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+<!--    <Button-->
+<!--        android:id="@+id/Immagini"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Immagini"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/NomeImmagini"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Testi"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/Video"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/NomeImmagini"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Inserire il nome"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/Immagini"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Testi"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/Video"/>-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/DownloadImmagini"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/download"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="5dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Immagini"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/UploadImmagini"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="5dp"-->
+<!--        android:src="@drawable/upload"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/DownloadImmagini"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Immagini" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/Video"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Video"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/NomeVideo"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Immagini"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/NomeVideo"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Inserire il nome"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/Testi"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Immagini"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/DownloadVideo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/download"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="5dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Video"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/UploadVideo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="5dp"-->
+<!--        android:src="@drawable/upload"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/DownloadVideo"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/Video" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
