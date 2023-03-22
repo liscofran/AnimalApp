@@ -13,7 +13,16 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/Testi"
+            android:id="@+id/AggiungiTesti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Aggiungi Testi"
+            app:layout_constraintBottom_toTopOf="@id/VisualizzaTesti"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/VisualizzaTesti"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Visualizza Testi"
@@ -28,7 +37,7 @@
             android:hint="Inserire il nome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Testi" />
+            app:layout_constraintTop_toBottomOf="@id/VisualizzaTesti" />
 
         <ImageButton
             android:id="@+id/DownloadTesti"
