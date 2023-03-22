@@ -13,7 +13,16 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/Immagine"
+            android:id="@+id/AggiungiImmagini"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Aggiungi Immagini"
+            app:layout_constraintBottom_toTopOf="@id/VisualizzaImmagine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/VisualizzaImmagine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Visualizza Immagini"
@@ -28,7 +37,7 @@
             android:hint="Inserire il nome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Immagine"/>
+            app:layout_constraintTop_toBottomOf="@id/VisualizzaImmagine"/>
 
         <ImageButton
             android:id="@+id/DownloadImmagini"
@@ -49,6 +58,13 @@
             android:src="@drawable/upload"
             app:layout_constraintLeft_toRightOf="@id/DownloadImmagini"
             app:layout_constraintTop_toBottomOf="@id/NomeImmagine" />
+
+        <ImageView
+            android:id="@+id/Immagine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/UploadImmagini"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
