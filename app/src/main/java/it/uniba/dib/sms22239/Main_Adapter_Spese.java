@@ -45,6 +45,7 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
         holder.prezzo.setText(String.valueOf(prezzoDouble));
         int quantitaInt = Integer.parseInt(String.valueOf(model.quantita));
         holder.quantita.setText(String.valueOf(quantitaInt));
+        holder.dataAcquisto.setText(model.dataAcquisto);
 
 
      holder.btn_minus.setOnClickListener(new View.OnClickListener() {

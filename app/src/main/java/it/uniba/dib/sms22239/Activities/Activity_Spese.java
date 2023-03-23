@@ -3,6 +3,7 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import it.uniba.dib.sms22239.Fragments.Fragment_profile_animale;
 import it.uniba.dib.sms22239.Main_Adapter_Spese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 import it.uniba.dib.sms22239.Preference;
@@ -85,6 +87,14 @@ public class Activity_Spese extends AppCompatActivity {
             }
         });
 
+        ImageButton backBtn2 = findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,7 +156,7 @@ public class Activity_Spese extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Oggetto_Spesa> options =
                 new FirebaseRecyclerOptions.Builder<Oggetto_Spesa>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("oggetto").startAt(str).endAt(str+"\uf8ff"),Oggetto_Spesa.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("nome").startAt(str).endAt(str+"\uf8ff"),Oggetto_Spesa.class)
                         .build();
 
         mainAdapterSpese = new Main_Adapter_Spese(options,listener);
