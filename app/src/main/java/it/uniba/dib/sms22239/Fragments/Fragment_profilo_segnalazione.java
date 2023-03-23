@@ -33,6 +33,11 @@ public class Fragment_profilo_segnalazione extends Fragment
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
 
+        String id_utente;
+        String id_utente_segnalazione;
+        String tmp1;
+
+        String tmp2;
 
     public Fragment_profilo_segnalazione() {
         // Required empty public constructor
@@ -42,12 +47,60 @@ public class Fragment_profilo_segnalazione extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference mDatabase;
+        String idSegnalazione = requireActivity().getIntent().getStringExtra("SEGNALAZIONE_CODE");
+
+
+        DatabaseReference mDatabase1;
+
+        mDatabase = database.getInstance().getReference().child("Segnalazioni").child(idSegnalazione);
+        mDatabase1 = database.getInstance().getReference().child("User").child(user.getUid());
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                //recupero dati e assegnazione alle variabili
+                id_utente_segnalazione = dataSnapshot.child("uid").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                //recupero dati e assegnazione alle variabili
+                id_utente = dataSnapshot.child(user.getUid()).getValue(String.class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_profilo_segnalazione, container, false);
+        if(id_utente_segnalazione == id_utente){
+            return inflater.inflate(R.layout.fragment_profilo_segnalazione, container, false);
+        }
+        else{
+            return inflater.inflate(R.layout.fragment_profilo_segnalazione_senza_modifica, container, false);
+        }
     }
 
     @Override

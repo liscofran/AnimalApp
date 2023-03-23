@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,13 +11,25 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import it.uniba.dib.sms22239.Fragments.Fragment_profilo_offerta;
 import it.uniba.dib.sms22239.Fragments.Fragment_profilo_segnalazione;
+import it.uniba.dib.sms22239.Fragments.Fragment_profilo_segnalazione_senza_modifica;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Profilo_Segnalazione extends AppCompatActivity
 {
-
+    private FirebaseAuth mAuth;
+//    String id_utente;
+//    String id_utente_segnalazione;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +40,60 @@ public class Activity_Profilo_Segnalazione extends AppCompatActivity
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione());
         fragmentTransaction.commit();
+        //
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        DatabaseReference mDatabase;
+//        String idSegnalazione = intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
+//        DatabaseReference mDatabase1;
+//
+//        mDatabase = database.getInstance().getReference().child("Segnalazioni").child(user.getUid());
+//        mDatabase1 = database.getInstance().getReference().child("User").child(user.getUid());
+//
+//        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
+//        {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+//            {
+//                //recupero dati e assegnazione alle variabili
+//                id_utente_segnalazione = dataSnapshot.child("uid").getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
+//        {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+//            {
+//                //recupero dati e assegnazione alle variabili
+//                id_utente = dataSnapshot.child(user.getUid().toString()).getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//
+//        if(id_utente_segnalazione == id_utente){
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione());
+//            fragmentTransaction.commit();
+//        }
+//        else{
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione_senza_modifica());
+//            fragmentTransaction.commit();
+//        }
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
