@@ -23,6 +23,7 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_Testo extends Fragment
 {
     private Button btnInserisci;
+    private Button btnVisualizza;
     StorageReference reference;
 
     public Fragment_Testo() {
@@ -45,10 +46,12 @@ public class Fragment_Testo extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        btnInserisci = getView().findViewById(R.id.InserisciTesti);
+       btnVisualizza = getView().findViewById(R.id.VisualizzaTesti);
        reference = FirebaseStorage.getInstance().getReference().child("Document");
 
-        EditText editNome = getView().findViewById(R.id.TitoloTesti);
-        EditText editTesto = getView().findViewById(R.id.Testo);
+       EditText editNome = getView().findViewById(R.id.TitoloTesti);
+       EditText editTesto = getView().findViewById(R.id.Testo);
+
        btnInserisci.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -67,5 +70,15 @@ public class Fragment_Testo extends Fragment
                });
            }
        });
+
+        btnVisualizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment_VisualizzaTesto vistestoFragment = new Fragment_VisualizzaTesto();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, vistestoFragment)
+                        .commit();
+            }
+        });
     }
 }

@@ -99,7 +99,7 @@ public class Fragment_Immagine extends Fragment
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-            && data != null && data.getData() != null) {
+                && data != null && data.getData() != null) {
             ImageUri = data.getData();
 
             Picasso.get().load(ImageUri).into(Image);
