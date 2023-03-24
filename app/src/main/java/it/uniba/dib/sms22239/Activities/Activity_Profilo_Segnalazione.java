@@ -28,72 +28,68 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Profilo_Segnalazione extends AppCompatActivity
 {
     private FirebaseAuth mAuth;
-//    String id_utente;
-//    String id_utente_segnalazione;
+    String id_utente;
+    String id_utente_segnalazione;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilo_segnalazione);
         Load_setting();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione());
-        fragmentTransaction.commit();
-        //
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        mAuth = FirebaseAuth.getInstance();
-//        FirebaseUser user = mAuth.getCurrentUser();
-//        DatabaseReference mDatabase;
-//        String idSegnalazione = intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
-//        DatabaseReference mDatabase1;
-//
-//        mDatabase = database.getInstance().getReference().child("Segnalazioni").child(user.getUid());
-//        mDatabase1 = database.getInstance().getReference().child("User").child(user.getUid());
-//
-//        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
-//        {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-//            {
-//                //recupero dati e assegnazione alle variabili
-//                id_utente_segnalazione = dataSnapshot.child("uid").getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
-//        {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-//            {
-//                //recupero dati e assegnazione alle variabili
-//                id_utente = dataSnapshot.child(user.getUid().toString()).getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//
-//        if(id_utente_segnalazione == id_utente){
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione());
-//            fragmentTransaction.commit();
-//        }
-//        else{
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione_senza_modifica());
-//            fragmentTransaction.commit();
-//        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference mDatabase;
+        String idSegnalazione = getIntent().getStringExtra("SEGNALAZIONE_CODE");
+        DatabaseReference mDatabase1;
+
+        mDatabase = database.getInstance().getReference().child("Segnalazioni").child(idSegnalazione);
+        mDatabase1 = database.getInstance().getReference().child("User").child(user.getUid());
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                //recupero dati e assegnazione alle variabili
+                id_utente_segnalazione = dataSnapshot.child("uid").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                //recupero dati e assegnazione alle variabili
+                id_utente = dataSnapshot.child(user.getUid()).getKey();
+                if(id_utente_segnalazione.equals(id_utente)){
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione());
+                    fragmentTransaction.commit();
+                }
+                else{
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_segnalazione_senza_modifica());
+                    fragmentTransaction.commit();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
