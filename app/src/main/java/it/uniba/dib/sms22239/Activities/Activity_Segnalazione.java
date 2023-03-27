@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import it.uniba.dib.sms22239.Main_Adapter_Segnalazione;
+import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
 
@@ -81,7 +82,7 @@ public class Activity_Segnalazione extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Segnalazione> options =
                 new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid"),Segnalazione.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid").equalTo(mUser.getUid()), Segnalazione.class)
                         .build();
         mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
             @Override

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_profilo_offerta">
+    tools:context=".Fragments.Fragment_profilo_offerta_senza_modifica">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/second_relative_layout"
@@ -129,26 +129,15 @@
             app:layout_constraintGuide_percent="0.95" />
 
         <Button
-            android:id="@+id/edit_button"
+            android:id="@+id/condividi"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/prova4"
-            android:text="Modifica"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_share"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/offerta_descrizione" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineLowHorizontal" />
 
-        <Button
-            android:id="@+id/condividi"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_share"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_button"
-            app:layout_constraintEnd_toStartOf="@+id/guideline14"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline51"
-            app:layout_constraintTop_toTopOf="@+id/edit_button" />
 
         <Button
             android:id="@+id/back"

@@ -114,9 +114,9 @@ public class Activity_Ricerca_Offerta extends AppCompatActivity
             @Override
             public void onItemClick(int position) {
                 Offerta offerta = mainAdapterRicercaOfferta.getItem(position);
-                String offertaId = offerta.uid;
-                Intent intent = new Intent(Activity_Ricerca_Offerta.this, Activity_Animali.class);
-                intent.putExtra("SEGNALAZIONE_CODE",offertaId);
+                String offertaId = offerta.idOfferta;
+                Intent intent = new Intent(Activity_Ricerca_Offerta.this, Activity_profilo_Offerta.class);
+                intent.putExtra("OFFERTA_CODE",offertaId);
                 startActivity(intent);
             }
         });

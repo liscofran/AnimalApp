@@ -22,21 +22,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_edit_profile_proprietario;
 import it.uniba.dib.sms22239.R;
 
 
-public class Fragment_profilo_offerta extends Fragment
+public class Fragment_profilo_offerta_senza_modifica extends Fragment
 {
     private FirebaseAuth mAuth;
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
 
-    String id_utente;
-    String id_utente_offerta;
 
-    public Fragment_profilo_offerta() {
+    public Fragment_profilo_offerta_senza_modifica() {
         // Required empty public constructor
     }
 
@@ -46,11 +43,10 @@ public class Fragment_profilo_offerta extends Fragment
         super.onCreate(savedInstanceState);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_profilo_offerta, container, false);
+        return inflater.inflate(R.layout.fragment_profilo_offerta_senza_modifica, container, false);
     }
 
     @Override
@@ -104,14 +100,5 @@ public class Fragment_profilo_offerta extends Fragment
             }
         });
 
-        getView().findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_edit_offerta());
-                fragmentTransaction.commit();
-            }
-        });
     }
 }

@@ -33,11 +33,6 @@
         android:theme="@style/Theme.AnimalApp"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.Activity_Profilo_Segnalazione_senza_modifica"
-            android:exported="false"
-            android:label="@string/title_activity_profilo_segnalazione_senza_modifica"
-            android:theme="@style/Theme.AnimalApp.NoActionBar" />
-        <activity
             android:name=".Activities.Activity_profilo_Offerta"
             android:exported="false" />
         <activity

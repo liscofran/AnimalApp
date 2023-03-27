@@ -5,12 +5,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Random;
+
 public class Offerta {
 
     public String categoria;
     public String oggetto;
     public String provincia;
     public String descrizione;
+    public String idOfferta;
     public boolean checkProprietario;
     public boolean checkEnte;
     public boolean checkVeterinario;
@@ -38,7 +41,13 @@ public class Offerta {
 
         off.uid = user.getUid();
 
+        long seed = System.currentTimeMillis(); // ottenere il tempo corrente
+        Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
+        int tmp = Math.abs(random.nextInt()); // generare un numero casuale
+
+        off.idOfferta = Integer.toString(tmp);
+        off.uid = user.getUid();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Offerte").push().setValue(off);
+        mDatabase.child("Offerte").child(Integer.toString(tmp)).setValue(off);
     }
 }

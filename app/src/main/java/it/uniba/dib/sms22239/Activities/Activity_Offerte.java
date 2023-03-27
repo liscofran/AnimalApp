@@ -124,8 +124,8 @@ public class Activity_Offerte extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 Offerta offerta = mainAdapterOfferte.getItem(position);
-                String offertaId = offerta.uid;
-                Intent intent = new Intent(Activity_Offerte.this, Activity_Animali.class);
+                String offertaId = offerta.idOfferta;
+                Intent intent = new Intent(Activity_Offerte.this, Activity_profilo_Offerta.class);
                 intent.putExtra("OFFERTA_CODE",offertaId);
                 startActivity(intent);
             }
@@ -149,7 +149,7 @@ public class Activity_Offerte extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Offerta> options =
                 new FirebaseRecyclerOptions.Builder<Offerta>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("oggetto").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
                         .build();
 
         mainAdapterOfferte = new Main_Adapter_Offerte(options,listener);
