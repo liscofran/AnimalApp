@@ -29,12 +29,9 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_Video extends Fragment {
 
     private static final int REQUEST_CODE_SELECT_VIDEO = 1234;
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageRef = storage.getReference();
-    private StorageReference videoRef = storageRef.child("Videos");
     private Button Aggiungi;
+    private Button Visualizza;
     private EditText Nome_Video;
-    private boolean flag = false;
 
     public Fragment_Video() {
         // Required empty public constructor
@@ -56,11 +53,21 @@ public class Fragment_Video extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Aggiungi = getView().findViewById(R.id.AggiungiVideo);
+        Visualizza = getView().findViewById(R.id.VisualizzaVideo);
         Nome_Video = getView().findViewById(R.id.NomeVideo);
         Aggiungi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectVideoFromGallery();
+            }
+        });
+        Visualizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment_VisualizzaVideo visvideoFragment = new Fragment_VisualizzaVideo();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, visvideoFragment)
+                        .commit();
             }
         });
     }
