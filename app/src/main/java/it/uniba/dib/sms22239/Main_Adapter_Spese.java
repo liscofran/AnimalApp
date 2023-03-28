@@ -22,15 +22,19 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 
 public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, Main_Adapter_Spese.My_View_Holder_Spesa> {
+
 
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
+
     private OnItemClickListener listener;
+
 
     public Main_Adapter_Spese(@NonNull FirebaseRecyclerOptions<Oggetto_Spesa> options, OnItemClickListener listener) {
         super(options);
@@ -48,7 +52,7 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
         holder.dataAcquisto.setText(model.dataAcquisto);
 
 
-     holder.btn_minus.setOnClickListener(new View.OnClickListener() {
+        holder.btn_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (listener != null) {
@@ -104,32 +108,32 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
         return new My_View_Holder_Spesa(view);
     }
 
-     class My_View_Holder_Spesa extends RecyclerView.ViewHolder {
+    class My_View_Holder_Spesa extends RecyclerView.ViewHolder {
 
-        TextView nome,prezzo,quantita, dataAcquisto;
-        Button btn_minus,btn_plus;
+        TextView nome, prezzo, quantita, dataAcquisto;
+        Button btn_minus, btn_plus, btn_elimina;
         MaterialCardView material;
 
 
         public My_View_Holder_Spesa(@NonNull View itemView) {
             super(itemView);
-            nome=itemView.findViewById(R.id.item_name_textview);
-            prezzo=itemView.findViewById(R.id.item_price_textview);
-            quantita=itemView.findViewById(R.id.item_quantity_textview);
-            dataAcquisto=itemView.findViewById(R.id.item_date_textview);
+            nome = itemView.findViewById(R.id.item_name_textview);
+            prezzo = itemView.findViewById(R.id.item_price_textview);
+            quantita = itemView.findViewById(R.id.item_quantity_textview);
+            dataAcquisto = itemView.findViewById(R.id.item_date_textview);
 
             btn_minus = itemView.findViewById(R.id.minus_button);
             btn_plus = itemView.findViewById(R.id.plus_button);
             material = itemView.findViewById(R.id.card4);
 
 
-
         }
     }
-
-
-
 }
+
+
+
+
 
 
 

@@ -24,6 +24,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Spese extends AppCompatActivity {
 
+
     RecyclerView recyclerView;
     Main_Adapter_Spese mainAdapterSpese;
     SearchView searchView;
