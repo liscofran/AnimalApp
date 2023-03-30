@@ -25,10 +25,8 @@
                 android:src="@drawable/prova2"
                 app:layout_constraintBottom_toBottomOf="@+id/guideline16"
                 app:layout_constraintEnd_toEndOf="@id/guideline14"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/guideline15"
-                app:layout_constraintTop_toTopOf="@id/guideline62"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@id/guideline62" />
 
 
             <ImageView
@@ -44,20 +42,23 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/upload"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/circle_shape"
-                android:src="@drawable/editcustompen"
-                app:layout_constraintBottom_toTopOf="@+id/guideline67"
-                app:layout_constraintEnd_toStartOf="@+id/guideline14"
-                app:layout_constraintStart_toStartOf="@+id/guideline51"
-                app:layout_constraintTop_toTopOf="@+id/guideline66" />
+            <TextView
+                android:id="@+id/animal_proprietario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_v4"
+                android:drawablePadding="10dp"
+                android:hint="Proprietario non presente"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:drawableLeftCompat="@drawable/ic_profile2"
+                app:layout_constraintBottom_toTopOf="@id/animal_nome"
+                app:layout_constraintLeft_toLeftOf="@id/guideline5"
+                app:layout_constraintRight_toRightOf="@id/guideline4"
+                app:layout_constraintTop_toTopOf="@+id/guideline62" />
 
-
-            <EditText
+            <TextView
                 android:id="@+id/animal_nome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -69,11 +70,11 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/animal_razza"
-                app:layout_constraintLeft_toLeftOf="@id/guideline5"
-                app:layout_constraintRight_toRightOf="@id/guideline4"
-                app:layout_constraintTop_toTopOf="@+id/guideline62"  />
+                app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
+                app:layout_constraintStart_toStartOf="@id/animal_proprietario"
+                app:layout_constraintTop_toBottomOf="@+id/animal_proprietario" />
 
-            <EditText
+            <TextView
                 android:id="@+id/animal_razza"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -85,12 +86,12 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/animal_sesso"
-                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-                app:layout_constraintStart_toStartOf="@id/animal_nome"
+                app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
+                app:layout_constraintStart_toStartOf="@id/animal_proprietario"
                 app:layout_constraintTop_toBottomOf="@+id/animal_nome" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/animal_sesso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -102,8 +103,8 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/guideline16"
-                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-                app:layout_constraintStart_toStartOf="@id/animal_nome"
+                app:layout_constraintEnd_toEndOf="@+id/animal_proprietario"
+                app:layout_constraintStart_toStartOf="@id/animal_proprietario"
                 app:layout_constraintTop_toBottomOf="@id/animal_razza" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -154,7 +155,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.85" />
+                app:layout_constraintGuide_percent="0.80" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline66"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.82" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline668"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.88" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline669"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.90" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline17"
@@ -163,16 +185,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.4" />
 
-            <ImageButton
-                android:id="@+id/edit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/prova4"
-                android:text="Modifica"
-                app:layout_constraintEnd_toStartOf="@+id/guideline50"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="576dp" />
 
             <ImageButton
                 android:id="@+id/bluetooth_button"
@@ -216,7 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.32" />
+                app:layout_constraintGuide_percent="0.30" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline50"
@@ -225,37 +237,31 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
-
             <Button
-                android:id="@+id/save_button"
+                android:id="@+id/proprieta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Salva"
                 android:background="@drawable/custom_button_v4"
+                app:layout_constraintBottom_toTopOf="@+id/guideline668"
+                app:layout_constraintEnd_toStartOf="@+id/guideline14"
                 app:layout_constraintLeft_toRightOf="@id/guideline5"
                 app:layout_constraintRight_toLeftOf="@id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
+                app:layout_constraintTop_toBottomOf="@id/guideline66" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline51"
+            <Button
+                android:id="@+id/condividi"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.80" />
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline66"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.20" />
+                android:layout_height="0dp"
+                android:background="@drawable/ic_share"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline669" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline67"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.30" />
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

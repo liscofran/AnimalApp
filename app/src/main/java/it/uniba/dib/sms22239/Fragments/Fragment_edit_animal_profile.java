@@ -26,9 +26,9 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_edit_animal_profile extends Fragment {
 
-    private TextView mNomeTextView;
-    private TextView mrazzaTextView;
-    private TextView msessoTextView;
+    private EditText mNomeTextView;
+    private EditText mrazzaTextView;
+    private EditText msessoTextView;
 
     public Fragment_edit_animal_profile() {
         // Required empty public constructor
@@ -60,7 +60,7 @@ public class Fragment_edit_animal_profile extends Fragment {
         EditText editRazza = getView().findViewById(R.id.animal_razza);
         EditText editSesso = getView().findViewById(R.id.animal_sesso);
 
-        Button saveProfileButton = getView().findViewById(R.id.save_animal_button);
+        Button saveProfileButton = getView().findViewById(R.id.save_button);
 
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView = getView().findViewById(R.id.animal_razza);
@@ -97,7 +97,7 @@ public class Fragment_edit_animal_profile extends Fragment {
             public void onClick(View v)
             {
                 // Salva i dati del profilo e torna all'activity precedente
-                DatabaseReference mDatabase = database.getInstance().getReference().child("Animale").child("313294572");
+                DatabaseReference mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
                 //prende i dati inseriti in input e gli assegna alle variabili temporanee
                 String newName = editName.getText().toString();
