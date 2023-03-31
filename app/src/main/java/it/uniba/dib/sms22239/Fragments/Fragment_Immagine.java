@@ -1,8 +1,5 @@
 package it.uniba.dib.sms22239.Fragments;
 
-import static android.app.Activity.RESULT_OK;
-
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,18 +9,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.squareup.picasso.Picasso;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 
 import it.uniba.dib.sms22239.R;
 
-public class Fragment_Immagine extends Fragment
-{
+public class Fragment_Immagine extends Fragment {
     private static final int PICK_IMAGE_REQUEST = 1;
+    private ActivityResultLauncher<String> imagePickerLauncher;
+    private Uri mImageUri;
 
     private Button AddImage;
     private Button ShowImages;
@@ -32,27 +39,24 @@ public class Fragment_Immagine extends Fragment
     private ImageView Image;
     private EditText Text;
 
-    private Uri ImageUri;
+    private boolean isImagePicked = false;
 
     public Fragment_Immagine() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_immagine, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         AddImage = getView().findViewById(R.id.AggiungiImmagini);
         ShowImages = getView().findViewById(R.id.VisualizzaImmagine);
@@ -61,23 +65,34 @@ public class Fragment_Immagine extends Fragment
         Image = getView().findViewById(R.id.Immagine);
         Text = getView().findViewById(R.id.NomeImmagine);
 
-        AddImage.setOnClickListener(new View.OnClickListener() {
+        // Inizializza il launcher per il selettore di immagini
+        imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
-            public void onClick(View view)
-            {
-                openFileChooser();
+            public void onActivityResult(Uri result) {
+                if (result != null) {
+                    // L'immagine è stata selezionata con successo
+                    mImageUri = result;
+                    Image.setImageURI(mImageUri);
+                    ImageUpload();
+                    Toast.makeText(getActivity(), "Immagine caricata con successo", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    // L'utente ha annullato la selezione dell'immagine
+                    Toast.makeText(getActivity(), "Selezione immagine annullata", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        UploadImages.setOnClickListener(new View.OnClickListener() {
+        AddImage.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view)
-            {
-
+            public void onClick(View view) {
+                imagePickerLauncher.launch("image/*");
             }
         });
-
-        ShowImages.setOnClickListener(new View.OnClickListener() {
+        ShowImages.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -86,23 +101,11 @@ public class Fragment_Immagine extends Fragment
         });
     }
 
-    private void openFileChooser()
+    public void ImageUpload()
     {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
-    }
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Images/" + Text.getText().toString());
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null) {
-            ImageUri = data.getData();
-
-            Picasso.get().load(ImageUri).into(Image);
-        }
+        imagesRef.putFile(mImageUri);
     }
 }

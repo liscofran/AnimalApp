@@ -91,16 +91,16 @@ public class Activity_Multimedia extends AppCompatActivity
                 selectedItem = (String) parent.getItemAtPosition(position);
                 switch(selectedItem)
                 {
-                    case "Testo":
-                        Fragment_Testo testoFragment = new Fragment_Testo();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frame, testoFragment)
-                                .commit();
-                        break;
                     case "Immagine":
                         Fragment_Immagine immagineFragment = new Fragment_Immagine();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.frame, immagineFragment)
+                                .commit();
+                        break;
+                    case "Testo":
+                        Fragment_Testo testoFragment = new Fragment_Testo();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame, testoFragment)
                                 .commit();
                         break;
                     case "Video":
