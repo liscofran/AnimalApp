@@ -18,17 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 
 import it.uniba.dib.sms22239.R;
 
-public class Fragment_Immagine extends Fragment {
-    private static final int PICK_IMAGE_REQUEST = 1;
+public class Fragment_Immagine extends Fragment
+{
+
     private ActivityResultLauncher<String> imagePickerLauncher;
     private Uri mImageUri;
 
@@ -38,8 +36,6 @@ public class Fragment_Immagine extends Fragment {
     private ImageButton DownloadImages;
     private ImageView Image;
     private EditText Text;
-
-    private boolean isImagePicked = false;
 
     public Fragment_Immagine() {
         // Required empty public constructor
@@ -56,8 +52,10 @@ public class Fragment_Immagine extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
+
         AddImage = getView().findViewById(R.id.AggiungiImmagini);
         ShowImages = getView().findViewById(R.id.VisualizzaImmagine);
         UploadImages = getView().findViewById(R.id.UploadImmagini);
@@ -91,12 +89,16 @@ public class Fragment_Immagine extends Fragment {
                 imagePickerLauncher.launch("image/*");
             }
         });
+
         ShowImages.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-
+                Fragment_VisualizzaImmagine visimmagineFragment = new Fragment_VisualizzaImmagine();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, visimmagineFragment)
+                        .commit();
             }
         });
     }
@@ -105,7 +107,6 @@ public class Fragment_Immagine extends Fragment {
     {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imagesRef = storageRef.child("Images/" + Text.getText().toString());
-
         imagesRef.putFile(mImageUri);
     }
 }

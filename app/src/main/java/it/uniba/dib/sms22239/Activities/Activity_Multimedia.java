@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_Immagine;
 import it.uniba.dib.sms22239.Fragments.Fragment_Testo;
-import it.uniba.dib.sms22239.Fragments.Fragment_Veterinario;
 import it.uniba.dib.sms22239.Fragments.Fragment_Video;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -120,6 +119,4 @@ public class Activity_Multimedia extends AppCompatActivity
             }
         });
     }
-
-
 }

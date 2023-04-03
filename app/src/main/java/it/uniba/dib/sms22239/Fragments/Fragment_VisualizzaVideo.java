@@ -2,7 +2,6 @@ package it.uniba.dib.sms22239.Fragments;
 
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,8 +17,6 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,9 +57,9 @@ public class Fragment_VisualizzaVideo extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mStorageRef = FirebaseStorage.getInstance().getReference().child("Videos");
-        mVideoList = new ArrayList<>();
         mRecyclerView = getView().findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mVideoList = new ArrayList<>();
         mAdapter = new VideoAdapter(mVideoList);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -209,8 +206,6 @@ public class Fragment_VisualizzaVideo extends Fragment {
                 downloadManager.enqueue(request);
                 Toast.makeText(itemView.getContext(), "Download avvenuto con successo", Toast.LENGTH_SHORT).show();
             }
-
-
 
         }
 }
