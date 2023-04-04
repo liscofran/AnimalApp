@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
+import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Activity_Scheda;
 import it.uniba.dib.sms22239.Activities.Activity_Segnalazioni_Offerte;
@@ -52,7 +53,7 @@ public class Fragment_Veterinario extends Fragment {
         getView().findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent( getActivity(), Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent( getActivity(), Activity_Profilo_Veterinario.class));
             }
         });
 

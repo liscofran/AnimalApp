@@ -31,6 +31,7 @@ public class Activity_Proprieta extends AppCompatActivity
     private Button btn;
     private Spinner spinner;
     String selectedItem;
+    private String proprietarioid;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,14 +104,17 @@ public class Activity_Proprieta extends AppCompatActivity
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
+        DatabaseReference mDatabase1;
+        mDatabase1 = database.getInstance().getReference().child("User");
+
         mDatabase.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String proprietario = dataSnapshot.child("Id_utente").getValue(String.class);
+                proprietarioid = dataSnapshot.child("Id_utente").getValue(String.class);
                 String proprieta = dataSnapshot.child("prop").getValue(String.class);
                 String descrizione = dataSnapshot.child("descprop").getValue(String.class);
-                midproprietarioTextView.setText(proprietario);
+
                 proprietaTextView.setText(proprieta);
                 modifica.setText(descrizione);
             }
@@ -120,6 +124,29 @@ public class Activity_Proprieta extends AppCompatActivity
 
             }
         });
+
+        mDatabase1.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String proprietarionome = dataSnapshot.child(proprietarioid).child("nome").getValue(String.class);
+                String proprietariocognome = dataSnapshot.child(proprietarioid).child("cognome").getValue(String.class);
+
+                String proprietario = proprietariocognome + " " + proprietarionome;
+
+                //set delle variabili recuperate al layout
+                midproprietarioTextView.setText(proprietario);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
         //Spinner Categoria
 

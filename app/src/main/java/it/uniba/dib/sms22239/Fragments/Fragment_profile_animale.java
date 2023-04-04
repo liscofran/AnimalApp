@@ -36,6 +36,7 @@ public class Fragment_profile_animale extends Fragment {
 
     private TextView midproprietarioTextView;
 
+
     public Fragment_profile_animale() {
 
     }
@@ -60,6 +61,7 @@ public class Fragment_profile_animale extends Fragment {
         String idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mDatabase;
+        DatabaseReference mDatabase1;
 
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
@@ -83,13 +85,13 @@ public class Fragment_profile_animale extends Fragment {
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String proprietario = dataSnapshot.child("Id_utente").getValue(String.class);
+
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                midproprietarioTextView.setText(proprietario);
+
                 mNomeTextView.setText(name);
                 mrazzaTextView.setText(razza);
                 msessoTextView.setText(sesso);
@@ -99,6 +101,7 @@ public class Fragment_profile_animale extends Fragment {
 
             }
         });
+
 
         getView().findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
             @Override
