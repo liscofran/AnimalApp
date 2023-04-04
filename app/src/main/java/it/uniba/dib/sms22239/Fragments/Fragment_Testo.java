@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_Testo extends Fragment
 {
-    private Button btnInserisci;
+    private ImageButton btnInserisci;
     private Button btnVisualizza;
     StorageReference reference;
 
@@ -45,11 +46,11 @@ public class Fragment_Testo extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       btnInserisci = getView().findViewById(R.id.InserisciTesti);
+       btnInserisci = getView().findViewById(R.id.AggiungiTesto);
        btnVisualizza = getView().findViewById(R.id.VisualizzaTesti);
        reference = FirebaseStorage.getInstance().getReference().child("Document");
 
-       EditText editNome = getView().findViewById(R.id.TitoloTesti);
+       EditText editNome = getView().findViewById(R.id.NomeTesto);
        EditText editTesto = getView().findViewById(R.id.Testo);
 
        btnInserisci.setOnClickListener(new View.OnClickListener() {

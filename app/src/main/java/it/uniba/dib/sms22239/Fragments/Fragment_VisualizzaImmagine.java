@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -119,7 +120,7 @@ public class Fragment_VisualizzaImmagine extends Fragment {
 
         //private final TextView mTitleTextView;
         private final ImageView mImageView;
-        private final Button mDownloadButton;
+        private final ImageButton mDownloadButton;
 
 
         public ImageViewHolder(@NonNull View itemView) {

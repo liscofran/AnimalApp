@@ -10,66 +10,101 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/costraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="@+id/Testo"
-        app:layout_constraintTop_toBottomOf="@+id/Testo">
-
-        <Button
-            android:id="@+id/InserisciTesti"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Inserisci il testo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/VisualizzaTesti" />
-
-        <Button
-            android:id="@+id/VisualizzaTesti"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Visualizza Testi"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/TitoloTesti"
+            android:id="@+id/NomeTesto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:hint="Inserire il nome"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Testo" />
-
-        <ImageButton
-            android:id="@+id/DownloadTesti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:src="@drawable/download"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InserisciTesti" />
-
-        <ImageButton
-            android:id="@+id/UploadTesti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:src="@drawable/upload"
-            app:layout_constraintStart_toEndOf="@+id/DownloadTesti"
-            app:layout_constraintTop_toTopOf="@+id/DownloadTesti" />
+            android:hint="Inserire il titolo del testo"
+            app:layout_constraintBottom_toTopOf="@id/Testo"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/Testo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:inputType="text|textMultiLine"
             android:hint="Inserire il testo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/UploadTesti" />
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/VisualizzaTesti"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/AggiungiTesto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/Profile"
+            android:padding="5dp"
+            android:src="@drawable/upload"
+            app:layout_constraintBottom_toTopOf="@id/Testo"
+            app:layout_constraintStart_toEndOf="@id/NomeTesto" />
+
+        <Button
+            android:id="@+id/VisualizzaTesti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visualizza Testi"
+            app:layout_constraintTop_toBottomOf="@id/AggiungiTesto"
+            app:layout_constraintStart_toStartOf="@id/NomeTesto"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/InserisciTesti"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Inserisci il testo"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/VisualizzaTesti" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/VisualizzaTesti"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Visualizza Testi"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/TitoloTesti"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="11dp"-->
+<!--            android:hint="Inserire il nome"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/Testo" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/DownloadTesti"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:padding="5dp"-->
+<!--            android:src="@drawable/download"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/InserisciTesti" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/UploadTesti"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:padding="5dp"-->
+<!--            android:src="@drawable/upload"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/DownloadTesti"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/DownloadTesti" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/Testo"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Inserire il testo"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/UploadTesti" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

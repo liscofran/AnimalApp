@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -30,11 +29,8 @@ public class Fragment_Immagine extends Fragment
     private ActivityResultLauncher<String> imagePickerLauncher;
     private Uri mImageUri;
 
-    private Button AddImage;
+    private ImageButton AddImage;
     private Button ShowImages;
-    private ImageButton UploadImages;
-    private ImageButton DownloadImages;
-    private ImageView Image;
     private EditText Text;
 
     public Fragment_Immagine() {
@@ -56,12 +52,9 @@ public class Fragment_Immagine extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        AddImage = getView().findViewById(R.id.AggiungiImmagini);
-        ShowImages = getView().findViewById(R.id.VisualizzaImmagine);
-        UploadImages = getView().findViewById(R.id.UploadImmagini);
-        DownloadImages = getView().findViewById(R.id.DownloadImmagini);
-        Image = getView().findViewById(R.id.Immagine);
-        Text = getView().findViewById(R.id.NomeImmagine);
+        AddImage = getView().findViewById(R.id.AggiungiTesto);
+        ShowImages = getView().findViewById(R.id.VisualizzaTesti);
+        Text = getView().findViewById(R.id.NomeTesto);
 
         // Inizializza il launcher per il selettore di immagini
         imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
@@ -70,7 +63,6 @@ public class Fragment_Immagine extends Fragment
                 if (result != null) {
                     // L'immagine è stata selezionata con successo
                     mImageUri = result;
-                    Image.setImageURI(mImageUri);
                     ImageUpload();
                     Toast.makeText(getActivity(), "Immagine caricata con successo", Toast.LENGTH_LONG).show();
                 }

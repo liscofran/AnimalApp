@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -121,7 +122,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
             private final VideoView mVideoView;
             private final Button mStartButton;
             private final Button mPauseButton;
-            private final Button mDownloadButton;
+            private final ImageButton mDownloadButton;
             private final ProgressBar mProgressBar;
 
             public VideoViewHolder(@NonNull View itemView) {

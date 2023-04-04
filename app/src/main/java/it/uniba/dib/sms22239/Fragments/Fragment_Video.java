@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +24,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_Video extends Fragment {
 
     private static final int REQUEST_CODE_SELECT_VIDEO = 1234;
-    private Button Aggiungi;
+    private ImageButton Aggiungi;
     private Button Visualizza;
     private EditText Nome_Video;
 
@@ -52,15 +52,17 @@ public class Fragment_Video extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Aggiungi = getView().findViewById(R.id.AggiungiVideo);
-        Visualizza = getView().findViewById(R.id.VisualizzaVideo);
+        Aggiungi = getView().findViewById(R.id.AggiungiTesto);
+        Visualizza = getView().findViewById(R.id.VisualizzaTesti);
         Nome_Video = getView().findViewById(R.id.NomeVideo);
+
         Aggiungi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectVideoFromGallery();
             }
         });
+
         Visualizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

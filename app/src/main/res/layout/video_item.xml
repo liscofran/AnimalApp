@@ -40,14 +40,16 @@
         android:layout_marginStart="16dp"
         android:text="Pausa" />
 
-    <Button
+    <ImageButton
         android:id="@+id/download_button"
+        android:padding="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_view"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="13dp"
         android:layout_toEndOf="@id/pause_button"
-        android:text="Download" />
+        android:src="@drawable/download"
+        android:background="@android:color/transparent"/>
 
 
 </RelativeLayout>
