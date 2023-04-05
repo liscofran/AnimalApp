@@ -39,8 +39,8 @@ public class Fragment_VisualizzaVideo extends Fragment {
 
     private StorageReference mStorageRef;
     private RecyclerView mRecyclerView;
-    private List<Video> mVideoList;
-    private VideoAdapter mAdapter;
+    private static List<Video> mVideoList;
+    private static VideoAdapter mAdapter;
 
 
     public Fragment_VisualizzaVideo() {
@@ -122,6 +122,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
             private final VideoView mVideoView;
             private final Button mStartButton;
             private final Button mPauseButton;
+            private final Button mDeleteButton;
             private final ImageButton mDownloadButton;
             private final ProgressBar mProgressBar;
 
@@ -132,6 +133,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
                 mStartButton = itemView.findViewById(R.id.start_button);
                 mPauseButton = itemView.findViewById(R.id.pause_button);
                 mDownloadButton = itemView.findViewById(R.id.download_button);
+                mDeleteButton = itemView.findViewById(R.id.btn_elimina);
                 mProgressBar = itemView.findViewById(R.id.progress_bar);
                 mProgressBar.setVisibility(View.VISIBLE); // impostare la ProgressBar come visibile
             }
@@ -188,6 +190,13 @@ public class Fragment_VisualizzaVideo extends Fragment {
                     }
                 });
 
+                mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        deleteVideo(video);
+                    }
+                });
             }
 
             private void downloadVideo(Video video) {
@@ -208,5 +217,27 @@ public class Fragment_VisualizzaVideo extends Fragment {
                 Toast.makeText(itemView.getContext(), "Download avvenuto con successo", Toast.LENGTH_SHORT).show();
             }
 
+            private void deleteVideo(Video video)
+            {
+                mProgressBar.setVisibility(View.VISIBLE); // mostrare la ProgressBar durante l'eliminazione
+                StorageReference videoRef = FirebaseStorage.getInstance().getReferenceFromUrl(video.getUrl());
+                videoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // eliminazione completata con successo, rimuovi il video dalla lista
+                        mVideoList.remove(video);
+                        mAdapter.notifyDataSetChanged();
+                        mProgressBar.setVisibility(View.GONE); // nascondere la ProgressBar dopo l'eliminazione
+                        Toast.makeText(itemView.getContext(), "Video eliminato con successo", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // errore durante l'eliminazione, mostrare un messaggio di errore
+                        mProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(itemView.getContext(), "Errore durante l'eliminazione del video", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
 }
