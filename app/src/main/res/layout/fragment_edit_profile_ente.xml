@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Fragment_edit_ente_profile">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/second_relative_layout"
@@ -20,10 +24,9 @@
             android:src="@drawable/prova2"
             app:layout_constraintBottom_toBottomOf="@+id/guideline16"
             app:layout_constraintEnd_toEndOf="@id/guideline14"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline15"
             app:layout_constraintTop_toTopOf="@id/guideline17"
-            app:layout_constraintVertical_bias="0.0" />
+            />
 
         <ImageView
             android:id="@+id/profile_image"
@@ -63,12 +66,12 @@
             app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
         <EditText
-            android:id="@+id/ente_nome"
+            android:id="@+id/ente_ragione_sociale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v4"
             android:drawablePadding="10dp"
-            android:hint="Inserisci il Nome.."
+            android:hint="Inserisci la ragione sociale.."
             android:padding="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
@@ -89,26 +92,42 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            app:layout_constraintBottom_toTopOf="@id/ente_localita"
-            app:layout_constraintEnd_toEndOf="@+id/ente_nome"
-            app:layout_constraintStart_toStartOf="@id/ente_nome"
-            app:layout_constraintTop_toBottomOf="@id/ente_nome" />
+            app:layout_constraintBottom_toTopOf="@id/ente_sede_legale"
+            app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
+            app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
+            app:layout_constraintTop_toBottomOf="@id/ente_ragione_sociale" />
 
         <EditText
-            android:id="@+id/ente_localita"
+            android:id="@+id/ente_sede_legale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v4"
             android:drawablePadding="10dp"
-            android:hint="Inserisci la localita"
+            android:hint="Inserisci la sede legale"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_profile2"
+            app:layout_constraintBottom_toTopOf="@+id/ente_piva"
+            app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
+            app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
+            app:layout_constraintTop_toBottomOf="@id/ente_tipo" />
+
+        <EditText
+            android:id="@+id/ente_piva"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_v4"
+            android:drawablePadding="10dp"
+            android:hint="Inserisci la partita iva"
             android:padding="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
             app:layout_constraintBottom_toTopOf="@+id/guideline16"
-            app:layout_constraintEnd_toEndOf="@+id/ente_nome"
-            app:layout_constraintStart_toStartOf="@id/ente_nome"
-            app:layout_constraintTop_toBottomOf="@id/ente_tipo" />
+            app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
+            app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
+            app:layout_constraintTop_toBottomOf="@id/ente_sede_legale" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -158,14 +177,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.85" />
+            app:layout_constraintGuide_percent="0.9" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.30"/>
 
         <Button
             android:id="@+id/save_profile_button"
@@ -173,10 +192,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/prova4"
             android:text="Salva"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/guideline5"
-            app:layout_constraintRight_toRightOf="@id/guideline4"
-            app:layout_constraintTop_toBottomOf="@id/ente_localita" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"  />
 
 
         <Button
@@ -225,5 +246,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 
 </FrameLayout>

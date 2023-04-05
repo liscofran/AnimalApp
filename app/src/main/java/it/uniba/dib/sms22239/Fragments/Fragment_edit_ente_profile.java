@@ -29,9 +29,11 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_edit_ente_profile extends Fragment {
 
     private FirebaseAuth mAuth;
-    private EditText mNomeTextView;
-    private EditText mtipoTextView;
-    private TextView mlocalitaTextView;
+    private TextView mragionesociale;
+    private TextView mtipoTextView;
+
+    private TextView mpivaTextView;
+    private TextView msedelegaleTextView;
 
     public Fragment_edit_ente_profile() {
         // Required empty public constructor
@@ -61,15 +63,18 @@ public class Fragment_edit_ente_profile extends Fragment {
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
         // Collega i componenti dell'interfaccia con le variabili
-        EditText editName = getView().findViewById(R.id.ente_nome);
+        EditText editragsociale = getView().findViewById(R.id.ente_ragione_sociale);
         EditText edittipo = getView().findViewById(R.id.ente_tipo);
-        EditText editlocalita = getView().findViewById(R.id.ente_localita);
+        EditText editsedelegale = getView().findViewById(R.id.ente_sede_legale);
+        EditText editpiva = getView().findViewById(R.id.ente_piva);
+
 
 
         Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
-        mNomeTextView = getView().findViewById(R.id.ente_nome);
+        mragionesociale = getView().findViewById(R.id.ente_ragione_sociale);
         mtipoTextView = getView().findViewById(R.id.ente_tipo);
-        mlocalitaTextView = getView().findViewById(R.id.ente_localita);
+        msedelegaleTextView = getView().findViewById(R.id.ente_sede_legale);
+        mpivaTextView = getView().findViewById(R.id.ente_piva);
 
         // Recupera i dati dal database e popola i campi
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -78,14 +83,16 @@ public class Fragment_edit_ente_profile extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 //recupero dati e assegnazione alle variabili
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String tipo = dataSnapshot.child("cognome").getValue(String.class);
-                String localita = dataSnapshot.child("codice_fiscale").getValue(String.class);
+                String ragsociale = dataSnapshot.child("ragione_sociale").getValue(String.class);
+                String tipo = dataSnapshot.child("tipo").getValue(String.class);
+                String sedelegale = dataSnapshot.child("sede_legale").getValue(String.class);
+                String piva = dataSnapshot.child("p_iva").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
+                mragionesociale.setText(ragsociale);
                 mtipoTextView.setText(tipo);
-                mlocalitaTextView.setText(localita);
+                msedelegaleTextView.setText(sedelegale);
+                mpivaTextView.setText(piva);
             }
 
             @Override
@@ -106,14 +113,16 @@ public class Fragment_edit_ente_profile extends Fragment {
                 DatabaseReference mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
                 //prende i dati inseriti in input e gli assegna alle variabili temporanee
-                String newName = editName.getText().toString();
+                String newRagsociale = editragsociale.getText().toString();
                 String newtipo = edittipo.getText().toString();
-                String newlocalita = editlocalita.getText().toString();
+                String newsedelegale = editsedelegale.getText().toString();
+                String newpiva = editpiva.getText().toString();
 
                 //modifica e salva i dati anche sul database
+                mDatabase.child("ragione_sociale").setValue(newRagsociale);
                 mDatabase.child("tipo").setValue(newtipo);
-                mDatabase.child("nome").setValue(newName);
-                mDatabase.child("localita").setValue(newlocalita);
+                mDatabase.child("sede_legale").setValue(newsedelegale);
+                mDatabase.child("p_iva").setValue(newpiva);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -28,9 +28,10 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_profile_ente extends Fragment
 {
     private FirebaseAuth mAuth;
-    private TextView mNomeTextView;
     private TextView mtipoTextView;
-    private TextView  mlocalitaTextView;
+    private TextView msedelegaleTextView;
+    private TextView mpiva;
+    private TextView mragionesociale;
 
     public Fragment_profile_ente() {
         // Required empty public constructor
@@ -60,9 +61,12 @@ public class Fragment_profile_ente extends Fragment
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
-        mNomeTextView = getView().findViewById(R.id.ente_nome);
+        mragionesociale = getView().findViewById(R.id.ente_ragione_sociale);
         mtipoTextView =  getView().findViewById(R.id.ente_tipo);
-        mlocalitaTextView =  getView().findViewById(R.id.ente_localita);
+        msedelegaleTextView =  getView().findViewById(R.id.ente_sede_legale);
+        mpiva = getView().findViewById(R.id.ente_piva);
+
+
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -70,14 +74,17 @@ public class Fragment_profile_ente extends Fragment
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                String name = dataSnapshot.child("nome").getValue(String.class);
+                String ragsociale = dataSnapshot.child("ragione_sociale").getValue(String.class);
                 String tipo = dataSnapshot.child("tipo").getValue(String.class);
-                String localita = dataSnapshot.child("localita").getValue(String.class);
+                String sedelegale = dataSnapshot.child("sede_legale").getValue(String.class);
+                String piva = dataSnapshot.child("p_iva").getValue(String.class);
+
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
+                mragionesociale.setText("Ente: " + ragsociale);
                 mtipoTextView.setText(tipo);
-                mlocalitaTextView.setText(localita);
+                msedelegaleTextView.setText("Sede Legale: " + sedelegale);
+                mpiva.setText("Partita IVA: " + piva);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)

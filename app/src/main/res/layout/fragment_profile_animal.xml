@@ -38,10 +38,9 @@
                 android:src="@drawable/leone"
                 app:layout_constraintBottom_toTopOf="@+id/guideline7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                />
 
 
             <TextView
@@ -89,7 +88,6 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/guideline16"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintEnd_toEndOf="@+id/animal_nome"
                 app:layout_constraintStart_toStartOf="@+id/animal_nome"
                 app:layout_constraintTop_toBottomOf="@id/animal_razza" />
