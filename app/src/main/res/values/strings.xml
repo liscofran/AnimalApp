@@ -58,6 +58,12 @@
         <item>Video</item>
     </string-array>
 
+    <!-- Opzioni Tipo di ente -->
+    <string-array name="ente_options">
+        <item>Privato</item>
+        <item>Statale</item>
+    </string-array>
+
     <string name="title_activity_veterinario">Veterinario_Activity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

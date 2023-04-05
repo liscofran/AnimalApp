@@ -76,26 +76,11 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            app:layout_constraintBottom_toTopOf="@id/ente_tipo"
+            app:layout_constraintBottom_toTopOf="@id/ente_sede_legale"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"
             app:layout_constraintRight_toRightOf="@id/guideline4"
             app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
-        <EditText
-            android:id="@+id/ente_tipo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_button_v4"
-            android:drawablePadding="10dp"
-            android:hint="Inserisci il tipo"
-            android:padding="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            app:drawableLeftCompat="@drawable/ic_profile2"
-            app:layout_constraintBottom_toTopOf="@id/ente_sede_legale"
-            app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
-            app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
-            app:layout_constraintTop_toBottomOf="@id/ente_ragione_sociale" />
 
         <EditText
             android:id="@+id/ente_sede_legale"
@@ -111,7 +96,7 @@
             app:layout_constraintBottom_toTopOf="@+id/ente_piva"
             app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
             app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
-            app:layout_constraintTop_toBottomOf="@id/ente_tipo" />
+            app:layout_constraintTop_toBottomOf="@+id/ente_ragione_sociale" />
 
         <EditText
             android:id="@+id/ente_piva"
@@ -124,10 +109,21 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            app:layout_constraintBottom_toTopOf="@+id/guideline16"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
             app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
             app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
             app:layout_constraintTop_toBottomOf="@id/ente_sede_legale" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toTopOf="@id/guideline16"
+            app:layout_constraintEnd_toEndOf="@+id/ente_ragione_sociale"
+            app:layout_constraintStart_toStartOf="@id/ente_ragione_sociale"
+            app:layout_constraintTop_toBottomOf="@+id/ente_piva"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"

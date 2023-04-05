@@ -113,7 +113,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/custom_button_v6"
-                android:elevation="10dp"
+                android:elevation="11dp"
                 android:gravity="bottom"
                 android:src="@drawable/annuncicon"
                 android:text="I tuoi animali "

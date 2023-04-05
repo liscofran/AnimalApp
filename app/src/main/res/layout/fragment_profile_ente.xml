@@ -26,9 +26,7 @@
                 app:layout_constraintEnd_toEndOf="@id/guideline14"
                 app:layout_constraintStart_toStartOf="@id/guideline15"
                 app:layout_constraintTop_toTopOf="@id/guideline17"
-
                 />
-
 
             <ImageView
                 android:id="@+id/profile_image"
