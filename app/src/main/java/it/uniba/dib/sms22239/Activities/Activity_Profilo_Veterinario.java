@@ -65,6 +65,13 @@ public class Activity_Profilo_Veterinario extends AppCompatActivity
             }
         });
 
+        findViewById(R.id.scheda).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Profilo_Veterinario.this, Activity_Scheda_Veterinario.class));
+            }
+        });
+
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

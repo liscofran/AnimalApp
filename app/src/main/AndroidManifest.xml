@@ -36,6 +36,15 @@
             android:name=".Activities.Activity_profilo_Offerta"
             android:exported="false" />
         <activity
+            android:name=".Activities.Activity_Nuovo_Appuntamento"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Activity_Prenotazioni_Veterinario"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Activity_Scheda_Veterinario"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_Profilo_Segnalazione"
             android:exported="false" />
         <activity

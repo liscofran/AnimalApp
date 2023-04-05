@@ -1,18 +1,12 @@
 package it.uniba.dib.sms22239.Models;
 
 public class Prenotazione_Esame extends Prenotazione {
-    public enum Riscontro {
-        COMPLETATO, NON_ESEGUITO, DA_RIVEDERE
+
+
+    Esame esame;
+    String data;
+
+    public Prenotazione_Esame(Animale animale, Appuntamento appuntamento, int id_prenotazione) {
+        super(animale, appuntamento, id_prenotazione);
     }
-
-     Riscontro riscontro;
-     String id_animale, id_esame;
-
-
-
-    public Prenotazione_Esame(int id_utente, Appuntamento appuntamento, int id_prenotazione) {
-        super(id_utente,appuntamento, id_prenotazione );
-        this.riscontro = Riscontro.NON_ESEGUITO;
-    }
-
 }

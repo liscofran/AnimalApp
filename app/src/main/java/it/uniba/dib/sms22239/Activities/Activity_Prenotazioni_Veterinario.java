@@ -1,0 +1,84 @@
+package it.uniba.dib.sms22239.Activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import it.uniba.dib.sms22239.Preference;
+import it.uniba.dib.sms22239.R;
+
+public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
+
+    private CalendarView calendarView;
+    private Button salvaButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calendario_veterinario);
+
+       /* ImageButton backBtn2 = findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });*/
+
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Home.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Animali.class));
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_QRcode.class));
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Preference.class));
+            }
+        });
+        findViewById(R.id.prenotazione).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Nuovo_Appuntamento.class));
+            }
+        });
+
+
+    }
+}

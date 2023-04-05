@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custom_button">
 
     <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar1" />
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbarveterinario" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6D233555" />
+        android:background="#6D233555"
+        tools:layout_editor_absoluteX="-565dp"
+        tools:layout_editor_absoluteY="-140dp" />
 
     <ImageButton
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
         android:background="@android:color/transparent"
         android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar1"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar1" />
 
     <TextView
         android:id="@+id/AreaVeterinario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Animali"
-        android:textSize="20sp"
+        android:text="Area Veterinario"
         android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
-        app:layout_constraintBottom_toTopOf="@id/view"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1" />
 
     <View
         android:id="@+id/view"
@@ -45,19 +47,18 @@
         android:layout_height="2dp"
         android:background="@color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/AreaVeterinario"
         app:layout_constraintBottom_toTopOf="@id/Calendario"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AreaVeterinario" />
 
     <Button
         android:id="@+id/Calendario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
-        android:drawableLeft="@drawable/ic_plus"
         android:drawablePadding="10dp"
-        android:hint="Crea Animale"
+        android:hint="Calendario"
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -68,19 +69,17 @@
         app:layout_constraintTop_toBottomOf="@id/view" />
 
 
-
     <Button
         android:id="@+id/esami"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
-        android:drawableLeft="@drawable/ic_share"
         android:drawablePadding="10dp"
-        android:hint="I miei Animali"
-        android:textStyle="bold"
+        android:hint="Esami"
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/diagnosi"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -92,19 +91,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_border"
-        android:drawableLeft="@drawable/ic_search"
         android:drawablePadding="10dp"
-        android:hint="Album Animali"
-        android:textStyle="bold"
+        android:hint="Diagnosi"
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/esami"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/esami" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

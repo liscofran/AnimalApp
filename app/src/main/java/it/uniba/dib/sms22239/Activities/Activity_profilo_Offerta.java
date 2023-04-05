@@ -21,8 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_profilo_offerta;
 import it.uniba.dib.sms22239.Fragments.Fragment_profilo_offerta_senza_modifica;
-import it.uniba.dib.sms22239.Fragments.Fragment_profilo_segnalazione;
-import it.uniba.dib.sms22239.Fragments.Fragment_profilo_segnalazione_senza_modifica;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 

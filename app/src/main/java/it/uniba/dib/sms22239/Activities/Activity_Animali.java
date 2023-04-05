@@ -73,7 +73,7 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
 
-        crea_animale = findViewById(R.id.crea_animale);
+        crea_animale = findViewById(R.id.Calendario);
 
         crea_animale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +83,7 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
 
-        miei_animali = findViewById(R.id.miei_animali);
+        miei_animali = findViewById(R.id.esami);
 
         miei_animali.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,7 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
 
-        album_animali = findViewById(R.id.album_animali);
+        album_animali = findViewById(R.id.diagnosi);
 
         album_animali.setOnClickListener(new View.OnClickListener() {
             @Override
