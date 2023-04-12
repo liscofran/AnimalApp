@@ -1,10 +1,13 @@
 package it.uniba.dib.sms22239.Activities;
 
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.CheckBox;
@@ -27,6 +30,8 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,6 +51,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
     ImageButton allegato,photoBtn,submitBtn;
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
 
     Uri mImageUri;
     ImageView mImageView;
@@ -64,6 +70,8 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
 
         allegato = findViewById(R.id.allegatoBtn);
         photoBtn = findViewById(R.id.photoBtn);
+
+
         submitBtn = findViewById(R.id.submitBtn);
         mImageView = findViewById(R.id.image_view);
 
@@ -73,6 +81,19 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openFileChooser();
+            }
+        });
+
+        photoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Codice per aprire la fotocamera
+                if (ContextCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+                } else {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 0);
+                }
             }
         });
 
