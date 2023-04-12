@@ -31,9 +31,9 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_edit_profile_proprietario extends Fragment {
 
     private FirebaseAuth mAuth;
-    private EditText mNomeTextView;
-    private EditText mCognomeTextView;
-    private TextView mcodfiscaleTextView;
+    private EditText editName;
+    private EditText editCognome;
+    private TextView editcodfiscale;
 
     public Fragment_edit_profile_proprietario() {
         // Required empty public constructor
@@ -63,16 +63,11 @@ public class Fragment_edit_profile_proprietario extends Fragment {
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
         // Collega i componenti dell'interfaccia con le variabili
-        EditText editName = getView().findViewById(R.id.user_nome);
-        EditText editCognome = getView().findViewById(R.id.user_cognome);
-        EditText editcodfiscale = getView().findViewById(R.id.user_codicefiscale);
-
+        editName = getView().findViewById(R.id.user_nome);
+        editCognome = getView().findViewById(R.id.user_cognome);
+        editcodfiscale = getView().findViewById(R.id.user_codicefiscale);
 
         Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
-        mNomeTextView = getView().findViewById(R.id.user_nome);
-        mCognomeTextView = getView().findViewById(R.id.user_cognome);
-        mcodfiscaleTextView = getView().findViewById(R.id.user_codicefiscale);
-
         Button backBtn = getView().findViewById(R.id.back);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,9 +90,9 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mCognomeTextView.setText(cognome);
-                mcodfiscaleTextView.setText(codfiscale);
+                editName.setText(name);
+                editCognome.setText(cognome);
+                editcodfiscale.setText(codfiscale);
             }
 
             @Override
