@@ -1,10 +1,13 @@
 package it.uniba.dib.sms22239.Activities;
 
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -30,6 +33,8 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,27 +45,16 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Registrazione_Offerte extends AppCompatActivity {
 
-    ImageButton backBtn2;
-    CheckBox proprietario;
-    CheckBox ente;
-    CheckBox veterinario;
-    Spinner spinner1;
-    String selectedItem;
-
-    String categoria;
     EditText inputOggetto, inputProvincia, inputDescrizione;
+    CheckBox proprietario, ente, veterinario;
     boolean checkProprietario, checkEnte, checkVeterinario;
-
-    ImageButton allegato,photoBtn,submitBtn;
-
+    ImageButton allegato,photoBtn,submitBtn,backBtn2;
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
     private static final int PICK_IMAGE_REQUEST = 1;
-
     Uri mImageUri;
     ImageView mImageView;
-
     StorageReference mStorageRef;
     DatabaseReference mDatabaseRef;
-
     StorageTask mUploadTask;
 
     @Override
@@ -83,6 +77,19 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openFileChooser();
+            }
+        });
+
+        photoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Codice per aprire la fotocamera
+                if (ContextCompat.checkSelfPermission(Activity_Registrazione_Offerte.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(Activity_Registrazione_Offerte.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+                } else {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 0);
+                }
             }
         });
 
@@ -180,38 +187,6 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
             }
         });
 
-        //Spinner Categoria
-        spinner1 = findViewById(R.id.spinner1);
-        spinner1.setPrompt("");
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categoria_options, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch(selectedItem)
-                {
-                    case "Categoria":
-                        onNothingSelected(parent);
-                        break;
-                    case "Offro":
-                        Toast.makeText(Activity_Registrazione_Offerte.this, "Hai selezionato Offro", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Cerco":
-                        Toast.makeText(Activity_Registrazione_Offerte.this, "Hai selezionato Cerco", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        onNothingSelected(parent);
-                        break;
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(Activity_Registrazione_Offerte.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,7 +195,6 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
 
                 Offerta off = new Offerta();
 
-                categoria = spinner1.getSelectedItem().toString();
                 String oggetto = inputOggetto.getText().toString();
                 String provincia = inputProvincia.getText().toString();
                 String descrizione = inputDescrizione.getText().toString();
@@ -228,14 +202,14 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                 checkEnte = ente.isChecked();
                 checkVeterinario = veterinario.isChecked();
 
-
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile(off);
                 }
-                off.writeOfferta(off, categoria, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
+                off.writeOfferta(off, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
                 Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class);
+                intent.putExtra("OFFERTA_CODE", off.idOfferta);
                 startActivity(intent);
             }
         });

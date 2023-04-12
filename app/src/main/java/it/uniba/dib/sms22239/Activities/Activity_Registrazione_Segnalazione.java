@@ -44,11 +44,8 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
 
     EditText oggettoText, provinciaText, Descrizione;
     CheckBox proprietario,ente,veterinario;
-
     boolean checkProprietario, checkEnte, checkVeterinario;
-
-
-    ImageButton allegato,photoBtn,submitBtn;
+    ImageButton allegato,photoBtn,submitBtn,backBtn;
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
@@ -61,8 +58,6 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
 
     StorageTask mUploadTask;
 
-    ImageButton backBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +65,6 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
 
         allegato = findViewById(R.id.allegatoBtn);
         photoBtn = findViewById(R.id.photoBtn);
-
-
         submitBtn = findViewById(R.id.submitBtn);
         mImageView = findViewById(R.id.image_view);
 

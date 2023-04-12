@@ -9,7 +9,6 @@ import java.util.Random;
 
 public class Segnalazione {
     public String oggetto;
-
     public String idSegnalazione;
     public String provincia;
     public String descrizione;

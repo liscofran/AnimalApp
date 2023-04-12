@@ -75,7 +75,7 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
         creaofferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Crea_Offerta.class);
+                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Registrazione_Offerte.class);
                 startActivity(intent);
             }
         });

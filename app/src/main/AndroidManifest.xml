@@ -62,6 +62,9 @@
             android:name=".Activities.Activity_Segnalazione"
             android:exported="false" />
         <activity
+            android:name=".Activities.Activity_Registrazione_Offerte"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_Offerte"
             android:exported="false" />
         <activity
@@ -91,9 +94,6 @@
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Proprieta"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Activity_Crea_Offerta"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Ente"
