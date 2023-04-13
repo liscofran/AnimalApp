@@ -1,6 +1,12 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+
+import static com.google.common.io.Files.getFileExtension;
+
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,10 +18,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +37,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.util.UUID;
 
 import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
+import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Segnalazione;
+import it.uniba.dib.sms22239.Models.Proprietario;
+import it.uniba.dib.sms22239.Models.Segnalazione;
 import it.uniba.dib.sms22239.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Fragment_edit_profile_proprietario extends Fragment {
@@ -34,6 +60,15 @@ public class Fragment_edit_profile_proprietario extends Fragment {
     private EditText editName;
     private EditText editCognome;
     private TextView editcodfiscale;
+
+    private ImageView profilo;
+    private CircleImageView editImage;
+    Uri mImageUri;
+    StorageTask mUploadTask;
+    StorageReference mStorageRef;
+
+
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     public Fragment_edit_profile_proprietario() {
         // Required empty public constructor
@@ -66,6 +101,22 @@ public class Fragment_edit_profile_proprietario extends Fragment {
         editName = getView().findViewById(R.id.user_nome);
         editCognome = getView().findViewById(R.id.user_cognome);
         editcodfiscale = getView().findViewById(R.id.user_codicefiscale);
+        editImage = getView().findViewById(R.id.upload);
+        profilo = getView().findViewById(R.id.profile_image);
+
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Proprietari/" + user.getUid() + ".jpg");
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(profilo);
+            }
+        });
+
+
 
         Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
         Button backBtn = getView().findViewById(R.id.back);
@@ -102,25 +153,37 @@ public class Fragment_edit_profile_proprietario extends Fragment {
             }
         });
 
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+
         // Imposta un listener di clic sul pulsante di salvataggio del profilo
         saveProfileButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
                 // Salva i dati del profilo e torna all'activity precedente
                 DatabaseReference mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
+                Proprietario prp = new Proprietario();
 
                 //prende i dati inseriti in input e gli assegna alle variabili temporanee
                 String newName = editName.getText().toString();
                 String newCognome = editCognome.getText().toString();
                 String newCodfiscale = editcodfiscale.getText().toString();
+                //String var = "etQbI3BBfIc4Mbl4z3Dz3A2W5mp1.jpg";
 
                 //modifica e salva i dati anche sul database
                 mDatabase.child("cognome").setValue(newCognome);
                 mDatabase.child("nome").setValue(newName);
                 mDatabase.child("codice_fiscale").setValue(newCodfiscale);
+
+                // mDatabase.child("immagine").setValue(var);
+
+                updateFile(user);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -128,4 +191,63 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-}}
+    }
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+
+            Picasso.get().load(mImageUri).into(profilo);
+        }
+    }
+
+    private void updateFile(FirebaseUser user) {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Proprietari/" + user.getUid() + ".jpg");
+
+        // Se l'utente ha selezionato un'immagine, caricala nello storage
+        if (mImageUri != null) {
+            // Crea un nome di file univoco per l'immagine
+            String fileName = user.getUid() + ".jpg";
+
+            // Carica l'immagine nell'URI specificato
+            imagesRef = storageRef.child("Proprietari/" + fileName);
+            mUploadTask = imagesRef.putFile(mImageUri);
+
+            // Aggiorna l'URL dell'immagine nel database
+            StorageReference finalImagesRef = imagesRef;
+            mUploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continua la catena delle promesse per ottenere l'URL dell'immagine appena caricata
+                    return finalImagesRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        // Aggiorna l'URL dell'immagine nel database
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+                        mDatabase.child("immagine").setValue(downloadUri.toString());
+                    }
+                }
+            });
+        }
+    }
+
+}
