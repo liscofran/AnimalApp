@@ -76,4 +76,5 @@
     <string name="title_activity_profilo_segnalazione_senza_modifica">
         Activity_Profilo_Segnalazione_senza_modifica
     </string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
