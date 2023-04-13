@@ -33,8 +33,11 @@ public class Fragment_profile_animale extends Fragment {
     private TextView mNomeTextView;
     private TextView mrazzaTextView;
     private TextView msessoTextView;
+    private String idUtente;
 
     private TextView midproprietarioTextView;
+    private TextView nomecognomeprop;
+    private TextView statusTextView;
 
 
     public Fragment_profile_animale() {
@@ -65,12 +68,15 @@ public class Fragment_profile_animale extends Fragment {
 
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
+        mDatabase1 = database.getInstance().getReference().child("User");
 
         midproprietarioTextView = getView().findViewById(R.id.animal_proprietario);
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView =  getView().findViewById(R.id.animal_razza);
         msessoTextView =  getView().findViewById(R.id.animal_sesso);
-        MaterialButton backBtn = getView().findViewById(R.id.back);
+        ImageButton backBtn = getView().findViewById(R.id.back);
+        nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
+        statusTextView = getView().findViewById(R.id.status);
 
         backBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -79,6 +85,7 @@ public class Fragment_profile_animale extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -89,12 +96,30 @@ public class Fragment_profile_animale extends Fragment {
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
-
+                idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
+                String status = dataSnapshot.child("prop").getValue(String.class);
                 //set delle variabili recuperate al layout
 
                 mNomeTextView.setText(name);
                 mrazzaTextView.setText(razza);
                 msessoTextView.setText(sesso);
+                statusTextView.setText(status);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        // Recupera i dati dal database 2 e popola le viste
+        mDatabase1.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
+                String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
+                //set delle variabili recuperate al layout
+
+                nomecognomeprop.setText(nome + " " + cognome);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -103,7 +128,9 @@ public class Fragment_profile_animale extends Fragment {
         });
 
 
-        getView().findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
+
+
+        getView().findViewById(R.id.modifica).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -143,14 +170,6 @@ public class Fragment_profile_animale extends Fragment {
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }
-        });
-
-        getView().findViewById(R.id.proprieta).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Activity_Proprieta.class);
-                intent.putExtra("ANIMAL_CODE",idAnimal);
-                startActivity(intent);            }
         });
 
         getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {

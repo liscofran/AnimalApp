@@ -20,14 +20,14 @@ public class Animale
 
     }
 
-    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data)
+    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data,String prop)
     {
         ani.nome = nome;
         ani.razza = razza;
         ani.sesso = sesso;
         ani.Id_utente = Id_utente;
         ani.data = data;
-        ani.prop = "Nessuna";
+        ani.prop = prop;
         ani.descprop = "Da inserire...";
 
         long seed = System.currentTimeMillis(); // ottenere il tempo corrente

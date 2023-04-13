@@ -91,6 +91,15 @@
 
             </RadioGroup>
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_above="@id/register_animal_birthdate"
+                android:layout_alignParentStart="true" />
+
             <EditText
                 android:id="@+id/register_animal_birthdate"
                 android:layout_width="match_parent"
@@ -99,6 +108,7 @@
                 android:hint="Data di Nascita (AAAA-MM-GG)"
                 android:inputType="date"
                 android:minHeight="48dp" />
+
 
             <Button
                 android:id="@+id/button_choose_image"
@@ -111,8 +121,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_above="@id/progress_bar"
-                android:layout_marginLeft="170dp"
-                 />
+                android:layout_marginLeft="170dp" />
 
 
             <ProgressBar

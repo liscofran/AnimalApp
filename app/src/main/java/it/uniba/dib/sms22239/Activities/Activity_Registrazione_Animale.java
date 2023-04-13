@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -52,6 +55,9 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
     Button mButtonUpload;
     ImageView mImageView;
     ProgressBar mProgressBar;
+
+    private Spinner spinner;
+    private String selectedItem;
 
     Uri mImageUri;
 
@@ -152,6 +158,23 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
             }
         });
 
+        spinner = findViewById(R.id.spinner);
+        spinner.setPrompt("");
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.proprieta_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedItem = (String) parent.getItemAtPosition(position);
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(Activity_Registrazione_Animale.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         final Button generaAnimaleButton = findViewById(R.id.register_animal_button);
         generaAnimaleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +186,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
                 String razza = inputRazza.getText().toString();
                 String datatmp = inputData.getText().toString();
                 String data = "";
+                String prop = selectedItem;
 
                 CharacterIterator it = new StringCharacterIterator(datatmp);
                 while (it.current() != CharacterIterator.DONE)
@@ -181,8 +205,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
                 } else {
                     ani = uploadFile(ani);
                 }
-
-                ani.writeNewAnimal(ani, nome, razza, currentUser.getUid(), sesso, data);
+                ani.writeNewAnimal(ani, nome, razza, currentUser.getUid(), sesso, data, prop);
 
                 Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_QRGenerate.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
