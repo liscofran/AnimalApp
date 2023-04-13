@@ -39,7 +39,6 @@ public class Fragment_edit_animal_profile extends Fragment {
     private EditText mrazzaTextView;
     private EditText msessoTextView;
     private Spinner spinner;
-    private ImageButton backButton;
     private String selectedItem;
 
     public Fragment_edit_animal_profile() {
@@ -71,15 +70,22 @@ public class Fragment_edit_animal_profile extends Fragment {
         EditText editName = getView().findViewById(R.id.animal_nome);
         EditText editRazza = getView().findViewById(R.id.animal_razza);
         EditText editSesso = getView().findViewById(R.id.animal_sesso);
-        backButton.findViewById(R.id.back);
 
-        Button saveProfileButton = getView().findViewById(R.id.salva);
+        ImageButton saveProfileButton = getView().findViewById(R.id.salva);
+        Button backBtn = getView().findViewById(R.id.back);
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView = getView().findViewById(R.id.animal_razza);
         msessoTextView = getView().findViewById(R.id.animal_sesso);
 
-        spinner = getView().findViewById(R.id.status);
+        spinner = getView().findViewById(R.id.spinner);
         spinner.setPrompt("");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.proprieta_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -145,13 +151,6 @@ public class Fragment_edit_animal_profile extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
                 fragmentTransaction.commit();
-            }
-        });
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Activity_Animal_Profile.class);
-                startActivity(intent);
             }
         });
     }}
