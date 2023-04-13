@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniba.dib.sms22239.Models.Appuntamento;
+import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
@@ -52,8 +54,56 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+        ImageButton backBtn2 = findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Home.class);
+                startActivity(intent);
+            }
+        });
 
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Activity_Profile_Proprietario_Ente.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Activity_Animali.class));
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Activity_QRcode.class));
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Preference.class));
+            }
+        });
 
         // Imposta il listener sul CalendarView per ottenere la data selezionata dall'utente
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -92,7 +142,7 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
 
                                 Appuntamento appuntamento = new Appuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, idAppuntamento);
                                 appuntamento.writeNewAppuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, appuntamento);
-                                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Prenotazioni_Veterinario.class);
+                                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Nuovo_Appuntamento.class);
                                 startActivity(intent);
                             }
                         });

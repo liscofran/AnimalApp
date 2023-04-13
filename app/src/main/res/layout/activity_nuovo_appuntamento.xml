@@ -16,21 +16,17 @@
         layout="@layout/toolbarveterinario"
         android:id="@+id/toolbar1" />
 
-
-
-    <TextView
-        android:id="@+id/appuntamenti"
+    <ImageButton
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aldrich"
-        android:text="Appuntamenti"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.554"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:background="@android:color/transparent"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar1" />
+        />
+
 
     <TextView
         android:id="@+id/data"
@@ -38,11 +34,12 @@
         android:layout_height="wrap_content"
         android:text="Seleziona Data"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:fontFamily="@font/aldrich"
+        android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.554"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appuntamenti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back"
         app:layout_constraintBottom_toTopOf="@id/simpleCalendarView"/>
 
 
@@ -53,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appuntamenti" />
+        app:layout_constraintTop_toBottomOf="@id/data" />
 
     <TextView
         android:id="@+id/inizio"
@@ -64,7 +61,6 @@
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/simpleCalendarView" />
@@ -89,7 +85,6 @@
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ora_inizio" />
@@ -112,7 +107,8 @@
         android:layout_height="wrap_content"
         android:text="Salva"
         android:background="@drawable/custom_button_v4"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/fine"
+        app:layout_constraintStart_toStartOf="@id/fine"
         app:layout_constraintTop_toBottomOf="@id/ora_fine"
         />
 
