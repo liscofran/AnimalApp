@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginHorizontal="8dp"
+    app:cardElevation="12dp"
+    android:id="@+id/card4">
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/start_time_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ora inizio" />
+
+    <TextView
+        android:id="@+id/end_time_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ora fine" />
+
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data" />
+
+</LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
