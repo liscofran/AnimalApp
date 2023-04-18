@@ -46,6 +46,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
+import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
 import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Segnalazione;
 import it.uniba.dib.sms22239.Models.Proprietario;
@@ -117,7 +118,6 @@ public class Fragment_edit_profile_proprietario extends Fragment {
         });
 
 
-
         Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
         Button backBtn = getView().findViewById(R.id.back);
 
@@ -174,21 +174,20 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 String newName = editName.getText().toString();
                 String newCognome = editCognome.getText().toString();
                 String newCodfiscale = editcodfiscale.getText().toString();
-                //String var = "etQbI3BBfIc4Mbl4z3Dz3A2W5mp1.jpg";
 
                 //modifica e salva i dati anche sul database
                 mDatabase.child("cognome").setValue(newCognome);
                 mDatabase.child("nome").setValue(newName);
                 mDatabase.child("codice_fiscale").setValue(newCodfiscale);
 
-                // mDatabase.child("immagine").setValue(var);
+
 
                 updateFile(user);
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_proprietario());
-                fragmentTransaction.commit();
+                Intent intent = new Intent(getActivity(), Activity_Home.class);
+                startActivity(intent);
+
+
             }
         });
     }
