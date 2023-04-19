@@ -47,24 +47,7 @@ public class Fragment_profile_proprietario extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imagesRef = storageRef.child("Proprietari/" + user.getUid() + ".jpg");
-
-        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                String imageUrl = uri.toString();
-                // Usa Picasso per caricare l'immagine nell'ImageView
-                Picasso.get().load(imageUrl).into(profilo);
-            }
-        });
     }
 
     @Override

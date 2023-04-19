@@ -1,6 +1,9 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,17 +20,32 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
+import it.uniba.dib.sms22239.Activities.Activity_Animali;
+import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
 import it.uniba.dib.sms22239.R;
@@ -40,6 +58,14 @@ public class Fragment_edit_animal_profile extends Fragment {
     private EditText msessoTextView;
     private Spinner spinner;
     private String selectedItem;
+    private CircleImageView editImage;
+
+    private ImageView profilo;
+    private String idAnimal;
+    Uri mImageUri;
+    StorageTask mUploadTask;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     public Fragment_edit_animal_profile() {
         // Required empty public constructor
@@ -63,13 +89,14 @@ public class Fragment_edit_animal_profile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mDatabase;
-        String idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
         mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
         // Collega i componenti dell'interfaccia con le variabili
         EditText editName = getView().findViewById(R.id.animal_nome);
         EditText editRazza = getView().findViewById(R.id.animal_razza);
         EditText editSesso = getView().findViewById(R.id.animal_sesso);
+
 
         ImageButton saveProfileButton = getView().findViewById(R.id.salva);
         Button backBtn = getView().findViewById(R.id.back);
@@ -84,7 +111,10 @@ public class Fragment_edit_animal_profile extends Fragment {
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView = getView().findViewById(R.id.animal_razza);
         msessoTextView = getView().findViewById(R.id.animal_sesso);
+        editImage = getView().findViewById(R.id.upload);
+        profilo = getView().findViewById(R.id.profile_image);
 
+        //codice per lo spinner
         spinner = getView().findViewById(R.id.spinner);
         spinner.setPrompt("");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.proprieta_options, android.R.layout.simple_spinner_item);
@@ -101,6 +131,20 @@ public class Fragment_edit_animal_profile extends Fragment {
                 Toast.makeText(getActivity(), "Scelta non valida", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //codice per lo storage
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(profilo);
+            }
+        });
+
+
 
         // Recupera i dati dal database e popola i campi
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -128,6 +172,13 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+
         // Imposta un listener di clic sul pulsante di salvataggio del profilo
         saveProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,10 +198,69 @@ public class Fragment_edit_animal_profile extends Fragment {
                 mDatabase.child("sesso").setValue(newSesso);
                 mDatabase.child("prop").setValue(selectedItem);
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
-                fragmentTransaction.commit();
+                updateFile(mDatabase);
+
+                Intent intent = new Intent(getActivity(), Activity_Animali.class);
+                startActivity(intent);
             }
         });
-    }}
+    }
+
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+
+            Picasso.get().load(mImageUri).into(profilo);
+        }
+    }
+    private void updateFile(DatabaseReference animal) {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
+
+        // Se l'utente ha selezionato un'immagine, caricala nello storage
+        if (mImageUri != null) {
+            // Crea un nome di file univoco per l'immagine
+            String fileName = idAnimal + ".jpg";
+
+            // Carica l'immagine nell'URI specificato
+            imagesRef = storageRef.child("Animali/" + fileName);
+            mUploadTask = imagesRef.putFile(mImageUri);
+
+            // Aggiorna l'URL dell'immagine nel database
+            StorageReference finalImagesRef = imagesRef;
+            mUploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continua la catena delle promesse per ottenere l'URL dell'immagine appena caricata
+                    return finalImagesRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        // Aggiorna l'URL dell'immagine nel database
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
+                        mDatabase.child("immagine").setValue(downloadUri.toString());
+                    }
+                }
+            });
+        }
+    }
+
+}

@@ -1,6 +1,7 @@
 package it.uniba.dib.sms22239.Fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,14 +14,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
@@ -34,10 +40,12 @@ public class Fragment_profile_animale extends Fragment {
     private TextView mrazzaTextView;
     private TextView msessoTextView;
     private String idUtente;
-
     private TextView midproprietarioTextView;
     private TextView nomecognomeprop;
     private TextView statusTextView;
+
+    private ImageView profilo;
+
 
 
     public Fragment_profile_animale() {
@@ -70,6 +78,9 @@ public class Fragment_profile_animale extends Fragment {
         mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
         mDatabase1 = database.getInstance().getReference().child("User");
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
+
         midproprietarioTextView = getView().findViewById(R.id.animal_proprietario);
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView =  getView().findViewById(R.id.animal_razza);
@@ -77,7 +88,17 @@ public class Fragment_profile_animale extends Fragment {
         ImageButton backBtn = getView().findViewById(R.id.back);
         nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
         statusTextView = getView().findViewById(R.id.status);
+        profilo = getView().findViewById(R.id.profile_image);
 
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(profilo);
+                profilo = getView().findViewById(R.id.profile_image);
+            }
+        });
         backBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
