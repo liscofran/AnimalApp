@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +23,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_edit_ente_profile;
 import it.uniba.dib.sms22239.R;
@@ -32,6 +38,8 @@ public class Fragment_profile_ente extends Fragment
     private TextView msedelegaleTextView;
     private TextView mpiva;
     private TextView mragionesociale;
+
+    private ImageView profilo;
 
     public Fragment_profile_ente() {
         // Required empty public constructor
@@ -58,6 +66,9 @@ public class Fragment_profile_ente extends Fragment
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference mDatabase;
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Enti/" + user.getUid() + ".jpg");
+
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
 
@@ -65,6 +76,17 @@ public class Fragment_profile_ente extends Fragment
         mtipoTextView =  getView().findViewById(R.id.ente_tipo);
         msedelegaleTextView =  getView().findViewById(R.id.ente_sede_legale);
         mpiva = getView().findViewById(R.id.ente_piva);
+        profilo = getView().findViewById(R.id.profile_image);
+
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(profilo);
+                profilo = getView().findViewById(R.id.profile_image);
+            }
+        });
 
 
 
