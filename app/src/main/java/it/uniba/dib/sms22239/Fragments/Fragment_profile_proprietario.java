@@ -108,9 +108,9 @@ public class Fragment_profile_proprietario extends Fragment
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mCognomeTextView.setText(cognome);
-                mcodfiscaleTextView.setText(codfiscale);
+                mNomeTextView.setText("Nome: " + name);
+                mCognomeTextView.setText("Cognome: " + cognome);
+                mcodfiscaleTextView.setText("Cod. Fiscale: " + codfiscale);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)

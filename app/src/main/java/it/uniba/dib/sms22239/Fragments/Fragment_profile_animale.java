@@ -121,10 +121,10 @@ public class Fragment_profile_animale extends Fragment {
                 String status = dataSnapshot.child("prop").getValue(String.class);
                 //set delle variabili recuperate al layout
 
-                mNomeTextView.setText(name);
-                mrazzaTextView.setText(razza);
-                msessoTextView.setText(sesso);
-                statusTextView.setText(status);
+                mNomeTextView.setText("Nome: " +name);
+                mrazzaTextView.setText("Razza: " +razza);
+                msessoTextView.setText("Sesso: " +sesso);
+                statusTextView.setText("Status: " +status);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

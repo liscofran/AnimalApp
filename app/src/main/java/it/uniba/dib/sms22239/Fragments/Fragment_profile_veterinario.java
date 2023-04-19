@@ -119,11 +119,11 @@ public class Fragment_profile_veterinario extends Fragment {
                 String titoloStudio = dataSnapshot.child("titolo_studio").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mCognomeTextView.setText(cognome);
-                mcodfiscaleTextView.setText(codfiscale);
-                memailTextView.setText(email);
-                mtitolostudioTextView.setText(titoloStudio);
+                mNomeTextView.setText("Nome: " + name);
+                mCognomeTextView.setText("Cognome: " + cognome);
+                mcodfiscaleTextView.setText("Cod. Fiscale: " +codfiscale);
+                memailTextView.setText("Email: " +email);
+                mtitolostudioTextView.setText("Tit. studio: " +titoloStudio);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

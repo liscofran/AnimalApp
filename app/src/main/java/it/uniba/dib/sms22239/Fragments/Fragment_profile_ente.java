@@ -103,8 +103,8 @@ public class Fragment_profile_ente extends Fragment
 
 
                 //set delle variabili recuperate al layout
-                mragionesociale.setText("Ente: " + ragsociale);
-                mtipoTextView.setText(tipo);
+                mragionesociale.setText("Ragione sociale: " + ragsociale);
+                mtipoTextView.setText("Tipo: " + tipo);
                 msedelegaleTextView.setText("Sede Legale: " + sedelegale);
                 mpiva.setText("Partita IVA: " + piva);
             }

@@ -160,9 +160,9 @@ public class Fragment_edit_animal_profile extends Fragment {
                 String status = dataSnapshot.child("status").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mrazzaTextView.setText(razza);
-                msessoTextView.setText(sesso);
+                mNomeTextView.setText("Nome: " + name);
+                mrazzaTextView.setText("Razza: " + razza);
+                msessoTextView.setText("Sesso: " + sesso);
 
             }
 

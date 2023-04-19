@@ -156,9 +156,9 @@ public class Fragment_edit_ente_profile extends Fragment {
                 String piva = dataSnapshot.child("p_iva").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mragionesociale.setText(ragsociale);
-                msedelegaleTextView.setText(sedelegale);
-                mpivaTextView.setText(piva);
+                mragionesociale.setText("Ragione sociale: " + ragsociale);
+                msedelegaleTextView.setText("Sede legale: " + sedelegale);
+                mpivaTextView.setText("P.iva: " +piva);
             }
 
             @Override
