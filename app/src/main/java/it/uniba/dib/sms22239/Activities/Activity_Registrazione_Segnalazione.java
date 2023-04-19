@@ -121,6 +121,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
         locbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isMapOpen = false;
                 if (ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                         ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
