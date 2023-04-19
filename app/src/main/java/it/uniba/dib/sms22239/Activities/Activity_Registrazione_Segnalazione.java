@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -56,7 +57,7 @@ import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
 
-public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
+public class Activity_Registrazione_Segnalazione extends AppCompatActivity implements LocationListener {
 
     EditText oggettoText, provinciaText, Descrizione;
     CheckBox proprietario, ente, veterinario;
@@ -69,8 +70,9 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
     ImageButton locbtn;
     Uri mImageUri;
     ImageView mImageView;
-    private LatLng userLocation;
-
+    LocationManager locationManager;
+    String provider;
+    double latitude, longitude;
     StorageReference mStorageRef;
     DatabaseReference mDatabaseRef;
 
@@ -87,6 +89,8 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
         submitBtn = findViewById(R.id.submitBtn);
         mImageView = findViewById(R.id.image_view);
         locbtn=findViewById(R.id.modificaBtn);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        provider = locationManager.getBestProvider(new Criteria(), false);
         mStorageRef = FirebaseStorage.getInstance().getReference("Segnalazioni");
         allegato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +98,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
                 openFileChooser();
             }
         });
-        locbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestLocationPermission();
 
-            }
-        });
         photoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,10 +112,22 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                 Uri uri = Uri.fromParts("package", getPackageName(), null);
                 intent.setData(uri);
+
                 startActivity(intent);
             }
         });
 
+        locbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    return;
+                }
+                locationManager.requestLocationUpdates(provider, 0L, (float) 0, (LocationListener) Activity_Registrazione_Segnalazione.this);
+            }
+        });
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -307,70 +317,15 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity {
         }
         return segnalazione;
     }
-    private void requestLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                new AlertDialog.Builder(this)
-                        .setTitle("Location permission needed")
-                        .setMessage("This app needs the Location permission, please accept to use location functionality")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        PERMISSION_REQUEST_LOCATION);
-                            }
-                        })
-                        .create()
-                        .show();
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        PERMISSION_REQUEST_LOCATION);
-            }
-        } else {
-            enableLocationSetting();
-        }
-    }
-
-    private void enableLocationSetting() {
-        if (!isLocationEnabled()) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Location service")
-                    .setMessage("Location service is turned off. Do you want to enable it?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent locationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(locationIntent);
-                        }
-                    })
-                    .setNegativeButton("No", null)
-                    .create()
-                    .show();
-        }
-    }
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager != null) {
-            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                    locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        }
-        return false;
-    }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_LOCATION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                enableLocationSetting();
-            }
-        }
+    public void onLocationChanged(Location location) {
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
     }
+
 }
 
