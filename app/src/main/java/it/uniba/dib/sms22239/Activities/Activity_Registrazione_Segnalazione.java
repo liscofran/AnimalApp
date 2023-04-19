@@ -75,7 +75,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
     double latitude, longitude;
     StorageReference mStorageRef;
     DatabaseReference mDatabaseRef;
-
+    private boolean isMapOpen = false;
     StorageTask mUploadTask;
 
     ImageButton backBtn;
@@ -83,6 +83,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isMapOpen = false;
         setContentView(R.layout.activity_creasegnalazione);
         allegato = findViewById(R.id.allegatoBtn);
         photoBtn = findViewById(R.id.photoBtn);
@@ -320,11 +321,15 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
 
     @Override
     public void onLocationChanged(Location location) {
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        startActivity(intent);
+        if (!isMapOpen) {
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+            // Imposta isMapOpen a true dopo aver aperto l'activity della mappa
+            isMapOpen = true;
+        }
     }
 
 }
