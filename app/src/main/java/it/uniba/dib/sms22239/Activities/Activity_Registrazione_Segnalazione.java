@@ -125,7 +125,23 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 if (ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                         ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                    return;
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Registrazione_Segnalazione.this);
+                    builder.setMessage("Vuoi utilizzare la tua posizione attuale, per la segnalazione ?")
+                            .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    isMapOpen=true;
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
                 locationManager.requestLocationUpdates(provider, 0L, (float) 0, (LocationListener) Activity_Registrazione_Segnalazione.this);
             }
