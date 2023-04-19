@@ -122,26 +122,17 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
             @Override
             public void onClick(View view) {
                 isMapOpen = false;
-                if (ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                {
                     ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Registrazione_Segnalazione.this);
-                    builder.setMessage("Vuoi utilizzare la tua posizione attuale, per la segnalazione ?")
-                            .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    isMapOpen=true;
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                }
+                else
+                {
+                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                    }
                 }
                 locationManager.requestLocationUpdates(provider, 0L, (float) 0, (LocationListener) Activity_Registrazione_Segnalazione.this);
             }
