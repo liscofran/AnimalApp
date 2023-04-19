@@ -225,7 +225,7 @@ public class Fragment_edit_ente_profile extends Fragment {
 
     private void updateFile(FirebaseUser user) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imagesRef = storageRef.child("Proprietari/" + user.getUid() + ".jpg");
+        StorageReference imagesRef = storageRef.child("Enti/" + user.getUid() + ".jpg");
 
         // Se l'utente ha selezionato un'immagine, caricala nello storage
         if (mImageUri != null) {

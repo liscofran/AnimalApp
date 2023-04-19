@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
@@ -47,6 +53,7 @@ public class Fragment_profile_veterinario extends Fragment {
     private TextView mcodfiscaleTextView;
     private TextView memailTextView;
     private TextView mtitolostudioTextView;
+    private ImageView profilo;
 
 
     public Fragment_profile_veterinario() {
@@ -78,6 +85,8 @@ public class Fragment_profile_veterinario extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference mDatabase;
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Veterinari/" + user.getUid() + ".jpg");
 
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
@@ -87,6 +96,17 @@ public class Fragment_profile_veterinario extends Fragment {
         mcodfiscaleTextView =  getView().findViewById(R.id.vet_codicefiscale);
         memailTextView =  getView().findViewById(R.id.vet_email);
         mtitolostudioTextView =  getView().findViewById(R.id.vet_titolostudio);
+        profilo = getView().findViewById(R.id.profile_image);
+
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(profilo);
+                profilo = getView().findViewById(R.id.profile_image);
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener() {
