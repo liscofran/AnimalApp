@@ -19,11 +19,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 
+import it.uniba.dib.sms22239.Fragments.AppuntamentoDialogFragment;
 import it.uniba.dib.sms22239.Models.Appuntamento;
+import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -120,12 +126,32 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
             }
         });
 
+        /*
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Intent intent = new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Nuovo_Appuntamento.class);
+                Intent intent = new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Visualizza_Calendario.class);
                 startActivity(intent);
+            }
+        });*/
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+                // Recupera la data selezionata dall'utente
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, dayOfMonth);
+
+                // Ottieni la data selezionata in formato "yyyy-MM-dd"
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                String data = sdf.format(selectedDate.getTime());
+
+                // Crea la finestra di dialogo degli appuntamenti
+                ArrayList<Prenotazione> prenotazioni = null;
+                AppuntamentoDialogFragment dialog = new AppuntamentoDialogFragment(appuntamenti, prenotazioni, data);
+                dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
             }
         });
 
