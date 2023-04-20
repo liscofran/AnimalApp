@@ -51,7 +51,6 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/animal_razza"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@id/guideline5"
                 app:layout_constraintRight_toRightOf="@id/guideline4"
                 app:layout_constraintTop_toTopOf="@+id/guideline62" />
@@ -100,10 +99,26 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
-                app:layout_constraintBottom_toTopOf="@+id/status"
+                app:layout_constraintBottom_toTopOf="@+id/luogo"
                 app:layout_constraintEnd_toEndOf="@+id/animal_nome"
                 app:layout_constraintStart_toStartOf="@+id/animal_nome"
                 app:layout_constraintTop_toBottomOf="@id/animal_sesso"/>
+
+            <TextView
+                android:id="@+id/luogo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_v4"
+                android:drawablePadding="10dp"
+                android:hint="Luogo di stallo"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:drawableLeftCompat="@drawable/black_home"
+                app:layout_constraintBottom_toTopOf="@+id/status"
+                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
+                app:layout_constraintStart_toStartOf="@+id/animal_nome"
+                app:layout_constraintTop_toBottomOf="@id/nom_cogn_prop"/>
 
             <TextView
                 android:id="@+id/status"
@@ -119,7 +134,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideline16"
                 app:layout_constraintEnd_toEndOf="@+id/animal_nome"
                 app:layout_constraintStart_toStartOf="@+id/animal_nome"
-                app:layout_constraintTop_toBottomOf="@id/nom_cogn_prop"/>
+                app:layout_constraintTop_toBottomOf="@id/luogo"/>
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -170,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.80" />
+                app:layout_constraintGuide_percent="0.85" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline669"

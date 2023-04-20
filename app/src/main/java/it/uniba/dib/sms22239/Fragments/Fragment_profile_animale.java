@@ -43,7 +43,7 @@ public class Fragment_profile_animale extends Fragment {
     private TextView midproprietarioTextView;
     private TextView nomecognomeprop;
     private TextView statusTextView;
-
+    private TextView casaluogoTextView;
     private ImageView profilo;
 
 
@@ -88,6 +88,7 @@ public class Fragment_profile_animale extends Fragment {
         ImageButton backBtn = getView().findViewById(R.id.back);
         nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
         statusTextView = getView().findViewById(R.id.status);
+        casaluogoTextView  = getView().findViewById(R.id.luogo);
         profilo = getView().findViewById(R.id.profile_image);
 
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -119,12 +120,15 @@ public class Fragment_profile_animale extends Fragment {
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
                 idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
                 String status = dataSnapshot.child("prop").getValue(String.class);
+                String luogo = dataSnapshot.child("luogo").getValue(String.class);
+
                 //set delle variabili recuperate al layout
 
-                mNomeTextView.setText("Nome: " +name);
-                mrazzaTextView.setText("Razza: " +razza);
-                msessoTextView.setText("Sesso: " +sesso);
-                statusTextView.setText("Status: " +status);
+                mNomeTextView.setText("Nome: " + name);
+                mrazzaTextView.setText("Razza: " + razza);
+                msessoTextView.setText("Sesso: " + sesso);
+                statusTextView.setText("Status: " + status);
+                casaluogoTextView.setText("Luogo: " + luogo);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -140,15 +144,13 @@ public class Fragment_profile_animale extends Fragment {
                 String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
                 //set delle variabili recuperate al layout
 
-                nomecognomeprop.setText(nome + " " + cognome);
+                nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-
 
 
         getView().findViewById(R.id.modifica).setOnClickListener(new View.OnClickListener() {

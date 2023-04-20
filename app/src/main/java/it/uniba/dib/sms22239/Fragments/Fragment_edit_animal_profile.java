@@ -56,6 +56,8 @@ public class Fragment_edit_animal_profile extends Fragment {
     private EditText mNomeTextView;
     private EditText mrazzaTextView;
     private EditText msessoTextView;
+
+    private EditText mluogoTextView;
     private Spinner spinner;
     private String selectedItem;
     private CircleImageView editImage;
@@ -96,6 +98,7 @@ public class Fragment_edit_animal_profile extends Fragment {
         EditText editName = getView().findViewById(R.id.animal_nome);
         EditText editRazza = getView().findViewById(R.id.animal_razza);
         EditText editSesso = getView().findViewById(R.id.animal_sesso);
+        EditText editLuogo = getView().findViewById(R.id.luogo);
 
 
         ImageButton saveProfileButton = getView().findViewById(R.id.salva);
@@ -111,6 +114,8 @@ public class Fragment_edit_animal_profile extends Fragment {
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView = getView().findViewById(R.id.animal_razza);
         msessoTextView = getView().findViewById(R.id.animal_sesso);
+        mluogoTextView = getView().findViewById(R.id.luogo);
+
         editImage = getView().findViewById(R.id.upload);
         profilo = getView().findViewById(R.id.profile_image);
 
@@ -158,11 +163,13 @@ public class Fragment_edit_animal_profile extends Fragment {
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
                 String status = dataSnapshot.child("status").getValue(String.class);
+                String luogo = dataSnapshot.child("luogo").getValue(String.class);
 
                 //set delle variabili recuperate al layout
                 mNomeTextView.setText(name);
                 mrazzaTextView.setText(razza);
                 msessoTextView.setText(sesso);
+                mluogoTextView.setText(luogo);
 
             }
 
@@ -191,11 +198,13 @@ public class Fragment_edit_animal_profile extends Fragment {
                 String newName = editName.getText().toString();
                 String newRazza = editRazza.getText().toString();
                 String newSesso = editSesso.getText().toString();
+                String newLuogo = editLuogo.getText().toString();
 
                 //modifica e salva i dati anche sul database
                 mDatabase.child("nome").setValue(newName);
                 mDatabase.child("razza").setValue(newRazza);
                 mDatabase.child("sesso").setValue(newSesso);
+                mDatabase.child("luogo").setValue(newLuogo);
                 mDatabase.child("prop").setValue(selectedItem);
 
                 updateFile(mDatabase);
