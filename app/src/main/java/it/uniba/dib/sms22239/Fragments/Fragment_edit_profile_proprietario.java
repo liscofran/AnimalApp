@@ -141,9 +141,9 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                editName.setText("Nome: " + name);
-                editCognome.setText("Cognome: " +cognome);
-                editcodfiscale.setText("Cod. Fiscale: " +codfiscale);
+                editName.setText(name);
+                editCognome.setText(cognome);
+                editcodfiscale.setText(codfiscale);
             }
 
             @Override

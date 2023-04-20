@@ -138,9 +138,9 @@ public class Fragment_edit_veterinario extends Fragment {
                 String titolostudio = dataSnapshot.child("titolo_studio").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText("Nome: " + name);
-                mCognomeTextView.setText("Cognome: " + cognome);
-                mtitolostudioTextView.setText("Tit. studio: " + titolostudio);
+                mNomeTextView.setText(name);
+                mCognomeTextView.setText(cognome);
+                mtitolostudioTextView.setText(titolostudio);
             }
 
             @Override

@@ -102,9 +102,9 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment {
 
                 //set delle variabili recuperate al layout
                 midproprietarioTextView.setText(proprietario);
-                mNomeTextView.setText(nome);
-                mrazzaTextView.setText(razza);
-                msessoTextView.setText(sesso);
+                mNomeTextView.setText("Nome" + nome);
+                mrazzaTextView.setText("Razza" + razza);
+                msessoTextView.setText("Sesso" +sesso);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)

@@ -99,7 +99,7 @@ public class Fragment_edit_animal_profile extends Fragment {
 
 
         ImageButton saveProfileButton = getView().findViewById(R.id.salva);
-        Button backBtn = getView().findViewById(R.id.back);
+        ImageButton backBtn = getView().findViewById(R.id.back);
         backBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -160,9 +160,9 @@ public class Fragment_edit_animal_profile extends Fragment {
                 String status = dataSnapshot.child("status").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText("Nome: " + name);
-                mrazzaTextView.setText("Razza: " + razza);
-                msessoTextView.setText("Sesso: " + sesso);
+                mNomeTextView.setText(name);
+                mrazzaTextView.setText(razza);
+                msessoTextView.setText(sesso);
 
             }
 
