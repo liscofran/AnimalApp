@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +29,7 @@ import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
-import it.uniba.dib.sms22239.Activities.Activity_Proprieta;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
-import it.uniba.dib.sms22239.Fragments.Fragment_edit_animal_profile;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_profile_animale extends Fragment {
@@ -81,10 +78,10 @@ public class Fragment_profile_animale extends Fragment {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
 
-        midproprietarioTextView = getView().findViewById(R.id.animal_proprietario);
-        mNomeTextView = getView().findViewById(R.id.animal_nome);
-        mrazzaTextView =  getView().findViewById(R.id.animal_razza);
-        msessoTextView =  getView().findViewById(R.id.animal_sesso);
+        midproprietarioTextView = getView().findViewById(R.id.cognome_veterinario);
+        mNomeTextView = getView().findViewById(R.id.nome_veterinario);
+        mrazzaTextView =  getView().findViewById(R.id.data_appuntamento);
+        msessoTextView =  getView().findViewById(R.id.orario_inizio);
         ImageButton backBtn = getView().findViewById(R.id.back);
         nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
         statusTextView = getView().findViewById(R.id.status);

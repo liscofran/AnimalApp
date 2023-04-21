@@ -9,27 +9,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,12 +37,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
-import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
-import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
-import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
 import it.uniba.dib.sms22239.R;
 
 
@@ -95,9 +85,9 @@ public class Fragment_edit_animal_profile extends Fragment {
         mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
         // Collega i componenti dell'interfaccia con le variabili
-        EditText editName = getView().findViewById(R.id.animal_nome);
-        EditText editRazza = getView().findViewById(R.id.animal_razza);
-        EditText editSesso = getView().findViewById(R.id.animal_sesso);
+        EditText editName = getView().findViewById(R.id.nome_veterinario);
+        EditText editRazza = getView().findViewById(R.id.data_appuntamento);
+        EditText editSesso = getView().findViewById(R.id.orario_inizio);
         EditText editLuogo = getView().findViewById(R.id.luogo);
 
 
@@ -111,9 +101,9 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
-        mNomeTextView = getView().findViewById(R.id.animal_nome);
-        mrazzaTextView = getView().findViewById(R.id.animal_razza);
-        msessoTextView = getView().findViewById(R.id.animal_sesso);
+        mNomeTextView = getView().findViewById(R.id.nome_veterinario);
+        mrazzaTextView = getView().findViewById(R.id.data_appuntamento);
+        msessoTextView = getView().findViewById(R.id.orario_inizio);
         mluogoTextView = getView().findViewById(R.id.luogo);
 
         editImage = getView().findViewById(R.id.upload);

@@ -2,17 +2,25 @@ package it.uniba.dib.sms22239.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
+import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
+import it.uniba.dib.sms22239.R;
 
 public class AppuntamentoDialogFragment extends DialogFragment {
     private ArrayList<Appuntamento> appuntamenti;
@@ -59,6 +67,33 @@ public class AppuntamentoDialogFragment extends DialogFragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, listItems);
         listView.setAdapter(adapter);
         builder.setView(listView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Recuperiamo l'oggetto Appuntamento corrispondente alla posizione selezionata
+                Appuntamento appuntamentoSelezionato = null;
+                for (Appuntamento appuntamento : appuntamenti) {
+                    if (appuntamento.getData().equals(data)) {
+                        if (appuntamentiList.get(position).equals(appuntamento.getOrario_inizio() + " - " + appuntamento.getOrario_fine())) {
+                            appuntamentoSelezionato = appuntamento;
+                            break;
+                        }
+                    }
+                }
+
+                // Verifichiamo se è stato trovato l'appuntamento selezionato
+                if (appuntamentoSelezionato != null) {
+                    // Passiamo il codice identificativo dell'appuntamento come parametro extra nell'intent
+                    Intent intent = new Intent(getActivity(), Activity_Appuntamento.class);
+                    intent.putExtra("id_appuntamento", appuntamentoSelezionato.getId_appuntamento());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Errore: appuntamento non trovato", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         return builder.create();
     }

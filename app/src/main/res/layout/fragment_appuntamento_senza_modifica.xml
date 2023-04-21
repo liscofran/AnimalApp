@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_profile_proprietario">
+    tools:context=".Fragments.Fragment_Appuntamento_Senza_Modifica">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
                 android:drawablePadding="10dp"
-                android:hint="Proprietario non presente"
+                android:hint="Cognome Veterinario non Presente"
                 android:padding="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
                 android:drawablePadding="10dp"
-                android:hint="Nome non presente"
+                android:hint="Nome Veterinario non presente"
                 android:padding="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
                 android:drawablePadding="10dp"
-                android:hint="Razza non presente"
+                android:hint="Data non presente"
                 android:padding="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -96,7 +96,23 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
                 android:drawablePadding="10dp"
-                android:hint="Sesso non presente"
+                android:hint="Ora inizio non presente"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:drawableLeftCompat="@drawable/ic_profile2"
+                app:layout_constraintBottom_toTopOf="@+id/orario_fine"
+                app:layout_constraintEnd_toEndOf="@+id/cognome_veterinario"
+                app:layout_constraintStart_toStartOf="@id/cognome_veterinario"
+                app:layout_constraintTop_toBottomOf="@id/data_appuntamento" />
+
+            <TextView
+                android:id="@+id/orario_fine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_v4"
+                android:drawablePadding="10dp"
+                android:hint="Ora fine non presente"
                 android:padding="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -104,7 +120,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideline16"
                 app:layout_constraintEnd_toEndOf="@+id/cognome_veterinario"
                 app:layout_constraintStart_toStartOf="@id/cognome_veterinario"
-                app:layout_constraintTop_toBottomOf="@id/data_appuntamento" />
+                app:layout_constraintTop_toBottomOf="@id/orario_inizio" />
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline5"
@@ -184,28 +201,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.4" />
 
-
-            <ImageButton
-                android:id="@+id/bluetooth_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/bluetooth"
-                android:text="Modifica"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline8"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="0dp" />
-
-            <ImageButton
-                android:id="@+id/share_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_share"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <Button
                 android:id="@+id/back"
                 android:layout_width="30dp"
@@ -236,27 +231,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
-            <Button
-                android:id="@+id/proprieta"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_button_v4"
-                app:layout_constraintBottom_toTopOf="@+id/guideline668"
-                app:layout_constraintEnd_toStartOf="@+id/guideline14"
-                app:layout_constraintLeft_toRightOf="@id/guideline5"
-                app:layout_constraintRight_toLeftOf="@id/guideline4"
-                app:layout_constraintStart_toStartOf="@+id/guideline15"
-                app:layout_constraintTop_toBottomOf="@id/guideline66" />
-
-            <Button
-                android:id="@+id/condividi"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:background="@drawable/ic_share"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline669" />
 
 
 

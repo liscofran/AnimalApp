@@ -58,7 +58,7 @@
             android:name=".Activities.Activity_profilo_Offerta"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Visualizza_Calendario"
+            android:name=".Activities.Activity_Appuntamento"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Nuovo_Appuntamento"

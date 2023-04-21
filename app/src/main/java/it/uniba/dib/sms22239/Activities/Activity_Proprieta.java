@@ -38,7 +38,7 @@ public class Activity_Proprieta extends AppCompatActivity
         setContentView(R.layout.activity_proprieta);
 
         spinner = findViewById(R.id.spinner);
-        midproprietarioTextView = findViewById(R.id.animal_proprietario);
+        midproprietarioTextView = findViewById(R.id.cognome_veterinario);
         proprietaTextView = findViewById(R.id.animal_proprieta);
         modifica = findViewById(R.id.modifica);
         btn = findViewById(R.id.salva);

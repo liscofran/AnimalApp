@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
-        android:id="@+id/animal_proprietario"
+        android:id="@+id/cognome_veterinario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_v4"
@@ -49,7 +49,7 @@
         app:layout_constraintBottom_toTopOf="@+id/modifica"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animal_proprietario"
+        app:layout_constraintTop_toBottomOf="@+id/cognome_veterinario"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -66,7 +66,7 @@
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animal_proprietario" />
+        app:layout_constraintTop_toBottomOf="@+id/cognome_veterinario" />
 
     <Spinner
         android:id="@+id/spinner"

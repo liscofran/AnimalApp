@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/animal_nome"
+                android:id="@+id/nome_veterinario"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
@@ -50,13 +50,13 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
-                app:layout_constraintBottom_toTopOf="@+id/animal_razza"
+                app:layout_constraintBottom_toTopOf="@+id/data_appuntamento"
                 app:layout_constraintLeft_toLeftOf="@id/guideline5"
                 app:layout_constraintRight_toRightOf="@id/guideline4"
                 app:layout_constraintTop_toTopOf="@+id/guideline62" />
 
             <TextView
-                android:id="@+id/animal_razza"
+                android:id="@+id/data_appuntamento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
@@ -66,14 +66,14 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
-                app:layout_constraintBottom_toTopOf="@+id/animal_sesso"
-                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-                app:layout_constraintStart_toStartOf="@+id/animal_nome"
-                app:layout_constraintTop_toBottomOf="@+id/animal_nome" />
+                app:layout_constraintBottom_toTopOf="@+id/orario_inizio"
+                app:layout_constraintEnd_toEndOf="@+id/nome_veterinario"
+                app:layout_constraintStart_toStartOf="@+id/nome_veterinario"
+                app:layout_constraintTop_toBottomOf="@+id/nome_veterinario" />
 
 
             <TextView
-                android:id="@+id/animal_sesso"
+                android:id="@+id/orario_inizio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
@@ -84,9 +84,9 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/nom_cogn_prop"
-                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-                app:layout_constraintStart_toStartOf="@+id/animal_nome"
-                app:layout_constraintTop_toBottomOf="@id/animal_razza" />
+                app:layout_constraintEnd_toEndOf="@+id/nome_veterinario"
+                app:layout_constraintStart_toStartOf="@+id/nome_veterinario"
+                app:layout_constraintTop_toBottomOf="@id/data_appuntamento" />
 
             <TextView
                 android:id="@+id/nom_cogn_prop"
@@ -100,9 +100,9 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/luogo"
-                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-                app:layout_constraintStart_toStartOf="@+id/animal_nome"
-                app:layout_constraintTop_toBottomOf="@id/animal_sesso"/>
+                app:layout_constraintEnd_toEndOf="@+id/nome_veterinario"
+                app:layout_constraintStart_toStartOf="@+id/nome_veterinario"
+                app:layout_constraintTop_toBottomOf="@id/orario_inizio"/>
 
             <TextView
                 android:id="@+id/luogo"
@@ -132,8 +132,8 @@
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
                 app:layout_constraintBottom_toTopOf="@+id/guideline16"
-                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
-                app:layout_constraintStart_toStartOf="@+id/animal_nome"
+                app:layout_constraintEnd_toEndOf="@+id/nome_veterinario"
+                app:layout_constraintStart_toStartOf="@+id/nome_veterinario"
                 app:layout_constraintTop_toBottomOf="@id/luogo"/>
 
 
