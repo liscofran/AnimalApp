@@ -203,6 +203,8 @@ public class Fragment_edit_animal_profile extends Fragment {
                 startActivity(intent);
             }
         });
+
+
     }
 
     private void openFileChooser() {

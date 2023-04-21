@@ -167,6 +167,16 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
+        getView().findViewById(R.id.salute_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_salute_animale());
+                fragmentTransaction.commit();
+            }
+        });
+
         ImageButton shareButton = view.findViewById(R.id.share_button);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
