@@ -120,9 +120,9 @@ public class Fragment_VisualizzaVideo extends Fragment {
 
             private final TextView mTitleTextView;
             private final VideoView mVideoView;
-            private final Button mStartButton;
-            private final Button mPauseButton;
-            private final Button mDeleteButton;
+            private final ImageButton mStartButton;
+            private final ImageButton mPauseButton;
+            private final ImageButton mDeleteButton;
             private final ImageButton mDownloadButton;
             private final ProgressBar mProgressBar;
 

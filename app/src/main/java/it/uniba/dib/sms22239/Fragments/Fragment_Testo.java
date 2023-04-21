@@ -24,7 +24,7 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_Testo extends Fragment
 {
     private ImageButton btnInserisci;
-    private Button btnVisualizza;
+    private ImageButton btnVisualizza;
     StorageReference reference;
 
     public Fragment_Testo() {

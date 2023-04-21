@@ -30,7 +30,7 @@ public class Fragment_Video extends Fragment {
 
     private static final int REQUEST_CODE_SELECT_VIDEO = 1234;
     private ImageButton Aggiungi;
-    private Button Visualizza;
+    private ImageButton Visualizza;
     private EditText Nome_Video;
 
     public Fragment_Video() {

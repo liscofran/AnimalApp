@@ -30,7 +30,7 @@ public class Fragment_Immagine extends Fragment
     private Uri mImageUri;
 
     private ImageButton AddImage;
-    private Button ShowImages;
+    private ImageButton ShowImages;
     private EditText Text;
 
     public Fragment_Immagine() {

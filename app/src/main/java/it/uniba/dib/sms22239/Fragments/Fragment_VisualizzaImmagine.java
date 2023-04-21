@@ -120,7 +120,7 @@ public class Fragment_VisualizzaImmagine extends Fragment {
         //private final TextView mTitleTextView;
         private final ImageView mImageView;
         private final ImageButton mDownloadButton;
-        private final Button mDeleteButton;
+        private final ImageButton mDeleteButton;
 
 
         public ImageViewHolder(@NonNull View itemView)

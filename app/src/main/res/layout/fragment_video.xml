@@ -12,42 +12,112 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        <Button-->
-<!--            android:id="@+id/AggiungiVideo"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Aggiungi Video"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/VisualizzaVideo"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/prova2"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline16"
+            app:layout_constraintEnd_toEndOf="@id/guideline14"
+            app:layout_constraintStart_toStartOf="@id/guideline15"
+            app:layout_constraintTop_toTopOf="@id/guideline62" />
 
         <EditText
             android:id="@+id/NomeVideo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Inserire il nome del Video"
-            app:layout_constraintBottom_toTopOf="@id/VisualizzaTesti"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:background="@drawable/custom_button_v4"
+            android:drawablePadding="10dp"
+            android:hint="Inserire il nome del video"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:drawableLeftCompat="@drawable/ic_baseline_video_file_24"
+            app:layout_constraintTop_toTopOf="@id/guideline63"
+            app:layout_constraintLeft_toLeftOf="@id/guideline5"
+            app:layout_constraintRight_toRightOf="@id/guideline4"
+            app:layout_constraintBottom_toTopOf="@id/guideline64"/>
+
 
         <ImageButton
             android:id="@+id/AggiungiTesto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/custom_button_v4"
             android:contentDescription="@string/Profile"
             android:padding="5dp"
             android:src="@drawable/upload"
-            app:layout_constraintBottom_toTopOf="@id/VisualizzaTesti"
-            app:layout_constraintStart_toEndOf="@id/NomeVideo" />
+            app:layout_constraintTop_toBottomOf="@id/guideline16"
+            app:layout_constraintLeft_toRightOf="@id/VisualizzaTesti"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/VisualizzaTesti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Visualizza Video"
-            app:layout_constraintTop_toBottomOf="@id/AggiungiTesto"
-            app:layout_constraintStart_toStartOf="@id/NomeVideo"/>
+            android:background="@drawable/custom_button_v4"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_visibility_24"
+            app:layout_constraintTop_toBottomOf="@id/guideline16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"/>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline62"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.105" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.18" />
+
+            <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
