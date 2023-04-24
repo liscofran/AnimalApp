@@ -52,6 +52,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline45CenterHorizontal" />
+        <ImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_map_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintLeft_toRightOf="@id/allegatoBtn"
+            app:layout_constraintRight_toLeftOf="@id/photoBtn"
+            app:layout_constraintTop_toBottomOf="@id/check_box3"
+            app:layout_constraintVertical_bias="0.95"
+            tools:ignore="NotSibling" />
 
         <TextView
             android:id="@+id/segnalazione_utente"

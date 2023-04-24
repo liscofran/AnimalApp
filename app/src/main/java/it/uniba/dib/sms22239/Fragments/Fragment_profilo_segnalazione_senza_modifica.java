@@ -1,5 +1,7 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +34,7 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
-
+    public double latitude,longitude;
 
     public Fragment_profilo_segnalazione_senza_modifica() {
         // Required empty public constructor
@@ -67,7 +70,7 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
         mDescrizioneTextView = getView().findViewById(R.id.segnalazione_descrizione);
         mProvinciaTextView =  getView().findViewById(R.id.segnalazione_provincia);
         mOggettoTextView =  getView().findViewById(R.id.oggetto);
-
+        ImageButton mapBtn=getView().findViewById(R.id.mapBtn);
         Button backBtn = getView().findViewById(R.id.back);
 
         backBtn.setOnClickListener(new View.OnClickListener()
@@ -87,18 +90,39 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
                 String descrizione = dataSnapshot.child("descrizione").getValue(String.class);
                 String provincia = dataSnapshot.child("provincia").getValue(String.class);
                 String oggetto = dataSnapshot.child("oggetto").getValue(String.class);
+                latitude=dataSnapshot.child("latitude").getValue(double.class);
+                longitude=dataSnapshot.child("longitude").getValue(double.class);
 
                 //set delle variabili recuperate al layout
                 mDescrizioneTextView.setText(descrizione);
                 mProvinciaTextView.setText(provincia);
                 mOggettoTextView.setText(oggetto);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
 
             }
         });
+        mapBtn.setOnClickListener((new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+                String label = "Posizione della Segnalazione"; // Nome del pin sulla mappa
+                String uriBegin = "geo:" + latitude + "," + longitude;
+                String query = latitude + "," + longitude + "(" + label + ")";
+                String encodedQuery = Uri.encode(query);
+                String uriString = uriBegin + "?q=" + encodedQuery + "&z=16";
+                Uri uri = Uri.parse(uriString);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        }
+        ));
 
     }
 }
