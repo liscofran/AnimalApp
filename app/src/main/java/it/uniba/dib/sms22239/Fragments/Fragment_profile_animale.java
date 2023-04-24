@@ -29,7 +29,10 @@ import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
+import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
+import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
+import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_profile_animale extends Fragment {
@@ -42,7 +45,7 @@ public class Fragment_profile_animale extends Fragment {
     private TextView statusTextView;
     private TextView casaluogoTextView;
     private ImageView profilo;
-
+    public ImageButton qrbutton;
 
 
     public Fragment_profile_animale() {
@@ -87,7 +90,7 @@ public class Fragment_profile_animale extends Fragment {
         statusTextView = getView().findViewById(R.id.status);
         casaluogoTextView  = getView().findViewById(R.id.luogo);
         profilo = getView().findViewById(R.id.profile_image);
-
+        qrbutton=getView().findViewById(R.id.qr_button);
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -104,7 +107,16 @@ public class Fragment_profile_animale extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-
+        qrbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getActivity(), Activity_QRGenerate.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
+                startActivity(intent);
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
