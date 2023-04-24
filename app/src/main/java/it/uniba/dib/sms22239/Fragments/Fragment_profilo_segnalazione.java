@@ -131,8 +131,7 @@ public class Fragment_profilo_segnalazione extends Fragment
             public void onClick(View view)
             {
 
-
-                String label = "Posizione"; // Nome del pin sulla mappa
+                String label = "Posizione della Segnalazione"; // Nome del pin sulla mappa
                 String uriBegin = "geo:" + latitude + "," + longitude;
                 String query = latitude + "," + longitude + "(" + label + ")";
                 String encodedQuery = Uri.encode(query);
@@ -140,7 +139,6 @@ public class Fragment_profilo_segnalazione extends Fragment
                 Uri uri = Uri.parse(uriString);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
                 mapIntent.setPackage("com.google.android.apps.maps");
-
                 startActivity(mapIntent);
             }
         }

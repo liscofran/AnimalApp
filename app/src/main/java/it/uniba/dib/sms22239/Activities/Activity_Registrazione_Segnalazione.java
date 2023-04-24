@@ -129,6 +129,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                     LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        Toast.makeText(Activity_Registrazione_Segnalazione.this, "verrà mostrata la posizione attuale", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                     }
                 }
