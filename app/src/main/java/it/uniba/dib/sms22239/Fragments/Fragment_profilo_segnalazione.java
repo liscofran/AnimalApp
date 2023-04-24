@@ -140,6 +140,7 @@ public class Fragment_profilo_segnalazione extends Fragment
                 Uri uri = Uri.parse(uriString);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
                 mapIntent.setPackage("com.google.android.apps.maps");
+
                 startActivity(mapIntent);
             }
         }
