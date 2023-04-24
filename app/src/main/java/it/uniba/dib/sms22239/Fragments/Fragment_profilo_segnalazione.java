@@ -1,5 +1,8 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +36,7 @@ public class Fragment_profilo_segnalazione extends Fragment
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
-
+    public double latitude,longitude;
         String id_utente;
         String id_utente_segnalazione;
         String tmp1;
@@ -74,8 +78,10 @@ public class Fragment_profilo_segnalazione extends Fragment
         mDescrizioneTextView = getView().findViewById(R.id.segnalazione_descrizione);
         mProvinciaTextView =  getView().findViewById(R.id.segnalazione_provincia);
         mOggettoTextView =  getView().findViewById(R.id.oggetto);
-
+        ImageButton mapBtn=getView().findViewById(R.id.mapBtn);
         Button backBtn = getView().findViewById(R.id.back);
+
+
 
         backBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -94,6 +100,8 @@ public class Fragment_profilo_segnalazione extends Fragment
                 String descrizione = dataSnapshot.child("descrizione").getValue(String.class);
                 String provincia = dataSnapshot.child("provincia").getValue(String.class);
                 String oggetto = dataSnapshot.child("oggetto").getValue(String.class);
+                 latitude=dataSnapshot.child("latitude").getValue(double.class);
+                 longitude=dataSnapshot.child("longitude").getValue(double.class);
 
                 //set delle variabili recuperate al layout
                 mDescrizioneTextView.setText(descrizione);
@@ -116,5 +124,23 @@ public class Fragment_profilo_segnalazione extends Fragment
                 fragmentTransaction.commit();
             }
         });
+
+        mapBtn.setOnClickListener((new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Se l'app di Google Maps non è installata, apri il sito web di Google Maps
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude));
+                    startActivity(intent);
+                }
+            }
+        }
+        ));
+
     }
 }
