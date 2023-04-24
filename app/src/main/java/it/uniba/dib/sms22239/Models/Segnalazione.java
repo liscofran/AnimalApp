@@ -17,7 +17,7 @@ public class Segnalazione {
     public boolean checkVeterinario;
     public String uid;
     public String immagine;
-
+    public double latitude,longitude;
 
     public Segnalazione() {
     }
@@ -38,7 +38,7 @@ public class Segnalazione {
         return uid;
     }
 
-    public void writeSegnalazione(Segnalazione sgn, String oggetto, String provincia, String descrizione, boolean checkProprietario, boolean checkEnte, boolean checkVeterinario) {
+    public void writeSegnalazione(Segnalazione sgn,double latitude,double longitude, String oggetto, String provincia, String descrizione, boolean checkProprietario, boolean checkEnte, boolean checkVeterinario) {
 
         sgn.oggetto = oggetto;
         sgn.provincia = provincia;
@@ -46,7 +46,8 @@ public class Segnalazione {
         sgn.checkProprietario = checkProprietario ;
         sgn.checkEnte = checkEnte;
         sgn.checkVeterinario = checkVeterinario;
-
+        sgn.latitude=latitude;
+        sgn.longitude=longitude;
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

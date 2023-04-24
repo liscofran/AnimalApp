@@ -58,13 +58,11 @@ import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
 
 public class Activity_Registrazione_Segnalazione extends AppCompatActivity implements LocationListener {
-
     EditText oggettoText, provinciaText, Descrizione;
     CheckBox proprietario, ente, veterinario;
     boolean checkProprietario, checkEnte, checkVeterinario;
     private static final int PERMISSION_REQUEST_LOCATION = 1;
     ImageButton allegato, photoBtn, submitBtn;
-
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
     ImageButton locbtn;
@@ -72,12 +70,12 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
     ImageView mImageView;
     LocationManager locationManager;
     String provider;
-    double latitude, longitude;
+    double latitude=0;
+    double longitude=0;
     StorageReference mStorageRef;
     DatabaseReference mDatabaseRef;
     private boolean isMapOpen = false;
     StorageTask mUploadTask;
-
     ImageButton backBtn;
 
     @Override
@@ -258,10 +256,19 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 } else {
                     uploadFile(sgn);
                 }
-                sgn.writeSegnalazione(sgn, oggetto, provincia, descrizione, checkProprietario, checkEnte, checkVeterinario);
-                Intent intent = new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class);
-                intent.putExtra("SEGNALAZIONE_CODE", sgn.idSegnalazione);
-                startActivity(intent);
+
+                if(latitude !=0)
+                {
+                    sgn.writeSegnalazione(sgn,latitude,longitude, oggetto, provincia, descrizione, checkProprietario, checkEnte, checkVeterinario);
+                    Intent intent = new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class);
+                    intent.putExtra("SEGNALAZIONE_CODE", sgn.idSegnalazione);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Posizione non disponibile", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
