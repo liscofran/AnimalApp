@@ -78,10 +78,10 @@ public class Fragment_profile_animale extends Fragment {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
 
-        midproprietarioTextView = getView().findViewById(R.id.cognome_veterinario);
-        mNomeTextView = getView().findViewById(R.id.nome_veterinario);
-        mrazzaTextView =  getView().findViewById(R.id.data_appuntamento);
-        msessoTextView =  getView().findViewById(R.id.orario_inizio);
+       // midproprietarioTextView = getView().findViewById(R.id.cognome_veterinario);
+        mNomeTextView = getView().findViewById(R.id.animal_nome);
+        mrazzaTextView =  getView().findViewById(R.id.razza);
+        msessoTextView =  getView().findViewById(R.id.sesso);
         ImageButton backBtn = getView().findViewById(R.id.back);
         nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
         statusTextView = getView().findViewById(R.id.status);
