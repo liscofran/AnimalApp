@@ -130,14 +130,17 @@ public class Fragment_profilo_segnalazione extends Fragment
             @Override
             public void onClick(View view)
             {
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude));
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // Se l'app di Google Maps non è installata, apri il sito web di Google Maps
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude));
-                    startActivity(intent);
-                }
+
+
+                String label = "Posizione"; // Nome del pin sulla mappa
+                String uriBegin = "geo:" + latitude + "," + longitude;
+                String query = latitude + "," + longitude + "(" + label + ")";
+                String encodedQuery = Uri.encode(query);
+                String uriString = uriBegin + "?q=" + encodedQuery + "&z=16";
+                Uri uri = Uri.parse(uriString);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
             }
         }
         ));
