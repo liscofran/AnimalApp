@@ -27,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
@@ -45,7 +46,8 @@ public class Fragment_profile_animale extends Fragment {
     private TextView statusTextView;
     private TextView casaluogoTextView;
     private ImageView profilo;
-    public ImageButton qrbutton;
+    public CircleImageView qrbutton;
+
 
 
     public Fragment_profile_animale() {
@@ -90,7 +92,7 @@ public class Fragment_profile_animale extends Fragment {
         statusTextView = getView().findViewById(R.id.status);
         casaluogoTextView  = getView().findViewById(R.id.luogo);
         profilo = getView().findViewById(R.id.profile_image);
-        qrbutton=getView().findViewById(R.id.qr_button);
+        qrbutton = getView().findViewById(R.id.qr_button);
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -189,7 +191,14 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
-        ImageButton shareButton = view.findViewById(R.id.share_button);
+        getView().findViewById(R.id.voidspace).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        CircleImageView shareButton = view.findViewById(R.id.share_button);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

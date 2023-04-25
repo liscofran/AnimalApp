@@ -85,9 +85,9 @@ public class Fragment_edit_animal_profile extends Fragment {
         mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
 
         // Collega i componenti dell'interfaccia con le variabili
-        EditText editName = getView().findViewById(R.id.nome_veterinario);
-        EditText editRazza = getView().findViewById(R.id.data_appuntamento);
-        EditText editSesso = getView().findViewById(R.id.orario_inizio);
+        EditText editName = getView().findViewById(R.id.animal_nome);
+        EditText editRazza = getView().findViewById(R.id.razza);
+        EditText editSesso = getView().findViewById(R.id.sesso);
         EditText editLuogo = getView().findViewById(R.id.luogo);
 
 
@@ -101,9 +101,9 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
-        mNomeTextView = getView().findViewById(R.id.nome_veterinario);
-        mrazzaTextView = getView().findViewById(R.id.data_appuntamento);
-        msessoTextView = getView().findViewById(R.id.orario_inizio);
+        mNomeTextView = getView().findViewById(R.id.animal_nome);
+        mrazzaTextView = getView().findViewById(R.id.razza);
+        msessoTextView = getView().findViewById(R.id.sesso);
         mluogoTextView = getView().findViewById(R.id.luogo);
 
         editImage = getView().findViewById(R.id.upload);

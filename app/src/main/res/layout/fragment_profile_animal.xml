@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             tools:ignore="MissingClass">
 
-
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="0dp"
@@ -29,15 +28,95 @@
                 app:layout_constraintTop_toTopOf="@id/guideline62" />
 
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/emptypet"
                 app:layout_constraintBottom_toTopOf="@+id/guideline7"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/barra1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="10dp"
+                android:src="@drawable/custom_button_v9"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8bis"
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
+                app:layout_constraintTop_toTopOf="@+id/guideline7bis" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/qr_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/editcustomqr"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toStartOf="@+id/finetasto1"
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
+                app:layout_constraintTop_toTopOf="@+id/guideline7bis"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/share_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/editcustomshare"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/barra1"
+                app:layout_constraintStart_toStartOf="@+id/inziotasto2"
+                app:layout_constraintTop_toTopOf="@+id/guideline7bis" />
+
+            <ImageView
+                android:id="@+id/barra2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/custom_button_v9"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                app:layout_constraintStart_toStartOf="@+id/guideline70"
+                app:layout_constraintTop_toTopOf="@+id/guideline7bis" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/modifica"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/editcustompen"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/finetasto3"
+                app:layout_constraintStart_toStartOf="@+id/guideline70"
+                app:layout_constraintTop_toTopOf="@+id/guideline7bis" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bluetooth_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_bluetooth_24"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/guideline14"
+                app:layout_constraintStart_toStartOf="@+id/inziotasto4"
+                app:layout_constraintTop_toTopOf="@+id/guideline7bis" />
 
             <TextView
                 android:id="@+id/animal_nome"
@@ -110,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
                 android:drawablePadding="10dp"
-                android:hint="Luogo di stallo"
+                android:hint="Luogo"
                 android:padding="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -160,11 +239,112 @@
                 app:layout_constraintGuide_percent="0.25" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline8"
+                android:id="@+id/guideline7bis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.20" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8bis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.40" />
+                app:layout_constraintGuide_percent="0.30" />
+
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/inizioaltezzatasti"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.20" />-->
+
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/finealtezzatasti"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.06" />-->
+
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/finetasto1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/inziotasto2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/finetasto3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/inziotasto4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/iniziotasto5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/finetasto5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/iniziotasto6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.45" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/finetasto6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.55" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/iniziotasto7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/finetasto7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.70" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline4"
@@ -201,63 +381,128 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.4" />
 
-            <ImageButton
-                android:id="@+id/bluetooth_button"
+<!--            <ImageButton-->
+<!--                android:id="@+id/bluetooth_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:padding="5dp"-->
+<!--                android:src="@drawable/ic_baseline_bluetooth_24"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/guideline669"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/modifica"/>-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/share_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/ic_share"-->
+<!--                android:padding="5dp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/guideline669"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/bluetooth_button" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/qr_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/black"-->
+<!--                android:src="@drawable/ic_baseline_qr_code_scanner_24"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/guideline669"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/salute_button"/>-->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/topbarra3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/ic_baseline_bluetooth_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline669"
-                app:layout_constraintRight_toLeftOf="@id/modifica"/>
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.87" />
 
-            <ImageButton
-                android:id="@+id/share_button"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/bottombarra3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_share"
-                android:padding="5dp"
-                app:layout_constraintTop_toBottomOf="@id/guideline669"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/bluetooth_button" />
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.92" />
 
-            <ImageButton
-                android:id="@+id/qr_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/black"
-                android:src="@drawable/ic_baseline_qr_code_scanner_24"
-                app:layout_constraintTop_toBottomOf="@id/guideline669"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/salute_button"/>
+            <ImageView
+                android:id="@+id/barra3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="10dp"
+                android:src="@drawable/custom_button_v9"
+                app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
+                app:layout_constraintEnd_toStartOf="@+id/finetasto7"
+                app:layout_constraintStart_toStartOf="@+id/iniziotasto5"
+                app:layout_constraintTop_toTopOf="@+id/topbarra3" />
 
-
-
-
-
-            <ImageButton
-                android:id="@+id/spese_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_baseline_shopping_cart_24"
-                android:padding="5dp"
-                app:layout_constraintTop_toBottomOf="@id/guideline669"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/share_button" />
-
-            <ImageButton
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/salute_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/round_healing_24"
-                android:padding="5dp"
-                app:layout_constraintTop_toBottomOf="@id/guideline669"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/spese_button" />
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/editcustomplaster"
+                app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
+                app:layout_constraintEnd_toStartOf="@+id/finetasto5"
+                app:layout_constraintStart_toStartOf="@+id/iniziotasto5"
+                app:layout_constraintTop_toTopOf="@+id/topbarra3" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/spese_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/editcustomcart"
+                app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
+                app:layout_constraintEnd_toEndOf="@+id/finetasto6"
+                app:layout_constraintStart_toStartOf="@+id/iniziotasto6"
+                app:layout_constraintTop_toTopOf="@+id/topbarra3" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/multimedia"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_attachment"
+                app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
+                app:layout_constraintEnd_toStartOf="@+id/finetasto7"
+                app:layout_constraintStart_toStartOf="@+id/iniziotasto7"
+                app:layout_constraintTop_toTopOf="@+id/topbarra3" />
+
+
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/spese_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/ic_baseline_shopping_cart_24"-->
+<!--                android:padding="5dp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/guideline669"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/share_button" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/salute_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/round_healing_24"-->
+<!--                android:padding="5dp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/guideline669"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/spese_button" />-->
 
             <ImageButton
                 android:id="@+id/back"
@@ -282,7 +527,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.30" />
+                app:layout_constraintGuide_percent="0.27" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline50"
@@ -292,7 +537,7 @@
                 app:layout_constraintGuide_percent="0.5" />
 
             <ImageButton
-                android:id="@+id/multimedia"
+                android:id="@+id/voidspace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -302,16 +547,16 @@
                 app:layout_constraintTop_toBottomOf="@id/guideline669"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <ImageButton
-                android:id="@+id/modifica"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/ic_edit"
-                app:layout_constraintRight_toLeftOf="@id/multimedia"
-                app:layout_constraintTop_toBottomOf="@id/guideline669"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+<!--            <ImageButton-->
+<!--                android:id="@+id/modifica"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:padding="5dp"-->
+<!--                android:src="@drawable/ic_edit"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/multimedia"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/guideline669"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline51"
