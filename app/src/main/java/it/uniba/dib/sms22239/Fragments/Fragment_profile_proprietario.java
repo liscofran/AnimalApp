@@ -28,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Fragments.Fragment_edit_profile_proprietario;
 import it.uniba.dib.sms22239.R;
 
@@ -38,7 +39,7 @@ public class Fragment_profile_proprietario extends Fragment
     private TextView mNomeTextView;
     private TextView mCognomeTextView;
     private TextView mcodfiscaleTextView;
-    private ImageView profilo;
+    private CircleImageView profilo;
 
     public Fragment_profile_proprietario() {
         // Required empty public constructor

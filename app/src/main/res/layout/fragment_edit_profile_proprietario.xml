@@ -24,15 +24,15 @@
             app:layout_constraintTop_toTopOf="@id/guideline17"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/emptyprofile"
-            app:layout_constraintBottom_toTopOf="@+id/guideline7"
+            app:layout_constraintBottom_toTopOf="@+id/guideline67"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/upload"
@@ -111,6 +111,13 @@
             app:layout_constraintTop_toBottomOf="@id/user_cognome" />
 
         <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -167,16 +174,19 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.4" />
 
-        <Button
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/save_profile_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/prova4"
-            android:text="Salva"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/circle_shape"
+            android:src="@drawable/editcustomsave"
+            android:text="Modifica"
+            app:layout_constraintBottom_toTopOf="@+id/b95"
+            app:layout_constraintEnd_toStartOf="@+id/b55"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"
             app:layout_constraintRight_toRightOf="@id/guideline4"
-            app:layout_constraintTop_toBottomOf="@id/user_codicefiscale" />
+            app:layout_constraintStart_toStartOf="@+id/b45"
+            app:layout_constraintTop_toTopOf="@+id/b90" />
 
         <Button
             android:id="@+id/back"
@@ -221,6 +231,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.30" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/b45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.42" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/b55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.58" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/b90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.87" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/b95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

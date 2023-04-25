@@ -62,7 +62,7 @@ public class Fragment_edit_profile_proprietario extends Fragment {
     private EditText editCognome;
     private TextView editcodfiscale;
 
-    private ImageView profilo;
+    private CircleImageView profilo;
     private CircleImageView editImage;
     Uri mImageUri;
     StorageTask mUploadTask;
@@ -118,7 +118,7 @@ public class Fragment_edit_profile_proprietario extends Fragment {
         });
 
 
-        Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
+        CircleImageView saveProfileButton = getView().findViewById(R.id.save_profile_button);
         Button backBtn = getView().findViewById(R.id.back);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
