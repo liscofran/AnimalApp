@@ -47,6 +47,7 @@ public class Fragment_edit_animal_profile extends Fragment {
     private EditText mrazzaTextView;
     private EditText msessoTextView;
 
+
     private EditText mluogoTextView;
     private Spinner spinner;
     private String selectedItem;

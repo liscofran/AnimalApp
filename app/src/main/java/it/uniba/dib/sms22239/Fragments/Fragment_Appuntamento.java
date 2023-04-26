@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,8 +31,6 @@ public class Fragment_Appuntamento extends Fragment {
     private TextView OraFineTextView;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabase1;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,16 @@ public class Fragment_Appuntamento extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        getView().findViewById(R.id.modifica).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame, new Fragment_edit_appuntamento());
+                fragmentTransaction.commit();
             }
         });
 

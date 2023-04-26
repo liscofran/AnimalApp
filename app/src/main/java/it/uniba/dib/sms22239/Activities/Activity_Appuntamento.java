@@ -19,9 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_Appuntamento;
-import it.uniba.dib.sms22239.Fragments.Fragment_Appuntamento_Senza_Modifica;
-import it.uniba.dib.sms22239.Fragments.Fragment_profile_animale;
-import it.uniba.dib.sms22239.Fragments.Fragment_profilo_animale_senza_modifica;
+import it.uniba.dib.sms22239.Fragments.Fragment_appuntamento_utente;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -126,7 +124,7 @@ public class Activity_Appuntamento extends AppCompatActivity {
                 else {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frame, new Fragment_Appuntamento_Senza_Modifica());
+                    fragmentTransaction.replace(R.id.frame, new Fragment_appuntamento_utente());
                     fragmentTransaction.commit();
                 }
             }
