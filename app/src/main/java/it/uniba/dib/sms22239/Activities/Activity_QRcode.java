@@ -91,16 +91,6 @@ public class Activity_QRcode extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST);
         }
 
-        Button StartButton = findViewById(R.id.start_button);
-        StartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(qrCodeResult==null)
-                {
-                    Toast.makeText(Activity_QRcode.this, "QRcode non scansionato", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     @Override
@@ -113,7 +103,10 @@ public class Activity_QRcode extends AppCompatActivity {
     {
         Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
         intent.putExtra("ANIMAL_CODE", qrCodeResult);
+        Toast.makeText(Activity_QRcode.this, "QRcode scansionato con successo", Toast.LENGTH_SHORT).show();
+
         startActivity(intent);
+
     }
 
     @Override
