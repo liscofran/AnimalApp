@@ -98,8 +98,8 @@ public class Activity_Animali extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
     }
+
 
     public boolean isChangingConfigurations() {
         return false;
