@@ -1,11 +1,16 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +35,6 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Animale;
-import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
@@ -47,7 +52,8 @@ public class Fragment_profile_animale extends Fragment {
     private ImageView profilo;
     public CircleImageView qrbutton;
     public CircleImageView appre;
-
+    private static final int REQUEST_ENABLE_BT = 1;
+    private static final int REQUEST_PERMISSION_BLUETOOTH = 2;
 
 
     public Fragment_profile_animale() {
@@ -184,7 +190,18 @@ public class Fragment_profile_animale extends Fragment {
         getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Bluetooth.class));
+                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                if (bluetoothAdapter == null) {
+                    Toast.makeText(getActivity(), "Bluetooth not supported on this device", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!bluetoothAdapter.isEnabled()) {
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                } else {
+                    // Bluetooth is already enabled, check for Bluetooth permissions
+                    checkBluetoothPermissions();
+                }
             }
         });
 
@@ -244,5 +261,43 @@ public class Fragment_profile_animale extends Fragment {
                 Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
                 startActivity(intent);            }
         });
+    }
+    private void checkBluetoothPermissions() {
+        // Check for Bluetooth permissions
+        if (ContextCompat.checkSelfPermission(getActivity(), "android.permission.BLUETOOTH") != PackageManager.PERMISSION_GRANTED) {
+            // Permission not granted, request it
+            ActivityCompat.requestPermissions(getActivity(), new String[]{"android.permission.BLUETOOTH"}, REQUEST_PERMISSION_BLUETOOTH);
+        } else {
+            // Permission already granted, proceed with Bluetooth usage
+            Toast.makeText(getActivity(), "Bluetooth ready to use", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_PERMISSION_BLUETOOTH) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed with Bluetooth usage
+                Toast.makeText(getActivity(), "Bluetooth permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                // Permission denied, show message or handle accordingly
+                Toast.makeText(getActivity(), "Bluetooth permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ENABLE_BT) {
+            if (resultCode == RESULT_OK) {
+                // Bluetooth enabled, check for Bluetooth permissions
+                checkBluetoothPermissions();
+            } else {
+                // Bluetooth not enabled, show message or handle accordingly
+                Toast.makeText(getActivity(), "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
