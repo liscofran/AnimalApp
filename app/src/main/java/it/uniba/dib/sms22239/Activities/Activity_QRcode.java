@@ -84,7 +84,7 @@ public class Activity_QRcode extends AppCompatActivity {
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
-        mCodeScanner.setDecodeCallback(result ->{ qrCodeResult = result.getText();runOnUiThread(() -> Toast.makeText(Activity_QRcode.this, qrCodeResult, Toast.LENGTH_SHORT).show());});
+        mCodeScanner.setDecodeCallback(result ->{ qrCodeResult = result.getText();runOnUiThread(this::animale);});
         scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -95,14 +95,10 @@ public class Activity_QRcode extends AppCompatActivity {
         StartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(qrCodeResult!=null)
+                if(qrCodeResult==null)
                 {
-                    Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
-                    intent.putExtra("ANIMAL_CODE", qrCodeResult);
-                    startActivity(intent);
+                    Toast.makeText(Activity_QRcode.this, "QRcode non scansionato", Toast.LENGTH_SHORT).show();
                 }
-                else
-                {Toast.makeText(Activity_QRcode.this, "QRcode non scansionato", Toast.LENGTH_SHORT).show();}
             }
         });
     }
@@ -111,6 +107,13 @@ public class Activity_QRcode extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mCodeScanner.startPreview();
+    }
+
+    public void animale()
+    {
+        Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
+        intent.putExtra("ANIMAL_CODE", qrCodeResult);
+        startActivity(intent);
     }
 
     @Override
