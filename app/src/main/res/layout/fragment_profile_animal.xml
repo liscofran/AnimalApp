@@ -288,7 +288,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.8" />
+                app:layout_constraintGuide_begin="329dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/inziotasto4"
@@ -448,8 +448,22 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/editcustomplaster"
                 app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
-                app:layout_constraintEnd_toStartOf="@+id/finetasto5"
-                app:layout_constraintStart_toStartOf="@+id/iniziotasto5"
+                app:layout_constraintEnd_toStartOf="@+id/iniziotasto5"
+                app:layout_constraintStart_toStartOf="@+id/finetasto1"
+                app:layout_constraintTop_toTopOf="@+id/topbarra3" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/appren_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_shape_buttons"
+                android:elevation="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_edit_calendar_24"
+                app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
+                app:layout_constraintEnd_toStartOf="@+id/inziotasto4"
+                app:layout_constraintStart_toStartOf="@+id/finetasto7"
                 app:layout_constraintTop_toTopOf="@+id/topbarra3" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -462,9 +476,11 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/editcustomcart"
                 app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
-                app:layout_constraintEnd_toEndOf="@+id/finetasto6"
-                app:layout_constraintStart_toStartOf="@+id/iniziotasto6"
-                app:layout_constraintTop_toTopOf="@+id/topbarra3" />
+                app:layout_constraintEnd_toStartOf="@+id/iniziotasto6"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/finetasto5"
+                app:layout_constraintTop_toTopOf="@+id/topbarra3"
+                app:layout_constraintVertical_bias="0.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/multimedia"
@@ -476,8 +492,8 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_attachment"
                 app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
-                app:layout_constraintEnd_toStartOf="@+id/finetasto7"
-                app:layout_constraintStart_toStartOf="@+id/iniziotasto7"
+                app:layout_constraintEnd_toStartOf="@+id/iniziotasto7"
+                app:layout_constraintStart_toStartOf="@+id/finetasto6"
                 app:layout_constraintTop_toTopOf="@+id/topbarra3" />
 
 

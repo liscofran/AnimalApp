@@ -10,21 +10,21 @@
         layout="@layout/toolbarveterinario"
         android:id="@+id/toolbar1" />
 
-
-
     <TextView
         android:id="@+id/Titolo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aldrich"
-        android:text="Calendario Prenotazioni"
+        android:text="Calendario"
         android:textColor="@color/black"
         android:textSize="25dp"
+        android:drawablePadding="10dp"
+        app:drawableLeftCompat="@drawable/ic_baseline_edit_calendar_24"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar1" />
+        app:layout_constraintTop_toBottomOf="@id/back"
+        app:layout_constraintBottom_toTopOf="@id/simpleCalendarView"/>
 
     <ImageButton
         android:id="@+id/back"
@@ -37,25 +37,28 @@
         app:layout_constraintLeft_toLeftOf="parent"
         />
 
-
     <CalendarView
         android:id="@+id/simpleCalendarView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Titolo" />
+        app:layout_constraintTop_toBottomOf="@id/guideline61"
+        app:layout_constraintBottom_toTopOf="@id/guideline62"/>
 
-    <Button
-        android:id="@+id/prenotazione"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline61"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nuovo Appuntamento"
-        android:background="@drawable/custom_button_v4"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/simpleCalendarView"
-     />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
 
 
 

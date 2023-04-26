@@ -10,7 +10,7 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbar1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/AreaVeterinario"
+        app:layout_constraintBottom_toTopOf="@id/Titolo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -27,7 +27,7 @@
 
 
     <TextView
-        android:id="@+id/AreaVeterinario"
+        android:id="@+id/Titolo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aldrich"
@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toTopOf="@id/oggettotext"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/provincia"
-        app:layout_constraintTop_toBottomOf="@id/AreaVeterinario"
+        app:layout_constraintTop_toBottomOf="@id/Titolo"
         app:layout_constraintVertical_bias="0.227" />
 
     <TextView
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toTopOf="@id/provinciatext"
         app:layout_constraintLeft_toRightOf="@id/oggetto"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AreaVeterinario"
+        app:layout_constraintTop_toBottomOf="@id/Titolo"
         app:layout_constraintVertical_bias="0.225" />
 
     <EditText

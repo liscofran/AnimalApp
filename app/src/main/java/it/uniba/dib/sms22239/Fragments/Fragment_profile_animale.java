@@ -28,12 +28,11 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import it.uniba.dib.sms22239.Activities.Activity_Calendario_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Bluetooth;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
-import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
-import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_profile_animale extends Fragment {
@@ -47,6 +46,7 @@ public class Fragment_profile_animale extends Fragment {
     private TextView casaluogoTextView;
     private ImageView profilo;
     public CircleImageView qrbutton;
+    public CircleImageView appre;
 
 
 
@@ -83,7 +83,6 @@ public class Fragment_profile_animale extends Fragment {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
 
-       // midproprietarioTextView = getView().findViewById(R.id.cognome_veterinario);
         mNomeTextView = getView().findViewById(R.id.animal_nome);
         mrazzaTextView =  getView().findViewById(R.id.razza);
         msessoTextView =  getView().findViewById(R.id.sesso);
@@ -93,6 +92,14 @@ public class Fragment_profile_animale extends Fragment {
         casaluogoTextView  = getView().findViewById(R.id.luogo);
         profilo = getView().findViewById(R.id.profile_image);
         qrbutton = getView().findViewById(R.id.qr_button);
+        appre = getView().findViewById(R.id.appren_button);
+
+        appre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Activity_Calendario_Animale.class);
+            }
+        });
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -206,7 +213,7 @@ public class Fragment_profile_animale extends Fragment {
                 String nome = mNomeTextView.getText().toString();
                 String razza = mrazzaTextView.getText().toString();
                 String sesso = msessoTextView.getText().toString();
-                String proprietario = midproprietarioTextView.getText().toString();
+                String proprietario = nomecognomeprop.getText().toString();
 
                 // Costruisci la stringa di testo per la condivisione
                 String shareText = "Nome: " + nome + "\n" +
