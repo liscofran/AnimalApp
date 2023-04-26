@@ -105,9 +105,6 @@
             android:name=".Activities.Activity_Multimedia"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Bluetooth"
-            android:exported="false" />
-        <activity
             android:name=".Activities.Activity_Animali"
             android:exported="false" />
         <activity
