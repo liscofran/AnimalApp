@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,12 +13,12 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
 
-    Button creasegnalazione;
-    Button creaofferta;
-    Button ricercasegnalazione;
-    Button ricercaofferta;
-    Button miesegnalazioni;
-    Button mieofferte;
+    TextView creasegnalazione;
+    TextView creaofferta;
+    TextView ricercasegnalazione;
+    TextView ricercaofferta;
+    TextView miesegnalazioni;
+    TextView mieofferte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

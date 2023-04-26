@@ -1,110 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/custom_button">
+    android:layout_height="match_parent">
 
     <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar1" />
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbar" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#6D233555" />
-
-    <ImageButton
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        android:background="@android:color/transparent"
-        android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar1"
-        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TextView
-        android:id="@+id/Titolo"
+        android:id="@+id/animali"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Animali"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline66"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/guideline63" />
+
+    <TextView
+        android:id="@+id/Mezzalunasx"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button_v11"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/guideline66" />
+
+    <TextView
+        android:id="@+id/Miei_animali"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v4"
+        android:drawableLeft="@drawable/baseline_pets_24"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Miei Animali"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/album_animali"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/Mezzalunasx" />
+
+    <TextView
+        android:id="@+id/album_animali"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v4"
+        android:drawableLeft="@drawable/baseline_photo_album_24"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Album animali"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/crea_animale"
+        app:layout_constraintEnd_toEndOf="@+id/Miei_animali"
+        app:layout_constraintStart_toStartOf="@id/Miei_animali"
+        app:layout_constraintTop_toBottomOf="@id/Miei_animali" />
+
+    <TextView
+        android:id="@+id/crea_animale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v4"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Crea Animale"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:drawableLeftCompat="@drawable/round_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/Mezzalunasx"
+        app:layout_constraintEnd_toEndOf="@+id/Miei_animali"
+        app:layout_constraintStart_toStartOf="@id/Miei_animali"
+        app:layout_constraintTop_toBottomOf="@id/album_animali" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Animali"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:textStyle="italic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
-        app:layout_constraintBottom_toTopOf="@id/view"/>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/Titolo"
-        app:layout_constraintBottom_toTopOf="@id/Calendario"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <Button
-        android:id="@+id/Calendario"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        android:drawableLeft="@drawable/ic_plus"
-        android:drawablePadding="10dp"
-        android:hint="Crea Animale"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/esami"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
-
-
-    <Button
-        android:id="@+id/esami"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/b45"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        android:drawableLeft="@drawable/ic_share"
-        android:drawablePadding="10dp"
-        android:hint="I miei Animali"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/diagnosi"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Calendario" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.42" />
 
-    <Button
-        android:id="@+id/diagnosi"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/b55"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        android:drawableLeft="@drawable/ic_search"
-        android:drawablePadding="10dp"
-        android:hint="Album Animali"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/esami"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.58" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/b95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
 
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
