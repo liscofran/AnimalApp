@@ -206,6 +206,7 @@ public class Fragment_profile_animale extends Fragment {
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra( "ANIMAL_CODE",idAnimal);
 
+
 // Crea l'intent chooser per scegliere l'app Bluetooth
                     Intent chooserIntent = Intent.createChooser(shareIntent, "Condividi con...");
                     chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
