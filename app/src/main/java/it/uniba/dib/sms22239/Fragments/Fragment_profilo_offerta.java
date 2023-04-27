@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Fragments.Fragment_edit_profile_proprietario;
@@ -34,6 +39,8 @@ public class Fragment_profilo_offerta extends Fragment
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
+
+    private static final int REQUEST_ENABLE_BT = 1;
     private TextView utente;
     private CircleImageView Immagineofferta;
     String id_utente;
@@ -42,7 +49,6 @@ public class Fragment_profilo_offerta extends Fragment
     public Fragment_profilo_offerta() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -73,6 +79,9 @@ public class Fragment_profilo_offerta extends Fragment
         mDatabase = database.getInstance().getReference().child("Offerte").child(idOfferta);
         mDatabase1 = database.getInstance().getReference().child("User");
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Offerte/" + idOfferta + ".jpg");
+
         mDescrizioneTextView = getView().findViewById(R.id.offerta_descrizione);
         mProvinciaTextView =  getView().findViewById(R.id.offerta_provincia);
         mOggettoTextView =  getView().findViewById(R.id.oggetto);
@@ -90,6 +99,17 @@ public class Fragment_profilo_offerta extends Fragment
         });
 
         // Recupera i dati dal database e popola le viste
+
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(Immagineofferta);
+                Immagineofferta = getView().findViewById(R.id.imageView2);
+            }
+        });
+
         mDatabase.addValueEventListener(new ValueEventListener()
         {
             @Override

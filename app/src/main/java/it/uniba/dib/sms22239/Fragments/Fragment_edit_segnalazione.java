@@ -220,7 +220,7 @@ public class Fragment_edit_segnalazione extends Fragment {
             Picasso.get().load(mImageUri).into(Immaginesegnalazione);
         }
     }
-    private void updateFile(DatabaseReference animal) {
+    private void updateFile(DatabaseReference mDatabase) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imagesRef = storageRef.child("Segnalazioni/" + idSegnalazione + ".jpg");
 

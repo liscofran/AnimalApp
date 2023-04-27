@@ -42,6 +42,7 @@ public class Fragment_profilo_segnalazione extends Fragment
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
+
     private static final int REQUEST_ENABLE_BT = 1;
     private TextView utente;
     private CircleImageView Immaginesegnalazione;
