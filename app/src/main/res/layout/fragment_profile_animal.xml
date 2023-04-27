@@ -434,8 +434,8 @@
                 android:elevation="10dp"
                 android:src="@drawable/custom_button_v9"
                 app:layout_constraintBottom_toBottomOf="@+id/bottombarra3"
-                app:layout_constraintEnd_toStartOf="@+id/finetasto7"
-                app:layout_constraintStart_toStartOf="@+id/iniziotasto5"
+                app:layout_constraintEnd_toStartOf="@+id/inziotasto4"
+                app:layout_constraintStart_toStartOf="@+id/finetasto1"
                 app:layout_constraintTop_toTopOf="@+id/topbarra3" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -558,7 +558,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
-                android:src="@drawable/ic_attachment"
+                android:src="@drawable/ic_home"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline669"
                 app:layout_constraintBottom_toBottomOf="parent"/>

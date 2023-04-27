@@ -34,7 +34,6 @@ public class Fragment_profilo_offerta extends Fragment
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
-
     private TextView utente;
     private CircleImageView Immagineofferta;
     String id_utente;
