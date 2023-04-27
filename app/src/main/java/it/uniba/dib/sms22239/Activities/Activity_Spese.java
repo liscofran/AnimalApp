@@ -3,7 +3,9 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_profile_animale;
@@ -50,7 +53,7 @@ public class Activity_Spese extends AppCompatActivity {
             public void onClick(View v) {
                 // Crea l'intento per aprire la pagina "activity_crea_oggetto_spesa"
                 Intent intent = new Intent(Activity_Spese.this, Activity_Crea_Oggetto_Spesa.class);
-                intent.putExtra("ANIMAL_CODE",idAnimal);
+                intent.putExtra("ANIMAL_CODE", idAnimal);
                 startActivity(intent);
 
             }
@@ -106,6 +109,7 @@ public class Activity_Spese extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchView = findViewById(R.id.searchView);
+
     }
 
     @Override
@@ -166,9 +170,13 @@ public class Activity_Spese extends AppCompatActivity {
     }
 
 
-
-
 }
+
+
+
+
+
+
 
 
 

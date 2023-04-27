@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -98,7 +99,29 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
                 }
             }
         });
+
+        holder.btn_elimina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Ottiene l'oggetto da eliminare
+                Oggetto_Spesa oggetto = getItem(position);
+                // Ottiene l'id dell'oggetto
+                String oggettoId = oggetto.id;
+                // Elimina l'oggetto dal database
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference mDatabase = database.getInstance().getReference().child("Oggetti").child(oggettoId);
+                mDatabase.removeValue();
+                // Aggiorna l'adapter
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, getItemCount());
+                // Visualizza un messaggio di conferma
+                Toast.makeText(view.getContext(), "Oggetto eliminato con successo", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
+
 
     @NonNull
     @Override
@@ -124,6 +147,7 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
 
             btn_minus = itemView.findViewById(R.id.minus_button);
             btn_plus = itemView.findViewById(R.id.plus_button);
+            btn_elimina = itemView.findViewById(R.id.elimina_button);
             material = itemView.findViewById(R.id.card4);
 
 

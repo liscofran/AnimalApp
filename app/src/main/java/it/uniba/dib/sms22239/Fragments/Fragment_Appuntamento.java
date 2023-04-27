@@ -1,10 +1,12 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
+import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -86,6 +90,16 @@ public class Fragment_Appuntamento extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame, new Fragment_edit_appuntamento());
                 fragmentTransaction.commit();
+            }
+        });
+
+        getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatabase1.removeValue(); // rimuovi la tupla dal database Firebase
+                Toast.makeText(getActivity(), "Appuntamento eliminato con successo!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
+                startActivity(intent);
             }
         });
 
