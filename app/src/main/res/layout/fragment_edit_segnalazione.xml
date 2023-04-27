@@ -29,6 +29,24 @@
                 app:layout_constraintTop_toTopOf="@+id/top"
                 />
 
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/custom_button_v4"
+                android:elevation="11dp"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:drawableLeft="@drawable/ic_edit"
+                android:paddingLeft="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Modifica foto"
+                app:layout_constraintBottom_toTopOf="@+id/guideline64"
+                app:layout_constraintEnd_toStartOf="@+id/guideline55"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toTopOf="@+id/guideline66" />
+
             <ImageView
                 android:id="@+id/imageVie3"
                 android:layout_width="0dp"
