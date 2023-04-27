@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +38,7 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
 
     private CalendarView calendarView;
-    private Button salvaButton;
+    private ImageButton salvaButton;
     String idVeterinario;
     private String idAppuntamento;
     private FirebaseFirestore db;
@@ -142,6 +143,7 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
 
                                 Appuntamento appuntamento = new Appuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, idAppuntamento);
                                 appuntamento.writeNewAppuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, appuntamento);
+                                Toast.makeText(Activity_Nuovo_Appuntamento.this, "Appuntamento registrato con successo!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Prenotazioni_Veterinario.class);
                                 startActivity(intent);
                             }

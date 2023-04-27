@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <ScrollView
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
 
     <TextView
         android:id="@+id/dat"
@@ -23,17 +22,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/simpleCalendarView"/>
 
 
     <CalendarView
         android:id="@+id/simpleCalendarView"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dat" />
+        app:layout_constraintTop_toBottomOf="@id/dat"
+        app:layout_constraintBottom_toTopOf="@id/start"/>
 
     <TextView
         android:id="@+id/start"
@@ -46,7 +46,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/save" />
+        app:layout_constraintTop_toBottomOf="@id/simpleCalendarView"
+        app:layout_constraintBottom_toTopOf="@id/time_start"/>
 
 
 
@@ -57,7 +58,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start" />
+        app:layout_constraintTop_toBottomOf="@id/start"
+        app:layout_constraintBottom_toTopOf="@id/end"/>
 
     <TextView
         android:id="@+id/end"
@@ -73,7 +75,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         app:layout_constraintTop_toBottomOf="@id/time_start" />
 
 
-
     <TimePicker
         android:id="@+id/time_end"
         android:layout_width="wrap_content"
@@ -81,7 +82,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end" />
+        app:layout_constraintTop_toBottomOf="@id/end"
+        app:layout_constraintBottom_toTopOf="@id/save"/>
 
 
     <ImageButton
@@ -91,10 +93,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:background="@android:color/transparent"
         android:padding="5dp"
         android:src="@drawable/ic_baseline_save_24"
-        app:layout_constraintBottom_toTopOf="@id/start"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/simpleCalendarView"
+        app:layout_constraintTop_toBottomOf="@id/time_end"
        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

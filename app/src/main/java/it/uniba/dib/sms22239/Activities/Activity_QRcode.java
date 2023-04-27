@@ -13,6 +13,7 @@ import android.widget.Toast;
 import android.Manifest;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.budiyev.android.codescanner.CodeScanner;
@@ -22,7 +23,7 @@ import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_QRcode extends AppCompatActivity {
-    RelativeLayout relativeLayout;
+    ConstraintLayout ConstraintLayout;
     private CodeScanner mCodeScanner;
     private static final int CAMERA_PERMISSION_REQUEST = 100;
     private String qrCodeResult;
@@ -33,7 +34,7 @@ public class Activity_QRcode extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode);
 
         //toolbar
-        relativeLayout= findViewById(R.id.home_relative_layout); //importante per il tema
+        ConstraintLayout  = findViewById(R.id.home_constraint_layout); //importante per il tema
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -120,10 +121,10 @@ public class Activity_QRcode extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean chk_night = sp.getBoolean("NIGHT", false);
         if (chk_night) {
-            relativeLayout.setBackgroundColor(Color.parseColor("#222222"));
+            ConstraintLayout.setBackgroundColor(Color.parseColor("#222222"));
             // Tv.setTextColor(Color.parseColor("#ffffff"));
         } else {
-            relativeLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            ConstraintLayout.setBackgroundColor(Color.parseColor("#ffffff"));
             //Tv.setTextColor(Color.parseColor("#000000"));
         }
 

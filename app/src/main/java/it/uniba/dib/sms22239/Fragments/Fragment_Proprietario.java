@@ -43,6 +43,7 @@ public class Fragment_Proprietario extends Fragment
         View toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar((Toolbar) toolbar);
 
+
         getView().findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

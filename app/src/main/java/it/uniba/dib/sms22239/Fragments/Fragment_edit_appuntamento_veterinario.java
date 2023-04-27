@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
 
@@ -17,26 +15,19 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import it.uniba.dib.sms22239.Activities.Activity_Animali;
-import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
-import it.uniba.dib.sms22239.Activities.Activity_Nuovo_Appuntamento;
 import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
-import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.R;
 
 
 
-public class Fragment_edit_appuntamento extends Fragment {
+public class Fragment_edit_appuntamento_veterinario extends Fragment {
 
     private CalendarView DataEditText;
     private DatabaseReference mDatabase;

@@ -43,7 +43,7 @@
             android:id="@+id/Testo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button_v3"
+            android:background="@drawable/custom_button_v5"
             android:drawableLeft="@drawable/ic_plus"
             android:drawablePadding="10dp"
             android:hint="Inserisci Descrizione.."
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.194" />
+            app:layout_constraintGuide_percent="0.17" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline68"

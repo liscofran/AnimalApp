@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
 import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
 import it.uniba.dib.sms22239.R;
 
@@ -88,7 +87,7 @@ public class Fragment_Appuntamento extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame, new Fragment_edit_appuntamento());
+                fragmentTransaction.replace(R.id.frame, new Fragment_edit_appuntamento_veterinario());
                 fragmentTransaction.commit();
             }
         });
