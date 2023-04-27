@@ -192,16 +192,28 @@ public class Fragment_profile_animale extends Fragment {
             public void onClick(View view) {
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (bluetoothAdapter == null) {
-                    Toast.makeText(getActivity(), "Bluetooth not supported on this device", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                checkBluetoothPermissions();
                 if (!bluetoothAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                } else {
-                    // Bluetooth is already enabled, check for Bluetooth permissions
-                    checkBluetoothPermissions();
+                } if(bluetoothAdapter.isEnabled()){
+                    // Crea l'intent da condividere
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra( "ANIMAL_CODE",idAnimal);
+
+// Crea l'intent chooser per scegliere l'app Bluetooth
+                    Intent chooserIntent = Intent.createChooser(shareIntent, "Condividi con...");
+                    chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+// Avvia l'activity chooser
+                    startActivity(chooserIntent);
                 }
+
             }
         });
 
@@ -269,7 +281,7 @@ public class Fragment_profile_animale extends Fragment {
             ActivityCompat.requestPermissions(getActivity(), new String[]{"android.permission.BLUETOOTH"}, REQUEST_PERMISSION_BLUETOOTH);
         } else {
             // Permission already granted, proceed with Bluetooth usage
-            Toast.makeText(getActivity(), "Bluetooth ready to use", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Bluetooth pronto all'uso", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
