@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Fragments.Fragment_edit_profile_proprietario;
@@ -38,7 +42,7 @@ public class Fragment_profilo_segnalazione extends Fragment
     private TextView mDescrizioneTextView;
     private TextView mProvinciaTextView;
     private TextView mOggettoTextView;
-
+    private static final int REQUEST_ENABLE_BT = 1;
     private TextView utente;
     private CircleImageView Immaginesegnalazione;
     String id_utente;
@@ -83,6 +87,8 @@ public class Fragment_profilo_segnalazione extends Fragment
         mDatabase = database.getInstance().getReference().child("Segnalazioni").child(idSegnalazione);
         mDatabase1 = database.getInstance().getReference().child("User");
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imagesRef = storageRef.child("Segnalazioni/" + idSegnalazione + ".jpg");
 
         mDescrizioneTextView = getView().findViewById(R.id.segnalazione_descrizione);
         mProvinciaTextView =  getView().findViewById(R.id.segnalazione_provincia);
@@ -100,6 +106,16 @@ public class Fragment_profilo_segnalazione extends Fragment
             @Override
             public void onClick(View view) {
                 getActivity().onBackPressed();
+            }
+        });
+
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageUrl = uri.toString();
+                // Usa Picasso per caricare l'immagine nell'ImageView
+                Picasso.get().load(imageUrl).into(Immaginesegnalazione);
+                Immaginesegnalazione = getView().findViewById(R.id.imageView2);
             }
         });
 
