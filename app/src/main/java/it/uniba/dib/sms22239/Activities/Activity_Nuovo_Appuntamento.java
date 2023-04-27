@@ -142,7 +142,7 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
 
                                 Appuntamento appuntamento = new Appuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, idAppuntamento);
                                 appuntamento.writeNewAppuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, appuntamento);
-                                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Nuovo_Appuntamento.class);
+                                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Prenotazioni_Veterinario.class);
                                 startActivity(intent);
                             }
                         });
