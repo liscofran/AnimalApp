@@ -35,7 +35,7 @@ public class Activity_QRGenerate extends AppCompatActivity
         setContentView(R.layout.activity_qrgenerate);
 
         imageView = findViewById(R.id.qr_code_image_view);
-        backbutton.findViewById(R.id.back);
+        backbutton = findViewById(R.id.back);
 
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
