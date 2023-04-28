@@ -10,6 +10,8 @@ public class Animale
     public String nome;
     public String razza;
     public String sesso;
+    public String patologie;
+    public String preferenzecibo;
     public String data;
     public String Id_utente;
     public String immagine;
@@ -21,11 +23,13 @@ public class Animale
 
     }
 
-    public void writeNewAnimal(int id, Animale ani, String nome, String razza, String Id_utente, String sesso, String data,String prop)
+    public void writeNewAnimal(int id, Animale ani, String nome, String razza,String patologie,String preferenzecibo, String Id_utente, String sesso, String data,String prop)
     {
         ani.nome = nome;
         ani.razza = razza;
         ani.sesso = sesso;
+        ani.patologie = patologie;
+        ani.preferenzecibo = preferenzecibo;
         ani.Id_utente = Id_utente;
         ani.data = data;
         ani.prop = prop;

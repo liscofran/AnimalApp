@@ -62,6 +62,22 @@
                 android:hint="Razza"
                 android:inputType="text" />
 
+            <EditText
+                android:id="@+id/register_animal_patologie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Patologie"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/register_animal_prefcibo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Preferenze cibo"
+                android:inputType="text" />
+
             <TextView
                 android:id="@+id/register_animal_sex_label"
                 android:layout_width="match_parent"

@@ -47,7 +47,7 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Registrazione_Animale extends AppCompatActivity
 {
 
-    private EditText inputNome, inputRazza, inputData;
+    private EditText inputNome, inputRazza, inputData,inputpatologie,inputprefcibo;
     private String sesso, selectedItem;
     private static final int PICK_IMAGE_REQUEST = 1;
     protected Button mButtonUpload, mButtonChooseImage, generaAnimaleButton;
@@ -170,6 +170,8 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
 
         inputNome = findViewById(R.id.register_animal_name);
         inputRazza = findViewById(R.id.register_animal_species);
+        inputpatologie = findViewById(R.id.register_animal_patologie);
+        inputprefcibo = findViewById(R.id.register_animal_prefcibo);
         inputData = findViewById(R.id.register_animal_birthdate);
 
         //Bottone per la creazione e registrazione nel db dell'animale
@@ -183,6 +185,8 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                 Animale ani = new Animale();
                 String nome = inputNome.getText().toString();
                 String razza = inputRazza.getText().toString();
+                String patologie = inputpatologie.getText().toString();
+                String preferenzecibo = inputprefcibo.getText().toString();
                 String datatmp = inputData.getText().toString();
                 String data = "";
                 String prop = selectedItem;
@@ -211,7 +215,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                     uploadFile(ani,tmp);
                 }
 
-                ani.writeNewAnimal(tmp, ani, nome, razza, currentUser.getUid(), sesso, data, prop);
+                ani.writeNewAnimal(tmp, ani, nome, razza,patologie,preferenzecibo, currentUser.getUid(), sesso, data, prop);
                 Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Animal_Profile.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);
