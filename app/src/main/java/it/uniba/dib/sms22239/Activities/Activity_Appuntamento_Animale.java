@@ -3,8 +3,12 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +29,8 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
     private TextView OraFineTextView;
     private TextView CognomeVeterinarioTextView;
     private String id_veterinario;
+    private Spinner spinner;
+    private String selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +40,41 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
         String idAppuntamento = getIntent().getStringExtra("id_appuntamento");
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child(idAppuntamento);
 
-
         DataTextView = findViewById(R.id.date);
         OraInizioTextView = findViewById(R.id.time_start);
         OraFineTextView = findViewById(R.id.time_end);
+        CognomeVeterinarioTextView = findViewById(R.id.cognome_veterinario);
+
+        //Spinner per la scelta dell'appuntamento
+        spinner = findViewById(R.id.spinner);
+        spinner.setPrompt("");
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.appuntamento_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                selectedItem = (String) parent.getItemAtPosition(position);
+                switch (selectedItem)
+                {
+                    case "Esame":
+                        //antonio fai quello che cazzo devi fare
+                        break;
+                    case "Diagnosi":
+                        //antonio fai quello che cazzo devi fare pt.2
+                        break;
+                    default:
+                        onNothingSelected(parent);
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(Activity_Appuntamento_Animale.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase1.addValueEventListener(new ValueEventListener() {
@@ -49,13 +86,10 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
                 String orario_fine = dataSnapshot.child("orario_fine").getValue(String.class);
                 id_veterinario = dataSnapshot.child("id_veterinario").getValue(String.class);
 
-
-
                 //set delle variabili recuperate al layout
                 DataTextView .setText("Data Appuntamento: " + data);
                 OraInizioTextView.setText("Orario Inizio:  " + orario_inizio);
                 OraFineTextView.setText("Orario Fine: " + orario_fine);
-
             }
 
             @Override
