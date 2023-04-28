@@ -27,9 +27,8 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Animal_Profile extends AppCompatActivity
 {
-    private FirebaseAuth mAuth;
-    String id_utente;
-    String id_utente_animale;
+    protected String id_utente;
+    protected String id_utente_animale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +36,12 @@ public class Activity_Animal_Profile extends AppCompatActivity
         setContentView(R.layout.activity_profile_animal);
         Load_setting();
 
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        DatabaseReference mDatabase;
         String idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
-        DatabaseReference mDatabase1;
 
-        mDatabase = database.getInstance().getReference().child("Animale").child(idAnimale);
-        mDatabase1 = database.getInstance().getReference().child("User").child(user.getUid());
+        //Reference al Database
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
+        DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -58,7 +53,8 @@ public class Activity_Animal_Profile extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
@@ -70,27 +66,30 @@ public class Activity_Animal_Profile extends AppCompatActivity
             {
                 //recupero dati e assegnazione alle variabili
                 id_utente = dataSnapshot.child(user.getUid()).getKey();
-                if(id_utente_animale.equals(id_utente)){
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                //Se l'utente che sta accedendo al profilo dell'animale è il proprietario permette di accedere
+                //a modifiche e dati ulteriori
+                if(id_utente_animale.equals(id_utente))
+                {
                     fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
                     fragmentTransaction.commit();
                 }
-                else {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                else
+                {
                     fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_animale_senza_modifica());
                     fragmentTransaction.commit();
                 }
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
 
-
-
+        //Toolbar
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,11 +138,14 @@ public class Activity_Animal_Profile extends AppCompatActivity
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
+        if ("1".equals(orien))
+        {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
+        } else if ("2".equals(orien))
+        {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orien)) {
+        } else if ("3".equals(orien))
+        {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
     }

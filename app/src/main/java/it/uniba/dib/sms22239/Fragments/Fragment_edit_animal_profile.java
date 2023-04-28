@@ -40,28 +40,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.R;
 
-
 public class Fragment_edit_animal_profile extends Fragment {
 
-    private EditText mNomeTextView;
-    private EditText mrazzaTextView;
-    private EditText msessoTextView;
-
-
-    private EditText mluogoTextView;
-    private Spinner spinner;
-    private String selectedItem;
-    private CircleImageView editImage;
-
+    private EditText mNomeTextView, mrazzaTextView, msessoTextView, mluogoTextView;
+    private String selectedItem, idAnimal;
     private ImageView profilo;
-    private String idAnimal;
-    Uri mImageUri;
-    StorageTask mUploadTask;
-
+    protected Uri mImageUri;
+    protected ImageButton saveProfileButton, backBtn;
+    protected CircleImageView editImage;
+    protected StorageTask mUploadTask;
     private static final int PICK_IMAGE_REQUEST = 1;
+    protected Spinner spinner;
+    protected StorageReference imagesRef;
 
-    public Fragment_edit_animal_profile() {
-        // Required empty public constructor
+    public Fragment_edit_animal_profile()
+    {
+
     }
 
     @Override
@@ -80,20 +74,27 @@ public class Fragment_edit_animal_profile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference mDatabase;
+
+        //Collegamento al Database
         idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
-        mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
 
         // Collega i componenti dell'interfaccia con le variabili
-        EditText editName = getView().findViewById(R.id.animal_nome);
-        EditText editRazza = getView().findViewById(R.id.razza);
-        EditText editSesso = getView().findViewById(R.id.sesso);
-        EditText editLuogo = getView().findViewById(R.id.luogo);
+        mNomeTextView = getView().findViewById(R.id.animal_nome);
+        mrazzaTextView = getView().findViewById(R.id.razza);
+        msessoTextView = getView().findViewById(R.id.sesso);
+        mluogoTextView = getView().findViewById(R.id.luogo);
 
-
-        ImageButton saveProfileButton = getView().findViewById(R.id.salva);
-        ImageButton backBtn = getView().findViewById(R.id.back);
+        saveProfileButton = getView().findViewById(R.id.salva);
+        editImage = getView().findViewById(R.id.upload);
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+        profilo = getView().findViewById(R.id.profile_image);
+        backBtn = getView().findViewById(R.id.back);
         backBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -102,25 +103,18 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
-        mNomeTextView = getView().findViewById(R.id.animal_nome);
-        mrazzaTextView = getView().findViewById(R.id.razza);
-        msessoTextView = getView().findViewById(R.id.sesso);
-        mluogoTextView = getView().findViewById(R.id.luogo);
-
-        editImage = getView().findViewById(R.id.upload);
-        profilo = getView().findViewById(R.id.profile_image);
-
-        //codice per lo spinner
+        //Spinner
         spinner = getView().findViewById(R.id.spinner);
         spinner.setPrompt("");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.proprieta_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 selectedItem = (String) parent.getItemAtPosition(position);
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -128,9 +122,8 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
-        //codice per lo storage
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
+        //Storage
+        imagesRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimal).child("ImmagineProfilo.jpg");
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -140,8 +133,6 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
-
-
         // Recupera i dati dal database e popola i campi
         mDatabase.addValueEventListener(new ValueEventListener()
         {
@@ -149,11 +140,10 @@ public class Fragment_edit_animal_profile extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 //recupero dati e assegnazione alle variabili
-                String proprietario = dataSnapshot.child("Id_utente").getValue(String.class);
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
-                String status = dataSnapshot.child("status").getValue(String.class);
+                //String status = dataSnapshot.child("status").getValue(String.class);
                 String luogo = dataSnapshot.child("luogo").getValue(String.class);
 
                 //set delle variabili recuperate al layout
@@ -161,19 +151,11 @@ public class Fragment_edit_animal_profile extends Fragment {
                 mrazzaTextView.setText(razza);
                 msessoTextView.setText(sesso);
                 mluogoTextView.setText(luogo);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        editImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFileChooser();
             }
         });
 
@@ -183,13 +165,13 @@ public class Fragment_edit_animal_profile extends Fragment {
             public void onClick(View v)
             {
                 // Salva i dati del profilo e torna all'activity precedente
-                DatabaseReference mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
 
                 //prende i dati inseriti in input e gli assegna alle variabili temporanee
-                String newName = editName.getText().toString();
-                String newRazza = editRazza.getText().toString();
-                String newSesso = editSesso.getText().toString();
-                String newLuogo = editLuogo.getText().toString();
+                String newName = mNomeTextView.getText().toString();
+                String newRazza = mrazzaTextView.getText().toString();
+                String newSesso = msessoTextView.getText().toString();
+                String newLuogo = mluogoTextView.getText().toString();
 
                 //modifica e salva i dati anche sul database
                 mDatabase.child("nome").setValue(newName);
@@ -198,14 +180,12 @@ public class Fragment_edit_animal_profile extends Fragment {
                 mDatabase.child("luogo").setValue(newLuogo);
                 mDatabase.child("prop").setValue(selectedItem);
 
-                updateFile(mDatabase);
+                updateFile();
 
                 Intent intent = new Intent(getActivity(), Activity_Animali.class);
                 startActivity(intent);
             }
         });
-
-
     }
 
     private void openFileChooser() {
@@ -216,7 +196,8 @@ public class Fragment_edit_animal_profile extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
@@ -226,17 +207,13 @@ public class Fragment_edit_animal_profile extends Fragment {
             Picasso.get().load(mImageUri).into(profilo);
         }
     }
-    private void updateFile(DatabaseReference animal) {
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
 
+    private void updateFile()
+    {
         // Se l'utente ha selezionato un'immagine, caricala nello storage
         if (mImageUri != null) {
-            // Crea un nome di file univoco per l'immagine
-            String fileName = idAnimal + ".jpg";
 
             // Carica l'immagine nell'URI specificato
-            imagesRef = storageRef.child("Animali/" + fileName);
             mUploadTask = imagesRef.putFile(mImageUri);
 
             // Aggiorna l'URL dell'immagine nel database
@@ -264,5 +241,4 @@ public class Fragment_edit_animal_profile extends Fragment {
             });
         }
     }
-
 }

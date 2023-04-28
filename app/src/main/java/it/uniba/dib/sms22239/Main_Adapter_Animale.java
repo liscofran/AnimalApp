@@ -22,40 +22,41 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Models.Animale;
 
-public class Main_Adapter extends FirebaseRecyclerAdapter<Animale, Main_Adapter.myViewHolder> {
-
+public class Main_Adapter_Animale extends FirebaseRecyclerAdapter<Animale, Main_Adapter_Animale.myViewHolder>
+{
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    private OnItemClickListener listener;
+    private final OnItemClickListener listener;
 
-    public Main_Adapter(@NonNull FirebaseRecyclerOptions<Animale> options, OnItemClickListener listener) {
+    public Main_Adapter_Animale(@NonNull FirebaseRecyclerOptions<Animale> options, OnItemClickListener listener)
+    {
         super(options);
         this.listener = listener;
     }
 
+    @NonNull
     @Override
-    public DatabaseReference getRef(int position) {
+    public DatabaseReference getRef(int position)
+    {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
-
         Query query = super.getRef(position)
-                .orderByChild("Id_utente")
+                .orderByChild("nome")
                 .equalTo(mUser.getUid());
-
         return query.getRef();
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Animale model) {
-
+    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Animale model)
+    {
         holder.name.setText(model.nome);
         holder.razza.setText(model.razza);
 
-        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = mStorageRef.child("Animali/" + model.immagine);
-        imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("Animali").child(model.Id).child("ImmagineProfilo.jpg");
+        imageRef.getDownloadUrl().addOnSuccessListener(uri ->
+        {
             String url = uri.toString();
             Picasso.get().load(url)
                     .into(holder.imageView, new Callback() {
@@ -70,7 +71,6 @@ public class Main_Adapter extends FirebaseRecyclerAdapter<Animale, Main_Adapter.
                         }
                     });
         });
-
 
         holder.material.setOnClickListener(new View.OnClickListener() {
             @Override

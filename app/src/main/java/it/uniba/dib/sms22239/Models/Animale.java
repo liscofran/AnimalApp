@@ -16,11 +16,12 @@ public class Animale
     public String prop;
     public String descprop;
 
-    public Animale() {
+    public Animale()
+    {
 
     }
 
-    public void writeNewAnimal(Animale ani, String nome, String razza, String Id_utente, String sesso, String data,String prop)
+    public void writeNewAnimal(int id, Animale ani, String nome, String razza, String Id_utente, String sesso, String data,String prop)
     {
         ani.nome = nome;
         ani.razza = razza;
@@ -30,12 +31,8 @@ public class Animale
         ani.prop = prop;
         ani.descprop = "Da inserire...";
 
-        long seed = System.currentTimeMillis(); // ottenere il tempo corrente
-        Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
-        int tmp = Math.abs(random.nextInt()); // generare un numero casuale
-
-        ani.Id = Integer.toString(tmp);
+        ani.Id = Integer.toString(id);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Animale").child(Integer.toString(tmp)).setValue(ani);
+        mDatabase.child("Animale").child(Integer.toString(id)).setValue(ani);
     }
 }

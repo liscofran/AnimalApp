@@ -1,6 +1,7 @@
 package it.uniba.dib.sms22239.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.view.View;
@@ -26,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
+import android.graphics.Color;
 
 import it.uniba.dib.sms22239.Fragments.AppuntamentoDialogFragment;
 import it.uniba.dib.sms22239.Models.Appuntamento;
@@ -34,14 +36,12 @@ import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 
-
-
 public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
 
     private CalendarView calendarView;
     private Button salvaButton;
     private DatabaseReference mDatabase;
-    private ArrayList<Appuntamento> appuntamenti;
+    private ArrayList<Appuntamento> appuntamenti= new ArrayList<>();
 
 
     @Override
@@ -113,10 +113,18 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                appuntamenti = new ArrayList<>();
+                //appuntamenti = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
                     appuntamenti.add(appuntamento);
+                }
+
+                // Colora le date che hanno almeno un appuntamento
+                for (Appuntamento appuntamento : appuntamenti) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(new Date(appuntamento.getData()));
+                    long timeInMillis = calendar.getTimeInMillis();
+                    calendarView.setDateTextAppearance(R.style.MyCalendarViewStyle);
                 }
             }
 
@@ -124,17 +132,16 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Activity_Prenotazioni_Veterinario.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
+
         });
 
-        /*
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Intent intent = new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Visualizza_Calendario.class);
-                startActivity(intent);
-            }
-        });*/
+       /* // Colora le date che hanno almeno una prenotazione
+        for (Prenotazione prenotazione : prenotazioni) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(prenotazione.getData());
+            long timeInMillis = calendar.getTimeInMillis();
+            calendarView.setBackgroundColor(Color.GREEN);
+        }*/
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -155,7 +162,27 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
             }
         });
 
+        /*
+        // Imposta la risorsa di stile per le date contenenti un appuntamento
+        int appuntamentoStyle = R.style.Calendar_Appuntamento;
+        calendarView.setDateTextAppearance(appuntamentoStyle);
+         */
 
+        /*
+        // Imposta la risorsa di stile per le date contenenti una prenotazione
+        int prenotazioneStyle = R.style.Calendar_Prenotazione;
+        calendarView.setDateTextAppearance(prenotazioneStyle);
+         */
+
+        /*
+        <style name="Calendar_Appuntamento">
+        <item name="android:textColor">@color/colorAppuntamento</item>
+        </style>
+
+        <style name="Calendar_Prenotazione">
+        <item name="android:textColor">@color/colorPrenotazione</item>
+        </style>
+         */
     }
 }
 

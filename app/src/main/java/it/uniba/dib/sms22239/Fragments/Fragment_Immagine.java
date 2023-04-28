@@ -97,8 +97,8 @@ public class Fragment_Immagine extends Fragment
 
     public void ImageUpload()
     {
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imagesRef = storageRef.child("Images/" + Text.getText().toString());
+        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        StorageReference imagesRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Images/" + Text.getText().toString());
         imagesRef.putFile(mImageUri);
     }
 }

@@ -40,21 +40,14 @@ import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.R;
 
-public class Fragment_profile_animale extends Fragment {
-    private TextView mNomeTextView;
-    private TextView mrazzaTextView;
-    private TextView msessoTextView;
-    private String idUtente;
-    private TextView midproprietarioTextView;
-    private TextView nomecognomeprop;
-    private TextView statusTextView;
-    private TextView casaluogoTextView;
+public class Fragment_profile_animale extends Fragment
+{
+    private TextView mNomeTextView, mrazzaTextView, msessoTextView, nomecognomeprop, statusTextView, casaluogoTextView;
+    private String idUtente,idAnimal;
     private ImageView profilo;
-    public CircleImageView qrbutton;
-    public CircleImageView appre;
-    private static final int REQUEST_ENABLE_BT = 1;
-    private static final int REQUEST_PERMISSION_BLUETOOTH = 2;
-
+    public CircleImageView qrbutton, appre, shareButton;
+    private static final int REQUEST_ENABLE_BT = 1, REQUEST_PERMISSION_BLUETOOTH = 2;
+    protected ImageButton backBtn;
 
     public Fragment_profile_animale() {
 
@@ -77,35 +70,15 @@ public class Fragment_profile_animale extends Fragment {
     {
         super.onViewCreated(view, savedInstanceState);
 
-        String idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference mDatabase;
-        DatabaseReference mDatabase1;
+        idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
 
         // Recupera il riferimento al database
-        mDatabase = database.getInstance().getReference().child("Animale").child(idAnimal);
-        mDatabase1 = database.getInstance().getReference().child("User");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
+        DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User");
 
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imagesRef = storageRef.child("Animali/" + idAnimal + ".jpg");
+        //Recupera il riferimento allo Storage
+        StorageReference imagesRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimal).child("ImmagineProfilo.jpg");
 
-        mNomeTextView = getView().findViewById(R.id.animal_nome);
-        mrazzaTextView =  getView().findViewById(R.id.razza);
-        msessoTextView =  getView().findViewById(R.id.sesso);
-        ImageButton backBtn = getView().findViewById(R.id.back);
-        nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
-        statusTextView = getView().findViewById(R.id.status);
-        casaluogoTextView  = getView().findViewById(R.id.luogo);
-        profilo = getView().findViewById(R.id.profile_image);
-        qrbutton = getView().findViewById(R.id.qr_button);
-        appre = getView().findViewById(R.id.appren_button);
-
-        appre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Activity_Calendario_Animale.class);
-            }
-        });
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -115,23 +88,17 @@ public class Fragment_profile_animale extends Fragment {
                 profilo = getView().findViewById(R.id.profile_image);
             }
         });
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                getActivity().onBackPressed();
-            }
-        });
-        qrbutton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(getActivity(), Activity_QRGenerate.class);
-                intent.putExtra("ANIMAL_CODE",idAnimal);
-                startActivity(intent);
-            }
-        });
+
+        mNomeTextView = getView().findViewById(R.id.animal_nome);
+        mrazzaTextView =  getView().findViewById(R.id.razza);
+        msessoTextView =  getView().findViewById(R.id.sesso);
+        backBtn = getView().findViewById(R.id.back);
+        nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
+        statusTextView = getView().findViewById(R.id.status);
+        casaluogoTextView  = getView().findViewById(R.id.luogo);
+        profilo = getView().findViewById(R.id.profile_image);
+        qrbutton = getView().findViewById(R.id.qr_button);
+        appre = getView().findViewById(R.id.appren_button);
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
@@ -159,7 +126,8 @@ public class Fragment_profile_animale extends Fragment {
 
             }
         });
-        // Recupera i dati dal database 2 e popola le viste
+
+        // Recupera i dati dal secondo riferimento al database e popola le viste
         mDatabase1.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -176,6 +144,34 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
+        //Bottoni dell'animale
+        appre.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Activity_Calendario_Animale.class);
+                startActivity(intent);
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        qrbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getActivity(), Activity_QRGenerate.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
+                startActivity(intent);
+            }
+        });
 
         getView().findViewById(R.id.modifica).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +183,8 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
-        getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -196,7 +193,8 @@ public class Fragment_profile_animale extends Fragment {
                     return;
                 }
                 checkBluetoothPermissions();
-                if (!bluetoothAdapter.isEnabled()) {
+                if (!bluetoothAdapter.isEnabled())
+                {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 } if(bluetoothAdapter.isEnabled()){
@@ -207,18 +205,19 @@ public class Fragment_profile_animale extends Fragment {
                     shareIntent.putExtra( "ANIMAL_CODE",idAnimal);
 
 
-// Crea l'intent chooser per scegliere l'app Bluetooth
+                    // Crea l'intent chooser per scegliere l'app Bluetooth
                     Intent chooserIntent = Intent.createChooser(shareIntent, "Condividi con...");
                     chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-// Avvia l'activity chooser
+                    // Avvia l'activity chooser
                     startActivity(chooserIntent);
                 }
 
             }
         });
 
-        getView().findViewById(R.id.salute_button).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.salute_button).setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -235,7 +234,7 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
-        CircleImageView shareButton = view.findViewById(R.id.share_button);
+        shareButton = view.findViewById(R.id.share_button);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,7 +259,8 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
-        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_Spese.class);
@@ -268,14 +268,17 @@ public class Fragment_profile_animale extends Fragment {
                 startActivity(intent);            }
         });
 
-        getView().findViewById(R.id.multimedia).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.multimedia).setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
                 startActivity(intent);            }
         });
     }
-    private void checkBluetoothPermissions() {
+    private void checkBluetoothPermissions()
+    {
         // Check for Bluetooth permissions
         if (ContextCompat.checkSelfPermission(getActivity(), "android.permission.BLUETOOTH") != PackageManager.PERMISSION_GRANTED) {
             // Permission not granted, request it
@@ -285,6 +288,7 @@ public class Fragment_profile_animale extends Fragment {
             Toast.makeText(getActivity(), "Bluetooth pronto all'uso", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -299,6 +303,7 @@ public class Fragment_profile_animale extends Fragment {
             }
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

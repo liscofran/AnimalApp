@@ -3,8 +3,6 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,18 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-
 public class Activity_Animali extends AppCompatActivity
 {
-    TextView crea_animale;
-    TextView miei_animali;
-    TextView album_animali;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animali);
-
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +62,7 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
 
-        crea_animale = findViewById(R.id.crea_animale);
-
+        TextView crea_animale = findViewById(R.id.crea_animale);
         crea_animale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,8 +71,7 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
 
-        miei_animali = findViewById(R.id.Miei_animali);
-
+        TextView miei_animali = findViewById(R.id.Miei_animali);
         miei_animali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,8 +80,7 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
 
-        album_animali = findViewById(R.id.album_animali);
-
+        TextView album_animali = findViewById(R.id.album_animali);
         album_animali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -99,7 +90,6 @@ public class Activity_Animali extends AppCompatActivity
             }
         });
     }
-
 
     public boolean isChangingConfigurations() {
         return false;

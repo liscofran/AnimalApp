@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -29,11 +28,10 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_Video extends Fragment {
 
     private static final int REQUEST_CODE_SELECT_VIDEO = 1234;
-    private ImageButton Aggiungi;
-    private ImageButton Visualizza;
     private EditText Nome_Video;
 
-    public Fragment_Video() {
+    public Fragment_Video()
+    {
         // Required empty public constructor
     }
 
@@ -52,18 +50,19 @@ public class Fragment_Video extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Aggiungi = getView().findViewById(R.id.AggiungiTesto);
-        Visualizza = getView().findViewById(R.id.VisualizzaTesti);
+
+        ImageButton aggiungi = getView().findViewById(R.id.AggiungiTesto);
+        ImageButton visualizza = getView().findViewById(R.id.VisualizzaTesti);
         Nome_Video = getView().findViewById(R.id.NomeVideo);
 
-        Aggiungi.setOnClickListener(new View.OnClickListener() {
+        aggiungi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectVideoFromGallery();
             }
         });
 
-        Visualizza.setOnClickListener(new View.OnClickListener() {
+        visualizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment_VisualizzaVideo visvideoFragment = new Fragment_VisualizzaVideo();
@@ -93,14 +92,11 @@ public class Fragment_Video extends Fragment {
         }
     }
 
-    private void uploadVideoToFirebase(Uri videoUri, String Nome_video) {
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-
-        StorageReference videoRef = storageRef.child("Videos/" + Nome_video);
+    private void uploadVideoToFirebase(Uri videoUri, String Nome_video)
+    {
+        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        StorageReference videoRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Videos/" + Nome_video);
         UploadTask uploadTask = videoRef.putFile(videoUri);
-
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
             @Override

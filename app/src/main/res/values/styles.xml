@@ -12,4 +12,10 @@
     <dimen name="text_small">14sp</dimen>
     <dimen name="text_medium">18sp</dimen>
 
+    <style name="MyCalendarViewStyle">
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:textSize">18sp</item>
+        <!-- altri attributi di stile per personalizzare il testo della data -->
+    </style>
+
 </resources>

@@ -26,24 +26,23 @@ public class Activity_QRGenerate extends AppCompatActivity
 {
     FirebaseAuth mAuth;
 
-    private ImageView imageView;
-    private ImageButton backbutton;
+    protected ImageButton backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrgenerate);
 
-        imageView = findViewById(R.id.qr_code_image_view);
-        backbutton = findViewById(R.id.back);
+        ImageView imageView = findViewById(R.id.qr_code_image_view);
+        //backbutton.findViewById(R.id.back);
 
-        backbutton.setOnClickListener(new View.OnClickListener() {
+        /*backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                  onBackPressed();
             }
-        });
+        });*/
 
         // Retrieve the animal code from the intent
         String animalName = getIntent().getStringExtra("ANIMAL_CODE");

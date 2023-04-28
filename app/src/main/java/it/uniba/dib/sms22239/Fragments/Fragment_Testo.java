@@ -48,7 +48,8 @@ public class Fragment_Testo extends Fragment
         super.onViewCreated(view, savedInstanceState);
        btnInserisci = getView().findViewById(R.id.AggiungiTesto);
        btnVisualizza = getView().findViewById(R.id.VisualizzaTesti);
-       reference = FirebaseStorage.getInstance().getReference().child("Document");
+       String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+       reference = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi");
 
        EditText editNome = getView().findViewById(R.id.NomeTesto);
        EditText editTesto = getView().findViewById(R.id.Testo);

@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -31,18 +30,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.dib.sms22239.Models.Image;
-import it.uniba.dib.sms22239.Models.Video;
 import it.uniba.dib.sms22239.R;
 
-public class Fragment_VisualizzaImmagine extends Fragment {
+public class Fragment_VisualizzaImmagine extends Fragment
+{
 
     private StorageReference storageRef;
     private RecyclerView recyclerView;
     private static List<Image> mImageList;
     private static ImageAdapter mAdapter;
+    protected static String idAnimale;
 
     public Fragment_VisualizzaImmagine() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
     }
 
     @Override
@@ -55,7 +62,8 @@ public class Fragment_VisualizzaImmagine extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        storageRef = FirebaseStorage.getInstance().getReference().child("Images");
+
+        storageRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Images");
         recyclerView = getView().findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mImageList = new ArrayList<>();
@@ -175,7 +183,7 @@ public class Fragment_VisualizzaImmagine extends Fragment {
         private void deleteImage(Image image)
         {
             // Ottenere il riferimento di archiviazione per l'immagine
-            StorageReference imageRef = FirebaseStorage.getInstance().getReference().child("Images").child(image.getNome());
+            StorageReference imageRef = FirebaseStorage.getInstance().getReference("Animali").child(getIdAnimale()).child("Images").child(image.getNome());
 
             // Elimina il file dallo storage di Firebase
             imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -193,5 +201,10 @@ public class Fragment_VisualizzaImmagine extends Fragment {
                 }
             });
         }
+    }
+
+    public static String getIdAnimale()
+    {
+        return idAnimale;
     }
 }

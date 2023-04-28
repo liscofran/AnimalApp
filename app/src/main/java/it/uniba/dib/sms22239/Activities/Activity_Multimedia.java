@@ -19,7 +19,6 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Multimedia extends AppCompatActivity
 {
-    private Spinner spinner;
     private String selectedItem;
 
     @Override
@@ -79,12 +78,13 @@ public class Activity_Multimedia extends AppCompatActivity
         super.onStart();
 
         //Spinner Tipo di Media
-        spinner = findViewById(R.id.spinner1);
+        Spinner spinner = findViewById(R.id.spinner1);
         spinner.setPrompt("");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.media_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedItem = (String) parent.getItemAtPosition(position);

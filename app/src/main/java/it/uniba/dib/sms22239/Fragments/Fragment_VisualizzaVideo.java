@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,8 +41,8 @@ public class Fragment_VisualizzaVideo extends Fragment {
     private static List<Video> mVideoList;
     private static VideoAdapter mAdapter;
 
-
-    public Fragment_VisualizzaVideo() {
+    public Fragment_VisualizzaVideo()
+    {
         // Required empty public constructor
     }
 
@@ -54,10 +53,12 @@ public class Fragment_VisualizzaVideo extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference().child("Videos");
+        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        mStorageRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Videos");
         mRecyclerView = getView().findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mVideoList = new ArrayList<>();

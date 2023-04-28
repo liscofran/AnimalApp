@@ -48,7 +48,8 @@ public class Fragment_VisualizzaTesto extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        txtRef = FirebaseStorage.getInstance().getReference().child("/Document");
+        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        txtRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi");
         recyclerView = view.findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mFileList = new ArrayList<>();
@@ -77,16 +78,6 @@ public class Fragment_VisualizzaTesto extends Fragment {
                 }
             }
         });
-//                    List<String> fileNames = new ArrayList<>();
-//                    for (StorageReference fileRef : listResult.getItems()) {
-//                        if (fileRef.getName().endsWith(".txt")) {
-//                            fileNames.add(fileRef.getName());
-//                        }
-//                    }
-//                    fileListAdapter = new FileListAdapter(fileNames);
-//                    recyclerView.setAdapter(fileListAdapter);
-//                })
-//                .addOnFailureListener(e -> Log.e("TAG", "Errore durante la ricerca dei file", e));
     }
 
     public class FileListAdapter extends RecyclerView.Adapter<FileViewHolder> {
@@ -155,28 +146,10 @@ public class Fragment_VisualizzaTesto extends Fragment {
         }
     }
 
-//    public void onItemClick(String fileName) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setTitle("Scegli un'azione")
-//                .setItems(new CharSequence[]{"Download", "Elimina"}, (dialog, which) -> {
-//                    switch (which) {
-//                        case 0:
-//                            // Azione Download
-//                            downloadFile(fileName);
-//                            break;
-//                        case 1:
-//                            // Azione Elimina
-//                            deleteFile(fileName);
-//                            break;
-//                    }
-//                });
-//        builder.show();
-//    }
-
     private void downloadFile(String fileName) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference fileRef = storageRef.child("Document/" + fileName);
+
+        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        StorageReference fileRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi/" + fileName);
 
         fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -187,9 +160,8 @@ public class Fragment_VisualizzaTesto extends Fragment {
     }
 
     private void deleteFile(Testo testo) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference fileRef = storageRef.child("Document/" + testo.getNome());
+        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        StorageReference fileRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi/" + testo.getNome());
 
         // Elimina il file dallo Storage di Firebase
         fileRef.delete().addOnSuccessListener(aVoid -> {

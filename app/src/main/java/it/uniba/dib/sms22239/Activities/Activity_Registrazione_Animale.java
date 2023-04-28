@@ -38,34 +38,25 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import java.util.Random;
 
 import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-public class Activity_Registrazione_Animale extends AppCompatActivity {
+public class Activity_Registrazione_Animale extends AppCompatActivity
+{
 
-    EditText inputNome, inputRazza, inputData;
-    RadioGroup inputSesso;
-    String sesso;
-
+    private EditText inputNome, inputRazza, inputData;
+    private String sesso, selectedItem;
     private static final int PICK_IMAGE_REQUEST = 1;
-
-    Button mButtonChooseImage;
-    Button mButtonUpload;
-    ImageView mImageView;
-    ProgressBar mProgressBar;
-
-    private Spinner spinner;
-    private String selectedItem;
-
-    Uri mImageUri;
-
-    StorageReference mStorageRef;
-    DatabaseReference mDatabaseRef;
-
-    StorageTask mUploadTask;
-
+    protected Button mButtonUpload, mButtonChooseImage, generaAnimaleButton;
+    private ImageView mImageView;
+    private ProgressBar mProgressBar;
+    protected Uri mImageUri;
+    protected StorageTask mUploadTask;
+    protected RadioGroup inputSesso;
+    protected Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +67,9 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
         mButtonUpload = findViewById(R.id.register_animal_button);
         mImageView = findViewById(R.id.image_view);
         mProgressBar = findViewById(R.id.progress_bar);
-
         ImageButton backBtn2 = findViewById(R.id.back);
+
+        //Tasto Back
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,11 +77,14 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
             }
         });
 
+        //Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Home.class);
-                startActivity(intent);
+                startActivity(new Intent(Activity_Registrazione_Animale.this, Activity_Home.class));
             }
         });
 
@@ -128,8 +123,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
             }
         });
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("Animali");
-
+        //Bottone Scelta dell'immagine dalla galleria
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,37 +131,36 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
             }
         });
 
-        inputNome=findViewById(R.id.register_animal_name);
-        inputRazza=findViewById(R.id.register_animal_species);
-        inputData=findViewById(R.id.register_animal_birthdate);
+        //Scelta del sesso
         inputSesso = findViewById(R.id.register_animal_sex);
-
         inputSesso.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Get the selected radio button from the group
-                RadioButton radioButton1 = (RadioButton) group.findViewById(R.id.register_animal_male);
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                RadioButton radioButton1 = group.findViewById(R.id.register_animal_male);
                 if (radioButton1.isChecked()) {
                     sesso = "Maschio";
                 }
-                RadioButton radioButton2 = (RadioButton) group.findViewById(R.id.register_animal_female);
+                RadioButton radioButton2 = group.findViewById(R.id.register_animal_female);
                 if (radioButton2.isChecked()) {
                     sesso = "Femmina";
                 }
             }
         });
 
+        //Spinner per la scelta della proprietà
         spinner = findViewById(R.id.spinner);
         spinner.setPrompt("");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.proprieta_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 selectedItem = (String) parent.getItemAtPosition(position);
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -175,12 +168,18 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
             }
         });
 
-        final Button generaAnimaleButton = findViewById(R.id.register_animal_button);
-        generaAnimaleButton.setOnClickListener(new View.OnClickListener() {
+        inputNome = findViewById(R.id.register_animal_name);
+        inputRazza = findViewById(R.id.register_animal_species);
+        inputData = findViewById(R.id.register_animal_birthdate);
+
+        //Bottone per la creazione e registrazione nel db dell'animale
+        generaAnimaleButton = findViewById(R.id.register_animal_button);
+        generaAnimaleButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+            public void onClick(View view)
+            {
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 Animale ani = new Animale();
                 String nome = inputNome.getText().toString();
                 String razza = inputRazza.getText().toString();
@@ -199,41 +198,40 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
                     it.next();
                 }
 
+                long seed = System.currentTimeMillis(); // ottenere il tempo corrente
+                Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
+                int tmp = Math.abs(random.nextInt()); // generare un numero casuale
 
-                if (mUploadTask != null && mUploadTask.isInProgress()) {
+                if (mUploadTask != null && mUploadTask.isInProgress())
+                {
                     Toast.makeText(Activity_Registrazione_Animale.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                } else {
-                    ani = uploadFile(ani);
                 }
-                ani.writeNewAnimal(ani, nome, razza, currentUser.getUid(), sesso, data, prop);
+                else
+                {
+                    uploadFile(ani,tmp);
+                }
 
-                Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_QRGenerate.class);
+                ani.writeNewAnimal(tmp, ani, nome, razza, currentUser.getUid(), sesso, data, prop);
+                Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Animal_Profile.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);
-
-            }
-        });
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Animale.this, Activity_Home.class));
             }
         });
     }
 
-    private void openFileChooser() {
+    //Metodo per la gestione della scelta dalla galleria
+    private void openFileChooser()
+    {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
+    //Metodo che gestisce il risultato ottenuto dalla scelta della foto nella galleria
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
@@ -244,17 +242,22 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
         }
     }
 
-    private String getFileExtension(Uri uri) {
+    //Estensione del file
+    private String getFileExtension(Uri uri)
+    {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private Animale uploadFile(Animale animale) {
-        if (mImageUri != null) {
-            long time = System.currentTimeMillis();
-            animale.immagine = time + "." + getFileExtension(mImageUri);
-            StorageReference fileReference = mStorageRef.child(animale.immagine);
+    //Upload dell'immagine sullo storage
+    private void uploadFile(Animale animale, int id)
+    {
+        if (mImageUri != null)
+        {
+            animale.immagine = "ImmagineProfilo." + getFileExtension(mImageUri);
+            //Riferimento Storage agli animali
+            StorageReference fileReference = FirebaseStorage.getInstance().getReference("Animali").child(Integer.toString(id)).child(animale.immagine);
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -268,7 +271,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
                                 }
                             }, 500);
 
-                            Toast.makeText(Activity_Registrazione_Animale.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Activity_Registrazione_Animale.this, "Upload avvenuto con successo", Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -279,14 +282,15 @@ public class Activity_Registrazione_Animale extends AppCompatActivity {
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
                             mProgressBar.setProgress((int) progress);
                         }
                     });
-        } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
-        return animale;
+        else
+        {
+            Toast.makeText(this, "Nessun file selezionato", Toast.LENGTH_SHORT).show();
+        }
     }
 }
