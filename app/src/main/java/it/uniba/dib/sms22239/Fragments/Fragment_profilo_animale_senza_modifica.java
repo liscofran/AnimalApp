@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,8 +31,10 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_profilo_animale_senza_modifica extends Fragment
 {
-    private TextView mNomeTextView,mrazzaTextView,msessoTextView,midproprietarioTextView;
+    private TextView mNomeTextView,mrazzaTextView,msessoTextView,nomecognomeprop,mluogoTextView,mstatusTextView;
     private ImageView profilo;
+
+    private String idUtente,idAnimale;
 
     public Fragment_profilo_animale_senza_modifica()
     {
@@ -54,10 +57,11 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
 
         // Recupera il riferimento al database
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
+        DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User");
 
         //Recupera il riferimento allo Storage
         StorageReference imagesRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("ImmagineProfilo.jpg");
@@ -73,12 +77,14 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
         });
 
         profilo = getView().findViewById(R.id.profile_image);
-        midproprietarioTextView = getView().findViewById(R.id.cognome_veterinario);
-        mNomeTextView = getView().findViewById(R.id.nome_veterinario);
-        mrazzaTextView =  getView().findViewById(R.id.data_appuntamento);
-        msessoTextView =  getView().findViewById(R.id.orario_inizio);
+        nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
+        mNomeTextView = getView().findViewById(R.id.animal_nome);
+        mrazzaTextView =  getView().findViewById(R.id.razza);
+        msessoTextView =  getView().findViewById(R.id.sesso);
+        mluogoTextView =  getView().findViewById(R.id.luogo);
+        mstatusTextView =  getView().findViewById(R.id.status);
 
-        Button backBtn = getView().findViewById(R.id.back);
+        ImageButton backBtn = getView().findViewById(R.id.back);
         backBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -93,20 +99,41 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                String proprietario = dataSnapshot.child("Id_utente").getValue(String.class);
+
                 String nome = dataSnapshot.child("nome").getValue(String.class);
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
+                String luogo = dataSnapshot.child("luogo").getValue(String.class);
+                String status = dataSnapshot.child("status").getValue(String.class);
+                idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                midproprietarioTextView.setText(proprietario);
-                mNomeTextView.setText("Nome" + nome);
-                mrazzaTextView.setText("Razza" + razza);
-                msessoTextView.setText("Sesso" +sesso);
+                mNomeTextView.setText("Nome:" + nome);
+                mrazzaTextView.setText("Razza: " + razza);
+                msessoTextView.setText("Sesso: " +sesso);
+                mluogoTextView.setText("Luogo: " +luogo);
+                mstatusTextView.setText("Status: " +status);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
+
+            }
+        });
+        // Recupera i dati dal secondo riferimento al database e popola le viste
+        mDatabase1.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
+                String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
+
+                //set delle variabili recuperate al layout
+
+                nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
