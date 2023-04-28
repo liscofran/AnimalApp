@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_Appuntamento;
-import it.uniba.dib.sms22239.Fragments.Fragment_appuntamento_utente;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -35,7 +34,7 @@ public class Activity_Appuntamento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appuntamento);
+        setContentView(R.layout.activity_appuntamento_veterinario);
 
         String idAppuntamento = getIntent().getStringExtra("id_appuntamento");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
@@ -122,10 +121,9 @@ public class Activity_Appuntamento extends AppCompatActivity {
                     fragmentTransaction.commit();
                 }
                 else {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frame, new Fragment_appuntamento_utente());
-                    fragmentTransaction.commit();
+                    Intent intent = new Intent(Activity_Appuntamento.this, Activity_Appuntamento_Animale.class);
+                    intent.putExtra("id_appuntamento",idAppuntamento);
+                    startActivity(intent);
                 }
             }
             @Override

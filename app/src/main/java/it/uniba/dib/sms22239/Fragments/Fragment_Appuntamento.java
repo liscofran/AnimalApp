@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
+import it.uniba.dib.sms22239.Activities.Activity_Calendario_Veterinario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -97,7 +97,7 @@ public class Fragment_Appuntamento extends Fragment {
             public void onClick(View v) {
                 mDatabase1.removeValue(); // rimuovi la tupla dal database Firebase
                 Toast.makeText(getActivity(), "Appuntamento eliminato con successo!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
+                Intent intent = new Intent(getActivity(), Activity_Calendario_Veterinario.class);
                 startActivity(intent);
             }
         });

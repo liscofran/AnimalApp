@@ -3,8 +3,6 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,7 +69,7 @@ public class Activity_Scheda_Veterinario extends AppCompatActivity {
         findViewById(R.id.Calendario).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Scheda_Veterinario.this, Activity_Prenotazioni_Veterinario.class));
+                startActivity(new Intent(Activity_Scheda_Veterinario.this, Activity_Calendario_Veterinario.class));
             }
         });
 

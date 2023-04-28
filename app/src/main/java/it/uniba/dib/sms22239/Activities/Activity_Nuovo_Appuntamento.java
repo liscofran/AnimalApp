@@ -3,7 +3,6 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.common.net.InternetDomainName;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,12 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Preference;
@@ -144,7 +138,7 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
                                 Appuntamento appuntamento = new Appuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, idAppuntamento);
                                 appuntamento.writeNewAppuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, appuntamento);
                                 Toast.makeText(Activity_Nuovo_Appuntamento.this, "Appuntamento registrato con successo!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Prenotazioni_Veterinario.class);
+                                Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Calendario_Veterinario.class);
                                 startActivity(intent);
                             }
                         });

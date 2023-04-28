@@ -58,13 +58,19 @@
             android:name=".Activities.Activity_profilo_Offerta"
             android:exported="false" />
         <activity
+            android:name=".Activities.Activity_Appuntamento_Animale"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Activity_Calendario_Animale"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_Appuntamento"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Nuovo_Appuntamento"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Prenotazioni_Veterinario"
+            android:name=".Activities.Activity_Calendario_Veterinario"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Scheda_Veterinario"
