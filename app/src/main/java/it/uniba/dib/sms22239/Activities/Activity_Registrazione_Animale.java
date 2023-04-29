@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,7 +51,8 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
     private EditText inputNome, inputRazza, inputData,inputpatologie,inputprefcibo;
     private String sesso, selectedItem;
     private static final int PICK_IMAGE_REQUEST = 1;
-    protected Button mButtonUpload, mButtonChooseImage, generaAnimaleButton;
+    protected TextView generaAnimaleButton;
+    private TextView mButtonChooseImage,register_animal_button,mButtonUpload;
     private ImageView mImageView;
     private ProgressBar mProgressBar;
     protected Uri mImageUri;
@@ -216,7 +218,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                 }
 
                 ani.writeNewAnimal(tmp, ani, nome, razza,patologie,preferenzecibo, currentUser.getUid(), sesso, data, prop);
-                Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Animal_Profile.class);
+                Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Home.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);
             }
@@ -242,7 +244,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-           Picasso.get().load(mImageUri).into(mImageView);
+          // Picasso.get().load(mImageUri).into(mImageView);
         }
     }
 
