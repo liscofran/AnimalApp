@@ -183,19 +183,19 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
        @Override
        public void onClick(View view) {
 
-           Prenotazione_Esame p_e = new Prenotazione_Esame(idAnimale,idAppuntamento,null);
-           Prenotazione_Diagnosi p_d = new Prenotazione_Diagnosi(idAnimale,idAppuntamento,null);
+           Prenotazione_Esame p_e = new Prenotazione_Esame();
+           Prenotazione_Diagnosi p_d = new Prenotazione_Diagnosi();
 
 
            if (type == "Esame")
            {
-               p_e.writeNewPrenotazioneEsame(p_e,idAnimale,idAppuntamento,data);
+               p_e.writeNewPrenotazione(p_e,idAnimale,idAppuntamento,data);
                Intent intent = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Animale.class);
                startActivity(intent);
            }
            else
            {
-               p_d.writeNewPrenotazioneDiagnosi(p_d,idAnimale,idAppuntamento,data);
+               p_d.writeNewPrenotazione(p_d,idAnimale,idAppuntamento,data);
                Intent intent2 = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Animale.class);
                startActivity(intent2);
            }
