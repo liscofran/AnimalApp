@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,10 +24,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import it.uniba.dib.sms22239.Fragments.AppuntamentoDialogFragment;
+import it.uniba.dib.sms22239.Fragments.AppPrenDialogFragment;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
-import it.uniba.dib.sms22239.Models.Veterinario;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -37,6 +38,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private ArrayList<Appuntamento> appuntamenti= new ArrayList<>();
     private String idAnimale;
+    private String id_veterinario;
 
 
     @Override
@@ -103,7 +105,27 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
 
         calendarView = findViewById(R.id.simpleCalendarView);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Appuntamenti");
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+
+        mDatabase1.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                 id_veterinario = dataSnapshot.child(user.getUid()).getKey();
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child("id_veterinario");
 
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -112,7 +134,8 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
                 //appuntamenti = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
-                    appuntamenti.add(appuntamento);
+                    if(appuntamento.getId_veterinario() == id_veterinario)
+                        appuntamenti.add(appuntamento);
                 }
 
                 // Colora le date che hanno almeno un appuntamento
@@ -153,7 +176,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
 
                 // Crea la finestra di dialogo degli appuntamenti
                 ArrayList<Prenotazione> prenotazioni = null;
-                AppuntamentoDialogFragment dialog = new AppuntamentoDialogFragment(appuntamenti, prenotazioni, data,idAnimale);
+                AppPrenDialogFragment dialog = new AppPrenDialogFragment(appuntamenti, prenotazioni, data,idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
             }
         });

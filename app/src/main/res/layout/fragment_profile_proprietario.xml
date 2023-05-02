@@ -36,55 +36,55 @@
 
 
         <TextView
-            android:id="@+id/proprietario_animale"
+            android:id="@+id/user_nome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v4"
             android:drawablePadding="10dp"
-            android:hint="Proprietario animale"
+            android:hint="Nome non presente"
             android:padding="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="16sp"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            app:layout_constraintBottom_toTopOf="@id/razza"
+            app:layout_constraintBottom_toTopOf="@id/user_cognome"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"
             app:layout_constraintRight_toRightOf="@id/guideline4"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <TextView
-            android:id="@+id/razza"
+            android:id="@+id/user_cognome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v4"
             android:textSize="16sp"
             android:drawablePadding="10dp"
-            android:hint="Razza"
+            android:hint="Cognome non presente"
             android:padding="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
-            app:layout_constraintBottom_toTopOf="@id/sesso"
-            app:layout_constraintEnd_toEndOf="@+id/proprietario_animale"
-            app:layout_constraintStart_toStartOf="@id/proprietario_animale"
-            app:layout_constraintTop_toBottomOf="@id/proprietario_animale" />
+            app:layout_constraintBottom_toTopOf="@id/user_codicefiscale"
+            app:layout_constraintEnd_toEndOf="@+id/user_nome"
+            app:layout_constraintStart_toStartOf="@id/user_nome"
+            app:layout_constraintTop_toBottomOf="@id/user_nome" />
 
         <TextView
-            android:id="@+id/sesso"
+            android:id="@+id/user_codicefiscale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v4"
             android:textSize="16sp"
             android:drawablePadding="10dp"
-            android:hint="Sesso"
+            android:hint="Codice Fiscale non presente"
             android:padding="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:drawableLeftCompat="@drawable/ic_profile2"
             app:layout_constraintBottom_toTopOf="@+id/guideline16"
-            app:layout_constraintEnd_toEndOf="@+id/proprietario_animale"
-            app:layout_constraintStart_toStartOf="@id/proprietario_animale"
-            app:layout_constraintTop_toBottomOf="@id/razza" />
+            app:layout_constraintEnd_toEndOf="@+id/user_nome"
+            app:layout_constraintStart_toStartOf="@id/user_nome"
+            app:layout_constraintTop_toBottomOf="@id/user_cognome" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -167,6 +167,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.4" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/edit_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/circle_shape"
+            android:src="@drawable/editcustompen"
+            android:text="Modifica"
+            app:layout_constraintBottom_toTopOf="@+id/b95"
+            app:layout_constraintEnd_toStartOf="@+id/b55"
+            app:layout_constraintLeft_toLeftOf="@id/guideline5"
+            app:layout_constraintRight_toRightOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/b45"
+            app:layout_constraintTop_toTopOf="@+id/b90" />
 
         <Button
             android:id="@+id/back"

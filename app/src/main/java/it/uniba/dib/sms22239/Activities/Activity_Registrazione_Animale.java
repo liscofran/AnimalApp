@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -39,6 +42,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import java.util.Calendar;
 import java.util.Random;
 
 import it.uniba.dib.sms22239.Models.Animale;
@@ -48,8 +52,9 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Registrazione_Animale extends AppCompatActivity
 {
 
-    private EditText inputNome, inputRazza, inputData,inputpatologie,inputprefcibo;
+    private EditText inputNome, inputRazza,inputpatologie,inputprefcibo;
     private String sesso, selectedItem;
+    private Button inputData;
     private static final int PICK_IMAGE_REQUEST = 1;
     protected TextView generaAnimaleButton;
     private TextView mButtonChooseImage,register_animal_button,mButtonUpload;
@@ -175,6 +180,12 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
         inputpatologie = findViewById(R.id.register_animal_patologie);
         inputprefcibo = findViewById(R.id.register_animal_prefcibo);
         inputData = findViewById(R.id.register_animal_birthdate);
+        inputData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
         //Bottone per la creazione e registrazione nel db dell'animale
         generaAnimaleButton = findViewById(R.id.register_animal_button);
@@ -196,10 +207,6 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                 CharacterIterator it = new StringCharacterIterator(datatmp);
                 while (it.current() != CharacterIterator.DONE)
                 {
-                    if(it.getIndex() == 4 || it.getIndex() == 6 )
-                    {
-                        data = data + "/";
-                    }
                     data = data + it.current();
                     it.next();
                 }
@@ -254,6 +261,27 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void showDatePickerDialog() {
+        // Imposta la data di default sul giorno corrente
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Crea il DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Imposta la data selezionata nell'Edit Text
+                        Button registerAnimalBirthdateEditText = findViewById(R.id.register_animal_birthdate);
+                        registerAnimalBirthdateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                }, year, month, day);
+        datePickerDialog.show();
     }
 
     //Upload dell'immagine sullo storage

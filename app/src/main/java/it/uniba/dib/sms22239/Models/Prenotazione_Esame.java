@@ -8,33 +8,29 @@ import java.util.Random;
 
 public class Prenotazione_Esame extends Prenotazione {
 
+    @PropertyName("TipoEsame")
+    public String tipoEsame;
+
     @PropertyName("Esame")
-    Esame esame;
+    public String Esame;
 
-    @PropertyName("Data")
-    String data;
-
-    public Prenotazione_Esame(String id_animale, String id_appuntamento, String id_prenotazione) {
-        super(id_animale, id_appuntamento, id_prenotazione);
+    public Prenotazione_Esame() {
+        super();
     }
 
-    public void writeNewPrenotazioneEsame(Prenotazione_Esame p_e, String idAnimale, String id_appuntamento, String data)
+    public void writeNewPrenotazione(Prenotazione_Esame p_e, String idAnimale, String id_appuntamento, String data)
     {
         p_e.id_animale = idAnimale;
         p_e.id_appuntamento = id_appuntamento;
         p_e.data = data;
-        p_e.esame = null;
+        p_e.tipoEsame = null;
+        p_e.Esame = null;
+        p_e.tipo = "Esame";
 
-        Random rand = new Random();
-
-        // Generare un numero casuale
-        int randomNumber = rand.nextInt();
-
-        p_e.id_prenotazione = String.valueOf(randomNumber);
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("Prenotazioni_Esami").child(id_prenotazione).setValue(p_e);
+        mDatabase.child("Prenotazioni").child(id_prenotazione).setValue(p_e);
 
     }
 }

@@ -19,13 +19,13 @@ import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 
-public class AppuntamentoDialogFragment extends DialogFragment {
+public class AppPrenDialogFragment extends DialogFragment {
     private ArrayList<Appuntamento> appuntamenti;
     private ArrayList<Prenotazione> prenotazioni;
     private String data;
     private String idAnimale;
 
-    public AppuntamentoDialogFragment(ArrayList<Appuntamento> appuntamenti, ArrayList<Prenotazione> prenotazioni, String data, String idAnimale) {
+    public AppPrenDialogFragment(ArrayList<Appuntamento> appuntamenti, ArrayList<Prenotazione> prenotazioni, String data, String idAnimale) {
         this.appuntamenti = appuntamenti;
         this.prenotazioni = prenotazioni;
         this.data = data;

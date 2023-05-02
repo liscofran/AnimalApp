@@ -160,7 +160,7 @@
                 app:layout_constraintStart_toStartOf="@+id/register_animal_name"
                 app:layout_constraintTop_toBottomOf="@id/register_animal_sex_label" />
 
-            <EditText
+            <Button
                 android:id="@+id/register_animal_birthdate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
