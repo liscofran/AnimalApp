@@ -12,25 +12,24 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
 import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
-import it.uniba.dib.sms22239.R;
 
 public class AppuntamentoDialogFragment extends DialogFragment {
     private ArrayList<Appuntamento> appuntamenti;
     private ArrayList<Prenotazione> prenotazioni;
     private String data;
+    private String idAnimale;
 
-    public AppuntamentoDialogFragment(ArrayList<Appuntamento> appuntamenti, ArrayList<Prenotazione> prenotazioni, String data) {
+    public AppuntamentoDialogFragment(ArrayList<Appuntamento> appuntamenti, ArrayList<Prenotazione> prenotazioni, String data, String idAnimale) {
         this.appuntamenti = appuntamenti;
         this.prenotazioni = prenotazioni;
         this.data = data;
+        this.idAnimale = idAnimale;
     }
 
     @NonNull
@@ -87,6 +86,7 @@ public class AppuntamentoDialogFragment extends DialogFragment {
                     // Passiamo il codice identificativo dell'appuntamento come parametro extra nell'intent
                     Intent intent = new Intent(getActivity(), Activity_Appuntamento.class);
                     intent.putExtra("id_appuntamento", appuntamentoSelezionato.getId_appuntamento());
+                    intent.putExtra("ANIMAL_CODE", idAnimale);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "Errore: appuntamento non trovato", Toast.LENGTH_SHORT).show();

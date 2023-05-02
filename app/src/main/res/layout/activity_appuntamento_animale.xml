@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_v4"
         android:drawablePadding="10dp"
-        android:text="Cognome Veterinario"
+        android:text="Dottor "
         android:padding="10dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"

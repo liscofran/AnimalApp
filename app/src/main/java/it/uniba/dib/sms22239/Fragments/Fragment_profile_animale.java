@@ -150,6 +150,7 @@ public class Fragment_profile_animale extends Fragment
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Activity_Calendario_Animale.class);
+                intent.putExtra("ANIMAL_CODE", idAnimal);
                 startActivity(intent);
             }
         });

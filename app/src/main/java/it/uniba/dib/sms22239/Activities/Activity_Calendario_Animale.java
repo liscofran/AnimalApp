@@ -3,7 +3,6 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 
@@ -29,7 +28,6 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Calendario_Animale  extends AppCompatActivity {
 
     private CalendarView calendarView;
-    private Button salvaButton;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabase1;
     private ArrayList<Appuntamento> appuntamenti = new ArrayList<>();
@@ -39,6 +37,8 @@ public class Activity_Calendario_Animale  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario_animale);
+
+        String idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
 
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +127,7 @@ public class Activity_Calendario_Animale  extends AppCompatActivity {
 
                 // Crea la finestra di dialogo degli appuntamenti
                 ArrayList<Prenotazione> prenotazioni = null;
-                AppuntamentoDialogFragment dialog = new AppuntamentoDialogFragment(appuntamenti, prenotazioni, data);
+                AppuntamentoDialogFragment dialog = new AppuntamentoDialogFragment(appuntamenti, prenotazioni, data, idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
             }
         });

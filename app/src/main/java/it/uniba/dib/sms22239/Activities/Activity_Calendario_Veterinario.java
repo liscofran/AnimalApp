@@ -36,6 +36,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
     private Button salvaButton;
     private DatabaseReference mDatabase;
     private ArrayList<Appuntamento> appuntamenti= new ArrayList<>();
+    private String idAnimale;
 
 
     @Override
@@ -152,7 +153,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
 
                 // Crea la finestra di dialogo degli appuntamenti
                 ArrayList<Prenotazione> prenotazioni = null;
-                AppuntamentoDialogFragment dialog = new AppuntamentoDialogFragment(appuntamenti, prenotazioni, data);
+                AppuntamentoDialogFragment dialog = new AppuntamentoDialogFragment(appuntamenti, prenotazioni, data,idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
             }
         });

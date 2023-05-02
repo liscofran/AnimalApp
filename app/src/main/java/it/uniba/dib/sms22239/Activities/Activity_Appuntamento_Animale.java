@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.uniba.dib.sms22239.Models.Prenotazione_Diagnosi;
+import it.uniba.dib.sms22239.Models.Prenotazione_Esame;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -28,9 +31,11 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
     private TextView OraInizioTextView;
     private TextView OraFineTextView;
     private TextView CognomeVeterinarioTextView;
+    private String data;
     private String id_veterinario;
     private Spinner spinner;
     private String selectedItem;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
         setContentView(R.layout.activity_appuntamento_animale);
 
         String idAppuntamento = getIntent().getStringExtra("id_appuntamento");
+        String idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child(idAppuntamento);
 
         DataTextView = findViewById(R.id.date);
@@ -46,42 +52,13 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
         CognomeVeterinarioTextView = findViewById(R.id.cognome_veterinario);
 
         //Spinner per la scelta dell'appuntamento
-        spinner = findViewById(R.id.spinner);
-        spinner.setPrompt("");
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.appuntamento_options, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                selectedItem = (String) parent.getItemAtPosition(position);
-                switch (selectedItem)
-                {
-                    case "Esame":
-                        //antonio fai quello che cazzo devi fare
-                        break;
-                    case "Diagnosi":
-                        //antonio fai quello che cazzo devi fare pt.2
-                        break;
-                    default:
-                        onNothingSelected(parent);
-                        break;
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(Activity_Appuntamento_Animale.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        // Recupera i dati dal database e popola le viste
+
         mDatabase1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String data = dataSnapshot.child("data").getValue(String.class);
+                data = dataSnapshot.child("data").getValue(String.class);
                 String orario_inizio = dataSnapshot.child("orario_inizio").getValue(String.class);
                 String orario_fine = dataSnapshot.child("orario_fine").getValue(String.class);
                 id_veterinario = dataSnapshot.child("id_veterinario").getValue(String.class);
@@ -90,23 +67,24 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
                 DataTextView .setText("Data Appuntamento: " + data);
                 OraInizioTextView.setText("Orario Inizio:  " + orario_inizio);
                 OraFineTextView.setText("Orario Fine: " + orario_fine);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Aggiungi il listener all'interno del metodo onDataChange
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(id_veterinario);
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            }
-        });
+                        String cognome_veterinario = dataSnapshot.child("cognome").getValue(String.class);
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(id_veterinario);
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        CognomeVeterinarioTextView.setText("Cognome Veterinario: " + cognome_veterinario);
 
-                String cognome_veterinario = dataSnapshot.child("cognome").getValue(String.class);
+                    }
 
-                CognomeVeterinarioTextView.setText("Cognome Veterinario: " + cognome_veterinario);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                    }
+                });
             }
 
             @Override
@@ -167,6 +145,64 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
                 startActivity(new Intent(Activity_Appuntamento_Animale.this, Preference.class));
             }
         });
+
+        spinner = findViewById(R.id.spinner);
+        spinner.setPrompt("");
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Appuntamento_Animale.this, R.array.appuntamento_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                selectedItem = (String) parent.getItemAtPosition(position);
+
+                switch (selectedItem)
+                {
+                    case "Esame":
+                        type = "Esame";
+                        break;
+                    case "Diagnosi":
+                        type = "Diagnosi";
+                        break;
+                    default:
+                        onNothingSelected(parent);
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(Activity_Appuntamento_Animale.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+                // Seleziona il bottone "Prenotati"
+
+           findViewById(R.id.prenotati).setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+
+           Prenotazione_Esame p_e = new Prenotazione_Esame(idAnimale,idAppuntamento,null);
+           Prenotazione_Diagnosi p_d = new Prenotazione_Diagnosi(idAnimale,idAppuntamento,null);
+
+
+           if (type == "Esame")
+           {
+               p_e.writeNewPrenotazioneEsame(p_e,idAnimale,idAppuntamento,data);
+               Intent intent = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Animale.class);
+               startActivity(intent);
+           }
+           else
+           {
+               p_d.writeNewPrenotazioneDiagnosi(p_d,idAnimale,idAppuntamento,data);
+               Intent intent2 = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Animale.class);
+               startActivity(intent2);
+           }
+
+       }
+   });
+
     }
 
 

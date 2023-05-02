@@ -37,6 +37,7 @@ public class Activity_Appuntamento extends AppCompatActivity {
         setContentView(R.layout.activity_appuntamento_veterinario);
 
         String idAppuntamento = getIntent().getStringExtra("id_appuntamento");
+        String idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
         mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child(idAppuntamento);
 
@@ -123,6 +124,7 @@ public class Activity_Appuntamento extends AppCompatActivity {
                 else {
                     Intent intent = new Intent(Activity_Appuntamento.this, Activity_Appuntamento_Animale.class);
                     intent.putExtra("id_appuntamento",idAppuntamento);
+                    intent.putExtra("ANIMAL_CODE", idAnimale);
                     startActivity(intent);
                 }
             }
