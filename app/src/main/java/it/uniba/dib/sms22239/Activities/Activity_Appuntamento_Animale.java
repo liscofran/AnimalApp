@@ -32,10 +32,12 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
     private TextView OraFineTextView;
     private TextView CognomeVeterinarioTextView;
     private String data;
+    private  String orario_inizio;
+    private  String orario_fine;
     private String id_veterinario;
     private Spinner spinner;
     private String selectedItem;
-    private String type;
+    private String type = "Esame";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,8 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 data = dataSnapshot.child("data").getValue(String.class);
-                String orario_inizio = dataSnapshot.child("orario_inizio").getValue(String.class);
-                String orario_fine = dataSnapshot.child("orario_fine").getValue(String.class);
+                orario_inizio = dataSnapshot.child("orario_inizio").getValue(String.class);
+                orario_fine = dataSnapshot.child("orario_fine").getValue(String.class);
                 id_veterinario = dataSnapshot.child("id_veterinario").getValue(String.class);
 
                 //set delle variabili recuperate al layout
@@ -183,19 +185,18 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
        @Override
        public void onClick(View view) {
 
-           Prenotazione_Esame p_e = new Prenotazione_Esame();
-           Prenotazione_Diagnosi p_d = new Prenotazione_Diagnosi();
-
 
            if (type == "Esame")
            {
-               p_e.writeNewPrenotazione(p_e,idAnimale,idAppuntamento,data);
+               Prenotazione_Esame p_e = new Prenotazione_Esame();
+               p_e.writeNewPrenotazione(p_e,idAnimale,idAppuntamento,data,orario_inizio, orario_fine, id_veterinario);
                Intent intent = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Animale.class);
                startActivity(intent);
            }
            else
            {
-               p_d.writeNewPrenotazione(p_d,idAnimale,idAppuntamento,data);
+               Prenotazione_Diagnosi p_d = new Prenotazione_Diagnosi();
+               p_d.writeNewPrenotazione(p_d,idAnimale,idAppuntamento,data, orario_inizio, orario_fine, id_veterinario);
                Intent intent2 = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Animale.class);
                startActivity(intent2);
            }

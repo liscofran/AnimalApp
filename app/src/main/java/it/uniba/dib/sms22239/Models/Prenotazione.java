@@ -18,6 +18,15 @@ public abstract class Prenotazione {
     @PropertyName("Data")
     public String data;
 
+    @PropertyName("orario_inizio")
+    public String orario_inizio;
+
+    @PropertyName("orario_fine")
+    public String orario_fine;
+
+    @PropertyName("id_veterinario")
+    public String id_veterinario;
+
     @PropertyName("id_prenotazione")
      public String id_prenotazione;
 

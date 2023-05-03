@@ -37,6 +37,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
     private Button salvaButton;
     private DatabaseReference mDatabase;
     private ArrayList<Appuntamento> appuntamenti= new ArrayList<>();
+    private ArrayList<Prenotazione> prenotazioni= new ArrayList<>();
     private String idAnimale;
     private String id_veterinario;
 
@@ -136,6 +137,12 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
                     Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
                     if(appuntamento.getId_veterinario() == id_veterinario)
                         appuntamenti.add(appuntamento);
+                }
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
+                    if(prenotazione.getId_veterinario() == id_veterinario)
+                        prenotazioni.add(prenotazione);
                 }
 
                 // Colora le date che hanno almeno un appuntamento

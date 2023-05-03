@@ -4,8 +4,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.PropertyName;
 
-import java.util.Random;
-
 public class Prenotazione_Diagnosi extends Prenotazione {
 
     @PropertyName("Diagnosi")
@@ -14,11 +12,14 @@ public class Prenotazione_Diagnosi extends Prenotazione {
     public Prenotazione_Diagnosi() {
     }
 
-    public void writeNewPrenotazione(Prenotazione_Diagnosi p_d, String idAnimale, String id_appuntamento, String data)
+    public void writeNewPrenotazione(Prenotazione_Diagnosi p_d, String idAnimale, String id_appuntamento, String data, String orario_inizio, String orario_fine, String id_veterinario)
     {
         p_d.id_animale = idAnimale;
         p_d.id_appuntamento = id_appuntamento;
         p_d.data = data;
+        p_d.orario_inizio = orario_inizio;
+        p_d.orario_fine = orario_fine;
+        p_d.id_veterinario = id_veterinario;
         p_d.diagnosi = null;
         p_d.tipo = "Diagnosi";
 
