@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Fragments.Fragment_edit_profile_proprietario;
 import it.uniba.dib.sms22239.R;
 
@@ -100,7 +102,15 @@ public class Fragment_profilo_segnalazione extends Fragment
         ImageView mapBtn=getView().findViewById(R.id.mapBtn);
         Button backBtn = getView().findViewById(R.id.back);
 
-
+        getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
+                Toast.makeText(getActivity(), "Segnalazione eliminata con successo!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), Activity_Home.class);
+                startActivity(intent);
+            }
+        });
 
         backBtn.setOnClickListener(new View.OnClickListener()
         {

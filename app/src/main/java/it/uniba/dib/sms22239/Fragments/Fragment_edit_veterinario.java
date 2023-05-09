@@ -62,6 +62,8 @@ public class Fragment_edit_veterinario extends Fragment {
     private EditText mCognomeTextView;
     private EditText mtitolostudioTextView;
 
+    private EditText mcfTextView;
+
     private ImageView profilo;
     private CircleImageView editImage;
     Uri mImageUri;
@@ -107,6 +109,7 @@ public class Fragment_edit_veterinario extends Fragment {
         EditText editName = getView().findViewById(R.id.vet_nome);
         EditText editCognome = getView().findViewById(R.id.vet_cognome);
         EditText editTitoloStudio = getView().findViewById(R.id.vet_titolostudio);
+        EditText editCf = getView().findViewById(R.id.vet_cf);
 
 
         Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
@@ -114,6 +117,7 @@ public class Fragment_edit_veterinario extends Fragment {
         mNomeTextView = getView().findViewById(R.id.vet_nome);
         mCognomeTextView = getView().findViewById(R.id.vet_cognome);
         mtitolostudioTextView = getView().findViewById(R.id.vet_titolostudio);
+        mcfTextView = getView().findViewById(R.id.vet_cf);
         editImage = getView().findViewById(R.id.upload);
         profilo = getView().findViewById(R.id.profile_image);
 
@@ -136,11 +140,13 @@ public class Fragment_edit_veterinario extends Fragment {
                 String name = dataSnapshot.child("nome").getValue(String.class);
                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                 String titolostudio = dataSnapshot.child("titolo_studio").getValue(String.class);
+                String codicefiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
                 //set delle variabili recuperate al layout
                 mNomeTextView.setText(name);
                 mCognomeTextView.setText(cognome);
                 mtitolostudioTextView.setText(titolostudio);
+                mcfTextView.setText(codicefiscale);
             }
 
             @Override
@@ -169,11 +175,13 @@ public class Fragment_edit_veterinario extends Fragment {
                 String newName = editName.getText().toString();
                 String newCognome = editCognome.getText().toString();
                 String newTitoloStudio = editTitoloStudio.getText().toString();
+                String newcf = editCf.getText().toString();
 
                 //modifica e salva i dati anche sul database
                 mDatabase.child("cognome").setValue(newCognome);
                 mDatabase.child("nome").setValue(newName);
                 mDatabase.child("titolo_studio").setValue(newTitoloStudio);
+                mDatabase.child("codice_fiscale").setValue(newcf);
 
                 updateFile(user);
 

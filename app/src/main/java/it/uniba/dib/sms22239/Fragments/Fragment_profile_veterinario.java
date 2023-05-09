@@ -1,8 +1,11 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -32,6 +36,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import it.uniba.dib.sms22239.Activities.MainActivity;
 import it.uniba.dib.sms22239.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
@@ -128,6 +133,28 @@ public class Fragment_profile_veterinario extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Elimina profilo")
+                        .setMessage("Sei sicuro di voler eliminare il profilo?")
+                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mDatabase.removeValue();
+                                user.delete();
+                                Toast.makeText(getActivity(), "Veterinario eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Annulla", null)
+                        .show();
             }
         });
 

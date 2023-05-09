@@ -35,6 +35,8 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Animale;
+import it.uniba.dib.sms22239.Activities.Activity_Calendario_Veterinario;
+import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
@@ -99,6 +101,16 @@ public class Fragment_profile_animale extends Fragment
         profilo = getView().findViewById(R.id.profile_image);
         qrbutton = getView().findViewById(R.id.qr_button);
         appre = getView().findViewById(R.id.appren_button);
+
+        getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
+                Toast.makeText(getActivity(), "Animale eliminato con successo!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), Activity_Home.class);
+                startActivity(intent);
+            }
+        });
 
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()

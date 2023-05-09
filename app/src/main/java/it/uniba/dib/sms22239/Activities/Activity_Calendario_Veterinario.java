@@ -115,7 +115,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                 id_veterinario = dataSnapshot.child(user.getUid()).getKey();
+                id_veterinario = dataSnapshot.child(user.getUid()).getKey();
 
             }
             @Override
@@ -141,7 +141,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
-                    if(prenotazione.getId_veterinario() == id_veterinario)
+                    if(prenotazione.id_veterinario == id_veterinario)
                         prenotazioni.add(prenotazione);
                 }
 
@@ -211,7 +211,6 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
          */
     }
 }
-
 
 
 
