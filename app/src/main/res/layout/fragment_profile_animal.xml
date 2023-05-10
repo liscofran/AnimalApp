@@ -223,10 +223,26 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 app:drawableLeftCompat="@drawable/ic_profile2"
-                app:layout_constraintBottom_toTopOf="@+id/guideline16"
+                app:layout_constraintBottom_toTopOf="@+id/relazione"
                 app:layout_constraintEnd_toEndOf="@+id/animal_nome"
                 app:layout_constraintStart_toStartOf="@+id/animal_nome"
                 app:layout_constraintTop_toBottomOf="@id/luogo"/>
+
+            <TextView
+                android:id="@+id/relazione"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_v4"
+                android:drawablePadding="10dp"
+                android:hint="Relazione"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:drawableLeftCompat="@drawable/baseline_pets_24"
+                app:layout_constraintBottom_toTopOf="@+id/guideline16"
+                app:layout_constraintEnd_toEndOf="@+id/animal_nome"
+                app:layout_constraintStart_toStartOf="@+id/animal_nome"
+                app:layout_constraintTop_toBottomOf="@id/status"/>
 
 
             <androidx.constraintlayout.widget.Guideline

@@ -47,12 +47,14 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_profile_animale extends Fragment
 {
-    private TextView mNomeTextView, mrazzaTextView, msessoTextView, nomecognomeprop, statusTextView, casaluogoTextView;
-    private String idUtente,idAnimal;
+    private TextView mNomeTextView, mrazzaTextView, msessoTextView, nomecognomeprop, statusTextView, casaluogoTextView,relazioneTextView;
+    private String idUtente,idAnimal,relazione;
+    String relazioneconidAnimale, nomeAnimaleRelazione;
     private ImageView profilo;
     public CircleImageView qrbutton, appre, shareButton;
     private static final int REQUEST_ENABLE_BT = 1, REQUEST_PERMISSION_BLUETOOTH = 2;
     protected ImageButton backBtn;
+    DatabaseReference mDatabase2;
 
     public Fragment_profile_animale() {
 
@@ -81,6 +83,8 @@ public class Fragment_profile_animale extends Fragment
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User");
 
+
+
         //Recupera il riferimento allo Storage
         StorageReference imagesRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimal).child("ImmagineProfilo.jpg");
 
@@ -101,6 +105,9 @@ public class Fragment_profile_animale extends Fragment
         nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
         statusTextView = getView().findViewById(R.id.status);
         casaluogoTextView  = getView().findViewById(R.id.luogo);
+        relazioneTextView  = getView().findViewById(R.id.relazione);
+
+
         profilo = getView().findViewById(R.id.profile_image);
         qrbutton = getView().findViewById(R.id.qr_button);
         appre = getView().findViewById(R.id.appren_button);
@@ -137,6 +144,27 @@ public class Fragment_profile_animale extends Fragment
                 idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
                 String status = dataSnapshot.child("prop").getValue(String.class);
                 String luogo = dataSnapshot.child("luogo").getValue(String.class);
+                relazione = dataSnapshot.child("relazione").getValue(String.class);
+                relazioneconidAnimale = dataSnapshot.child("idAnimalerelazione").getValue(String.class);
+
+
+                mDatabase2 = FirebaseDatabase.getInstance().getReference().child("Animale").child(relazioneconidAnimale);
+
+                mDatabase2.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
+                        relazioneTextView.setText("Relazione: " + relazione + " con " + nomeAnimaleRelazione);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
                 //set delle variabili recuperate al layout
 
@@ -145,6 +173,7 @@ public class Fragment_profile_animale extends Fragment
                 msessoTextView.setText("Sesso: " + sesso);
                 statusTextView.setText("Status: " + status);
                 casaluogoTextView.setText("Luogo: " + luogo);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -168,6 +197,8 @@ public class Fragment_profile_animale extends Fragment
 
             }
         });
+
+
 
         //Bottoni dell'animale
         appre.setOnClickListener(new View.OnClickListener()
