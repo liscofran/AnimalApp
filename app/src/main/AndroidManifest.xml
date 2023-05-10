@@ -55,6 +55,12 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".Activities.Activity_AlbumPokemon"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Activity_AnimaleSelezionato"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_profilo_Offerta"
             android:exported="false" />
         <activity

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import it.uniba.dib.sms22239.Activities.Activity_AlbumPokemon;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
@@ -22,7 +23,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_Proprietario extends Fragment
 {
-//    SearchView searchView;
+    //    SearchView searchView;
     public Fragment_Proprietario()
     {
 
@@ -113,6 +114,20 @@ public class Fragment_Proprietario extends Fragment
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        getView().findViewById(R.id.Album).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_AlbumPokemon.class));
+            }
+        });
+
+        getView().findViewById(R.id.pokemonimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_AlbumPokemon.class));
             }
         });
 

@@ -41,20 +41,6 @@
             </ImageView>
 
 
-
-<!--            <androidx.appcompat.widget.SearchView-->
-<!--                android:id="@+id/searchView"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/custom_button_v8"-->
-<!--                android:elevation="10dp"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale25"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/lineaverticale95"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/lineaverticale05"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/lineaorizzontale15"-->
-<!--                app:queryBackground="@android:color/transparent"-->
-<!--                app:queryHint="Cerca qui ..." />-->
-
             <TextView
                 android:id="@+id/tuoianimali"
                 android:layout_width="0dp"
@@ -145,6 +131,41 @@
                 app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
                 app:layout_constraintStart_toStartOf="@+id/lineaverticale10"
                 app:layout_constraintTop_toTopOf="@+id/lineaorizzontale46" />
+
+
+            <TextView
+                android:id="@+id/Album"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/custom_button_v7"
+                android:elevation="10dp"
+                android:gravity="bottom|center"
+                android:paddingBottom="10dp"
+                android:text="Pokemon"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale67"
+                app:layout_constraintEnd_toStartOf="@+id/lineaverticale95"
+                app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
+                app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
+
+            <ImageView
+                android:id="@+id/pokemonimage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/custom_button_v6"
+                android:elevation="11dp"
+                android:gravity="bottom"
+                android:src="@drawable/doglogo"
+                android:text="Pokemon"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale64"
+                app:layout_constraintEnd_toEndOf="@+id/Album"
+                app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
+                app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/lineaverticale50"
@@ -259,7 +280,29 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.52" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/lineaorizzontale54"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.54" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/lineaorizzontale64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.64" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/lineaorizzontale67"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.69" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-    </FrameLayout>
+</FrameLayout>
