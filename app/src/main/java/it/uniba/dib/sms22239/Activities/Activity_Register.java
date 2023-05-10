@@ -119,19 +119,17 @@ public class Activity_Register extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
-                    if(task.isSuccessful() && flag == true)
+                    if(task.isSuccessful() && flag)
                     {
                         switch(selectedItem)
                         {
                             case "Proprietario":
                                 Proprietario prop = new Proprietario();
                                 prop.writeNewUser(prop, email, password, currentUser.getUid());
-
                                 break;
                             case "Ente":
                                 Ente ente = new Ente();
                                 ente.writeNewUser(ente, email, password, currentUser.getUid());
-
                                 break;
                             case "Veterinario":
                                 Veterinario vet = new Veterinario();

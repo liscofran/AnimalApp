@@ -10,14 +10,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -244,17 +241,15 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private Offerta uploadFile(Offerta offerta) {
+    private void uploadFile(Offerta offerta) {
         if (mImageUri != null) {
-            long time = System.currentTimeMillis();
-            offerta.immagine = time + "." + getFileExtension(mImageUri);
-            StorageReference fileReference = mStorageRef.child(offerta.immagine);
+            StorageReference fileReference = mStorageRef.child(offerta.idOfferta);
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(Activity_Registrazione_Offerte.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Activity_Registrazione_Offerte.this, "Upload completato", Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -272,6 +267,5 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
-        return offerta;
     }
 }

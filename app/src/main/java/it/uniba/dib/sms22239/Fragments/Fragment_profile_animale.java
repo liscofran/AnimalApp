@@ -258,7 +258,8 @@ public class Fragment_profile_animale extends Fragment
                 String proprietario = nomecognomeprop.getText().toString();
 
                 // Costruisci la stringa di testo per la condivisione
-                String shareText = "Nome: " + nome + "\n" +
+                String shareText =
+                        "Nome: " + nome + "\n" +
                         "Razza: " + razza + "\n" +
                         "Sesso: " + sesso + "\n" +
                         "Proprietario: " + proprietario;

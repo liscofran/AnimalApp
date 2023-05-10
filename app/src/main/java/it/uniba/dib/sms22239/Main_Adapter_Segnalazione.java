@@ -41,7 +41,7 @@ public class Main_Adapter_Segnalazione extends FirebaseRecyclerAdapter<Segnalazi
         holder.oggetto.setText(model.descrizione);
 
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = mStorageRef.child("Segnalazioni/" + model.immagine);
+        StorageReference imageRef = mStorageRef.child("Segnalazioni/" + model.idSegnalazione + ".jpg");
 
         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
             String url = uri.toString();

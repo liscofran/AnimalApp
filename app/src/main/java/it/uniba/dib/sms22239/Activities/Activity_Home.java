@@ -34,8 +34,6 @@ public class Activity_Home extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Load_setting();
-
-
     }
 
     private void Load_setting()

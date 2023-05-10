@@ -41,7 +41,7 @@ public class Main_Adapter_Offerte extends FirebaseRecyclerAdapter<Offerta, Main_
         holder.oggetto.setText(model.descrizione);
 
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = mStorageRef.child("Offerte/" + model.immagine);
+        StorageReference imageRef = mStorageRef.child("Offerte/" + model.idOfferta + ".jpg");
 
         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
             String url = uri.toString();

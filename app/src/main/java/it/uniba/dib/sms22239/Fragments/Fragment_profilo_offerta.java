@@ -120,7 +120,6 @@ public class Fragment_profilo_offerta extends Fragment
                 String imageUrl = uri.toString();
                 // Usa Picasso per caricare l'immagine nell'ImageView
                 Picasso.get().load(imageUrl).into(Immagineofferta);
-                Immagineofferta = getView().findViewById(R.id.imageView2);
             }
         });
 

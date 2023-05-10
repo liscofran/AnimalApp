@@ -41,7 +41,6 @@ public class Activity_Appuntamento extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
         mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child(idAppuntamento);
 
-
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +134,4 @@ public class Activity_Appuntamento extends AppCompatActivity {
         });
 
     }
-
-
-
 }
