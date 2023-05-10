@@ -118,17 +118,17 @@ public class Fragment_Proprietario extends Fragment
             }
         });
 
-        getView().findViewById(R.id.cercaimage).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Album_Animali.class));
+                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
             }
         });
 
-        getView().findViewById(R.id.cerca).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.annuncimage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Album_Animali.class));
+                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
             }
         });
 
