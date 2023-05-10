@@ -77,35 +77,32 @@
 
 
             <TextView
-                android:id="@+id/annunci"
+                android:id="@+id/album"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/custom_button_v7"
                 android:elevation="10dp"
                 android:gravity="bottom|center"
                 android:paddingBottom="10dp"
-                android:text="Annunci"
+                android:text="Album"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale40"
                 app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
                 app:layout_constraintStart_toStartOf="@+id/lineaverticale55"
-                app:layout_constraintTop_toTopOf="@+id/annuncimage" />
-
+                app:layout_constraintTop_toTopOf="@+id/albumimage"
+                />
 
             <ImageView
-                android:id="@+id/annuncimage"
+                android:id="@+id/albumimage"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/custom_button_v6"
                 android:elevation="11dp"
                 android:gravity="bottom"
-                android:src="@drawable/annuncicon"
-                android:text="I tuoi animali "
+                android:src="@drawable/round_photo_album_24_white"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale35"
                 app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
                 app:layout_constraintStart_toStartOf="@+id/lineaverticale55"
@@ -134,14 +131,14 @@
 
 
             <TextView
-                android:id="@+id/Album"
+                android:id="@+id/cerca"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/custom_button_v7"
                 android:elevation="10dp"
                 android:gravity="bottom|center"
                 android:paddingBottom="10dp"
-                android:text="Pokemon"
+                android:text="Cerca Animali"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -151,19 +148,19 @@
                 app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
 
             <ImageView
-                android:id="@+id/pokemonimage"
+                android:id="@+id/cercaimage"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/custom_button_v6"
                 android:elevation="11dp"
                 android:gravity="bottom"
-                android:src="@drawable/doglogo"
+                android:src="@drawable/round_search_24_white"
                 android:text="Pokemon"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale64"
-                app:layout_constraintEnd_toEndOf="@+id/Album"
+                app:layout_constraintEnd_toEndOf="@+id/cerca"
                 app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
                 app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
 
@@ -285,7 +282,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.54" />
+                app:layout_constraintGuide_percent="0.55" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -300,7 +297,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.69" />
+                app:layout_constraintGuide_percent="0.7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

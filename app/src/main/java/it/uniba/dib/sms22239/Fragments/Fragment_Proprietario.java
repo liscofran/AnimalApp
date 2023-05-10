@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import it.uniba.dib.sms22239.Activities.Activity_AlbumPokemon;
+import it.uniba.dib.sms22239.Activities.Activity_Album_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
@@ -103,31 +104,31 @@ public class Fragment_Proprietario extends Fragment
             }
         });
 
-        getView().findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
-            }
-        });
-
-        getView().findViewById(R.id.annuncimage).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
-            }
-        });
-
-        getView().findViewById(R.id.Album).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.album).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), Activity_AlbumPokemon.class));
             }
         });
 
-        getView().findViewById(R.id.pokemonimage).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.albumimage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), Activity_AlbumPokemon.class));
+            }
+        });
+
+        getView().findViewById(R.id.cercaimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Album_Animali.class));
+            }
+        });
+
+        getView().findViewById(R.id.cerca).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Album_Animali.class));
             }
         });
 
