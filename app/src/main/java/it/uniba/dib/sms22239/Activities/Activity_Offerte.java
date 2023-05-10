@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,6 +30,7 @@ public class Activity_Offerte extends AppCompatActivity {
     Main_Adapter_Offerte.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    ImageButton backbutton;
 
 
     @Override
@@ -38,6 +40,14 @@ public class Activity_Offerte extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        backbutton = findViewById(R.id.back);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         Button aggiungiOfferte = findViewById(R.id.add_offerta_button);
         aggiungiOfferte.setOnClickListener(new View.OnClickListener() {

@@ -36,47 +36,9 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
-        app:layout_constraintBottom_toTopOf="@+id/provincia"/>
+        app:layout_constraintBottom_toTopOf="@id/provinciatext"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1" />
 
-
-    <TextView
-        android:id="@+id/oggetto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v4"
-        android:hint="Oggetto"
-        app:drawableLeftCompat="@drawable/baseline_article_24"
-        android:drawablePadding="-15dp"
-        android:padding="20dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/guideline7"
-        app:layout_constraintRight_toRightOf="@id/guideline8"
-        app:layout_constraintTop_toBottomOf="@id/offerta"
-        app:layout_constraintBottom_toTopOf="@id/oggettotext"/>
-
-    <TextView
-        android:id="@+id/provincia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v4"
-        android:hint="Provincia"
-        app:drawableLeftCompat="@drawable/baseline_location_city_24"
-        android:drawablePadding="-15dp"
-        android:padding="20dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/offerta"
-        app:layout_constraintLeft_toLeftOf="@id/guideline10"
-        app:layout_constraintRight_toRightOf="@id/guideline9"
-        app:layout_constraintBottom_toTopOf="@id/provinciatext"/>
 
     <EditText
         android:id="@+id/provinciatext"
@@ -86,9 +48,9 @@
         android:padding="10dp"
         android:hint="Inserisci Provincia.."
         android:textSize="15dp"
-        app:drawableLeftCompat="@drawable/ic_plus"
+        app:drawableLeftCompat="@drawable/baseline_location_city_24"
         android:drawablePadding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/provincia"
+        app:layout_constraintTop_toBottomOf="@+id/offerta"
         app:layout_constraintLeft_toLeftOf="@id/guideline10"
         app:layout_constraintRight_toRightOf="@id/guideline9"
         app:layout_constraintBottom_toTopOf="@+id/descrizione"/>
@@ -101,9 +63,9 @@
         android:padding="10dp"
         android:hint="Inserisci Oggetto.."
         android:textSize="15dp"
-        app:drawableLeftCompat="@drawable/ic_plus"
+        app:drawableLeftCompat="@drawable/baseline_article_24"
         android:drawablePadding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/oggetto"
+        app:layout_constraintTop_toBottomOf="@+id/offerta"
         app:layout_constraintLeft_toLeftOf="@id/guideline7"
         app:layout_constraintRight_toRightOf="@id/guideline8"
         app:layout_constraintBottom_toTopOf="@+id/descrizione"/>
@@ -149,6 +111,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Proprietario"
+        android:paddingStart="15dp"
         android:textStyle="bold"
         android:textSize="15dp"
         app:drawableLeftCompat="@drawable/ic_profile2"
@@ -166,6 +129,7 @@
         android:layout_height="wrap_content"
         android:text="Ente"
         android:textSize="15dp"
+        android:paddingStart="15dp"
         android:background="@drawable/custom_button_v7"
         app:drawableLeftCompat="@drawable/black_home"
         android:drawablePadding="4dp"
@@ -182,6 +146,7 @@
         android:layout_height="wrap_content"
         android:text="Veterinario"
         android:textSize="15dp"
+        android:paddingStart="15dp"
         app:drawableLeftCompat="@drawable/round_healing_24"
         android:drawablePadding="4dp"
         android:background="@drawable/custom_button_v7"
@@ -197,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <ImageButton
         android:id="@+id/submitBtn"
@@ -236,7 +201,7 @@
         android:padding="5dp"
         android:src="@drawable/ic_attachment"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/check_box3"
+        app:layout_constraintLeft_toRightOf="@id/image_view"
         app:layout_constraintRight_toLeftOf="@id/photoBtn"
         app:layout_constraintTop_toBottomOf="@id/check_box3"
         app:layout_constraintVertical_bias="0.95"
@@ -249,7 +214,15 @@
         app:layout_constraintTop_toBottomOf="@id/check_box3"
         app:layout_constraintRight_toLeftOf="@id/allegatoBtn"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintLeft_toRightOf="@id/guideline20"
+        app:layout_constraintVertical_bias="0.90"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.62" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -284,6 +257,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.67" />
+        app:layout_constraintGuide_percent="0.80" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
