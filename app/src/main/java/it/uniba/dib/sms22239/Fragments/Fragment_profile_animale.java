@@ -35,6 +35,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Veterinario;
@@ -145,25 +147,30 @@ public class Fragment_profile_animale extends Fragment
                 String status = dataSnapshot.child("prop").getValue(String.class);
                 String luogo = dataSnapshot.child("luogo").getValue(String.class);
                 relazione = dataSnapshot.child("relazione").getValue(String.class);
-                relazioneconidAnimale = dataSnapshot.child("idAnimalerelazione").getValue(String.class);
+
+                if (!Objects.equals(relazione, "Nessuna")) {
+                    relazioneconidAnimale = dataSnapshot.child("idAnimalerelazione").getValue(String.class);
 
 
-                mDatabase2 = FirebaseDatabase.getInstance().getReference().child("Animale").child(relazioneconidAnimale);
+                    mDatabase2 = FirebaseDatabase.getInstance().getReference().child("Animale").child(relazioneconidAnimale);
 
-                mDatabase2.addValueEventListener(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    mDatabase2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
-                        relazioneTextView.setText("Relazione: " + relazione + " con " + nomeAnimaleRelazione);
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                            nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
+                            relazioneTextView.setText("Relazione: " + relazione + " con " + nomeAnimaleRelazione);
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                        }
+                    });
+                }
+                else {
+                    relazioneTextView.setText("Nessuna relazione");
+                }
 
 
                 //set delle variabili recuperate al layout

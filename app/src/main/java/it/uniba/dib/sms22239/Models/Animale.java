@@ -18,6 +18,9 @@ public class Animale
     public String prop;
     public String descprop;
     public String luogo;
+    public String relazione;
+
+    public String idAnimaleRelazione;
 
     public Animale()
     {
@@ -35,6 +38,8 @@ public class Animale
         ani.data = data;
         ani.prop = prop;
         ani.luogo = luogo;
+        ani.relazione = "Nessuna";
+        ani.idAnimaleRelazione = "Nessuno";
 
         ani.Id = Integer.toString(id);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
