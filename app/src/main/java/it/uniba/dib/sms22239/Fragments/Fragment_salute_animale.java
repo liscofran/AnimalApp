@@ -59,11 +59,14 @@ public class Fragment_salute_animale extends Fragment
         mPrefciboEditText = getView().findViewById(R.id.preferenze_cibo);
         backBtn = getView().findViewById(R.id.back);
 
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment_profile_animale fragment = new Fragment_profile_animale();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.commit();
             }
         });
 
