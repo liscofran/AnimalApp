@@ -95,10 +95,29 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:drawableLeftCompat="@drawable/round_add_24"
-        app:layout_constraintBottom_toBottomOf="@+id/Mezzalunasx"
+        app:layout_constraintBottom_toBottomOf="@+id/cerca_animale"
         app:layout_constraintEnd_toEndOf="@+id/Miei_animali"
         app:layout_constraintStart_toStartOf="@id/Miei_animali"
         app:layout_constraintTop_toBottomOf="@id/album_animali" />
+
+    <TextView
+        android:id="@+id/cerca_animale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v4"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Cerca Animale"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:drawableLeftCompat="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/Mezzalunasx"
+        app:layout_constraintEnd_toEndOf="@+id/Miei_animali"
+        app:layout_constraintStart_toStartOf="@id/Miei_animali"
+        app:layout_constraintTop_toBottomOf="@id/crea_animale" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"

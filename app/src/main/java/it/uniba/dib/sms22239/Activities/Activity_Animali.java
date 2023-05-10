@@ -85,6 +85,16 @@ public class Activity_Animali extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Intent intent = new Intent(Activity_Animali.this, Activity_AlbumPokemon.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView cerca_animali = findViewById(R.id.cerca_animale);
+        cerca_animali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(Activity_Animali.this, Activity_Album_Animali.class);
                 startActivity(intent);
             }
