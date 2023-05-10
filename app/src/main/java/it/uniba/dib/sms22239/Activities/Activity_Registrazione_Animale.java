@@ -54,7 +54,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
 
     private EditText inputNome, inputRazza,inputpatologie,inputprefcibo;
     private String sesso, selectedItem;
-    private EditText inputData;
+    private Button inputData;
     private static final int PICK_IMAGE_REQUEST = 1;
     protected TextView generaAnimaleButton;
     private TextView mButtonChooseImage,register_animal_button,mButtonUpload;
@@ -277,7 +277,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         // Imposta la data selezionata nell'Edit Text
-                        EditText registerAnimalBirthdateEditText = findViewById(R.id.register_animal_birthdate);
+                        Button registerAnimalBirthdateEditText = findViewById(R.id.register_animal_birthdate);
                         registerAnimalBirthdateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                     }
                 }, year, month, day);
