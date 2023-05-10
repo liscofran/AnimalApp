@@ -180,7 +180,6 @@
             android:layout_height="0dp"
             android:background="@drawable/circle_shape"
             android:src="@drawable/editcustomsave"
-            android:text="Modifica"
             app:layout_constraintBottom_toTopOf="@+id/b95"
             app:layout_constraintEnd_toStartOf="@+id/b55"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"

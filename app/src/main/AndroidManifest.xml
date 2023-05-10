@@ -194,7 +194,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.Activity_Main"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

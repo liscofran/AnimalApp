@@ -31,8 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import it.uniba.dib.sms22239.Activities.MainActivity;
-import it.uniba.dib.sms22239.Fragments.Fragment_edit_ente_profile;
+import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.R;
 
 
@@ -106,7 +105,7 @@ public class Fragment_profile_ente extends Fragment
                                 mDatabase.removeValue();
                                 user.delete();
                                 Toast.makeText(getActivity(), "Ente eliminato con successo!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Intent intent = new Intent(getActivity(), Activity_Main.class);
                                 startActivity(intent);
                             }
                         })

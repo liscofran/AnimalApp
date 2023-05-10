@@ -22,7 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import it.uniba.dib.sms22239.R;
 
-public class Activity_Google_Sign_In extends MainActivity {
+public class Activity_Google_Sign_In extends Activity_Main {
 
     private static final int RC_SIGN_IN = 101;
 

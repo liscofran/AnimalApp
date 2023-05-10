@@ -36,7 +36,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import it.uniba.dib.sms22239.Activities.MainActivity;
+import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
@@ -149,7 +149,7 @@ public class Fragment_profile_veterinario extends Fragment {
                                 mDatabase.removeValue();
                                 user.delete();
                                 Toast.makeText(getActivity(), "Veterinario eliminato con successo!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Intent intent = new Intent(getActivity(), Activity_Main.class);
                                 startActivity(intent);
                             }
                         })

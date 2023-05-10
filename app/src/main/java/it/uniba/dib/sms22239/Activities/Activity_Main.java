@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import it.uniba.dib.sms22239.R;
 
-public class MainActivity extends AppCompatActivity
+public class Activity_Main extends AppCompatActivity
 {
     TextView createnewAccount;
     EditText inputEmail,inputPassword;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(MainActivity.this, Activity_Register.class));
+                startActivity(new Intent(Activity_Main.this, Activity_Register.class));
             }
         });
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent= new Intent(MainActivity.this, Activity_Google_Sign_In.class);
+                Intent intent= new Intent(Activity_Main.this, Activity_Google_Sign_In.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity_Reset_Password.class);
+                Intent intent = new Intent(Activity_Main.this, Activity_Reset_Password.class);
                 startActivity(intent);
             }
         });
@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity
 
         if(!email.matches(emailPattern))
         {
-            inputEmail.setError("Enter Connext Email");
+            inputEmail.setError("Inserisci un'email corretta:");
             inputEmail.requestFocus();
         } else if(password.isEmpty() || password.length()<6)
         {
-            inputPassword.setError("Enter Proper Password");
+            inputPassword.setError("Inserisci una password appropriata:");
         }else
         {
-            progressDialog.setMessage("Please Wait While Login...");
+            progressDialog.setMessage("Per favore attendi durante il login...");
             progressDialog.setTitle("Login");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
@@ -113,11 +113,11 @@ public class MainActivity extends AppCompatActivity
                     {
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Main.this, "Login avvenuto con successo!", Toast.LENGTH_SHORT).show();
                     }else
                     {
                         progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Main.this, ""+ task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
     private void sendUserToNextActivity()
     {
-        Intent intent = new Intent(MainActivity.this, Activity_Home.class);
+        Intent intent = new Intent(Activity_Main.this, Activity_Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

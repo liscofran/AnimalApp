@@ -2,6 +2,7 @@ package it.uniba.dib.sms22239.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -37,6 +39,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
@@ -105,10 +108,20 @@ public class Fragment_profile_animale extends Fragment
         getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
-                Toast.makeText(getActivity(), "Animale eliminato con successo!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Activity_Home.class);
-                startActivity(intent);
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Elimina animale")
+                        .setMessage("Sei sicuro di voler eliminare l'animale?")
+                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mDatabase.removeValue();
+                                Toast.makeText(getActivity(), "Animale eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(), Activity_Home.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Annulla", null)
+                        .show();
             }
         });
 

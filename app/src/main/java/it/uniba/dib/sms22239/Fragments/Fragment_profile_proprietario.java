@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.MainActivity;
-import it.uniba.dib.sms22239.Fragments.Fragment_edit_profile_proprietario;
+import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.R;
 
 
@@ -138,7 +135,7 @@ public class Fragment_profile_proprietario extends Fragment
                                 mDatabase.removeValue();
                                 user.delete();
                                 Toast.makeText(getActivity(), "Utente eliminato con successo!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Intent intent = new Intent(getActivity(), Activity_Main.class);
                                 startActivity(intent);
                             }
                         })
