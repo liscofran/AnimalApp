@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -32,6 +33,8 @@ public class Activity_AnimaleSelezionato extends AppCompatActivity {
     RecyclerView recyclerView;
     Main_Adapter_Animale mainAdapter;
     SearchView searchView;
+
+    String idAnimale;
     Main_Adapter_Animale.OnItemClickListener listener;
 
     @Override
@@ -43,6 +46,9 @@ public class Activity_AnimaleSelezionato extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ImageButton backBtn2 = findViewById(R.id.back);
+
+        idAnimale = getIntent().getStringExtra("ANIMALE_SELEZIONATO");
+
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,12 +132,12 @@ public class Activity_AnimaleSelezionato extends AppCompatActivity {
             public void onItemClick(int position) {
                 Animale animale = mainAdapter.getItem(position);
                 String animalId = animale.Id;
-
                 String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};
 
                 // creazione dello spinner
                 Spinner spinner = new Spinner(Activity_AnimaleSelezionato.this);
                 spinner.setAdapter(new ArrayAdapter<String>(Activity_AnimaleSelezionato.this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
+
 
 
                 // creazione dell'AlertDialog con lo spinner
@@ -144,6 +150,15 @@ public class Activity_AnimaleSelezionato extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
                                 Toast.makeText(Activity_AnimaleSelezionato.this, "Relazione aggiornata con successo! Scelta: " + selectedOption, Toast.LENGTH_SHORT).show();
+
+                                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
+                                mDatabase.child("idAnimalerelazione").setValue(animalId);
+                                mDatabase.child("relazione").setValue(selectedOption);
+
+
+                                DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Animale").child(animalId);
+                                mDatabase1.child("relazione").setValue(selectedOption);
+                                mDatabase1.child("idAnimalerelazione").setValue(idAnimale);
                                 startActivity(new Intent(Activity_AnimaleSelezionato.this, Activity_Home.class));
                             }
                         })

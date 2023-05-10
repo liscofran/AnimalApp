@@ -130,8 +130,10 @@ public class Activity_AlbumPokemon extends AppCompatActivity {
                         .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //Toast.makeText(Activity_AlbumPokemon.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Activity_AlbumPokemon.this, Activity_AnimaleSelezionato.class));
+                                Toast.makeText(Activity_AlbumPokemon.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Activity_AlbumPokemon.this, Activity_AnimaleSelezionato.class);
+                                intent.putExtra("ANIMALE_SELEZIONATO",animalId);
+                                startActivity(intent);
                             }
                         })
                         .setNegativeButton("Annulla", null)
