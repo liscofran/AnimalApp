@@ -62,7 +62,7 @@ public class Fragment_Testo extends Fragment
                reference.child(Nome + ".txt").putBytes(Testo.getBytes()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                    @Override
                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                       Toast.makeText(getActivity(), "File Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getActivity(), "File Caricato con successo", Toast.LENGTH_SHORT).show();
                    }
                }).addOnFailureListener(new OnFailureListener() {
                    @Override
