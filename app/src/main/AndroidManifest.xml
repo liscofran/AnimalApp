@@ -165,13 +165,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.Activity_Google_Sign_In"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Activities.Activity_Register"
             android:exported="false">
             <meta-data

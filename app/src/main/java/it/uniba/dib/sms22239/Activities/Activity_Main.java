@@ -32,7 +32,7 @@ public class Activity_Main extends AppCompatActivity
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    ImageView btnGoogle;
+    ImageView btnGuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,7 +44,7 @@ public class Activity_Main extends AppCompatActivity
         inputEmail=findViewById(R.id.inputEmail);
         inputPassword=findViewById(R.id.inputPassword);
         btnLogin=findViewById(R.id.btnLogin);
-        btnGoogle = findViewById(R.id.btnGoogle);
+        btnGuest = findViewById(R.id.btnGuest);
         forgotPassword=findViewById(R.id.forgotPassword);
         progressDialog= new ProgressDialog(this);
         mAuth= FirebaseAuth.getInstance();
@@ -66,13 +66,13 @@ public class Activity_Main extends AppCompatActivity
             }
         });
 
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
+        btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Intent intent= new Intent(Activity_Main.this, Activity_Google_Sign_In.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                inputEmail.setText("proprietario@gmail.com");
+                inputPassword.setText("proprietario");
+                perforLogin();
             }
         });
 

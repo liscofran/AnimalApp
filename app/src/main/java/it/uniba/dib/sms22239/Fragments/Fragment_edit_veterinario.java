@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -186,6 +187,7 @@ public class Fragment_edit_veterinario extends Fragment {
                 updateFile(user);
 
                 Intent intent = new Intent(getActivity(), Activity_Home.class);
+                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
             }

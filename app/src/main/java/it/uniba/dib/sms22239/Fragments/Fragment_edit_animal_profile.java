@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
+import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_edit_animal_profile extends Fragment {
@@ -181,7 +182,7 @@ public class Fragment_edit_animal_profile extends Fragment {
                 mDatabase.child("prop").setValue(selectedItem);
 
                 updateFile();
-
+                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), Activity_Animali.class);
                 startActivity(intent);
             }

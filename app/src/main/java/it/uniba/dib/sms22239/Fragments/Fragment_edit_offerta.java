@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -196,6 +197,7 @@ public class Fragment_edit_offerta extends Fragment {
                 updateFile(mDatabase);
 
                 Intent intent = new Intent(getActivity(), Activity_Segnalazioni_Offerte.class);
+                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

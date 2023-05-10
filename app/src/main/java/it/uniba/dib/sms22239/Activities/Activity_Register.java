@@ -97,18 +97,18 @@ public class Activity_Register extends AppCompatActivity {
 
         if(!email.matches(emailPattern))
         {
-            inputEmail.setError("Enter Connext Email");
+            inputEmail.setError("Inserisci Un'email corretta");
             inputEmail.requestFocus();
         } else if(password.isEmpty() || password.length()<6)
         {
-            inputPassword.setError("Enter Proper Password");
+            inputPassword.setError("Inserisci una password appropriata");
         } else if(!password.equals(confirmPassword))
         {
-            inputCConformPassword.setError("Password Not Match Both Field");
+            inputCConformPassword.setError("La password di conferma non è uguale");
         } else
         {
-            progressDialog.setMessage("Please Wait While Registration...");
-            progressDialog.setTitle("Registration");
+            progressDialog.setMessage("Attendi durante la registrazione...");
+            progressDialog.setTitle("Registrazione");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
 

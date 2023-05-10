@@ -125,13 +125,13 @@
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:background="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
+                app:layout_constraintBottom_toTopOf="@+id/btnGuest"
                 app:layout_constraintEnd_toEndOf="@+id/inputPassword"
                 app:layout_constraintStart_toStartOf="@+id/inputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <ImageView
-                android:id="@+id/btnGoogle"
+                android:id="@+id/btnGuest"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"

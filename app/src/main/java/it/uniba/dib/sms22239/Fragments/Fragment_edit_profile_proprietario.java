@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -118,7 +119,7 @@ public class Fragment_edit_profile_proprietario extends Fragment {
         });
 
 
-        CircleImageView saveProfileButton = getView().findViewById(R.id.save_profile_button);
+        ImageButton saveProfileButton = getView().findViewById(R.id.save_profile_button);
         Button backBtn = getView().findViewById(R.id.back);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +186,7 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 updateFile(user);
 
                 Intent intent = new Intent(getActivity(), Activity_Home.class);
+                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
 
