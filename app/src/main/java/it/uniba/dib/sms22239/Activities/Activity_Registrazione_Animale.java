@@ -52,13 +52,11 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Registrazione_Animale extends AppCompatActivity
 {
 
-    private EditText inputNome, inputRazza,inputpatologie,inputprefcibo;
+    private EditText inputNome, inputRazza, inputpatologie, inputprefcibo, inputLuogo;
     private String sesso, selectedItem;
     private Button inputData;
     private static final int PICK_IMAGE_REQUEST = 1;
     protected TextView generaAnimaleButton;
-    private TextView mButtonChooseImage,register_animal_button,mButtonUpload;
-    private ImageView mImageView;
     private ProgressBar mProgressBar;
     protected Uri mImageUri;
     protected StorageTask mUploadTask;
@@ -70,9 +68,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrazione_animale);
 
-        mButtonChooseImage = findViewById(R.id.button_choose_image);
-        mButtonUpload = findViewById(R.id.register_animal_button);
-        mImageView = findViewById(R.id.image_view);
+        TextView mButtonChooseImage = findViewById(R.id.button_choose_image);
         mProgressBar = findViewById(R.id.progress_bar);
         ImageButton backBtn2 = findViewById(R.id.back);
 
@@ -180,6 +176,9 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
         inputpatologie = findViewById(R.id.register_animal_patologie);
         inputprefcibo = findViewById(R.id.register_animal_prefcibo);
         inputData = findViewById(R.id.register_animal_birthdate);
+        inputLuogo = findViewById(R.id.register_animal_luogo);
+
+        //Bottone Data
         inputData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,16 +199,9 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                 String razza = inputRazza.getText().toString();
                 String patologie = inputpatologie.getText().toString();
                 String preferenzecibo = inputprefcibo.getText().toString();
-                String datatmp = inputData.getText().toString();
-                String data = "";
+                String data = inputData.getText().toString();
+                String luogo = inputLuogo.getText().toString();
                 String prop = selectedItem;
-
-                CharacterIterator it = new StringCharacterIterator(datatmp);
-                while (it.current() != CharacterIterator.DONE)
-                {
-                    data = data + it.current();
-                    it.next();
-                }
 
                 long seed = System.currentTimeMillis(); // ottenere il tempo corrente
                 Random random = new Random(seed); // creare un oggetto Random con il tempo come seme
@@ -217,14 +209,15 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
 
                 if (mUploadTask != null && mUploadTask.isInProgress())
                 {
-                    Toast.makeText(Activity_Registrazione_Animale.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Animale.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     uploadFile(ani,tmp);
                 }
 
-                ani.writeNewAnimal(tmp, ani, nome, razza,patologie,preferenzecibo, currentUser.getUid(), sesso, data, prop);
+                ani.writeNewAnimal(tmp, ani, nome, razza, patologie, preferenzecibo, currentUser.getUid(), sesso, data, prop, luogo);
+                Toast.makeText(Activity_Registrazione_Animale.this, "Animale registrato con successo", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Home.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);

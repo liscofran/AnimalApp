@@ -200,11 +200,12 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                 checkVeterinario = veterinario.isChecked();
 
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile(off);
                 }
                 off.writeOfferta(off, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
+                Toast.makeText(Activity_Registrazione_Offerte.this, "Offerta registrato con successo", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class);
                 intent.putExtra("OFFERTA_CODE", off.idOfferta);
                 startActivity(intent);
@@ -265,7 +266,7 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                         }
                     });
         } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nessun file selezionato", Toast.LENGTH_SHORT).show();
         }
     }
 }

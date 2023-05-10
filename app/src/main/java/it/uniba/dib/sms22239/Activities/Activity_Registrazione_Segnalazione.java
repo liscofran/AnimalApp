@@ -255,7 +255,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
 
 
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile(sgn);
                 }
@@ -263,6 +263,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 if(latitude !=0)
                 {
                     sgn.writeSegnalazione(sgn,latitude,longitude, oggetto, provincia, descrizione, checkProprietario, checkEnte, checkVeterinario);
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Segnalazione registrato con successo", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class);
                     intent.putExtra("SEGNALAZIONE_CODE", sgn.idSegnalazione);
                     startActivity(intent);
@@ -271,8 +272,6 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 {
                     Toast.makeText(Activity_Registrazione_Segnalazione.this, "Posizione non disponibile", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 
@@ -316,7 +315,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload avvenuto con successo", Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

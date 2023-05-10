@@ -17,13 +17,14 @@ public class Animale
     public String immagine;
     public String prop;
     public String descprop;
+    public String luogo;
 
     public Animale()
     {
 
     }
 
-    public void writeNewAnimal(int id, Animale ani, String nome, String razza,String patologie,String preferenzecibo, String Id_utente, String sesso, String data,String prop)
+    public void writeNewAnimal(int id, Animale ani, String nome, String razza,String patologie,String preferenzecibo, String Id_utente, String sesso, String data, String prop, String luogo)
     {
         ani.nome = nome;
         ani.razza = razza;
@@ -33,7 +34,7 @@ public class Animale
         ani.Id_utente = Id_utente;
         ani.data = data;
         ani.prop = prop;
-        ani.descprop = "Da inserire...";
+        ani.luogo = luogo;
 
         ani.Id = Integer.toString(id);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

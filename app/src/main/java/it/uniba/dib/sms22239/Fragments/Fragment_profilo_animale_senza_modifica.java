@@ -104,7 +104,7 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
                 String razza = dataSnapshot.child("razza").getValue(String.class);
                 String sesso = dataSnapshot.child("sesso").getValue(String.class);
                 String luogo = dataSnapshot.child("luogo").getValue(String.class);
-                String status = dataSnapshot.child("status").getValue(String.class);
+                String status = dataSnapshot.child("prop").getValue(String.class);
                 idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
 
                 //set delle variabili recuperate al layout
