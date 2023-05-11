@@ -1,22 +1,28 @@
 package it.uniba.dib.sms22239.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import java.util.Calendar;
 
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
-    EditText inputData, inputNome, inputPrezzo, inputQuantita;
+    EditText inputNome, inputPrezzo, inputQuantita;
+    Button inputData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,14 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         inputNome = findViewById(R.id.add_item_name);
         inputPrezzo = findViewById(R.id.add_item_price);
         inputQuantita = findViewById(R.id.add_item_quantity);
+
+        //Bottone Data
+        inputData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
         // Imposta la Toolbar come action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -84,25 +98,34 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
                 String nome = inputNome.getText().toString();
                 Double prezzo = Double.parseDouble(inputPrezzo.getText().toString());
                 int quantita = Integer.parseInt(inputQuantita.getText().toString());
-                String datatmp = inputData.getText().toString();
-                String data = "";
-                CharacterIterator it = new StringCharacterIterator(datatmp);
-
-                while (it.current() != CharacterIterator.DONE)
-                {
-                    if(it.getIndex() == 4 || it.getIndex() == 6 )
-                    {
-                        data = data + "/";
-                    }
-                    data = data + it.current();
-                    it.next();
-                }
+                String data = inputData.getText().toString();
 
                 og.writeNewOggetto(og, nome,prezzo,quantita,data, idAnimal);
+                Toast.makeText(Activity_Crea_Oggetto_Spesa.this,"Oggetto salvato con successo", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Spese.class));
-
             }
         });
 
+    }
+
+    private void showDatePickerDialog() {
+        // Imposta la data di default sul giorno corrente
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Crea il DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Imposta la data selezionata nel Button
+                        Button registraSpesaOggetto = findViewById(R.id.add_item_date);
+                        registraSpesaOggetto.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                }, year, month, day);
+        datePickerDialog.show();
     }
 }

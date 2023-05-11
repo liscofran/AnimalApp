@@ -310,10 +310,10 @@ public class Fragment_profile_animale extends Fragment
 
                 // Costruisci la stringa di testo per la condivisione
                 String shareText =
-                        "Nome: " + nome + "\n" +
-                        "Razza: " + razza + "\n" +
-                        "Sesso: " + sesso + "\n" +
-                        "Proprietario: " + proprietario;
+                        nome + "\n " +
+                        razza + "\n " +
+                        sesso + "\n " +
+                        proprietario;
 
                 // Crea l'intent per la condivisione
                 Intent sendIntent = new Intent();

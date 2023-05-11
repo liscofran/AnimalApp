@@ -1,5 +1,8 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import static it.uniba.dib.sms22239.Fragments.Fragment_VisualizzaImmagine.idAnimale;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,15 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -25,6 +32,8 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Models.Testo;
 import it.uniba.dib.sms22239.R;
 
@@ -34,6 +43,7 @@ public class Fragment_VisualizzaTesto extends Fragment {
     private RecyclerView recyclerView;
     private static List<Testo> mFileList;
     private FileListAdapter fileListAdapter;
+    String idAnimale;
 
     public Fragment_VisualizzaTesto() {
         // Required empty public constructor
@@ -48,7 +58,7 @@ public class Fragment_VisualizzaTesto extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
         txtRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi");
         recyclerView = view.findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -140,12 +150,24 @@ public class Fragment_VisualizzaTesto extends Fragment {
                 @Override
                 public void onClick(View v)
                 {
-                    deleteFile(testo);
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Elimina testo")
+                            .setMessage("Sei sicuro di voler eliminare il testo?")
+                            .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    deleteFile(testo);
+                                    Toast.makeText(getActivity(), "Testo eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
+                                    startActivity(intent.putExtra("ANIMAL_CODE",idAnimale));
+                                }
+                            })
+                            .setNegativeButton("Annulla", null)
+                            .show();
                 }
             });
         }
     }
-
     private void downloadFile(String fileName) {
 
         String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
@@ -161,7 +183,7 @@ public class Fragment_VisualizzaTesto extends Fragment {
 
     private void deleteFile(Testo testo) {
         String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
-        StorageReference fileRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi/" + testo.getNome());
+        StorageReference fileRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi").child(testo.getNome());
 
         // Elimina il file dallo Storage di Firebase
         fileRef.delete().addOnSuccessListener(aVoid -> {

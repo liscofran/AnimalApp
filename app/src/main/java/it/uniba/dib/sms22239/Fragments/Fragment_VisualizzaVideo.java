@@ -1,7 +1,11 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import static it.uniba.dib.sms22239.Fragments.Fragment_VisualizzaImmagine.idAnimale;
+
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +36,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Models.Video;
 import it.uniba.dib.sms22239.R;
 
@@ -40,6 +46,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
     private RecyclerView mRecyclerView;
     private static List<Video> mVideoList;
     private static VideoAdapter mAdapter;
+    String idAnimale;
 
     public Fragment_VisualizzaVideo()
     {
@@ -57,7 +64,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
     {
         super.onViewCreated(view, savedInstanceState);
 
-        String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
         mStorageRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Videos");
         mRecyclerView = getView().findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -89,7 +96,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
         });
     }
 
-        private static class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder> {
+        private class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder> {
 
             private List<Video> mVideoList;
 
@@ -117,7 +124,7 @@ public class Fragment_VisualizzaVideo extends Fragment {
             }
         }
 
-        private static class VideoViewHolder extends RecyclerView.ViewHolder {
+        private class VideoViewHolder extends RecyclerView.ViewHolder {
 
             private final TextView mTitleTextView;
             private final VideoView mVideoView;
@@ -195,7 +202,20 @@ public class Fragment_VisualizzaVideo extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
-                        deleteVideo(video);
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle("Elimina video")
+                                .setMessage("Sei sicuro di voler eliminare il video?")
+                                .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        deleteVideo(video);
+                                        Toast.makeText(getActivity(), "Video eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
+                                        startActivity(intent.putExtra("ANIMAL_CODE",idAnimale));
+                                    }
+                                })
+                                .setNegativeButton("Annulla", null)
+                                .show();
                     }
                 });
             }

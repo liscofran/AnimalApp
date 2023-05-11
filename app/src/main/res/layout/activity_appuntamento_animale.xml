@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"

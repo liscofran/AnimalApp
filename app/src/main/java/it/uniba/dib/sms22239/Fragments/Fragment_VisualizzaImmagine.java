@@ -2,6 +2,8 @@ package it.uniba.dib.sms22239.Fragments;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +32,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Models.Image;
 import it.uniba.dib.sms22239.R;
 
@@ -94,7 +98,7 @@ public class Fragment_VisualizzaImmagine extends Fragment
         });
     }
 
-    private static class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder>
+    private class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder>
     {
 
         private List<Image> AdaptImageList;
@@ -123,7 +127,7 @@ public class Fragment_VisualizzaImmagine extends Fragment
         }
     }
 
-    private static class ImageViewHolder extends RecyclerView.ViewHolder {
+    private class ImageViewHolder extends RecyclerView.ViewHolder {
 
         //private final TextView mTitleTextView;
         private final ImageView mImageView;
@@ -155,7 +159,20 @@ public class Fragment_VisualizzaImmagine extends Fragment
             mDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    deleteImage(image);
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Elimina immagine")
+                            .setMessage("Sei sicuro di voler eliminare l'immagine?")
+                            .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    deleteImage(image);
+                                    Toast.makeText(getActivity(), "Immagine eliminata con successo!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
+                                    startActivity(intent.putExtra("ANIMAL_CODE",idAnimale));
+                                }
+                            })
+                            .setNegativeButton("Annulla", null)
+                            .show();
                 }
             });
 

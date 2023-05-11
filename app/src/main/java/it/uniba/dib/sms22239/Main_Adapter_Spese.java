@@ -1,6 +1,8 @@
 package it.uniba.dib.sms22239;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -23,6 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 
@@ -71,7 +75,7 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
                         //modifica e salva i dati sul database
                         mDatabase.child("quantita").setValue(quant);
                     }
-                    //Chidere a fabio per messaggio di errore
+                    //Chiedere a fabio per messaggio di errore
                 }
             }
         });
@@ -107,15 +111,25 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
                 Oggetto_Spesa oggetto = getItem(position);
                 // Ottiene l'id dell'oggetto
                 String oggettoId = oggetto.id;
-                // Elimina l'oggetto dal database
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference mDatabase = database.getInstance().getReference().child("Oggetti").child(oggettoId);
-                mDatabase.removeValue();
-                // Aggiorna l'adapter
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, getItemCount());
-                // Visualizza un messaggio di conferma
-                Toast.makeText(view.getContext(), "Oggetto eliminato con successo", Toast.LENGTH_SHORT).show();
+                //Alert Dialog elimina
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle("Elimina oggetto")
+                        .setMessage("Sei sicuro di voler eliminare l'oggetto?")
+                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference mDatabase = database.getInstance().getReference().child("Oggetti").child(oggettoId);
+                                // Elimina l'oggetto dal database
+                                mDatabase.removeValue();
+                                // Aggiorna l'adapter
+                                notifyItemRemoved(position);
+                                notifyItemRangeChanged(position, getItemCount());
+                                Toast.makeText(view.getContext(), "Oggetto eliminato con successo!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Annulla", null)
+                        .show();
             }
         });
     }

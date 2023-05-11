@@ -178,7 +178,7 @@
                 android:id="@+id/register_animal_birthdate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Data di Nascita (AAAA-MM-GG)"
+                android:hint="Data di Nascita (GG-MM-AAAA)"
                 android:inputType="date"
                 app:layout_constraintBottom_toTopOf="@+id/button_choose_image"
                 app:layout_constraintEnd_toEndOf="@+id/register_animal_name"
