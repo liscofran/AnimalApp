@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Main_Adapter_Segnalazione;
 import it.uniba.dib.sms22239.Preference;
@@ -30,6 +36,8 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     ImageButton backbutton;
+    String classe;
+    FirebaseRecyclerOptions<Segnalazione> options;
 
 
     @Override
@@ -39,7 +47,6 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         backbutton = findViewById(R.id.back);
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +101,6 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
         recyclerView = findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchView = findViewById(R.id.searchView);
-
-
     }
 
     @Override
@@ -114,31 +119,58 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
             }
         });
 
-        mAuth= FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
-        FirebaseRecyclerOptions<Segnalazione> options =
-                new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid"),Segnalazione.class)
-                        .build();
-        mainAdapterRicercaSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(mUser.getUid());
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
+        {
             @Override
-            public void onItemClick(int position) {
-                Segnalazione segnalazione = mainAdapterRicercaSegnalazione.getItem(position);
-                String segnalazioneId = segnalazione.idSegnalazione;
-                Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profilo_Segnalazione.class);
-                intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
-                startActivity(intent);
-            }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                classe = dataSnapshot.child("classe").getValue(String.class);
 
+                if(classe.equals("Proprietario"))
+                {
+                    options = new FirebaseRecyclerOptions.Builder<Segnalazione>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("checkProprietario").equalTo(true),Segnalazione.class)
+                            .build();
+                }
+                else if(classe.equals("Ente"))
+                {
+                    options = new FirebaseRecyclerOptions.Builder<Segnalazione>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("checkEnte").equalTo(true),Segnalazione.class)
+                            .build();
+                }
+                else
+                {
+                    options = new FirebaseRecyclerOptions.Builder<Segnalazione>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("checkVeterinario").equalTo(true),Segnalazione.class)
+                            .build();
+                }
+
+                mainAdapterRicercaSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Segnalazione segnalazione = mainAdapterRicercaSegnalazione.getItem(position);
+                        String segnalazioneId = segnalazione.idSegnalazione;
+                        Intent intent = new Intent(Activity_Ricerca_Segnalazione.this, Activity_Profilo_Segnalazione.class);
+                        intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
+                        startActivity(intent);
+                    }
+                });
+                recyclerView.setAdapter(mainAdapterRicercaSegnalazione);
+                mainAdapterRicercaSegnalazione.startListening();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {}
         });
-        recyclerView.setAdapter(mainAdapterRicercaSegnalazione);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mainAdapterRicercaSegnalazione.startListening();
     }
 
     @Override
@@ -158,25 +190,5 @@ public class Activity_Ricerca_Segnalazione extends AppCompatActivity
         mainAdapterRicercaSegnalazione.startListening();
         recyclerView.setAdapter(mainAdapterRicercaSegnalazione);
     }
-/*
-    private void filterList(String query) {
-
-        if (query != null) {
-            ArrayList<LanguageData> filteredList = new ArrayList<>();
-            for (LanguageData i : mList) {
-                if (i.getTitle().toLowerCase(Locale.ROOT).contains(query)) {
-                    filteredList.add(i);
-                }
-            }
-
-            if (filteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show();
-            } else {
-                adapter.setFilteredList(filteredList);
-            }
-        }
-    }
-    */
-
 }
 

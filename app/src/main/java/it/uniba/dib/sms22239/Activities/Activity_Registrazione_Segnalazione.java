@@ -5,12 +5,9 @@ package it.uniba.dib.sms22239.Activities;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,8 +24,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +35,6 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -49,10 +43,8 @@ import androidx.core.content.ContextCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.List;
 import java.util.Locale;
 
-import it.uniba.dib.sms22239.MapsActivity;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
@@ -299,17 +291,9 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
         }
     }
 
-    private String getFileExtension(Uri uri) {
-        ContentResolver cR = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
-    private Segnalazione uploadFile(Segnalazione segnalazione) {
+    private void uploadFile(Segnalazione segnalazione) {
         if (mImageUri != null) {
-            long time = System.currentTimeMillis();
-            segnalazione.immagine = time + "." + getFileExtension(mImageUri);
-            StorageReference fileReference = mStorageRef.child(segnalazione.immagine);
+            StorageReference fileReference = mStorageRef.child(segnalazione.idSegnalazione);
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -333,7 +317,6 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
-        return segnalazione;
     }
 
     @Override

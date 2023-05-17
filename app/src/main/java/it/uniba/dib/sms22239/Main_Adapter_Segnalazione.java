@@ -72,7 +72,6 @@ public class Main_Adapter_Segnalazione extends FirebaseRecyclerAdapter<Segnalazi
     @NonNull
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.segnalazione_item,parent,false);
         return new myViewHolder(view);
     }

@@ -236,12 +236,6 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
         }
     }
 
-    private String getFileExtension(Uri uri) {
-        ContentResolver cR = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
     private void uploadFile(Offerta offerta) {
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(offerta.idOfferta);

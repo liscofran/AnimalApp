@@ -145,7 +145,7 @@ public class Activity_Register extends AppCompatActivity {
                     }else
                     {
                         progressDialog.dismiss();
-                        Toast.makeText(Activity_Register.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Register.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
 
                     }
                 }
