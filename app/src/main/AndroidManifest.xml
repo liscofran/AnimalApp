@@ -55,10 +55,10 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".Activities.Activity_AlbumPokemon"
+            android:name=".Activities.Activity_Album_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_AnimaleSelezionato"
+            android:name=".Activities.Activity_Animale_Selezionato"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_profilo_Offerta"
@@ -93,7 +93,7 @@
             android:name=".Activities.Activity_Miei_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Album_Animali"
+            android:name=".Activities.Activity_Ricerca_Animali"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Segnalazione"

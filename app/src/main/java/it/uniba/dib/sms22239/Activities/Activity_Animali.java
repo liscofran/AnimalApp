@@ -85,7 +85,7 @@ public class Activity_Animali extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(Activity_Animali.this, Activity_AlbumPokemon.class);
+                Intent intent = new Intent(Activity_Animali.this, Activity_Album_Animali.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class Activity_Animali extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(Activity_Animali.this, Activity_Album_Animali.class);
+                Intent intent = new Intent(Activity_Animali.this, Activity_Ricerca_Animali.class);
                 startActivity(intent);
             }
         });

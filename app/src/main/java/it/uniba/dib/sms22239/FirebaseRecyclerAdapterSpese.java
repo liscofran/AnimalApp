@@ -2,13 +2,10 @@ package it.uniba.dib.sms22239;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,16 +18,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
-import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 
-public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, Main_Adapter_Spese.My_View_Holder_Spesa> {
+public class FirebaseRecyclerAdapterSpese extends FirebaseRecyclerAdapter<Oggetto_Spesa, FirebaseRecyclerAdapterSpese.My_View_Holder_Spesa> {
 
 
     public interface OnItemClickListener {
@@ -41,7 +32,7 @@ public class Main_Adapter_Spese extends FirebaseRecyclerAdapter<Oggetto_Spesa, M
     private OnItemClickListener listener;
 
 
-    public Main_Adapter_Spese(@NonNull FirebaseRecyclerOptions<Oggetto_Spesa> options, OnItemClickListener listener) {
+    public FirebaseRecyclerAdapterSpese(@NonNull FirebaseRecyclerOptions<Oggetto_Spesa> options, OnItemClickListener listener) {
         super(options);
         this.listener = listener;
     }

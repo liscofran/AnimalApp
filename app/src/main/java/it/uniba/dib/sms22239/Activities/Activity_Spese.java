@@ -3,9 +3,7 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -16,11 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_profile_animale;
-import it.uniba.dib.sms22239.Main_Adapter_Spese;
+import it.uniba.dib.sms22239.FirebaseRecyclerAdapterSpese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -29,9 +25,9 @@ public class Activity_Spese extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    Main_Adapter_Spese mainAdapterSpese;
+    FirebaseRecyclerAdapterSpese mainAdapterSpese;
     SearchView searchView;
-    Main_Adapter_Spese.OnItemClickListener listener;
+    FirebaseRecyclerAdapterSpese.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
@@ -135,7 +131,7 @@ public class Activity_Spese extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Oggetto_Spesa>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("id_animale").equalTo(idAnimal),Oggetto_Spesa.class)
                         .build();
-        mainAdapterSpese = new Main_Adapter_Spese(options, new Main_Adapter_Spese.OnItemClickListener() {
+        mainAdapterSpese = new FirebaseRecyclerAdapterSpese(options, new FirebaseRecyclerAdapterSpese.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Oggetto_Spesa oggetto = mainAdapterSpese.getItem(position);
@@ -164,7 +160,7 @@ public class Activity_Spese extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("nome").startAt(str).endAt(str+"\uf8ff"),Oggetto_Spesa.class)
                         .build();
 
-        mainAdapterSpese = new Main_Adapter_Spese(options,listener);
+        mainAdapterSpese = new FirebaseRecyclerAdapterSpese(options,listener);
         mainAdapterSpese.startListening();
         recyclerView.setAdapter(mainAdapterSpese);
     }

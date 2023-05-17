@@ -19,16 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import it.uniba.dib.sms22239.Models.Animale;
-import it.uniba.dib.sms22239.Main_Adapter_Animale;
+import it.uniba.dib.sms22239.FirebaseRecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Miei_Animali extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Main_Adapter_Animale mainAdapter;
+    FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
-    Main_Adapter_Animale.OnItemClickListener listener;
+    FirebaseRecyclerAdapterAnimale.OnItemClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +128,7 @@ public class Activity_Miei_Animali extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()),Animale.class)
                         .build();
         
-        mainAdapter = new Main_Adapter_Animale(options, new Main_Adapter_Animale.OnItemClickListener() {
+        mainAdapter = new FirebaseRecyclerAdapterAnimale(options, new FirebaseRecyclerAdapterAnimale.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Animale animale = mainAdapter.getItem(position);
@@ -173,7 +173,7 @@ public class Activity_Miei_Animali extends AppCompatActivity {
                         .setQuery(query, Animale.class)
                         .build();
 
-        mainAdapter = new Main_Adapter_Animale(options,listener);
+        mainAdapter = new FirebaseRecyclerAdapterAnimale(options,listener);
         mainAdapter.startListening();
         recyclerView.setAdapter(mainAdapter);
     }

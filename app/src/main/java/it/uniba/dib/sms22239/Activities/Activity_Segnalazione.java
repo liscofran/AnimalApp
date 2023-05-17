@@ -17,17 +17,16 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import it.uniba.dib.sms22239.Main_Adapter_Segnalazione;
-import it.uniba.dib.sms22239.Models.Offerta;
+import it.uniba.dib.sms22239.FirebaseRecyclerAdapterSegnalazione;
 import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
 
 public class Activity_Segnalazione extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Main_Adapter_Segnalazione mainAdapterSegnalazione;
+    FirebaseRecyclerAdapterSegnalazione mainAdapterSegnalazione;
     SearchView searchView;
-    Main_Adapter_Segnalazione.OnItemClickListener listener;
+    FirebaseRecyclerAdapterSegnalazione.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     ImageButton backbutton;
@@ -94,7 +93,7 @@ public class Activity_Segnalazione extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Segnalazione>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("uid").equalTo(mUser.getUid()), Segnalazione.class)
                         .build();
-        mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options, new Main_Adapter_Segnalazione.OnItemClickListener() {
+        mainAdapterSegnalazione = new FirebaseRecyclerAdapterSegnalazione(options, new FirebaseRecyclerAdapterSegnalazione.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Segnalazione segnalazione = mainAdapterSegnalazione.getItem(position);
@@ -127,7 +126,7 @@ public class Activity_Segnalazione extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
                         .build();
 
-        mainAdapterSegnalazione = new Main_Adapter_Segnalazione(options,listener);
+        mainAdapterSegnalazione = new FirebaseRecyclerAdapterSegnalazione(options,listener);
         mainAdapterSegnalazione.startListening();
         recyclerView.setAdapter(mainAdapterSegnalazione);
     }

@@ -8,42 +8,56 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.uniba.dib.sms22239.Models.Offerta;
+import it.uniba.dib.sms22239.Models.Animale;
 
-public class Main_Adapter_Offerte extends FirebaseRecyclerAdapter<Offerta, Main_Adapter_Offerte.myViewHolder> {
-
-
+public class FirebaseRecyclerAdapterAnimale extends FirebaseRecyclerAdapter<Animale, FirebaseRecyclerAdapterAnimale.myViewHolder>
+{
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    private OnItemClickListener listener;
+    private final OnItemClickListener listener;
 
-    public Main_Adapter_Offerte(@NonNull FirebaseRecyclerOptions<Offerta> options, OnItemClickListener listener) {
+    public FirebaseRecyclerAdapterAnimale(@NonNull FirebaseRecyclerOptions<Animale> options, OnItemClickListener listener)
+    {
         super(options);
         this.listener = listener;
     }
 
+    @NonNull
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Offerta model) {
+    public DatabaseReference getRef(int position)
+    {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        Query query = super.getRef(position)
+                .orderByChild("nome")
+                .equalTo(mUser.getUid());
+        return query.getRef();
+    }
 
-        holder.title.setText(model.oggetto);
-        holder.oggetto.setText(model.descrizione);
+    @Override
+    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Animale model)
+    {
+        holder.name.setText(model.nome);
+        holder.razza.setText(model.razza);
 
-        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = mStorageRef.child("Offerte/" + model.idOfferta + ".jpg");
-
-        imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("Animali").child(model.Id).child("ImmagineProfilo.jpg");
+        imageRef.getDownloadUrl().addOnSuccessListener(uri ->
+        {
             String url = uri.toString();
             Picasso.get().load(url)
                     .into(holder.imageView, new Callback() {
@@ -73,25 +87,24 @@ public class Main_Adapter_Offerte extends FirebaseRecyclerAdapter<Offerta, Main_
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.offerte_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.animale_item,parent,false);
         return new myViewHolder(view);
     }
 
     class myViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView imageView;
-        TextView title, oggetto;
+        TextView name, razza;
         MaterialCardView material;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.logoIv);
-            title = itemView.findViewById(R.id.titleTv);
-            oggetto = itemView.findViewById(R.id.oggetto);
-            material = itemView.findViewById(R.id.card3);
+            imageView = itemView.findViewById(R.id.imgId);
+            name = itemView.findViewById(R.id.nameId);
+            razza = itemView.findViewById(R.id.razza);
+            material = itemView.findViewById(R.id.card);
 
         }
     }
-
 }

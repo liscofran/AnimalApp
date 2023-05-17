@@ -1,5 +1,7 @@
 package it.uniba.dib.sms22239.Activities;
 
+import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,26 +14,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.uniba.dib.sms22239.Models.Animale;
-import it.uniba.dib.sms22239.Main_Adapter_Animale;
+import it.uniba.dib.sms22239.FirebaseRecyclerAdapterAnimale;
+import it.uniba.dib.sms22239.RecyclerSearchAdapterAnimale;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Album_Animali extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Main_Adapter_Animale mainAdapter;
+    FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
-    Main_Adapter_Animale.OnItemClickListener listener;
+    FirebaseRecyclerAdapterAnimale.OnItemClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_miei_animali);
+        setContentView(R.layout.activity_album_pokemon);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,6 +102,7 @@ public class Activity_Album_Animali extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newText) {
@@ -107,22 +115,34 @@ public class Activity_Album_Animali extends AppCompatActivity {
                 return false;
             }
         });
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
 
         FirebaseRecyclerOptions<Animale> options =
                 new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale").orderByChild("Id_utente"),Animale.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()),Animale.class)
                         .build();
 
-        mainAdapter = new Main_Adapter_Animale(options, new Main_Adapter_Animale.OnItemClickListener() {
+        mainAdapter = new FirebaseRecyclerAdapterAnimale(options, new FirebaseRecyclerAdapterAnimale.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Animale animale = mainAdapter.getItem(position);
                 String animalId = animale.Id;
-                Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animal_Profile.class);
-                intent.putExtra("ANIMAL_CODE",animalId);
-                startActivity(intent);
+                new AlertDialog.Builder(Activity_Album_Animali.this)
+                        .setTitle("Selezione Animale")
+                        .setMessage("Sei sicuro di voler selezionare questo animale?")
+                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(Activity_Album_Animali.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
+                                intent.putExtra("ANIMALE_SELEZIONATO",animalId);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Annulla", null)
+                        .show();
             }
         });
         recyclerView.setAdapter(mainAdapter);
@@ -140,18 +160,28 @@ public class Activity_Album_Animali extends AppCompatActivity {
         mainAdapter.stopListening();
     }
 
-    private void mysearch(String str) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
+        private void mysearch(String str)
+        {
+            List<Animale> filteredList = new ArrayList<>();
 
-        FirebaseRecyclerOptions<Animale> options =
-                new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference()
-                                .child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()).startAt(str).endAt(str+"\uf8ff"),Animale.class)
-                        .build();
+            for (Animale animale : mainAdapter.getSnapshots())
+            {
+                if (animale != null && animale.nome.startsWith(str))
+                {
+                    filteredList.add(animale);
+                }
+            }
 
-        mainAdapter = new Main_Adapter_Animale(options,listener);
-        mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);
-    }
+            RecyclerSearchAdapterAnimale adapter = new RecyclerSearchAdapterAnimale(filteredList, new RecyclerSearchAdapterAnimale.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Animale animale = mainAdapter.getItem(position);
+                    String animalId = animale.Id;
+                    Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animal_Profile.class);
+                    intent.putExtra("ANIMAL_CODE",animalId);
+                    startActivity(intent);
+                }
+            });
+            recyclerView.setAdapter(adapter);
+        }
 }

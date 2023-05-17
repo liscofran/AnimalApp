@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import it.uniba.dib.sms22239.Main_Adapter_Offerte;
+import it.uniba.dib.sms22239.FirebaseRecyclerAdapterOfferte;
 import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -25,9 +25,9 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Offerte extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Main_Adapter_Offerte mainAdapterOfferte;
+    FirebaseRecyclerAdapterOfferte mainAdapterOfferte;
     SearchView searchView;
-    Main_Adapter_Offerte.OnItemClickListener listener;
+    FirebaseRecyclerAdapterOfferte.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     ImageButton backbutton;
@@ -130,7 +130,7 @@ public class Activity_Offerte extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Offerta>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("uid").equalTo(mUser.getUid()),Offerta.class)
                         .build();
-        mainAdapterOfferte = new Main_Adapter_Offerte(options, new Main_Adapter_Offerte.OnItemClickListener() {
+        mainAdapterOfferte = new FirebaseRecyclerAdapterOfferte(options, new FirebaseRecyclerAdapterOfferte.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Offerta offerta = mainAdapterOfferte.getItem(position);
@@ -162,7 +162,7 @@ public class Activity_Offerte extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
                         .build();
 
-        mainAdapterOfferte = new Main_Adapter_Offerte(options,listener);
+        mainAdapterOfferte = new FirebaseRecyclerAdapterOfferte(options,listener);
         mainAdapterOfferte.startListening();
         recyclerView.setAdapter(mainAdapterOfferte);
     }

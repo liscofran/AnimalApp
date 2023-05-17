@@ -21,18 +21,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.uniba.dib.sms22239.Main_Adapter_Offerte;
+import it.uniba.dib.sms22239.FirebaseRecyclerAdapterOfferte;
 import it.uniba.dib.sms22239.Models.Offerta;
-import it.uniba.dib.sms22239.Models.Segnalazione;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Ricerca_Offerta extends AppCompatActivity
 {
     RecyclerView recyclerView;
-    Main_Adapter_Offerte mainAdapterRicercaOfferta;
+    FirebaseRecyclerAdapterOfferte mainAdapterRicercaOfferta;
     SearchView searchView;
-    Main_Adapter_Offerte.OnItemClickListener listener;
+    FirebaseRecyclerAdapterOfferte.OnItemClickListener listener;
     FirebaseRecyclerOptions<Offerta> options;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -150,7 +149,7 @@ public class Activity_Ricerca_Offerta extends AppCompatActivity
                             .build();
                 }
 
-                mainAdapterRicercaOfferta = new Main_Adapter_Offerte(options, new Main_Adapter_Offerte.OnItemClickListener() {
+                mainAdapterRicercaOfferta = new FirebaseRecyclerAdapterOfferte(options, new FirebaseRecyclerAdapterOfferte.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
                         Offerta offerta = mainAdapterRicercaOfferta.getItem(position);
@@ -187,7 +186,7 @@ public class Activity_Ricerca_Offerta extends AppCompatActivity
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
                         .build();
 
-        mainAdapterRicercaOfferta = new Main_Adapter_Offerte(options,listener);
+        mainAdapterRicercaOfferta = new FirebaseRecyclerAdapterOfferte(options,listener);
         mainAdapterRicercaOfferta.startListening();
         recyclerView.setAdapter(mainAdapterRicercaOfferta);
     }
