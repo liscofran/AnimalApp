@@ -1,4 +1,4 @@
-package it.uniba.dib.sms22239;
+package it.uniba.dib.sms22239.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
+import it.uniba.dib.sms22239.R;
 
 public class FirebaseRecyclerAdapterSpese extends FirebaseRecyclerAdapter<Oggetto_Spesa, FirebaseRecyclerAdapterSpese.My_View_Holder_Spesa> {
 

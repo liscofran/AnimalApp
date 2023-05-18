@@ -1,4 +1,4 @@
-package it.uniba.dib.sms22239;
+package it.uniba.dib.sms22239.Activities;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -11,9 +11,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class ActivityMaps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;

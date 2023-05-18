@@ -6,14 +6,12 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -23,19 +21,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import it.uniba.dib.sms22239.Models.Animale;
-import it.uniba.dib.sms22239.FirebaseRecyclerAdapterAnimale;
+import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterAnimale;
 
 public class Activity_Animale_Selezionato extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
-
     String idAnimale;
-    FirebaseRecyclerAdapterAnimale.OnItemClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +108,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newText) {
@@ -119,26 +121,57 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                 return false;
             }
         });
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
 
         FirebaseRecyclerOptions<Animale> options =
                 new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale").orderByChild("Id_utente").equalTo(mUser.getUid()),Animale.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Animale"),Animale.class)
                         .build();
 
-        mainAdapter = new FirebaseRecyclerAdapterAnimale(options, new FirebaseRecyclerAdapterAnimale.OnItemClickListener() {
+        mainAdapter = new FirebaseRecyclerAdapterAnimale(options,null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainAdapter.startListening();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                filter();
+            }
+        }, 200);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mainAdapter.stopListening();
+    }
+
+    private void mysearch(String str)
+    {
+        List<Animale> filteredList = new ArrayList<>();
+
+        for (Animale animale : mainAdapter.getSnapshots())
+        {
+            if (animale.nome.startsWith(str) && (!Objects.equals(animale.Id, idAnimale)))
+            {
+                filteredList.add(animale);
+            }
+        }
+
+        RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(filteredList, new RecyclerAdapterAnimale.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Animale animale = mainAdapter.getItem(position);
+                Animale animale =  filteredList.get(position);
                 String animalId = animale.Id;
                 String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};
 
                 // creazione dello spinner
                 Spinner spinner = new Spinner(Activity_Animale_Selezionato.this);
                 spinner.setAdapter(new ArrayAdapter<String>(Activity_Animale_Selezionato.this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
-
-
 
                 // creazione dell'AlertDialog con lo spinner
                 new AlertDialog.Builder(Activity_Animale_Selezionato.this)
@@ -149,7 +182,59 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this, "Relazione aggiornata con successo! Scelta: " + selectedOption, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this, "Relazione "+ selectedOption + " aggiornata con successo!" , Toast.LENGTH_SHORT).show();
+
+                                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
+                                mDatabase.child("idAnimalerelazione").setValue(animalId);
+                                mDatabase.child("relazione").setValue(selectedOption);
+
+                                DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Animale").child(animalId);
+                                mDatabase1.child("relazione").setValue(selectedOption);
+                                mDatabase1.child("idAnimalerelazione").setValue(idAnimale);
+                                startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
+                            }
+                        })
+                        .setNegativeButton("Annulla", null)
+                        .show();
+            }
+        });
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void filter(){
+
+        List<Animale> ListSenzaAnimale = new ArrayList<>();
+
+        for (Animale animale : mainAdapter.getSnapshots())
+        {
+            if (!Objects.equals(animale.Id, idAnimale))
+            {
+                ListSenzaAnimale.add(animale);
+            }
+        }
+
+        RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(ListSenzaAnimale, new RecyclerAdapterAnimale.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position)
+            {
+                Animale animale =  ListSenzaAnimale.get(position);
+                String animalId = animale.Id;
+                String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};
+
+                // creazione dello spinner
+                Spinner spinner = new Spinner(Activity_Animale_Selezionato.this);
+                spinner.setAdapter(new ArrayAdapter<String>(Activity_Animale_Selezionato.this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
+
+                // creazione dell'AlertDialog con lo spinner
+                new AlertDialog.Builder(Activity_Animale_Selezionato.this)
+                        .setTitle("Selezione Animale")
+                        .setMessage("Che tipo di relazione hanno questi 2 animali?")
+                        .setView(spinner)
+                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String selectedOption = spinner.getSelectedItem().toString();
+                                Toast.makeText(Activity_Animale_Selezionato.this, "Relazione "+ selectedOption + " aggiornata con successo!" , Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
                                 mDatabase.child("idAnimalerelazione").setValue(animalId);
@@ -166,38 +251,6 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                         .show();
             }
         });
-        recyclerView.setAdapter(mainAdapter);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mainAdapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mainAdapter.stopListening();
-    }
-
-    private void mysearch(String str) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
-
-        Query query = FirebaseDatabase.getInstance().getReference()
-                .child("Animale")
-                .orderByChild("razza")
-                .startAt(str)
-                .endAt(str+"\uf8ff");
-
-        FirebaseRecyclerOptions<Animale> options =
-                new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(query, Animale.class)
-                        .build();
-
-        mainAdapter = new FirebaseRecyclerAdapterAnimale(options,listener);
-        mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(adapter);
     }
 }

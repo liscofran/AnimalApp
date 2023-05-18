@@ -37,7 +37,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Activities.Activity_Main;
-import it.uniba.dib.sms22239.Animal_View_Holder;
+import it.uniba.dib.sms22239.Adapters.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 

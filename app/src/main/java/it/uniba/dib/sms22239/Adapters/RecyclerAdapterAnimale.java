@@ -1,4 +1,4 @@
-package it.uniba.dib.sms22239;
+package it.uniba.dib.sms22239.Adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +19,13 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.R;
 
-public class RecyclerSearchAdapterAnimale extends RecyclerView.Adapter<RecyclerSearchAdapterAnimale.ViewHolder> {
+public class RecyclerAdapterAnimale extends RecyclerView.Adapter<RecyclerAdapterAnimale.ViewHolder> {
 
     private List<Animale> filteredList;
 
-    public RecyclerSearchAdapterAnimale(List<Animale> filteredList, OnItemClickListener listener) {
+    public RecyclerAdapterAnimale(List<Animale> filteredList, OnItemClickListener listener) {
         this.filteredList = filteredList;
         this.listener = listener;
     }

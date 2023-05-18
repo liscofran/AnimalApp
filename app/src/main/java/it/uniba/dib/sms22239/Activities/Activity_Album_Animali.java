@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.dib.sms22239.Models.Animale;
-import it.uniba.dib.sms22239.FirebaseRecyclerAdapterAnimale;
-import it.uniba.dib.sms22239.RecyclerSearchAdapterAnimale;
+import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterAnimale;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -172,14 +172,25 @@ public class Activity_Album_Animali extends AppCompatActivity {
                 }
             }
 
-            RecyclerSearchAdapterAnimale adapter = new RecyclerSearchAdapterAnimale(filteredList, new RecyclerSearchAdapterAnimale.OnItemClickListener() {
+            RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(filteredList, new RecyclerAdapterAnimale.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    Animale animale = mainAdapter.getItem(position);
+                    Animale animale = filteredList.get(position);
                     String animalId = animale.Id;
-                    Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animal_Profile.class);
-                    intent.putExtra("ANIMAL_CODE",animalId);
-                    startActivity(intent);
+                    new AlertDialog.Builder(Activity_Album_Animali.this)
+                            .setTitle("Selezione Animale")
+                            .setMessage("Sei sicuro di voler selezionare questo animale?")
+                            .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(Activity_Album_Animali.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
+                                    intent.putExtra("ANIMALE_SELEZIONATO",animalId);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("Annulla", null)
+                            .show();
                 }
             });
             recyclerView.setAdapter(adapter);

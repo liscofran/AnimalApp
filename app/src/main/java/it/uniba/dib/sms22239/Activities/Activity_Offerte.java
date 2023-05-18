@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import it.uniba.dib.sms22239.FirebaseRecyclerAdapterOfferte;
+import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterOfferte;
 import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;

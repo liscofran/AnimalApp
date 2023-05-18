@@ -1,4 +1,4 @@
-package it.uniba.dib.sms22239;
+package it.uniba.dib.sms22239.Adapters;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.R;
 
 public class FirebaseRecyclerAdapterAnimale extends FirebaseRecyclerAdapter<Animale, FirebaseRecyclerAdapterAnimale.myViewHolder>
 {

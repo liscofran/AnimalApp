@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-import it.uniba.dib.sms22239.FirebaseRecyclerAdapterSpese;
+import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterSpese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;

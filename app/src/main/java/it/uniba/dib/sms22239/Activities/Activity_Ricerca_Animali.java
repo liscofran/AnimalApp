@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import it.uniba.dib.sms22239.Models.Animale;
-import it.uniba.dib.sms22239.FirebaseRecyclerAdapterAnimale;
+import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 

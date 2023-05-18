@@ -1,10 +1,12 @@
-package it.uniba.dib.sms22239;
+package it.uniba.dib.sms22239.Adapters;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import it.uniba.dib.sms22239.R;
 
 public class Animal_View_Holder extends RecyclerView.ViewHolder {
 
