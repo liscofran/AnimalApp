@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import it.uniba.dib.sms22239.Fragments.AppPrenDialogFragment;
+import it.uniba.dib.sms22239.Fragments.Fragment_App_Pren_Dialog;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
@@ -127,7 +127,7 @@ public class Activity_Calendario_Animale  extends AppCompatActivity {
 
                 // Crea la finestra di dialogo degli appuntamenti
                 ArrayList<Prenotazione> prenotazioni = null;
-                AppPrenDialogFragment dialog = new AppPrenDialogFragment(appuntamenti, prenotazioni, data, idAnimale);
+                Fragment_App_Pren_Dialog dialog = new Fragment_App_Pren_Dialog(appuntamenti, prenotazioni, data, idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
             }
         });

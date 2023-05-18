@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.databinding.ActivityMapsBinding;
 
-public class ActivityMaps extends FragmentActivity implements OnMapReadyCallback {
+public class Activity_Maps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;

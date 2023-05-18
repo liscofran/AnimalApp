@@ -16,7 +16,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterSpese;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterSpese;
 import it.uniba.dib.sms22239.Models.Oggetto_Spesa;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -47,7 +51,7 @@ public class Activity_Spese extends AppCompatActivity {
         findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Crea l'intento per aprire la pagina "activity_crea_oggetto_spesa"
+                // Crea l'intent per aprire la pagina "activity_crea_oggetto_spesa"
                 Intent intent = new Intent(Activity_Spese.this, Activity_Crea_Oggetto_Spesa.class);
                 intent.putExtra("ANIMAL_CODE", idAnimal);
                 startActivity(intent);
@@ -134,10 +138,9 @@ public class Activity_Spese extends AppCompatActivity {
         mainAdapterSpese = new FirebaseRecyclerAdapterSpese(options, new FirebaseRecyclerAdapterSpese.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Oggetto_Spesa oggetto = mainAdapterSpese.getItem(position);
-                String oggettoId = oggetto.id_animale;
             }
         });
+
         recyclerView.setAdapter(mainAdapterSpese);
     }
 
@@ -153,19 +156,26 @@ public class Activity_Spese extends AppCompatActivity {
         mainAdapterSpese.stopListening();
     }
 
-    private void mysearch(String str) {
+    private void mysearch(String str)
+    {
+        List<Oggetto_Spesa> filteredList = new ArrayList<>();
 
-        FirebaseRecyclerOptions<Oggetto_Spesa> options =
-                new FirebaseRecyclerOptions.Builder<Oggetto_Spesa>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("nome").startAt(str).endAt(str+"\uf8ff"),Oggetto_Spesa.class)
-                        .build();
+        for (Oggetto_Spesa oggetto : mainAdapterSpese.getSnapshots())
+        {
+            if (oggetto != null && oggetto.nome.startsWith(str))
+            {
+                filteredList.add(oggetto);
+            }
+        }
 
-        mainAdapterSpese = new FirebaseRecyclerAdapterSpese(options,listener);
-        mainAdapterSpese.startListening();
-        recyclerView.setAdapter(mainAdapterSpese);
+        RecyclerAdapterSpese adapter = new RecyclerAdapterSpese(filteredList, new RecyclerAdapterSpese.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
     }
-
-
 }
 
 

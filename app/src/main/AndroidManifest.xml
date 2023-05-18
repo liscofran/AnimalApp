@@ -51,7 +51,7 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".Activities.ActivityMaps"
+            android:name=".Activities.Activity_Maps"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity

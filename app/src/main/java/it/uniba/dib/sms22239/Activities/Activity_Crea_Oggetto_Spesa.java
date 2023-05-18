@@ -102,7 +102,9 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
 
                 og.writeNewOggetto(og, nome,prezzo,quantita,data, idAnimal);
                 Toast.makeText(Activity_Crea_Oggetto_Spesa.this,"Oggetto salvato con successo", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Spese.class));
+                Intent intent = new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Spese.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
+                startActivity(intent);
             }
         });
 
