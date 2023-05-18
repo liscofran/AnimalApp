@@ -3,7 +3,10 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -16,8 +19,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterSpese;
 import it.uniba.dib.sms22239.Adapters.RecyclerAdapterSpese;
@@ -30,12 +42,12 @@ public class Activity_Spese extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseRecyclerAdapterSpese mainAdapterSpese;
+    RecyclerAdapterSpese Speseadapter;
     SearchView searchView;
-    FirebaseRecyclerAdapterSpese.OnItemClickListener listener;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-
-    String idAnimal;
+    List<Oggetto_Spesa> filteredList;
+    String idAnimal, selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +55,8 @@ public class Activity_Spese extends AppCompatActivity {
         setContentView(R.layout.activity_spese);
 
         idAnimal = getIntent().getStringExtra("ANIMAL_CODE");
+        selectedItem = "";
+        filteredList = new ArrayList<>();
 
         // Imposta la Toolbar come action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -121,12 +135,42 @@ public class Activity_Spese extends AppCompatActivity {
                 mysearch(newText);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 mysearch(newText);
                 return false;
             }
         });
+
+        Spinner spinner = findViewById(R.id.date_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.date_filter_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                selectedItem = (String) parent.getItemAtPosition(position);
+
+                if (!Objects.equals(selectedItem, "Tutti"))
+                {
+                    filter();
+                    recyclerView.setAdapter(Speseadapter);
+                }
+                else
+                {
+                    recyclerView.setAdapter(mainAdapterSpese);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         mAuth= FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
@@ -158,25 +202,122 @@ public class Activity_Spese extends AppCompatActivity {
 
     private void mysearch(String str)
     {
-        List<Oggetto_Spesa> filteredList = new ArrayList<>();
+        if (!Objects.equals(selectedItem, "Tutti"))
+        {
+            filter();
+            List<Oggetto_Spesa> searchList = new ArrayList<Oggetto_Spesa>();
+
+            for (Oggetto_Spesa oggetto : filteredList)
+            {
+                if (oggetto != null && oggetto.nome.startsWith(str))
+                {
+                    searchList.add(oggetto);
+                }
+            }
+
+            RecyclerAdapterSpese adapter = new RecyclerAdapterSpese(searchList, new RecyclerAdapterSpese.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                }
+            });
+
+            recyclerView.setAdapter(adapter);
+        }
+        else
+        {
+            List<Oggetto_Spesa> searchList = new ArrayList<Oggetto_Spesa>();
+
+            for (Oggetto_Spesa oggetto : mainAdapterSpese.getSnapshots())
+            {
+                if (oggetto != null && oggetto.nome.startsWith(str))
+                {
+                    searchList.add(oggetto);
+                }
+            }
+
+            RecyclerAdapterSpese adapter = new RecyclerAdapterSpese(searchList, new RecyclerAdapterSpese.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                }
+            });
+
+            recyclerView.setAdapter(adapter);
+        }
+    }
+
+    private void filter()
+    {
+        filteredList.clear();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate today = LocalDate.now();
+        LocalDate data = null;
 
         for (Oggetto_Spesa oggetto : mainAdapterSpese.getSnapshots())
         {
-            if (oggetto != null && oggetto.nome.startsWith(str))
+            try
+            {
+                data = LocalDate.parse(oggetto.dataAcquisto, formatter);
+            }
+            catch (DateTimeParseException e)
+            {
+                try
+                {
+                    // Dividi la stringa in giorno, mese e anno
+                    String[] dateParts = oggetto.dataAcquisto.split("/");
+                    int day = Integer.parseInt(dateParts[0]);
+                    int month = Integer.parseInt(dateParts[1]);
+                    int year = Integer.parseInt(dateParts[2]);
+
+                    // Aggiungi uno "0" se necessario
+                    if (day < 10) {
+                        dateParts[0] = "0" + day;
+                    }
+                    if (month < 10) {
+                        dateParts[1] = "0" + month;
+                    }
+
+                    // Ricostruisci la stringa con il formato corretto
+                    oggetto.dataAcquisto = String.join("/", dateParts);
+                    data = LocalDate.parse(oggetto.dataAcquisto, formatter);
+                }
+                catch (DateTimeParseException ex)
+                {
+                    System.out.println("La stringa non ha il formato corretto e non può essere corretta.");
+                }
+            }
+
+            if (selectedItem.equals("Oggi") && data.equals(today))
+            {
+                filteredList.add(oggetto);
+            }
+            else if (selectedItem.equals("Ultima Settimana") && data.getYear() == today.getYear() && data.getMonth() == today.getMonth())
+            {
+                WeekFields weekFields = WeekFields.of(Locale.getDefault());
+                int selectedWeek = data.get(weekFields.weekOfWeekBasedYear());
+                int currentWeek = today.get(weekFields.weekOfWeekBasedYear());
+
+                if (selectedWeek == currentWeek) {
+                    filteredList.add(oggetto);
+                }
+            }
+            else if (selectedItem.equals("Ultimo Mese") && data.getMonth() == today.getMonth() && data.getYear() == today.getYear())
+            {
+                filteredList.add(oggetto);
+            }
+            else if (selectedItem.equals("Ultimo Anno") && data.getYear() == today.getYear())
             {
                 filteredList.add(oggetto);
             }
         }
 
-        RecyclerAdapterSpese adapter = new RecyclerAdapterSpese(filteredList, new RecyclerAdapterSpese.OnItemClickListener() {
+        Speseadapter = new RecyclerAdapterSpese(filteredList, new RecyclerAdapterSpese.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
             }
         });
-
-        recyclerView.setAdapter(adapter);
     }
 }
+
 
 
 
