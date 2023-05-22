@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,6 +112,15 @@ public class Fragment_profile_ente extends Fragment
                         })
                         .setNegativeButton("Annulla", null)
                         .show();
+            }
+        });
+
+        Button backBtn = getView().findViewById(R.id.back);
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
             }
         });
 
