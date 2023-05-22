@@ -43,7 +43,6 @@ public class Fragment_profile_ente extends Fragment
     private TextView msedelegaleTextView;
     private TextView mpiva;
     private TextView mragionesociale;
-
     private ImageView profilo;
 
     public Fragment_profile_ente() {
@@ -158,5 +157,6 @@ public class Fragment_profile_ente extends Fragment
                 fragmentTransaction.commit();
             }
         });
+
     }
 }

@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.10" />
+            app:layout_constraintGuide_percent="0.1" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -181,19 +181,17 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.30"/>
 
-        <Button
+
+        <ImageButton
             android:id="@+id/save_profile_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/prova4"
-            android:text="Salva"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button_v4"
+            android:src="@drawable/ic_baseline_save_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"  />
-
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"   />
 
         <Button
             android:id="@+id/back"

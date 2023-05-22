@@ -125,7 +125,7 @@ public class Fragment_edit_ente_profile extends Fragment {
 
 
 
-        Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
+        ImageView saveProfileButton = getView().findViewById(R.id.save_profile_button);
         mragionesociale = getView().findViewById(R.id.ente_ragione_sociale);
 //        mtipoTextView = getView().findViewById(R.id.ente_tipo);
         msedelegaleTextView = getView().findViewById(R.id.ente_sede_legale);
