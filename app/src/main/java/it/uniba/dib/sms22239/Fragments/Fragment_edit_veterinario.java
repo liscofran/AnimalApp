@@ -111,7 +111,7 @@ public class Fragment_edit_veterinario extends Fragment {
         EditText editCf = getView().findViewById(R.id.vet_cf);
 
 
-        Button saveProfileButton = getView().findViewById(R.id.save_profile_button);
+        ImageView saveProfileButton = getView().findViewById(R.id.save_profile_button);
 
         mNomeTextView = getView().findViewById(R.id.vet_nome);
         mCognomeTextView = getView().findViewById(R.id.vet_cognome);

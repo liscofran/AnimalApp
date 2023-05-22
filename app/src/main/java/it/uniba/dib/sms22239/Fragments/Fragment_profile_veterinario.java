@@ -47,7 +47,7 @@ public class Fragment_profile_veterinario extends Fragment {
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
     private FirebaseAuth mAuth;
 
-    private Button editProfileButton;
+    private ImageView editProfileButton;
 
     private FirebaseRecyclerOptions<Proprietario> options;
     private FirebaseRecyclerAdapter<Proprietario, Animal_View_Holder> adapter;

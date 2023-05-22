@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Fragment_profile_proprietario">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/second_relative_layout"
@@ -24,8 +28,6 @@
             app:layout_constraintStart_toStartOf="@id/guideline15"
             app:layout_constraintTop_toTopOf="@id/guideline17"
             app:layout_constraintVertical_bias="0.0" />
-
-
 
         <ImageView
             android:id="@+id/profile_image"
@@ -174,25 +176,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.85" />
+            app:layout_constraintGuide_percent="0.84" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.31" />
 
-        <Button
+        <ImageButton
             android:id="@+id/save_profile_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/prova4"
-            android:text="Salva"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button_v4"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_save_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/guideline5"
             app:layout_constraintRight_toRightOf="@id/guideline4"
-            app:layout_constraintTop_toBottomOf="@id/vet_cf" />
+            app:layout_constraintTop_toBottomOf="@id/vet_cf"/>
 
         <Button
             android:id="@+id/back"
@@ -208,7 +211,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.35" />
+            app:layout_constraintGuide_percent="0.33" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline50"
@@ -239,6 +242,6 @@
             app:layout_constraintGuide_percent="0.30" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
 
 </FrameLayout>
