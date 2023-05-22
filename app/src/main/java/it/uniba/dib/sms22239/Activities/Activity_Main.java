@@ -32,7 +32,7 @@ public class Activity_Main extends AppCompatActivity
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    ImageView btnGuest;
+    ImageView btnGuest,btnGuest2,btnGuest3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +45,8 @@ public class Activity_Main extends AppCompatActivity
         inputPassword=findViewById(R.id.inputPassword);
         btnLogin=findViewById(R.id.btnLogin);
         btnGuest = findViewById(R.id.btnGuest);
+        btnGuest2 = findViewById(R.id.btnGuest2);
+        btnGuest3 = findViewById(R.id.btnGuest3);
         forgotPassword=findViewById(R.id.forgotPassword);
         progressDialog= new ProgressDialog(this);
         mAuth= FirebaseAuth.getInstance();
@@ -72,6 +74,26 @@ public class Activity_Main extends AppCompatActivity
             {
                 inputEmail.setText("proprietario@gmail.com");
                 inputPassword.setText("proprietario");
+                perforLogin();
+            }
+        });
+
+        btnGuest2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                inputEmail.setText("ente@gmail.com");
+                inputPassword.setText("guestente");
+                perforLogin();
+            }
+        });
+
+        btnGuest3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                inputEmail.setText("veterinario@gmail.com");
+                inputPassword.setText("veterinario");
                 perforLogin();
             }
         });
