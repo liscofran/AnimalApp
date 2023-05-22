@@ -43,6 +43,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
 import it.uniba.dib.sms22239.R;
 
 
@@ -132,8 +133,6 @@ public class Fragment_edit_ente_profile extends Fragment {
         mpivaTextView = getView().findViewById(R.id.ente_piva);
         profilo = getView().findViewById(R.id.profile_image);
         editImage = getView().findViewById(R.id.upload);
-
-
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imagesRef = storageRef.child("Enti/" + user.getUid() + ".jpg");
         imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -144,7 +143,6 @@ public class Fragment_edit_ente_profile extends Fragment {
                 Picasso.get().load(imageUrl).into(profilo);
             }
         });
-
         // Recupera i dati dal database e popola i campi
         mDatabase.addValueEventListener(new ValueEventListener()
         {
@@ -173,6 +171,17 @@ public class Fragment_edit_ente_profile extends Fragment {
             @Override
             public void onClick(View v) {
                 openFileChooser();
+            }
+        });
+
+        Button backBtn = getView().findViewById(R.id.back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_ente());
+                fragmentTransaction.commit();
             }
         });
 

@@ -41,6 +41,8 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
+import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Adapters.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
@@ -151,6 +153,15 @@ public class Fragment_edit_veterinario extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        Button backBtn = getView().findViewById(R.id.back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Activity_Profilo_Veterinario.class);
+                startActivity(intent);
             }
         });
 
