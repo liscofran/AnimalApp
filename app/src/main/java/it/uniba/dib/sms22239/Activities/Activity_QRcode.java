@@ -37,6 +37,8 @@ public class Activity_QRcode extends AppCompatActivity {
         ConstraintLayout  = findViewById(R.id.home_constraint_layout); //importante per il tema
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar2 = findViewById(R.id.toolbar2);
+        toolbar2.setVisibility(View.GONE);
         setSupportActionBar(toolbar);
         Load_setting();
 

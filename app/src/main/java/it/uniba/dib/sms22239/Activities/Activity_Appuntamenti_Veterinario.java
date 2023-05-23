@@ -31,7 +31,7 @@ import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 
-public class Activity_Calendario_Veterinario extends AppCompatActivity {
+public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
 
     private CalendarView calendarView;
     private Button salvaButton;
@@ -45,7 +45,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendario_veterinario);
+        setContentView(R.layout.activity_appuntamenti_veterinario);
 
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Calendario_Veterinario.this, Activity_Home.class);
+                Intent intent = new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -66,41 +66,41 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Veterinario.this, Activity_Segnalazioni_Offerte.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Veterinario.this, Activity_Animali.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Veterinario.this, Activity_QRcode.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Veterinario.this, Preference.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Preference.class));
             }
         });
-        findViewById(R.id.prenotazione).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.prenotazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Veterinario.this, Activity_Nuovo_Appuntamento.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Nuovo_Appuntamento.class));
             }
         });
 
@@ -156,7 +156,7 @@ public class Activity_Calendario_Veterinario extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Activity_Calendario_Veterinario.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Appuntamenti_Veterinario.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
 
         });

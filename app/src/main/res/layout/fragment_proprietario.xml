@@ -21,9 +21,7 @@
 
             <include
                 android:id="@+id/toolbar1"
-                layout="@layout/toolbar"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
+                layout="@layout/toolbar" />
 
             <ImageView
                 android:id="@+id/background"
@@ -32,14 +30,12 @@
                 android:background="@drawable/custom_button_v5"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale48"
-
                 app:layout_constraintEnd_toStartOf="@+id/lineaverticale95"
                 app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
                 app:layout_constraintTop_toTopOf="@+id/lineaorizzontale15">
 
 
             </ImageView>
-
 
             <TextView
                 android:id="@+id/tuoianimali"
@@ -283,7 +279,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.65" />
-
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/lineaorizzontale64"

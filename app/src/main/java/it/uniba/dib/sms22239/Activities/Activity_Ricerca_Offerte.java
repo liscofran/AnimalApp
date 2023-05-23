@@ -26,7 +26,7 @@ import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-public class Activity_Ricerca_Offerta extends AppCompatActivity
+public class Activity_Ricerca_Offerte extends AppCompatActivity
 {
     RecyclerView recyclerView;
     FirebaseRecyclerAdapterOfferte mainAdapterRicercaOfferta;
@@ -58,7 +58,7 @@ public class Activity_Ricerca_Offerta extends AppCompatActivity
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Ricerca_Offerta.this, Activity_Home.class);
+                Intent intent = new Intent(Activity_Ricerca_Offerte.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -66,35 +66,35 @@ public class Activity_Ricerca_Offerta extends AppCompatActivity
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Ricerca_Offerte.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_Segnalazioni_Offerte.class));
+                startActivity(new Intent(Activity_Ricerca_Offerte.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_Animali.class));
+                startActivity(new Intent(Activity_Ricerca_Offerte.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Offerta.this, Activity_QRcode.class));
+                startActivity(new Intent(Activity_Ricerca_Offerte.this, Activity_QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Ricerca_Offerta.this, Preference.class));
+                startActivity(new Intent(Activity_Ricerca_Offerte.this, Preference.class));
             }
         });
 
@@ -154,7 +154,7 @@ public class Activity_Ricerca_Offerta extends AppCompatActivity
                     public void onItemClick(int position) {
                         Offerta offerta = mainAdapterRicercaOfferta.getItem(position);
                         String offertaId = offerta.idOfferta;
-                        Intent intent = new Intent(Activity_Ricerca_Offerta.this, Activity_profilo_Offerta.class);
+                        Intent intent = new Intent(Activity_Ricerca_Offerte.this, Activity_profilo_Offerta.class);
                         intent.putExtra("OFFERTA_CODE",offertaId);
                         startActivity(intent);
                     }

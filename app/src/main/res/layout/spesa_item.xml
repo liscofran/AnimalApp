@@ -22,8 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
-            >
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/item_name_textview"
@@ -31,6 +30,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Nome"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp" />
@@ -41,6 +41,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Prezzo"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp" />
@@ -50,7 +51,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="dataAcquisto"
+                android:text="Data"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp" />

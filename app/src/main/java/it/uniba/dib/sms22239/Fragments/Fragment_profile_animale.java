@@ -39,9 +39,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Animale;
-import it.uniba.dib.sms22239.Activities.Activity_Calendario_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;

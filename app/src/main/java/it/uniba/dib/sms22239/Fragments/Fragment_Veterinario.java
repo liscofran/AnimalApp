@@ -62,14 +62,7 @@ public class Fragment_Veterinario extends Fragment {
                 startActivity(new Intent(  getActivity(), Activity_Segnalazioni_Offerte.class));
             }
         });
-
-        getView().findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Animali.class));
-            }
-        });
-
+        
         getView().findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

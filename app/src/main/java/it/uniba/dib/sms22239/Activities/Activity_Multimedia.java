@@ -26,15 +26,6 @@ public class Activity_Multimedia extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multimedia);
 
-        //Back Button
-        ImageButton backBtn2 = findViewById(R.id.back);
-        backBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
         //Navbar
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override

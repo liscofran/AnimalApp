@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/custom_button">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/toolbar1"
         layout="@layout/toolbarveterinario" />
 
-    <View
+    <TextView
+        android:id="@+id/Titolo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#6D233555"
-        tools:layout_editor_absoluteX="-565dp"
-        tools:layout_editor_absoluteY="-140dp" />
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Area Veterinario"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline66"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/guideline63"/>
 
     <ImageButton
         android:id="@+id/back"
@@ -29,78 +38,92 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar1" />
 
     <TextView
-        android:id="@+id/Titolo"
+        android:id="@+id/Mezzalunasx"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button_v11"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
+        app:layout_constraintTop_toTopOf="@+id/guideline66" />
+
+
+    <TextView
+        android:id="@+id/Appuntamenti"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v4"
+        android:drawableLeft="@drawable/ic_baseline_edit_calendar_24"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="20dp"
+        android:hint="Appuntamenti"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/prenotazioni"
+        app:layout_constraintLeft_toLeftOf="@id/guideline15"
+        app:layout_constraintRight_toRightOf="@id/guideline14"
+        app:layout_constraintTop_toBottomOf="@id/guideline66" />
+
+
+    <TextView
+        android:id="@+id/prenotazioni"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_v4"
+        android:drawableLeft="@drawable/baseline_photo_album_24"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:hint="Prenotazioni"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/Mezzalunasx"
+        app:layout_constraintEnd_toEndOf="@id/Appuntamenti"
+        app:layout_constraintStart_toStartOf="@id/Appuntamenti"
+        app:layout_constraintTop_toBottomOf="@id/Appuntamenti" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Area Veterinario"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@id/view"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar1" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/Calendario"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Titolo" />
-
-    <Button
-        android:id="@+id/Calendario"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        android:drawablePadding="10dp"
-        android:hint="Calendario"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/esami"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
-
-    <Button
-        android:id="@+id/esami"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline66"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        android:drawablePadding="10dp"
-        android:hint="Esami"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/diagnosi"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Calendario" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.32" />
 
-    <Button
-        android:id="@+id/diagnosi"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        android:drawablePadding="10dp"
-        android:hint="Diagnosi"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/esami" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

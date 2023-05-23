@@ -38,7 +38,7 @@ public class Activity_Miei_Animali extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        Button aggiungiAnimaleButton = findViewById(R.id.add_animal_button);
+        ImageButton aggiungiAnimaleButton = findViewById(R.id.add_animal_button);
         aggiungiAnimaleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,13 +47,6 @@ public class Activity_Miei_Animali extends AppCompatActivity {
             }
         });
 
-        ImageButton backBtn2 = findViewById(R.id.back);
-        backBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override

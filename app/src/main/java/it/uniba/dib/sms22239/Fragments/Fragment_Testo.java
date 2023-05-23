@@ -54,6 +54,14 @@ public class Fragment_Testo extends Fragment
        EditText editNome = getView().findViewById(R.id.NomeTesto);
        EditText editTesto = getView().findViewById(R.id.Testo);
 
+        ImageButton backBtn2 = getView().findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+
        btnInserisci.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

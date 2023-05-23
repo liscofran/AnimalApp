@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
     EditText inputNome, inputPrezzo, inputQuantita;
     Button inputData;
+    ImageButton backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,14 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         inputNome = findViewById(R.id.add_item_name);
         inputPrezzo = findViewById(R.id.add_item_price);
         inputQuantita = findViewById(R.id.add_item_quantity);
+
+        backbutton = findViewById(R.id.back);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //Bottone Data
         inputData.setOnClickListener(new View.OnClickListener() {

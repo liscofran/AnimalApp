@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import it.uniba.dib.sms22239.Activities.Activity_Calendario_Veterinario;
+import it.uniba.dib.sms22239.Activities.Activity_Appuntamenti_Veterinario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -93,7 +93,7 @@ public class Fragment_edit_appuntamento_veterinario extends Fragment {
                 mDatabase.child("orario_inizio").setValue(ora_fine_string);
 
                 // Torna all'activity precedente
-                Intent intent = new Intent(getActivity(), Activity_Calendario_Veterinario.class);
+                Intent intent = new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class);
                 Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }

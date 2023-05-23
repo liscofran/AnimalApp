@@ -3,7 +3,7 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +19,20 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
     TextView ricercaofferta;
     TextView miesegnalazioni;
     TextView mieofferte;
+    ImageButton backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segnalazioniofferte);
+
+        backbutton = findViewById(R.id.back);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +105,7 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
         ricercasegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Ricerca_Segnalazione.class);
+                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Ricerca_Segnalazioni.class);
                 startActivity(intent);
             }
         });
@@ -116,7 +125,7 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
         ricercaofferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Ricerca_Offerta.class);
+                Intent intent = new Intent(Activity_Segnalazioni_Offerte.this, Activity_Ricerca_Offerte.class);
                 startActivity(intent);
             }
         });

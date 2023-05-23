@@ -76,7 +76,7 @@
             android:name=".Activities.Activity_Nuovo_Appuntamento"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Calendario_Veterinario"
+            android:name=".Activities.Activity_Appuntamenti_Veterinario"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Scheda_Veterinario"
@@ -105,13 +105,13 @@
             android:name=".Activities.Activity_Offerte"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Ricerca_Offerta"
+            android:name=".Activities.Activity_Ricerca_Offerte"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Registrazione_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Ricerca_Segnalazione"
+            android:name=".Activities.Activity_Ricerca_Segnalazioni"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Multimedia"

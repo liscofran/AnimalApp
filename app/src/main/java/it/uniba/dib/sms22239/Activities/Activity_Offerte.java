@@ -49,7 +49,7 @@ public class Activity_Offerte extends AppCompatActivity {
             }
         });
 
-        Button aggiungiOfferte = findViewById(R.id.add_offerta_button);
+        ImageButton aggiungiOfferte = findViewById(R.id.add_offerta_button);
         aggiungiOfferte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

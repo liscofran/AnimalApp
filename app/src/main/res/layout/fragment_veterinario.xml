@@ -1,21 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f3f3f7"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/second_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbarveterinario" />
 
-    <TextView
-        android:id="@+id/welcome_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
-        android:text="Benvenuto Veterinario"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v5"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale48"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale95"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
+            app:layout_constraintTop_toTopOf="@+id/lineaorizzontale15">
 
-</LinearLayout>
+        </ImageView>
+
+        <TextView
+            android:id="@+id/esami"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v7"
+            android:elevation="10dp"
+            android:gravity="bottom|center"
+            android:paddingBottom="10dp"
+            android:text="Esami"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale40"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale45"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale10"
+            app:layout_constraintTop_toTopOf="@+id/esamimage" />
+
+        <ImageView
+            android:id="@+id/esamimage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v6"
+            android:elevation="11dp"
+            android:gravity="bottom"
+            android:src="@drawable/doglogo"
+            android:text="Esami"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale35"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale45"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale10"
+            app:layout_constraintTop_toTopOf="@+id/lineaorizzontale20" />
+
+        <TextView
+            android:id="@+id/diagnosi"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v7"
+            android:elevation="10dp"
+            android:gravity="bottom|center"
+            android:paddingBottom="10dp"
+            android:text="Diagnosi"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale40"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale55"
+            app:layout_constraintTop_toTopOf="@+id/diagnosimage"/>
+
+        <ImageView
+            android:id="@+id/diagnosimage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v6"
+            android:elevation="11dp"
+            android:gravity="bottom"
+            android:src="@drawable/round_photo_album_24_white"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale35"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale55"
+            app:layout_constraintTop_toTopOf="@+id/lineaorizzontale20" />
+
+        <TextView
+            android:id="@+id/calendario"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v7"
+            android:elevation="10dp"
+            android:gravity="bottom|center"
+            android:paddingBottom="10dp"
+            android:text="Calendario"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale67"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale95"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
+            app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
+
+        <ImageView
+            android:id="@+id/calendarioimage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v6"
+            android:elevation="11dp"
+            android:gravity="bottom"
+            android:src="@drawable/annuncicon"
+            android:text="Annunci"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale64"
+            app:layout_constraintEnd_toEndOf="@+id/calendario"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
+            app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.43" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaverticale95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaverticale05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaverticale45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaverticale10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaverticale90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaverticale55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale67"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.84" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</FrameLayout>

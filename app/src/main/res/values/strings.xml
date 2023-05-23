@@ -70,8 +70,8 @@
         <item>Diagnosi</item>
     </string-array>
 
-    <!-- Opzioni Tipo di esame -->
-    <string-array name="esame">
+    <!-- Opzioni stato di esame -->
+    <string-array name="statoesame">
         <item>Completato</item>
         <item>Non eseguito</item>
         <item>Da rivedere</item>
@@ -81,6 +81,15 @@
     <string-array name="diagnosi">
         <item>Positivo</item>
         <item>Negativo</item>
+    </string-array>
+
+    <string-array name="tipoesame">
+        <item>Sverminazione</item>
+        <item>Vaccinazione</item>
+        <item>Sterilizzazione</item>
+        <item>Intervento</item>
+        <item>Controllo</item>
+        <item>Altro</item>
     </string-array>
 
     <string name="title_activity_veterinario">Veterinario_Activity</string>

@@ -48,7 +48,7 @@ public class Activity_Segnalazione extends AppCompatActivity {
             }
         });
 
-        Button aggiungiSegnalazione = findViewById(R.id.add_segnalazione_button);
+        ImageButton aggiungiSegnalazione = findViewById(R.id.add_segnalazione_button);
         aggiungiSegnalazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

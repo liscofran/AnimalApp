@@ -51,13 +51,6 @@ public class Activity_Profilo_Veterinario extends AppCompatActivity
             }
         });
 
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Profilo_Veterinario.this, Activity_Animali.class));
-            }
-        });
-
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
