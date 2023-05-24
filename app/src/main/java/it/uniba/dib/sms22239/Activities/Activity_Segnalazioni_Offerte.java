@@ -40,8 +40,6 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
     TextView miesegnalazioni;
     TextView mieofferte;
     ImageButton backbutton;
-
-
     String flag;
 
     @Override
@@ -58,13 +56,6 @@ public class Activity_Segnalazioni_Offerte extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-        if (flag == "veterinario"){
-
-        }
-        else{
-
-        }
 
         creasegnalazione = findViewById(R.id.crea_segnalazione);
 

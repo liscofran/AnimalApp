@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.CheckBox;
@@ -19,7 +20,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -32,10 +38,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbar;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbar1;
 import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -53,11 +63,14 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
     StorageReference mStorageRef;
     DatabaseReference mDatabaseRef;
     StorageTask mUploadTask;
+    String flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creaofferta);
+
+        autenticazione();
 
         inputOggetto = findViewById(R.id.oggettotext);
         inputProvincia = findViewById(R.id.provinciatext);
@@ -90,48 +103,6 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Home.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_Profile_Proprietario_Ente.class));
-            }
-        });
-
-        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class));
-            }
-        });
-
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_Animali.class));
-            }
-        });
-
-        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Offerte.this, Activity_QRcode.class));
-            }
-        });
-
-        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Registrazione_Offerte.this, Preference.class));
-            }
-        });
 
         backBtn2 = findViewById(R.id.back);
 
@@ -212,8 +183,6 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
     }
 
@@ -262,5 +231,44 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Nessun file selezionato", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    protected void autenticazione()
+    {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+        Query query = myRef.orderByChild("classe");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Recupera il valore dell'attributo "classe"
+                String classe = snapshot.child("classe").getValue(String.class);
+
+
+                // Verifica il valore dell'attributo "classe"
+                if (classe.equals("Veterinario"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar1());
+                    fragmentTransaction.commit();
+                    flag = "veterinario";
+                }
+                else
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar());
+                    fragmentTransaction.commit();
+                    flag = "altro";
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Gestisci l'evento di annullamento
+                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+            }
+        });
     }
 }

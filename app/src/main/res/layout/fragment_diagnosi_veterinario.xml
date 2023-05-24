@@ -37,7 +37,7 @@
                 app:layout_constraintStart_toStartOf="@id/guideline15"
                 app:layout_constraintTop_toTopOf="@id/guideline62" />
 
-            <TextView
+            <EditText
                 android:id="@+id/data"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 app:layout_constraintRight_toRightOf="@id/guideline4"
                 app:layout_constraintTop_toTopOf="@+id/guideline63" />
 
-            <TextView
+            <EditText
                 android:id="@+id/orario_inizio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/guideline65" />
 
 
-            <TextView
+            <EditText
                 android:id="@+id/orario_fine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 app:layout_constraintStart_toStartOf="@+id/data"
                 app:layout_constraintTop_toBottomOf="@id/guideline67" />
 
-            <TextView
+            <EditText
                 android:id="@+id/nom_cogn_prop"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                 app:layout_constraintStart_toStartOf="@+id/data"
                 app:layout_constraintTop_toBottomOf="@id/guideline69"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/animale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

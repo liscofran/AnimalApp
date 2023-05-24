@@ -30,16 +30,13 @@ import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-
-public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
-
+public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
     private CalendarView calendarView;
     private DatabaseReference mDatabase;
-    private ArrayList<Appuntamento> appuntamenti= new ArrayList<>();
-    private ArrayList<Prenotazione> prenotazioni= new ArrayList<>();
-    private String idAnimale;
+    private ArrayList<Appuntamento> appuntamenti = new ArrayList<>();
+    private ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
     private String id_veterinario;
-
+    private String idAnimale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +54,7 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Home.class);
+                Intent intent = new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -65,14 +62,14 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
             }
         });
 
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Segnalazioni_Offerte.class));
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
@@ -86,20 +83,20 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_QRcode.class));
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Preference.class));
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Preference.class));
             }
         });
         findViewById(R.id.scheda).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Scheda_Veterinario.class));
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Scheda_Veterinario.class));
             }
         });
 
@@ -109,53 +106,50 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
 
-        mDatabase1.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase1.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 id_veterinario = dataSnapshot.child(user.getUid()).getKey();
 
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child("id_veterinario");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni").child("id_veterinario");
 
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //appuntamenti = new ArrayList<>();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
-                    if(appuntamento.getId_veterinario() == id_veterinario)
-                        appuntamenti.add(appuntamento);
-                }
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
-                    if(prenotazione.id_veterinario == id_veterinario)
+                    if (prenotazione.getId_veterinario() == id_veterinario)
                         prenotazioni.add(prenotazione);
                 }
 
-                // Colora le date che hanno almeno un appuntamento
+                /*for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
+                    if(prenotazione.id_veterinario == id_veterinario)
+                        prenotazioni.add(prenotazione);
+                }*/
+
+                /* Colora le date che hanno almeno un appuntamento
                 for (Appuntamento appuntamento : appuntamenti) {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(new Date(appuntamento.getData()));
                     long timeInMillis = calendar.getTimeInMillis();
                     calendarView.setDateTextAppearance(R.style.MyCalendarViewStyle);
-                }
+                }*/
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Activity_Appuntamenti_Veterinario.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Prenotazioni_Veterinario.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -180,39 +174,13 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String data = sdf.format(selectedDate.getTime());
 
-                // Crea la finestra di dialogo degli appuntamenti
+                // Crea la finestra di dialogo delle prenotazioni
                 ArrayList<Prenotazione> prenotazioni = null;
-                Fragment_App_Pren_Dialog dialog = new Fragment_App_Pren_Dialog(appuntamenti, prenotazioni, data,idAnimale);
-                dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
+                Fragment_App_Pren_Dialog dialog = new Fragment_App_Pren_Dialog(appuntamenti, prenotazioni, data, idAnimale);
+                dialog.show(getSupportFragmentManager(), "prenotazione_dialog");
             }
         });
 
-        /*
-        // Imposta la risorsa di stile per le date contenenti un appuntamento
-        int appuntamentoStyle = R.style.Calendar_Appuntamento;
-        calendarView.setDateTextAppearance(appuntamentoStyle);
-         */
-
-        /*
-        // Imposta la risorsa di stile per le date contenenti una prenotazione
-        int prenotazioneStyle = R.style.Calendar_Prenotazione;
-        calendarView.setDateTextAppearance(prenotazioneStyle);
-         */
-
-        /*
-        <style name="Calendar_Appuntamento">
-        <item name="android:textColor">@color/colorAppuntamento</item>
-        </style>
-
-        <style name="Calendar_Prenotazione">
-        <item name="android:textColor">@color/colorPrenotazione</item>
-        </style>
-         */
     }
 }
-
-
-
-
-
 

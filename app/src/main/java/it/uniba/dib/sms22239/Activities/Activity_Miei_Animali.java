@@ -41,6 +41,13 @@ public class Activity_Miei_Animali extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+        ImageButton backBtn2 = findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         ImageButton aggiungiAnimaleButton = findViewById(R.id.add_animal_button);
         aggiungiAnimaleButton.setOnClickListener(new View.OnClickListener() {

@@ -38,7 +38,7 @@ public class Activity_Scheda_Veterinario extends AppCompatActivity {
         prenotazioni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Activity_Scheda_Veterinario.this, Activity_Appuntamenti_Veterinario.class);
+                Intent intent = new Intent(Activity_Scheda_Veterinario.this, Activity_Prenotazioni_Veterinario.class);
                 startActivity(intent);
             }
         });

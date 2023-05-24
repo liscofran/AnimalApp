@@ -41,5 +41,9 @@ public abstract class Prenotazione {
         id_prenotazione = String.valueOf(randomNumber);
 
     }
+
+    public String getId_veterinario() {
+        return id_veterinario;
+    }
 }
 
