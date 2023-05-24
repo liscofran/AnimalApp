@@ -185,7 +185,7 @@ public class Activity_Album_Animali extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(Activity_Album_Animali.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
-                                    intent.putExtra("ANIMALE_SELEZIONATO",animalId);
+                                    intent.putExtra("ANIMAL_CODE",animalId);
                                     startActivity(intent);
                                 }
                             })

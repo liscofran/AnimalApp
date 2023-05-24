@@ -21,7 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterOfferte;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterOfferta;
 import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -180,16 +184,60 @@ public class Activity_Ricerca_Offerte extends AppCompatActivity
     }
 
     private void mysearch(String str) {
+        mAuth= FirebaseAuth.getInstance();
+        mUser=mAuth.getCurrentUser();
 
-        FirebaseRecyclerOptions<Offerta> options =
-                new FirebaseRecyclerOptions.Builder<Offerta>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
-                        .build();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(mUser.getUid());
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                classe = dataSnapshot.child("classe").getValue(String.class);
+                if(classe.equals("Proprietario"))
+                {
+                    options = new FirebaseRecyclerOptions.Builder<Offerta>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("checkProprietario").equalTo(true),Offerta.class)
+                            .build();
+                }
+                else if(classe.equals("Ente"))
+                {
+                    options = new FirebaseRecyclerOptions.Builder<Offerta>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("checkEnte").equalTo(true),Offerta.class)
+                            .build();
+                }
+                else
+                {
+                    options = new FirebaseRecyclerOptions.Builder<Offerta>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("checkVeterinario").equalTo(true),Offerta.class)
+                            .build();
+                }
 
-        mainAdapterRicercaOfferta = new FirebaseRecyclerAdapterOfferte(options,listener);
-        mainAdapterRicercaOfferta.startListening();
-        recyclerView.setAdapter(mainAdapterRicercaOfferta);
+                List<Offerta> filteredList = new ArrayList<>();
+
+                for (Offerta offerta : mainAdapterRicercaOfferta.getSnapshots())
+                {
+                    if (offerta != null && offerta.oggetto.startsWith(str))
+                    {
+                        filteredList.add(offerta);
+                    }
+                }
+
+                RecyclerAdapterOfferta adapter = new RecyclerAdapterOfferta(filteredList, new RecyclerAdapterOfferta.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Offerta offerta = filteredList.get(position);
+                        String offertaId = offerta.idOfferta;
+                        Intent intent = new Intent(Activity_Ricerca_Offerte.this, Activity_profilo_Offerta.class);
+                        intent.putExtra("OFFERTA_CODE",offertaId);
+                        startActivity(intent);
+                    }
+                });
+                recyclerView.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {}
+        });
     }
-
 }
-

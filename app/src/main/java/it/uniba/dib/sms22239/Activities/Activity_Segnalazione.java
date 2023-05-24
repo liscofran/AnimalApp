@@ -17,7 +17,13 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterSegnalazione;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterAnimale;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterSegnalazione;
+import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
 
@@ -121,14 +127,28 @@ public class Activity_Segnalazione extends AppCompatActivity {
 
     private void mysearch(String str) {
 
-        FirebaseRecyclerOptions<Segnalazione> options =
-                new FirebaseRecyclerOptions.Builder<Segnalazione>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Segnalazioni").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Segnalazione.class)
-                        .build();
+        List<Segnalazione> filteredList = new ArrayList<>();
 
-        mainAdapterSegnalazione = new FirebaseRecyclerAdapterSegnalazione(options,listener);
-        mainAdapterSegnalazione.startListening();
-        recyclerView.setAdapter(mainAdapterSegnalazione);
+        for (Segnalazione segnalazione : mainAdapterSegnalazione.getSnapshots())
+        {
+            if (segnalazione != null && segnalazione.oggetto.startsWith(str))
+            {
+                filteredList.add(segnalazione);
+            }
+        }
+
+        RecyclerAdapterSegnalazione filteredAdapter = new RecyclerAdapterSegnalazione(filteredList,new RecyclerAdapterSegnalazione.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Segnalazione segnalazione = filteredList.get(position);
+                String segnalazioneId = segnalazione.idSegnalazione;
+                Intent intent = new Intent(Activity_Segnalazione.this, Activity_Profilo_Segnalazione.class);
+                intent.putExtra("SEGNALAZIONE_CODE",segnalazioneId);
+                startActivity(intent);
+            }
+        });
+
+        recyclerView.setAdapter(filteredAdapter);
     }
 
 

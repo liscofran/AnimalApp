@@ -48,7 +48,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
 
         ImageButton backBtn2 = findViewById(R.id.back);
 
-        idAnimale = getIntent().getStringExtra("ANIMALE_SELEZIONATO");
+        idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
 
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -172,8 +172,8 @@ public class Activity_Spese extends AppCompatActivity {
         });
 
 
-        mAuth= FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         FirebaseRecyclerOptions<Oggetto_Spesa> options =
                 new FirebaseRecyclerOptions.Builder<Oggetto_Spesa>()

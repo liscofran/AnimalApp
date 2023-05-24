@@ -18,6 +18,10 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Preference;
@@ -147,27 +151,27 @@ public class Activity_Miei_Animali extends AppCompatActivity {
     }
 
     private void mysearch(String str) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
 
-        /*FirebaseRecyclerOptions<Animale> options =
-                new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference()
-                        .child("Animale").orderByChild("razza").orderByChild("Id_utente").equalTo(mUser.getUid()).startAt(str).endAt(str+"\uf8ff"),Animale.class)
-                        .build();*/
-        Query query = FirebaseDatabase.getInstance().getReference()
-                .child("Animale")
-                .orderByChild("razza")
-                .startAt(str)
-                .endAt(str+"\uf8ff");
+        List<Animale> filteredList = new ArrayList<>();
 
-        FirebaseRecyclerOptions<Animale> options =
-                new FirebaseRecyclerOptions.Builder<Animale>()
-                        .setQuery(query, Animale.class)
-                        .build();
+        for (Animale animale : mainAdapter.getSnapshots())
+        {
+            if (animale != null && animale.nome.startsWith(str))
+            {
+                filteredList.add(animale);
+            }
+        }
 
-        mainAdapter = new FirebaseRecyclerAdapterAnimale(options,listener);
-        mainAdapter.startListening();
-        recyclerView.setAdapter(mainAdapter);
+        RecyclerAdapterAnimale filteredAdapter = new RecyclerAdapterAnimale(filteredList,new RecyclerAdapterAnimale.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Animale animale = filteredList.get(position);
+                String animalId = animale.Id;
+                Intent intent = new Intent(Activity_Miei_Animali.this, Activity_Animal_Profile.class);
+                intent.putExtra("ANIMAL_CODE",animalId);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(filteredAdapter);
     }
 }

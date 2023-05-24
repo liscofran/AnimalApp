@@ -11,13 +11,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterOfferte;
+import it.uniba.dib.sms22239.Adapters.RecyclerAdapterOfferta;
 import it.uniba.dib.sms22239.Models.Offerta;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -157,14 +160,28 @@ public class Activity_Offerte extends AppCompatActivity {
 
     private void mysearch(String str) {
 
-        FirebaseRecyclerOptions<Offerta> options =
-                new FirebaseRecyclerOptions.Builder<Offerta>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Offerte").orderByChild("descrizione").startAt(str).endAt(str+"\uf8ff"),Offerta.class)
-                        .build();
+        List<Offerta> filteredList = new ArrayList<>();
 
-        mainAdapterOfferte = new FirebaseRecyclerAdapterOfferte(options,listener);
-        mainAdapterOfferte.startListening();
-        recyclerView.setAdapter(mainAdapterOfferte);
+        for (Offerta offerta : mainAdapterOfferte.getSnapshots())
+        {
+            if (offerta != null && offerta.oggetto.startsWith(str))
+            {
+                filteredList.add(offerta);
+            }
+        }
+
+        RecyclerAdapterOfferta filteredAdapter = new RecyclerAdapterOfferta(filteredList,new RecyclerAdapterOfferta.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Offerta offerta = filteredList.get(position);
+                String offertaId = offerta.idOfferta;
+                Intent intent = new Intent(Activity_Offerte.this, Activity_profilo_Offerta.class);
+                intent.putExtra("OFFERTA_CODE",offertaId);
+                startActivity(intent);
+            }
+        });
+
+        recyclerView.setAdapter(filteredAdapter);
     }
 
 

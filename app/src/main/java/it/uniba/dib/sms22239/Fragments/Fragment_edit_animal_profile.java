@@ -39,6 +39,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
 import it.uniba.dib.sms22239.R;
