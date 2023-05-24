@@ -13,7 +13,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
+import it.uniba.dib.sms22239.Activities.Activity_Appuntamenti_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Activity_Scheda_Veterinario;
@@ -81,6 +83,41 @@ public class Fragment_Veterinario extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), Preference.class));
+            }
+        });
+
+        getView().findViewById(R.id.appuntamenti).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class));
+            }
+        });
+
+        getView().findViewById(R.id.appuntamentiimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class));
+            }
+        });
+
+        getView().findViewById(R.id.scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_QRcode.class));
+            }
+        });
+
+        getView().findViewById(R.id.annunciimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        getView().findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
             }
         });
 

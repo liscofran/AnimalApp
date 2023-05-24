@@ -77,12 +77,12 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Animali.class));
-            }
-        });
+//        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Animali.class));
+//            }
+//        });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +97,10 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
                 startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Preference.class));
             }
         });
-        findViewById(R.id.prenotazioni).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.scheda).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Nuovo_Appuntamento.class));
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Scheda_Veterinario.class));
             }
         });
 

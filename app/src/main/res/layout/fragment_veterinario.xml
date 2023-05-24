@@ -35,31 +35,31 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/esami"
+            android:id="@+id/prenotazioni"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/custom_button_v7"
             android:elevation="10dp"
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
-            android:text="Esami"
+            android:text="Prenotazioni"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale40"
             app:layout_constraintEnd_toStartOf="@+id/lineaverticale45"
             app:layout_constraintStart_toStartOf="@+id/lineaverticale10"
-            app:layout_constraintTop_toTopOf="@+id/esamimage" />
+            app:layout_constraintTop_toTopOf="@+id/prenotazioniimage" />
 
         <ImageView
-            android:id="@+id/esamimage"
+            android:id="@+id/prenotazioniimage"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/custom_button_v6"
             android:elevation="11dp"
             android:gravity="bottom"
-            android:src="@drawable/doglogo"
-            android:text="Esami"
+            android:src="@drawable/baseline_content_paste_search_24"
+            android:text="Prenotazioni"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -69,30 +69,30 @@
             app:layout_constraintTop_toTopOf="@+id/lineaorizzontale20" />
 
         <TextView
-            android:id="@+id/diagnosi"
+            android:id="@+id/appuntamenti"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/custom_button_v7"
             android:elevation="10dp"
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
-            android:text="Diagnosi"
+            android:text="Appuntamenti"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale40"
             app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
             app:layout_constraintStart_toStartOf="@+id/lineaverticale55"
-            app:layout_constraintTop_toTopOf="@+id/diagnosimage"/>
+            app:layout_constraintTop_toTopOf="@+id/appuntamentiimage"/>
 
         <ImageView
-            android:id="@+id/diagnosimage"
+            android:id="@+id/appuntamentiimage"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/custom_button_v6"
             android:elevation="11dp"
             android:gravity="bottom"
-            android:src="@drawable/round_photo_album_24_white"
+            android:src="@drawable/round_calendar_month_24"
             android:textAllCaps="true"
             app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale35"
             app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
@@ -100,14 +100,48 @@
             app:layout_constraintTop_toTopOf="@+id/lineaorizzontale20" />
 
         <TextView
-            android:id="@+id/calendario"
+            android:id="@+id/scan"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_v7"
+            android:drawableStart="@drawable/ic_baseline_qr_code_scanner_24"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:elevation="13dp"
+            android:src="@drawable/custom_button_v7"
+            android:text="Scannerizza ora"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale49"
+            app:layout_constraintEnd_toStartOf="@+id/lineaverticale90"
+            app:layout_constraintStart_toStartOf="@+id/lineaverticale10"
+            app:layout_constraintTop_toTopOf="@+id/lineaorizzontale46" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lineaorizzontale49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.57" />
+
+        <TextView
+            android:id="@+id/annunci"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/custom_button_v7"
             android:elevation="10dp"
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
-            android:text="Calendario"
+            android:text="Annunci"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -117,7 +151,7 @@
             app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
 
         <ImageView
-            android:id="@+id/calendarioimage"
+            android:id="@+id/annunciimage"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/custom_button_v6"
@@ -129,7 +163,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/lineaorizzontale64"
-            app:layout_constraintEnd_toEndOf="@+id/calendario"
+            app:layout_constraintEnd_toEndOf="@+id/annunci"
             app:layout_constraintStart_toStartOf="@+id/lineaverticale05"
             app:layout_constraintTop_toTopOf="@+id/lineaorizzontale54" />
 
@@ -139,6 +173,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.43" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/lineaverticale95"

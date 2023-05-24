@@ -79,12 +79,12 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Activity_Animali.class));
-            }
-        });
+//        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(Activity_Nuovo_Appuntamento.this, Activity_Animali.class));
+//            }
+//        });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
