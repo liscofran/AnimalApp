@@ -1,13 +1,13 @@
 package it.uniba.dib.sms22239.Fragments;
 
 import static android.app.Activity.RESULT_OK;
+
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -54,7 +54,7 @@ public class Fragment_profile_animale extends Fragment
     public CircleImageView qrbutton, appre, shareButton;
     private static final int REQUEST_ENABLE_BT = 1, REQUEST_PERMISSION_BLUETOOTH = 2;
     protected ImageButton backBtn;
-    DatabaseReference mDatabase2;
+    DatabaseReference mDatabase2;   
 
     public Fragment_profile_animale() {
 
@@ -267,12 +267,20 @@ public class Fragment_profile_animale extends Fragment
                     shareIntent.putExtra( "ANIMAL_CODE",idAnimal);
 
 
+
                     // Crea l'intent chooser per scegliere l'app Bluetooth
                     Intent chooserIntent = Intent.createChooser(shareIntent, "Condividi con...");
                     chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                     // Avvia l'activity chooser
-                    startActivity(chooserIntent);
+                    PackageManager packageManager = requireActivity().getPackageManager();
+                    if (shareIntent.resolveActivity(packageManager) != null) {
+                        // Avvia l'activity chooser
+                        startActivity(chooserIntent);
+                    } else {
+                        // L'app Bluetooth non è disponibile
+                        Toast.makeText(requireContext(), "Nessuna app Bluetooth disponibile", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

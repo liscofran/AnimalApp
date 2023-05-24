@@ -13,20 +13,23 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import it.uniba.dib.sms22239.BluetoothReceiver;
+
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
+
+import it.uniba.dib.sms22239.BluetoothReceiver;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_QRcode extends AppCompatActivity {
-    ConstraintLayout ConstraintLayout;
+    ConstraintLayout constraintLayout;
     private CodeScanner mCodeScanner;
     private static final int CAMERA_PERMISSION_REQUEST = 100;
     private String qrCodeResult;
@@ -39,14 +42,13 @@ public class Activity_QRcode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
 
-        //toolbar
-        ConstraintLayout  = findViewById(R.id.home_constraint_layout); //importante per il tema
-
+        // Toolbar
+        constraintLayout = findViewById(R.id.home_constraint_layout); // Importante per il tema
         Toolbar toolbar = findViewById(R.id.toolbar);
         Toolbar toolbar2 = findViewById(R.id.toolbar2);
         toolbar2.setVisibility(View.GONE);
-        //setSupportActionBar(toolbar);
-        Load_setting();
+        // setSupportActionBar(toolbar);
+        loadSettings();
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +79,6 @@ public class Activity_QRcode extends AppCompatActivity {
             }
         });
 
-
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,11 +92,11 @@ public class Activity_QRcode extends AppCompatActivity {
                 startActivity(new Intent(Activity_QRcode.this, Preference.class));
             }
         });
+
         AppCompatImageButton bluetoothButton = findViewById(R.id.bluetooth_button);
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (bluetoothAdapter == null) {
                     Toast.makeText(getApplicationContext(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
@@ -118,7 +119,6 @@ public class Activity_QRcode extends AppCompatActivity {
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 } else {
                     // Avvia il ricevitore Bluetooth
-
                     bluetoothReceiver = new BluetoothReceiver();
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(Intent.ACTION_SEND);
@@ -129,13 +129,15 @@ public class Activity_QRcode extends AppCompatActivity {
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
-        mCodeScanner.setDecodeCallback(result ->{ qrCodeResult = result.getText();runOnUiThread(this::animale);});
+        mCodeScanner.setDecodeCallback(result -> {
+            qrCodeResult = result.getText();
+            runOnUiThread(this::startAnimalActivity);
+        });
         scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST);
         }
-
     }
 
     @Override
@@ -144,14 +146,11 @@ public class Activity_QRcode extends AppCompatActivity {
         mCodeScanner.startPreview();
     }
 
-    public void animale()
-    {
+    public void startAnimalActivity() {
         Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
         intent.putExtra("ANIMAL_CODE", qrCodeResult);
         Toast.makeText(Activity_QRcode.this, "QRcode scansionato con successo", Toast.LENGTH_SHORT).show();
-
         startActivity(intent);
-
     }
 
     @Override
@@ -163,28 +162,25 @@ public class Activity_QRcode extends AppCompatActivity {
         super.onPause();
     }
 
-    private void Load_setting() {
-
+    private void loadSettings() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean chk_night = sp.getBoolean("NIGHT", false);
-        if (chk_night) {
-            ConstraintLayout.setBackgroundColor(Color.parseColor("#222222"));
-            // Tv.setTextColor(Color.parseColor("#ffffff"));
+        boolean isNightMode = sp.getBoolean("NIGHT", false);
+        if (isNightMode) {
+            constraintLayout.setBackgroundColor(Color.parseColor("#222222"));
         } else {
-            ConstraintLayout.setBackgroundColor(Color.parseColor("#ffffff"));
-            //Tv.setTextColor(Color.parseColor("#000000"));
+            constraintLayout.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
+        String orientation = sp.getString("ORIENTATION", "false");
+        if ("1".equals(orientation)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
+        } else if ("2".equals(orientation)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orien)) {
+        } else if ("3".equals(orientation)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -215,6 +211,4 @@ public class Activity_QRcode extends AppCompatActivity {
             // Aggiungi altri blocchi 'case' per gestire altre richieste di permesso se necessario
         }
     }
-
-
 }

@@ -39,7 +39,7 @@ public class Activity_Miei_Animali extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miei_animali);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
 
         ImageButton aggiungiAnimaleButton = findViewById(R.id.add_animal_button);

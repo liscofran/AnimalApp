@@ -82,7 +82,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
 
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,7 +42,7 @@ public class Fragment_Proprietario extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
         View toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity) requireActivity()).setSupportActionBar((Toolbar) toolbar);
+     //   ((AppCompatActivity) requireActivity()).setSupportActionBar((Toolbar) toolbar);
 
 
         getView().findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
