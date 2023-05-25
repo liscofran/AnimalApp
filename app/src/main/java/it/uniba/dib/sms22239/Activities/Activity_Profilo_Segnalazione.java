@@ -34,6 +34,7 @@ public class Activity_Profilo_Segnalazione extends AppCompatActivity
     String id_utente;
     String id_utente_segnalazione;
     String flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
