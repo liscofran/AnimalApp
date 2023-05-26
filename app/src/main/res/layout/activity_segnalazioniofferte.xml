@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="11dp"
-        app:layout_constraintVertical_bias="1.0" />
+ />
 
     <TextView
         android:id="@+id/Mezzalunasx"
@@ -98,7 +98,6 @@
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintBottom_toTopOf="@+id/top"
         app:layout_constraintEnd_toStartOf="@+id/v10"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
