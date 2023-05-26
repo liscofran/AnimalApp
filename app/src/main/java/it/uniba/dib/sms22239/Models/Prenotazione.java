@@ -4,7 +4,7 @@ import com.google.firebase.database.PropertyName;
 
 import java.util.Random;
 
-public abstract class Prenotazione {
+public class Prenotazione {
 
     @PropertyName("id_animale")
      public String id_animale;

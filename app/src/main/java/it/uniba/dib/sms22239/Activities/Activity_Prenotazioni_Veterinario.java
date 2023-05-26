@@ -3,7 +3,6 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -22,9 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_App_Pren_Dialog;
+import it.uniba.dib.sms22239.Fragments.Fragment_App_Dialog;
+import it.uniba.dib.sms22239.Fragments.Fragment_Pren_Dialog;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
@@ -33,7 +32,6 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
     private CalendarView calendarView;
     private DatabaseReference mDatabase;
-    private ArrayList<Appuntamento> appuntamenti = new ArrayList<>();
     private ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
     private String id_veterinario;
     private String idAnimale;
@@ -41,7 +39,7 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appuntamenti_veterinario);
+        setContentView(R.layout.activity_prenotazioni_veterinario);
 
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -120,47 +118,24 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
         });
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni").child("id_veterinario");
-
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
-                    if (prenotazione.getId_veterinario() == id_veterinario)
+                    if (prenotazione.getId_veterinario().equals(id_veterinario)) {
                         prenotazioni.add(prenotazione);
+                    }
                 }
-
-                /*for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
-                    if(prenotazione.id_veterinario == id_veterinario)
-                        prenotazioni.add(prenotazione);
-                }*/
-
-                /* Colora le date che hanno almeno un appuntamento
-                for (Appuntamento appuntamento : appuntamenti) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(new Date(appuntamento.getData()));
-                    long timeInMillis = calendar.getTimeInMillis();
-                    calendarView.setDateTextAppearance(R.style.MyCalendarViewStyle);
-                }*/
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Activity_Prenotazioni_Veterinario.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
-
         });
-
-       /* // Colora le date che hanno almeno una prenotazione
-        for (Prenotazione prenotazione : prenotazioni) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(prenotazione.getData());
-            long timeInMillis = calendar.getTimeInMillis();
-            calendarView.setBackgroundColor(Color.GREEN);
-        }*/
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -175,8 +150,7 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
                 String data = sdf.format(selectedDate.getTime());
 
                 // Crea la finestra di dialogo delle prenotazioni
-                ArrayList<Prenotazione> prenotazioni = null;
-                Fragment_App_Pren_Dialog dialog = new Fragment_App_Pren_Dialog(appuntamenti, prenotazioni, data, idAnimale);
+                Fragment_Pren_Dialog dialog = new Fragment_Pren_Dialog(prenotazioni, data, idAnimale);
                 dialog.show(getSupportFragmentManager(), "prenotazione_dialog");
             }
         });

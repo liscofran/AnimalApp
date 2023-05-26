@@ -19,9 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_App_Pren_Dialog;
+import it.uniba.dib.sms22239.Fragments.Fragment_App_Dialog;
 import it.uniba.dib.sms22239.Models.Appuntamento;
-import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -99,7 +98,6 @@ public class Activity_Calendario_Animale  extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //appuntamenti = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
                     appuntamenti.add(appuntamento);
@@ -126,10 +124,31 @@ public class Activity_Calendario_Animale  extends AppCompatActivity {
                 String data = sdf.format(selectedDate.getTime());
 
                 // Crea la finestra di dialogo degli appuntamenti
-                ArrayList<Prenotazione> prenotazioni = null;
-                Fragment_App_Pren_Dialog dialog = new Fragment_App_Pren_Dialog(appuntamenti, prenotazioni, data, idAnimale);
+                Fragment_App_Dialog dialog = new Fragment_App_Dialog(appuntamenti,  data, idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
             }
         });
     }
 }
+
+/*
+mDatabase2 =  FirebaseDatabase.getInstance().getReference().child("Prenotazioni");
+
+mDatabase2.addValueEventListener(new ValueEventListener() {
+@Override
+public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+        Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
+        prenotazioni.add(prenotazione);
+        }
+
+        }
+
+@Override
+public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+        });
+
+ */
