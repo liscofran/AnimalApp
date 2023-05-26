@@ -54,7 +54,7 @@ public class Activity_Scheda_Veterinario extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Scheda_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Scheda_Veterinario.this, Activity_Profilo_Veterinario.class));
             }
         });
 
