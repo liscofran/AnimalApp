@@ -3,7 +3,6 @@ package it.uniba.dib.sms22239.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_App_Pren_Dialog;
+import it.uniba.dib.sms22239.Fragments.Fragment_App_Dialog;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
@@ -138,11 +137,11 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
                         appuntamenti.add(appuntamento);
                 }
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+               /* for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
                     if(prenotazione.id_veterinario == id_veterinario)
                         prenotazioni.add(prenotazione);
-                }
+                }*/
 
                 // Colora le date che hanno almeno un appuntamento
                 for (Appuntamento appuntamento : appuntamenti) {
@@ -181,9 +180,15 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
                 String data = sdf.format(selectedDate.getTime());
 
                 // Crea la finestra di dialogo degli appuntamenti
-                ArrayList<Prenotazione> prenotazioni = null;
-                Fragment_App_Pren_Dialog dialog = new Fragment_App_Pren_Dialog(appuntamenti, prenotazioni, data,idAnimale);
+                Fragment_App_Dialog dialog = new Fragment_App_Dialog(appuntamenti, data,idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
+            }
+        });
+
+        findViewById(R.id.appuntamento).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Appuntamenti_Veterinario.this, Activity_Nuovo_Appuntamento.class));
             }
         });
 

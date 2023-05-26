@@ -7,7 +7,7 @@
     >
 
     <include
-        layout="@layout/toolbarveterinario"
+        layout="@layout/toolbar"
         android:id="@+id/toolbar1" />
 
     <TextView
