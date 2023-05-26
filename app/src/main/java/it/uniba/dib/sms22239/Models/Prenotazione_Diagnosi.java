@@ -20,7 +20,7 @@ public class Prenotazione_Diagnosi extends Prenotazione {
         p_d.orario_inizio = orario_inizio;
         p_d.orario_fine = orario_fine;
         p_d.id_veterinario = id_veterinario;
-        p_d.diagnosi = null;
+        p_d.diagnosi = "Da verificare";
         p_d.tipo = "Diagnosi";
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

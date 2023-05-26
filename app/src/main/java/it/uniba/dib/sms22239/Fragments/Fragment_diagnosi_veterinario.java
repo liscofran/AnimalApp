@@ -1,5 +1,7 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +19,6 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,11 +27,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Prenotazione;
 import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
 import it.uniba.dib.sms22239.R;
 
+public class Fragment_diagnosi_veterinario extends Fragment {
 
-public class Fragment_esame_veterinario extends Fragment {
     private ImageButton backButton;
     private ImageView imageView;
     private EditText dataEditText;
@@ -39,7 +42,6 @@ public class Fragment_esame_veterinario extends Fragment {
     private EditText nomCognPropEditText;
     private EditText animaleEditText;
     private Spinner statoEsameSpinner;
-    private Spinner tipoEsameSpinner;
     private String idAnimale;
     private String idProprietario;
     private String idPrenotazione;
@@ -47,7 +49,7 @@ public class Fragment_esame_veterinario extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_esame_veterinario, container, false);
+        View view = inflater.inflate(R.layout.fragment_diagnosi_veterinario, container, false);
 
 
 
@@ -58,32 +60,27 @@ public class Fragment_esame_veterinario extends Fragment {
         orarioFineEditText = view.findViewById(R.id.orario_fine);
         nomCognPropEditText = view.findViewById(R.id.nom_cogn_prop);
         animaleEditText = view.findViewById(R.id.animale);
-        statoEsameSpinner = view.findViewById(R.id.spinner);
-        tipoEsameSpinner = view.findViewById(R.id.spinner2);
+        statoEsameSpinner = view.findViewById(R.id.spinner1);
+
 
         ArrayAdapter<CharSequence> statoEsameAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.statoesame, android.R.layout.simple_spinner_item);
         statoEsameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statoEsameSpinner.setAdapter(statoEsameAdapter);
 
-        ArrayAdapter<CharSequence> tipoEsameAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.tipoesame, android.R.layout.simple_spinner_item);
-        tipoEsameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipoEsameSpinner.setAdapter(tipoEsameAdapter);
-
-        // Aggiungi eventuali altri listener o codice di gestione qui
-
-
         idPrenotazione = getActivity().getIntent().getStringExtra("id_prenotazione");
+
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni").child(idPrenotazione);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
                     // Recupera i valori dal database utilizzando i nomi delle chiavi corrispondenti
                     String data = dataSnapshot.child("Data").getValue(String.class);
                     String orarioInizio = dataSnapshot.child("orario_inizio").getValue(String.class);
                     String orarioFine = dataSnapshot.child("orario_fine").getValue(String.class);
-                    //idProprietario = dataSnapshot.child("id_proprietario").getValue(String.class);
+                    idProprietario = dataSnapshot.child("nom_cogn_prop").getValue(String.class);
                     idAnimale = dataSnapshot.child("id_animale").getValue(String.class);
 
                     dataEditText.setText(data);
@@ -109,34 +106,16 @@ public class Fragment_esame_veterinario extends Fragment {
                         }
                     });
 
-                    // Aggiorna il valore selezionato nello spinner "tipoEsameSpinner"
-                    String tipoEsame = dataSnapshot.child("tipoEsame").getValue(String.class);
-                    int tipoEsameIndex = tipoEsameAdapter.getPosition(tipoEsame);
-                    tipoEsameSpinner.setSelection(tipoEsameIndex);
-
-                    // Aggiungi un listener per gestire la modifica del valore nello spinner "tipoEsameSpinner"
-                    tipoEsameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                            String nuovoTipoEsame = adapterView.getItemAtPosition(position).toString();
-                            // Aggiorna il valore nel database
-                            dataSnapshot.child("tipoEsame").getRef().setValue(nuovoTipoEsame);
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-                            // Gestisci l'evento di nessuna selezione
-                        }
-                    });
-
-
             }
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
 
         Handler handler = new Handler(Looper.getMainLooper());
 
@@ -197,31 +176,25 @@ public class Fragment_esame_veterinario extends Fragment {
         }, 500);
 
 
-
-        Button salvaButton = view.findViewById(R.id.salvaButton); // Sostituisci R.id.salva_button con l'ID effettivo del tuo pulsante "salva"
-
+        Button salvaButton = view.findViewById(R.id.salva);
         salvaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nuovoStatoEsame = statoEsameSpinner.getSelectedItem().toString();
-                String nuovoTipoEsame = tipoEsameSpinner.getSelectedItem().toString();
-
+                String nuovaDiagnosi = String.valueOf(statoEsameSpinner);  // Ottieni il valore della diagnosi da qualche elemento UI (ad esempio, un EditText)
                 DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("Prenotazioni").child(idPrenotazione);
-                databaseRef.child("Esame").setValue(nuovoStatoEsame);
-                databaseRef.child("tipoEsame").setValue(nuovoTipoEsame);
-
-                // Avvia l'ActivityPrenotazioneVeterinario
+                databaseRef.child("diagnosi").setValue(nuovaDiagnosi);
                 Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
                 startActivity(intent);
-
-                // Chiudi l'Activity corrente (se necessario)
-                getActivity().finish();
             }
         });
 
 
 
+
+
+        // Aggiungi eventuali altri listener o codice di gestione qui
+
         return view;
     }
-}
 
+}

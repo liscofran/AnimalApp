@@ -147,7 +147,6 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "prenotazione_dialog");
             }
         });
-
     }
 }
 

@@ -9,8 +9,8 @@ public class Prenotazione_Esame extends Prenotazione {
     @PropertyName("TipoEsame")
     public String tipoEsame;
 
-    @PropertyName("Esame")
-    public String Esame;
+    @PropertyName("statoEsame")
+    public String statoEsame;
 
     public Prenotazione_Esame() {
 
@@ -24,8 +24,8 @@ public class Prenotazione_Esame extends Prenotazione {
         p_e.orario_inizio = orario_inizio;
         p_e.orario_fine = orario_fine;
         p_e.id_veterinario = id_veterinario;
-        p_e.tipoEsame = null;
-        p_e.Esame = null;
+        p_e.tipoEsame = "Altro";
+        p_e.statoEsame = "Non eseguito";
         p_e.tipo = "Esame";
 
 

@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import java.util.ArrayList;
 
 import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
+import it.uniba.dib.sms22239.Activities.Activity_Prenotazione;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 
@@ -28,6 +29,8 @@ public class Fragment_Pren_Dialog extends DialogFragment {
         this.prenotazioni = prenotazioni;
         this.data = data;
         this.idAnimale = idAnimale;
+    }
+    public Fragment_Pren_Dialog() {
     }
 
     @NonNull
@@ -73,7 +76,7 @@ public class Fragment_Pren_Dialog extends DialogFragment {
                 // Verifichiamo se è stata trovata la prenotazione selezionata
                 if (prenotazioneSelezionata != null) {
                     // Passiamo il codice identificativo della prenotazione come parametro extra nell'intent
-                    Intent intent = new Intent(getActivity(), Activity_Appuntamento.class);
+                    Intent intent = new Intent(getActivity(), Activity_Prenotazione.class);
                     intent.putExtra("id_prenotazione", prenotazioneSelezionata.id_prenotazione);
                     intent.putExtra("ANIMAL_CODE", idAnimale);
                     startActivity(intent);
