@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import it.uniba.dib.sms22239.Activities.Activity_Album_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Ente;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Activity_Segnalazioni_Offerte;
 import it.uniba.dib.sms22239.Preference;
@@ -80,6 +82,55 @@ public class Fragment_Ente extends Fragment
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), Preference.class));
+            }
+        });
+
+        getView().findViewById(R.id.tuoianimalimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Miei_Animali.class));
+            }
+        });
+
+        getView().findViewById(R.id.tuoianimali).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Miei_Animali.class));
+            }
+        });
+
+        getView().findViewById(R.id.album).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Album_Animali.class));
+            }
+        });
+
+        getView().findViewById(R.id.albumimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Album_Animali.class));
+            }
+        });
+
+        getView().findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        getView().findViewById(R.id.annuncimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        getView().findViewById(R.id.scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_QRcode.class));
             }
         });
 

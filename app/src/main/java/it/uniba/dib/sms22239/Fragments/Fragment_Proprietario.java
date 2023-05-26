@@ -138,8 +138,6 @@ public class Fragment_Proprietario extends Fragment
             }
         });
 
-//        searchView = getActivity().findViewById(R.id.searchView);
-
     }
 
 }

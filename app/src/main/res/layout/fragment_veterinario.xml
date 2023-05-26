@@ -157,7 +157,7 @@
             android:background="@drawable/custom_button_v6"
             android:elevation="11dp"
             android:gravity="bottom"
-            android:src="@drawable/annuncicon"
+            android:src="@drawable/baseline_campaign_24"
             android:text="Annunci"
             android:textAllCaps="true"
             android:textColor="@color/black"
