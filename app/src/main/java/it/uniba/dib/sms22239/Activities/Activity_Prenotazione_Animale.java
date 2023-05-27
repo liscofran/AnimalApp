@@ -23,6 +23,7 @@ import it.uniba.dib.sms22239.Fragments.Fragment_diagnosi_animale;
 import it.uniba.dib.sms22239.Fragments.Fragment_diagnosi_veterinario;
 import it.uniba.dib.sms22239.Fragments.Fragment_esame_animale;
 import it.uniba.dib.sms22239.Fragments.Fragment_esame_veterinario;
+import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Prenotazione_Animale extends AppCompatActivity {
@@ -37,20 +38,56 @@ public class Activity_Prenotazione_Animale extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prenotazione_veterinario);
+        setContentView(R.layout.activity_prenotazione_animale);
+
+        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Prenotazione_Animale.this, Activity_Home.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazione_Animale.this, Activity_Profile_Proprietario_Ente.class));
+            }
+        });
+
+        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazione_Animale.this, Activity_Segnalazioni_Offerte.class));
+            }
+        });
+
+        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazione_Animale.this, Activity_Animali.class));
+            }
+        });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazione_Animale.this, Activity_QRcode.class));
+            }
+        });
+
+        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Activity_Prenotazione_Animale.this, Preference.class));
+            }
+        });
+
 
         String idPrenotazione = getIntent().getStringExtra("id_prenotazione");
         String idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
         mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Prenotazioni").child(idPrenotazione);
-
-        ImageButton backBtn2 = findViewById(R.id.back);
-        backBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 
         mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
         {

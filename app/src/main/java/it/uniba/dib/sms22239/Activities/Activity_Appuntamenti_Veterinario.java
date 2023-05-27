@@ -117,7 +117,7 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
         });
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child("id_veterinario");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Appuntamenti");
 
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -126,23 +126,10 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
                 //appuntamenti = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
-                    if(appuntamento.getId_veterinario() == id_veterinario)
+                    if(appuntamento.getId_veterinario().equals( id_veterinario))
                         appuntamenti.add(appuntamento);
                 }
 
-               /* for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
-                    if(prenotazione.id_veterinario == id_veterinario)
-                        prenotazioni.add(prenotazione);
-                }*/
-
-                // Colora le date che hanno almeno un appuntamento
-                for (Appuntamento appuntamento : appuntamenti) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(new Date(appuntamento.getData()));
-                    long timeInMillis = calendar.getTimeInMillis();
-                    calendarView.setDateTextAppearance(R.style.MyCalendarViewStyle);
-                }
             }
 
             @Override
@@ -151,14 +138,6 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
             }
 
         });
-
-       /* // Colora le date che hanno almeno una prenotazione
-        for (Prenotazione prenotazione : prenotazioni) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(prenotazione.getData());
-            long timeInMillis = calendar.getTimeInMillis();
-            calendarView.setBackgroundColor(Color.GREEN);
-        }*/
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -185,27 +164,7 @@ public class Activity_Appuntamenti_Veterinario extends AppCompatActivity {
             }
         });
 
-        /*
-        // Imposta la risorsa di stile per le date contenenti un appuntamento
-        int appuntamentoStyle = R.style.Calendar_Appuntamento;
-        calendarView.setDateTextAppearance(appuntamentoStyle);
-         */
 
-        /*
-        // Imposta la risorsa di stile per le date contenenti una prenotazione
-        int prenotazioneStyle = R.style.Calendar_Prenotazione;
-        calendarView.setDateTextAppearance(prenotazioneStyle);
-         */
-
-        /*
-        <style name="Calendar_Appuntamento">
-        <item name="android:textColor">@color/colorAppuntamento</item>
-        </style>
-
-        <style name="Calendar_Prenotazione">
-        <item name="android:textColor">@color/colorPrenotazione</item>
-        </style>
-         */
     }
 }
 

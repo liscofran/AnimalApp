@@ -1,5 +1,7 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,8 +54,8 @@ public class Fragment_Appuntamento extends Fragment {
         String idAppuntamento = requireActivity().getIntent().getStringExtra("id_appuntamento");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
-        DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child(idAppuntamento);
+       mDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni").child(idAppuntamento);
+       mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child(idAppuntamento);
 
         DataTextView = getView().findViewById(R.id.date);
         OraInizioTextView = getView().findViewById(R.id.time_start);
@@ -82,7 +84,7 @@ public class Fragment_Appuntamento extends Fragment {
             }
         });
 
-        getView().findViewById(R.id.modifica).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.modifica).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -92,15 +94,43 @@ public class Fragment_Appuntamento extends Fragment {
             }
         });
 
-        getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase1.removeValue(); // rimuovi la tupla dal database Firebase
-                Toast.makeText(getActivity(), "Appuntamento eliminato con successo!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Conferma eliminazione");
+                builder.setMessage("Sei sicuro di voler eliminare questo appuntamento?");
+                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase1.removeValue(); // rimuovi la tupla dal database Firebase
+
+                        // Rimuovi anche la prenotazione associata (se necessario)
+                        DatabaseReference mPrenotazioniDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni");
+                        mPrenotazioniDatabase.orderByChild("id_appuntamento").equalTo(idAppuntamento).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                    childSnapshot.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Gestisci l'errore di cancellazione
+                            }
+                        });
+                        Toast.makeText(getActivity(), "Appuntamento eliminato con successo!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
+
 
     }
 }

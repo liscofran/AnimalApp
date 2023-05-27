@@ -1,5 +1,7 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import it.uniba.dib.sms22239.Activities.Activity_Calendario_Prenotazioni_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
 import it.uniba.dib.sms22239.R;
 
@@ -193,8 +197,32 @@ public class Fragment_esame_veterinario extends Fragment {
 
 
 
+
+
+
             }
         }, 500);
+
+        view.findViewById(R.id.eliminaButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Conferma eliminazione");
+                builder.setMessage("Sei sicuro di voler eliminare questa prenotazione?");
+                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
+                        Toast.makeText(getActivity(), "Prenotazione eliminata con successo!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
 
 

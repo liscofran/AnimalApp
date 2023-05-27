@@ -140,13 +140,6 @@ public class Activity_Calendario_Prenotazioni_Animale extends AppCompatActivity 
 
             });
 
-       /* // Colora le date che hanno almeno una prenotazione
-        for (Prenotazione prenotazione : prenotazioni) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(prenotazione.getData());
-            long timeInMillis = calendar.getTimeInMillis();
-            calendarView.setBackgroundColor(Color.GREEN);
-        }*/
 
             calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
@@ -167,26 +160,5 @@ public class Activity_Calendario_Prenotazioni_Animale extends AppCompatActivity 
             });
 
 
-        /*
-        // Imposta la risorsa di stile per le date contenenti un appuntamento
-        int appuntamentoStyle = R.style.Calendar_Appuntamento;
-        calendarView.setDateTextAppearance(appuntamentoStyle);
-         */
-
-        /*
-        // Imposta la risorsa di stile per le date contenenti una prenotazione
-        int prenotazioneStyle = R.style.Calendar_Prenotazione;
-        calendarView.setDateTextAppearance(prenotazioneStyle);
-         */
-
-        /*
-        <style name="Calendar_Appuntamento">
-        <item name="android:textColor">@color/colorAppuntamento</item>
-        </style>
-
-        <style name="Calendar_Prenotazione">
-        <item name="android:textColor">@color/colorPrenotazione</item>
-        </style>
-         */
         }
     }

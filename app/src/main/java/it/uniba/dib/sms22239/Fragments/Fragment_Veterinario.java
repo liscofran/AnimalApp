@@ -16,6 +16,7 @@ import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Appuntamenti_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Miei_Animali;
+import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Activity_Scheda_Veterinario;
@@ -43,6 +44,20 @@ public class Fragment_Veterinario extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         View toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar((Toolbar) toolbar);
+
+        getView().findViewById(R.id.appuntamentiimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class));
+            }
+        });
+
+        getView().findViewById(R.id.prenotazioniimage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class));
+            }
+        });
 
         getView().findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override

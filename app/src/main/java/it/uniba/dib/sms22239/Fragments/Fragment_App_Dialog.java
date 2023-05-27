@@ -46,20 +46,9 @@ public class Fragment_App_Dialog extends DialogFragment {
         }
 
 
-      /*  // Creiamo una lista delle prenotazioni
-        ListView listView2 = new ListView(getActivity());
-        ArrayList<String> prenotazioniList = new ArrayList<>();
-        for (Prenotazione prenotazione : prenotazioni) {
-            if (prenotazione.getData().equals(data)) {
-                prenotazioniList.add(prenotazione.getOrario_inizio() + " - " + prenotazione.getOrario_fine());
-            }
-        }*/
 
-
-
-        // Aggiungiamo gli appuntamenti e le prenotazioni alla lista
+        // Aggiungiamo gli appuntamenti alla lista
         ArrayList<String> listItems = new ArrayList<>(appuntamentiList);
-        // listItems.addAll(prenotazioniList);
 
         // Mostriamo la lista all'interno della finestra di dialogo
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, listItems);
@@ -90,28 +79,6 @@ public class Fragment_App_Dialog extends DialogFragment {
                 } else {
                     Toast.makeText(getActivity(), "Errore: appuntamento non trovato", Toast.LENGTH_SHORT).show();
                 }
-
-              /*  // Recuperiamo l'oggetto Prenotazione corrispondente alla posizione selezionata
-                Prenotazione prenotazioneSelezionata = null;
-                for (Prenotazione prenotazione : prenotazioni) {
-                    if (prenotazione.getData().equals(data)) {
-                        if (prenotazioniList.get(position).equals(prenotazione.getOrario_inizio() + " - " + prenotazione.getOrario_fine())) {
-                            prenotazioneSelezionata = prenotazione;
-                            break;
-                        }
-                    }
-                }
-
-                // Verifichiamo se è stata trovata la prenotazione selezionata
-                if (prenotazioneSelezionata != null) {
-                    // Passiamo il codice identificativo della prenotazione come parametro extra nell'intent
-                    Intent intent = new Intent(getActivity(), Activity_Appuntamento.class);
-                    intent.putExtra("id_prenotazione", prenotazioneSelezionata.getId_prenotazione());
-                    intent.putExtra("ANIMAL_CODE", idAnimale);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getActivity(), "Errore: prenotazione non trovata", Toast.LENGTH_SHORT).show();
-                }*/
             }
             });
 
