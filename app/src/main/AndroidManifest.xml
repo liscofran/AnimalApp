@@ -68,7 +68,7 @@
             android:name=".Activities.Activity_Appuntamento_Animale"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Calendario_Animale"
+            android:name=".Activities.Activity_Calendario_Appuntamenti_Animale"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_Appuntamento"
@@ -211,6 +211,15 @@
         </activity>
         <activity
             android:name=".Activities.Activity_Prenotazione">
+        </activity>
+        <activity
+            android:name=".Activities.Activity_PrenotazioniAppuntamenti_Utente">
+        </activity>
+        <activity
+            android:name=".Activities.Activity_Calendario_Prenotazioni_Animale">
+        </activity>
+        <activity
+            android:name=".Activities.Activity_Prenotazione_Animale">
         </activity>
         <meta-data
             android:name="preloaded_fonts"

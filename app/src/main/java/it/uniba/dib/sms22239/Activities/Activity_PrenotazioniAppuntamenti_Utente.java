@@ -12,11 +12,15 @@ import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_PrenotazioniAppuntamenti_Utente extends AppCompatActivity {
-    TextView appuntamenti,prenotazioni;
+    private TextView appuntamenti,prenotazioni;
+    private String idAnimal;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prenotazioni_appuntamenti_utente);
+
+        idAnimal = getIntent().getStringExtra("ANIMAL_CODE");
+
 
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -30,7 +34,8 @@ public class Activity_PrenotazioniAppuntamenti_Utente extends AppCompatActivity 
         appuntamenti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Activity_PrenotazioniAppuntamenti_Utente.this, Activity_Appuntamenti_Utente.class);
+                Intent intent = new Intent(Activity_PrenotazioniAppuntamenti_Utente.this, Activity_Calendario_Appuntamenti_Animale.class);
+                intent.putExtra("ANIMAL_CODE", idAnimal);
                 startActivity(intent);
             }
         });
@@ -38,7 +43,8 @@ public class Activity_PrenotazioniAppuntamenti_Utente extends AppCompatActivity 
         prenotazioni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Activity_PrenotazioniAppuntamenti_Utente.this, Activity_Prenotazioni_Utente.class);
+                Intent intent = new Intent(Activity_PrenotazioniAppuntamenti_Utente.this, Activity_Calendario_Prenotazioni_Animale.class);
+                intent.putExtra("ANIMAL_CODE", idAnimal);
                 startActivity(intent);
             }
         });

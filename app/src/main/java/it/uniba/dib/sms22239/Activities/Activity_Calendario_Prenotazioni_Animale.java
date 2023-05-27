@@ -24,16 +24,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_App_Dialog;
+import it.uniba.dib.sms22239.Fragments.Fragment_Pren_Dialog;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-public class Activity_Prenotazioni_Utente extends AppCompatActivity {
+public class Activity_Calendario_Prenotazioni_Animale extends AppCompatActivity {
 
         private CalendarView calendarView;
         private DatabaseReference mDatabase;
-        private ArrayList<Appuntamento> appuntamenti= new ArrayList<>();
         private ArrayList<Prenotazione> prenotazioni= new ArrayList<>();
         private String idAnimale;
         private String id_veterinario;
@@ -43,6 +43,9 @@ public class Activity_Prenotazioni_Utente extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_prenotazioni_utente);
+
+            idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
+
 
             ImageButton backBtn2 = findViewById(R.id.back);
             backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +58,7 @@ public class Activity_Prenotazioni_Utente extends AppCompatActivity {
             findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(Activity_Prenotazioni_Utente.this, Activity_Home.class);
+                    Intent intent = new Intent(Activity_Calendario_Prenotazioni_Animale.this, Activity_Home.class);
                     startActivity(intent);
                 }
             });
@@ -63,41 +66,41 @@ public class Activity_Prenotazioni_Utente extends AppCompatActivity {
             findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Activity_Prenotazioni_Utente.this, Activity_Profile_Proprietario_Ente.class));
+                    startActivity(new Intent(Activity_Calendario_Prenotazioni_Animale.this, Activity_Profile_Proprietario_Ente.class));
                 }
             });
 
             findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Activity_Prenotazioni_Utente.this, Activity_Segnalazioni_Offerte.class));
+                    startActivity(new Intent(Activity_Calendario_Prenotazioni_Animale.this, Activity_Segnalazioni_Offerte.class));
                 }
             });
 
             findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Activity_Prenotazioni_Utente.this, Activity_QRcode.class));
+                    startActivity(new Intent(Activity_Calendario_Prenotazioni_Animale.this, Activity_QRcode.class));
                 }
             });
 
             findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Activity_Prenotazioni_Utente.this, Preference.class));
+                    startActivity(new Intent(Activity_Calendario_Prenotazioni_Animale.this, Preference.class));
                 }
             });
             findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Activity_Prenotazioni_Utente.this, Activity_Animali.class));
+                    startActivity(new Intent(Activity_Calendario_Prenotazioni_Animale.this, Activity_Animali.class));
                 }
             });
 
             calendarView = findViewById(R.id.simpleCalendarView);
 
 
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+           /* FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
 
             mDatabase1.addValueEventListener(new ValueEventListener()
@@ -112,40 +115,27 @@ public class Activity_Prenotazioni_Utente extends AppCompatActivity {
                 {
 
                 }
-            });
+            });*/
 
 
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("Appuntamenti").child("id_veterinario");
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("Prenotazioni");
 
 
             mDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    //appuntamenti = new ArrayList<>();
+                    prenotazioni.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Appuntamento appuntamento = dataSnapshot.getValue(Appuntamento.class);
-                        if(appuntamento.getId_veterinario() == id_veterinario)
-                            appuntamenti.add(appuntamento);
-                    }
-
-               /* for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
-                    if(prenotazione.id_veterinario == id_veterinario)
-                        prenotazioni.add(prenotazione);
-                }*/
-
-                    // Colora le date che hanno almeno un appuntamento
-                    for (Appuntamento appuntamento : appuntamenti) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(new Date(appuntamento.getData()));
-                        long timeInMillis = calendar.getTimeInMillis();
-                        calendarView.setDateTextAppearance(R.style.MyCalendarViewStyle);
+                        Prenotazione prenotazione = dataSnapshot.getValue(Prenotazione.class);
+                        if (prenotazione.id_animale.equals(idAnimale)) {
+                            prenotazioni.add(prenotazione);
+                        }
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(Activity_Prenotazioni_Utente.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Calendario_Prenotazioni_Animale.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
                 }
 
             });
@@ -171,7 +161,7 @@ public class Activity_Prenotazioni_Utente extends AppCompatActivity {
                     String data = sdf.format(selectedDate.getTime());
 
                     // Crea la finestra di dialogo degli appuntamenti
-                    Fragment_App_Dialog dialog = new Fragment_App_Dialog(appuntamenti, data,idAnimale);
+                    Fragment_Pren_Dialog dialog = new Fragment_Pren_Dialog(prenotazioni, data,idAnimale);
                     dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
                 }
             });
