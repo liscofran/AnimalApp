@@ -35,6 +35,22 @@ public class Activity_Main extends AppCompatActivity
     ImageView btnGuest,btnGuest2,btnGuest3;
 
     @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+
+            Toast.makeText(Activity_Main.this, "Login eseguito per: " + currentUser.getEmail(),
+                    Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(Activity_Main.this, Activity_Home.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);

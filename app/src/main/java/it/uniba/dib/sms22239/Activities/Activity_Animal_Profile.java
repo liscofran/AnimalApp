@@ -50,7 +50,7 @@ public class Activity_Animal_Profile extends AppCompatActivity
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
 
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
+        mDatabase.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -66,7 +66,7 @@ public class Activity_Animal_Profile extends AppCompatActivity
             }
         });
 
-        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
+        mDatabase1.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -78,10 +78,14 @@ public class Activity_Animal_Profile extends AppCompatActivity
 
                 //Se l'utente che sta accedendo al profilo dell'animale è il proprietario permette di accedere
                 //a modifiche e dati ulteriori
-                if(id_utente_animale.equals(id_utente))
+
+                if(id_utente_animale != null)
                 {
-                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
-                    fragmentTransaction.commit();
+                    if(id_utente_animale.equals(id_utente))
+                    {
+                        fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
+                        fragmentTransaction.commit();
+                    }
                 }
                 else
                 {
@@ -121,7 +125,7 @@ public class Activity_Animal_Profile extends AppCompatActivity
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
         Query query = myRef.orderByChild("classe");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Recupera il valore dell'attributo "classe"

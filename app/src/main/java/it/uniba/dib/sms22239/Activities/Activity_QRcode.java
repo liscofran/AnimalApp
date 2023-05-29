@@ -72,6 +72,7 @@ public class Activity_QRcode extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         AppCompatImageButton bluetoothButton = findViewById(R.id.bluetooth_button);
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +188,6 @@ public class Activity_QRcode extends AppCompatActivity {
                 }
                 break;
             }
-            // Aggiungi altri blocchi 'case' per gestire altre richieste di permesso se necessario
         }
     }
 
