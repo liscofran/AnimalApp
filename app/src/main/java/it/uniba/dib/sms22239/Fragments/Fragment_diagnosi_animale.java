@@ -156,9 +156,6 @@ public class Fragment_diagnosi_animale extends Fragment {
                         });
                     }
                 }, 500);
-
-
-
             }
         }, 500);
 
@@ -182,8 +179,6 @@ public class Fragment_diagnosi_animale extends Fragment {
                 dialog.show();
             }
         });
-
-
 
 
         return view;

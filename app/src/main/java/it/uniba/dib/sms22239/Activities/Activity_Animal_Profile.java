@@ -57,49 +57,46 @@ public class Activity_Animal_Profile extends AppCompatActivity
             {
                 //recupero dati e assegnazione alle variabili
                 id_utente_animale = dataSnapshot.child("Id_utente").getValue(String.class);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
-            }
-        });
-
-        mDatabase1.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //recupero dati e assegnazione alle variabili
-                id_utente = dataSnapshot.child(user.getUid()).getKey();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                //Se l'utente che sta accedendo al profilo dell'animale è il proprietario permette di accedere
-                //a modifiche e dati ulteriori
-
-                if(id_utente_animale != null)
+                mDatabase1.addValueEventListener(new ValueEventListener()
                 {
-                    if(id_utente_animale.equals(id_utente))
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
-                        fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
-                        fragmentTransaction.commit();
+                        //recupero dati e assegnazione alle variabili
+                        id_utente = dataSnapshot.child(user.getUid()).getKey();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                        //Se l'utente che sta accedendo al profilo dell'animale è il proprietario permette di accedere
+                        //a modifiche e dati ulteriori
+
+                        if(id_utente_animale.equals(id_utente))
+                        {
+                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
+                            fragmentTransaction.commit();
+
+                        }
+                        else
+                        {
+                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_animale_senza_modifica());
+                            fragmentTransaction.commit();
+                        }
                     }
-                }
-                else
-                {
-                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_animale_senza_modifica());
-                    fragmentTransaction.commit();
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error)
+                    {
+
+                    }
+                });
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
 
             }
         });
-
     }
 
     private void Load_setting() {

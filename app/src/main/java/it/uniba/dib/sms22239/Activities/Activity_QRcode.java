@@ -174,7 +174,8 @@ public class Activity_QRcode extends AppCompatActivity {
                 }
                 break;
             }
-            case REQUEST_BLUETOOTH_PERMISSIONS: {
+            case REQUEST_BLUETOOTH_PERMISSIONS:
+            {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED &&
                         grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     // Autorizzazioni Bluetooth ottenute, avvia il ricevitore Bluetooth
@@ -182,7 +183,8 @@ public class Activity_QRcode extends AppCompatActivity {
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(Intent.ACTION_SEND);
                     registerReceiver(bluetoothReceiver, intentFilter);
-                } else {
+                }
+                else {
                     // Autorizzazioni Bluetooth negate, gestisci di conseguenza (es. mostra un messaggio di avviso)
                     Toast.makeText(getApplicationContext(), "Autorizzazioni Bluetooth negate", Toast.LENGTH_SHORT).show();
                 }
@@ -205,18 +207,16 @@ public class Activity_QRcode extends AppCompatActivity {
 
 
                 // Verifica il valore dell'attributo "classe"
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 if (classe.equals("Veterinario"))
                 {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar1());
                     fragmentTransaction.commit();
                     flag = "veterinario";
                 }
                 else
                 {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar());
                     fragmentTransaction.commit();
                     flag = "altro";

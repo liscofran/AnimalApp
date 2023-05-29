@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Fragments;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
+import it.uniba.dib.sms22239.Activities.Activity_Animali;
+import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_profilo_animale_senza_modifica extends Fragment
@@ -110,6 +115,24 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
                 msessoTextView.setText("Sesso: " +sesso);
                 mluogoTextView.setText("Luogo: " +luogo);
                 mstatusTextView.setText("Status: " +status);
+
+                // Recupera i dati dal secondo riferimento al database e popola le viste
+                mDatabase1.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
+                        String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
+
+                        //set delle variabili recuperate al layout
+
+                        nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
@@ -118,22 +141,8 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
             }
         });
 
-        // Recupera i dati dal secondo riferimento al database e popola le viste
-        mDatabase1.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
 
-                //set delle variabili recuperate al layout
 
-                nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
     }
 }
