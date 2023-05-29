@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,13 +41,13 @@ import it.uniba.dib.sms22239.R;
 public class Fragment_diagnosi_animale extends Fragment {
 
 
-    private MaterialTextView imageView;
-    private MaterialTextView dataEditText;
-    private MaterialTextView orarioInizioEditText;
-    private MaterialTextView orarioFineEditText;
-    private MaterialTextView veterinarioEditText;
-    private MaterialTextView animaleEditText;
-    private MaterialTextView diagnosiEditText;
+    private ImageView imageView;
+    private TextView dataEditText;
+    private TextView orarioInizioEditText;
+    private TextView orarioFineEditText;
+    private TextView veterinarioEditText;
+    private TextView animaleEditText;
+    private TextView diagnosiEditText;
     private String id_veterinario;
     private String idAnimale;
     private String idProprietario;

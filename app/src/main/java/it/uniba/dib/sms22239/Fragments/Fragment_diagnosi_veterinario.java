@@ -55,15 +55,13 @@ public class Fragment_diagnosi_veterinario extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diagnosi_veterinario, container, false);
 
-
-
         imageView = view.findViewById(R.id.imageView2);
         dataEditText = view.findViewById(R.id.data);
         orarioInizioEditText = view.findViewById(R.id.orario_inizio);
         orarioFineEditText = view.findViewById(R.id.orario_fine);
         nomCognPropEditText = view.findViewById(R.id.nom_cogn_prop);
         animaleEditText = view.findViewById(R.id.animale);
-        statoEsameSpinner = view.findViewById(R.id.spinner);
+        statoEsameSpinner = view.findViewById(R.id.spinner1);
 
 
         ArrayAdapter<CharSequence> statoEsameAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.statoesame, android.R.layout.simple_spinner_item);
@@ -202,7 +200,7 @@ public class Fragment_diagnosi_veterinario extends Fragment {
 
 
 
-        ImageView salvaButton = view.findViewById(R.id.salvaButton);
+        ImageButton salvaButton = view.findViewById(R.id.salva);
         salvaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
