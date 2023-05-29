@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,13 +36,12 @@ import it.uniba.dib.sms22239.R;
 
 
 public class Fragment_esame_veterinario extends Fragment {
-    private ImageButton backButton;
     private ImageView imageView;
-    private EditText dataEditText;
-    private EditText orarioInizioEditText;
-    private EditText orarioFineEditText;
-    private EditText nomCognPropEditText;
-    private EditText animaleEditText;
+    private TextView dataEditText;
+    private TextView orarioInizioEditText;
+    private TextView orarioFineEditText;
+    private TextView nomCognPropEditText;
+    private TextView animaleEditText;
     private Spinner statoEsameSpinner;
     private Spinner tipoEsameSpinner;
     private String idAnimale;
@@ -53,9 +53,6 @@ public class Fragment_esame_veterinario extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_esame_veterinario, container, false);
 
-
-
-        backButton = view.findViewById(R.id.back);
         imageView = view.findViewById(R.id.imageView2);
         dataEditText = view.findViewById(R.id.data);
         orarioInizioEditText = view.findViewById(R.id.orario_inizio);
@@ -203,7 +200,7 @@ public class Fragment_esame_veterinario extends Fragment {
             }
         }, 500);
 
-        view.findViewById(R.id.eliminaButton).setOnClickListener(new View.OnClickListener() {
+          view.findViewById(R.id.eliminaButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -226,7 +223,7 @@ public class Fragment_esame_veterinario extends Fragment {
 
 
 
-        Button salvaButton = view.findViewById(R.id.salvaButton); // Sostituisci R.id.salva_button con l'ID effettivo del tuo pulsante "salva"
+        ImageView salvaButton = view.findViewById(R.id.salvaButton); // Sostituisci R.id.salva_button con l'ID effettivo del tuo pulsante "salva"
 
         salvaButton.setOnClickListener(new View.OnClickListener() {
             @Override
