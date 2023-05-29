@@ -40,6 +40,14 @@ public class Activity_Prenotazione_Animale extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prenotazione_animale);
 
+        ImageButton backBtn2 = findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

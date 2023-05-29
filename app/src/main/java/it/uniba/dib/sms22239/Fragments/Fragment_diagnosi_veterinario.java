@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,11 +40,11 @@ public class Fragment_diagnosi_veterinario extends Fragment {
 
     private ImageButton backButton;
     private ImageView imageView;
-    private EditText dataEditText;
-    private EditText orarioInizioEditText;
-    private EditText orarioFineEditText;
-    private EditText nomCognPropEditText;
-    private EditText animaleEditText;
+    private TextView dataEditText;
+    private TextView orarioInizioEditText;
+    private TextView orarioFineEditText;
+    private TextView nomCognPropEditText;
+    private TextView animaleEditText;
     private Spinner statoEsameSpinner;
     private String idAnimale;
     private String idProprietario;
@@ -56,14 +57,13 @@ public class Fragment_diagnosi_veterinario extends Fragment {
 
 
 
-        backButton = view.findViewById(R.id.back);
         imageView = view.findViewById(R.id.imageView2);
         dataEditText = view.findViewById(R.id.data);
         orarioInizioEditText = view.findViewById(R.id.orario_inizio);
         orarioFineEditText = view.findViewById(R.id.orario_fine);
         nomCognPropEditText = view.findViewById(R.id.nom_cogn_prop);
         animaleEditText = view.findViewById(R.id.animale);
-        statoEsameSpinner = view.findViewById(R.id.spinner1);
+        statoEsameSpinner = view.findViewById(R.id.spinner);
 
 
         ArrayAdapter<CharSequence> statoEsameAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.statoesame, android.R.layout.simple_spinner_item);
@@ -178,7 +178,8 @@ public class Fragment_diagnosi_veterinario extends Fragment {
             }
         }, 500);
 
-        getView().findViewById(R.id.eliminaButton).setOnClickListener(new View.OnClickListener() {
+        ImageView elimina = view.findViewById(R.id.eliminaButton);
+        elimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -201,7 +202,7 @@ public class Fragment_diagnosi_veterinario extends Fragment {
 
 
 
-        Button salvaButton = view.findViewById(R.id.salva);
+        ImageView salvaButton = view.findViewById(R.id.salvaButton);
         salvaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

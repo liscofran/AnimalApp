@@ -39,7 +39,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_diagnosi_animale extends Fragment {
 
-    private ImageButton backButton;
+
     private MaterialTextView imageView;
     private MaterialTextView dataEditText;
     private MaterialTextView orarioInizioEditText;
@@ -57,10 +57,6 @@ public class Fragment_diagnosi_animale extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diagnosi_animale, container, false);
 
-
-
-
-        backButton = view.findViewById(R.id.back);
         imageView = view.findViewById(R.id.imageView2);
         dataEditText = view.findViewById(R.id.data);
         orarioInizioEditText = view.findViewById(R.id.orario_inizio);
@@ -158,8 +154,8 @@ public class Fragment_diagnosi_animale extends Fragment {
                 }, 500);
             }
         }, 500);
-
-        getView().findViewById(R.id.eliminaButton).setOnClickListener(new View.OnClickListener() {
+        ImageView elimina = view.findViewById(R.id.eliminaButton);
+        elimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
