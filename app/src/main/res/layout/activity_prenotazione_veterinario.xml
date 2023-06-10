@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Prenotazione"
+        android:text="@string/prenotazione"
         android:textColor="@color/black"
         android:padding="10dp"
         android:textSize="20dp"

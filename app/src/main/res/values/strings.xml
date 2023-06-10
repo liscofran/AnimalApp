@@ -150,5 +150,9 @@
     //activity nuovo appuntamento
     <string name="seleziona2">Seleziona Data</string>
     <string name="ora_inizio2">Orario Inizio</string>
+    //activity prenotazione veterinario
+    <string name="prenotazione">prenotazione</string>
+    //activity prenotazione appuntamenti utente
+    <string name="calendari_disponibili">Calendari Disponibili</string>
 </resources>
 

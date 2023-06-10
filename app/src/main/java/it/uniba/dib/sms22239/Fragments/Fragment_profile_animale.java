@@ -261,17 +261,18 @@ public class Fragment_profile_animale extends Fragment
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 } if(bluetoothAdapter.isEnabled()){
+
+
                     // Crea l'intent da condividere
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
-                    shareIntent.putExtra( "ANIMAL_CODE",idAnimal);
-
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, idAnimal);
 
 
                     // Crea l'intent chooser per scegliere l'app Bluetooth
                     Intent chooserIntent = Intent.createChooser(shareIntent, "Condividi con...");
-                    chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                 //   chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                     // Avvia l'activity chooser
                     PackageManager packageManager = requireActivity().getPackageManager();
