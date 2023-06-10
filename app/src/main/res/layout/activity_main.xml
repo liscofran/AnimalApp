@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="-74dp">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-315dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:id="@+id/forgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password Dimenticata?"
+                android:text="@string/password_forgot"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@id/btnLogin"
@@ -99,11 +99,12 @@
                 android:id="@+id/createNewAccount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Registrati"
                 android:background="@drawable/custom_button_v2"
+                android:text="@string/registrati"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/textView4"
                 app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/btnLogin"
                 app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
@@ -111,7 +112,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Oppure entra come ospite:"
+                android:text="@string/entra_ospite"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -134,10 +135,10 @@
                 android:id="@+id/btnGuest"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/guideline4"
                 app:layout_constraintRight_toLeftOf="@id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:srcCompat="@drawable/ic_profile2" />
 
             <TextView
@@ -145,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aldrich"
-                android:text="Proprietario"
+                android:text="@string/proprietario"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -159,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aldrich"
-                android:text="Veterinario"
+                android:text="@string/veterinario"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -167,12 +168,13 @@
                 app:layout_constraintLeft_toRightOf="@id/guideline7"
                 app:layout_constraintRight_toLeftOf="@id/guideline9"
                 app:layout_constraintTop_toBottomOf="@id/btnGuest" />
+
             <TextView
                 android:id="@+id/textEnte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aldrich"
-                android:text="Ente"
+                android:text="@string/ente"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -186,20 +188,20 @@
                 android:id="@+id/btnGuest2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/guideline10"
                 app:layout_constraintRight_toLeftOf="@id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:srcCompat="@drawable/baseline_location_city_24" />
 
             <ImageView
                 android:id="@+id/btnGuest3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/guideline7"
                 app:layout_constraintRight_toLeftOf="@id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:srcCompat="@drawable/editcustomveterinary" />
 
             <androidx.constraintlayout.widget.Guideline

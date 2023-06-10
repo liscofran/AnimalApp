@@ -19,7 +19,7 @@
         android:id="@+id/titolo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Seleziona il tipo di File:"
+        android:text="@string/seleziona_file"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"

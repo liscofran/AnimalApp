@@ -22,7 +22,6 @@
         <item>Ultimo Anno</item>
     </string-array>
 
-
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
@@ -107,4 +106,49 @@
         Activity_Profilo_Segnalazione_senza_modifica
     </string>
     <string name="title_activity_maps">MapsActivity</string>
+
+
+    //activity_animali
+    <string name="Animali">Animali</string>
+    <string name="Miei_animali">Miei animali</string>
+    <string name="album_animali">Album animali</string>
+    <string name="Crea_animale">Crea animali</string>
+    <string name="Cerca_animale">Cerca animali</string>
+    //activity appuntamenti utente-veterinario
+    <string name ="Calendario_Appuntamenti">Calendario Appuntamenti</string>
+    <string name ="Ora_start">Ora di inizio</string>
+    <string name ="data_app">Data appuntamento</string>
+    <string name ="ora_fine">Ora di fine</string>
+    <string name ="Dottore">Dottor </string>
+    <string name ="prenotati">prenotati</string>
+    //activitiy calendario app animali
+    <string name ="calendario1">Calendario</string>
+    //activity chi siamo
+    <string name="chi_siamo">Pagina chi siamo</string>
+    //activity crea oggetto spesa
+    <string name="aggiungi_ogg">Aggiungi Oggetto</string>
+    <string name="nome1">Nome</string>
+    <string name="prezzo">Prezzo</string>
+    <string name="quantity">quantità</string>
+    <string name="Date">Data (GG-MM-AAAA)</string>
+    //activity crea offerta e crea segnalazione
+    <string name="crea_offerta">crea offerta</string>
+    <string name="ins_prov">Inserisci provincia..</string>
+    <string name="ins_ogg">Inserisci oggetto..</string>
+    <string name="ins_desc">Inserisci descrizione..</string>
+    <string name="visible">A chi deve essere visibile:</string>
+    <string name="proprietario">Proprietario</string>
+    <string name="ente">Ente</string>
+    <string name="veterinario">Veterinario</string>
+    <string name="crea_segnalazione">crea segnalazione</string>
+//activity main
+    <string name="password_forgot">Password Dimenticata?</string>
+    <string name="registrati">Registrati</string>
+    //activity multimedia
+    <string name="entra_ospite">Oppure entra come ospite:</string>
+    <string name="seleziona_file">Seleziona il tipo di File:</string>
+    //activity nuovo appuntamento
+    <string name="seleziona2">Seleziona Data</string>
+    <string name="ora_inizio2">Orario Inizio</string>
 </resources>
+
