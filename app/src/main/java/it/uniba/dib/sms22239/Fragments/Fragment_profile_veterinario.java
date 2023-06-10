@@ -42,17 +42,10 @@ import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 
 
-public class Fragment_profile_veterinario extends Fragment {
-    RelativeLayout relativeLayout;
-    private static final int EDIT_PROFILE_REQUEST_CODE = 1;
+public class Fragment_profile_veterinario extends Fragment
+{
     private FirebaseAuth mAuth;
 
-    private ImageView editProfileButton;
-
-    private FirebaseRecyclerOptions<Proprietario> options;
-    private FirebaseRecyclerAdapter<Proprietario, Animal_View_Holder> adapter;
-    private RecyclerView recyclerView;
-    private FirebaseDatabase mDatabase;
     private TextView mNomeTextView;
     private TextView mCognomeTextView;
     private TextView mcodfiscaleTextView;
@@ -67,10 +60,9 @@ public class Fragment_profile_veterinario extends Fragment {
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -157,6 +149,7 @@ public class Fragment_profile_veterinario extends Fragment {
                         .show();
             }
         });
+
         Button backBtn = getView().findViewById(R.id.back);
         backBtn.setOnClickListener(new View.OnClickListener()
         {

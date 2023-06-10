@@ -2,12 +2,15 @@ package it.uniba.dib.sms22239.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -35,7 +38,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Appuntamenti_Animale;
@@ -46,36 +52,34 @@ import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.R;
 
-public class Fragment_profile_animale extends Fragment
-{
-    private TextView mNomeTextView, mrazzaTextView, msessoTextView, nomecognomeprop, statusTextView, casaluogoTextView,relazioneTextView;
-    private String idUtente,idAnimal,relazione;
+public class Fragment_profile_animale extends Fragment {
+    private static final int DISCOVERABLE_DURATION = 300; // Durata della modalità di scoperta in secondi (es. 300 secondi = 5 minuti)
+    private TextView mNomeTextView, mrazzaTextView, msessoTextView, nomecognomeprop, statusTextView, casaluogoTextView, relazioneTextView;
+    private String idUtente, idAnimal, relazione;
+    private BluetoothDevice selectedBluetoothDevice;
     String relazioneconidAnimale, nomeAnimaleRelazione;
     private ImageView profilo;
     public CircleImageView qrbutton, appre, shareButton;
     private static final int REQUEST_ENABLE_BT = 1, REQUEST_PERMISSION_BLUETOOTH = 2;
     protected ImageButton backBtn;
-    DatabaseReference mDatabase2;   
+    DatabaseReference mDatabase2;
 
     public Fragment_profile_animale() {
 
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_profile_animal, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
@@ -83,7 +87,6 @@ public class Fragment_profile_animale extends Fragment
         // Recupera il riferimento al database
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User");
-
 
 
         //Recupera il riferimento allo Storage
@@ -100,13 +103,13 @@ public class Fragment_profile_animale extends Fragment
         });
 
         mNomeTextView = getView().findViewById(R.id.animal_nome);
-        mrazzaTextView =  getView().findViewById(R.id.razza);
-        msessoTextView =  getView().findViewById(R.id.sesso);
+        mrazzaTextView = getView().findViewById(R.id.razza);
+        msessoTextView = getView().findViewById(R.id.sesso);
         backBtn = getView().findViewById(R.id.back);
         nomecognomeprop = getView().findViewById(R.id.nom_cogn_prop);
         statusTextView = getView().findViewById(R.id.status);
-        casaluogoTextView  = getView().findViewById(R.id.luogo);
-        relazioneTextView  = getView().findViewById(R.id.relazione);
+        casaluogoTextView = getView().findViewById(R.id.luogo);
+        relazioneTextView = getView().findViewById(R.id.relazione);
 
 
         profilo = getView().findViewById(R.id.profile_image);
@@ -134,8 +137,7 @@ public class Fragment_profile_animale extends Fragment
         });
 
         // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -166,8 +168,7 @@ public class Fragment_profile_animale extends Fragment
 
                         }
                     });
-                }
-                else {
+                } else {
                     relazioneTextView.setText("Nessuna relazione");
                 }
 
@@ -181,6 +182,7 @@ public class Fragment_profile_animale extends Fragment
                 casaluogoTextView.setText("Luogo: " + luogo);
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -188,8 +190,7 @@ public class Fragment_profile_animale extends Fragment
         });
 
         // Recupera i dati dal secondo riferimento al database e popola le viste
-        mDatabase1.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
@@ -198,6 +199,7 @@ public class Fragment_profile_animale extends Fragment
 
                 nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -205,10 +207,8 @@ public class Fragment_profile_animale extends Fragment
         });
 
 
-
         //Bottoni dell'animale
-        appre.setOnClickListener(new View.OnClickListener()
-        {
+        appre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Activity_PrenotazioniAppuntamenti_Utente.class);
@@ -217,21 +217,18 @@ public class Fragment_profile_animale extends Fragment
             }
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().onBackPressed();
             }
         });
 
-        qrbutton.setOnClickListener(new View.OnClickListener()
-        {
+        qrbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_QRGenerate.class);
-                intent.putExtra("ANIMAL_CODE",idAnimal);
+                intent.putExtra("ANIMAL_CODE", idAnimal);
                 startActivity(intent);
             }
         });
@@ -246,50 +243,7 @@ public class Fragment_profile_animale extends Fragment
             }
         });
 
-        getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                if (bluetoothAdapter == null) {
-                    Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                checkBluetoothPermissions();
-                if (!bluetoothAdapter.isEnabled())
-                {
-                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                } if(bluetoothAdapter.isEnabled()){
-
-
-                    // Crea l'intent da condividere
-                    Intent shareIntent = new Intent();
-                    shareIntent.setAction(Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, idAnimal);
-
-
-                    // Crea l'intent chooser per scegliere l'app Bluetooth
-                    Intent chooserIntent = Intent.createChooser(shareIntent, "Condividi con...");
-                 //   chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                    // Avvia l'activity chooser
-                    PackageManager packageManager = requireActivity().getPackageManager();
-                    if (shareIntent.resolveActivity(packageManager) != null) {
-                        // Avvia l'activity chooser
-                        startActivity(chooserIntent);
-                    } else {
-                        // L'app Bluetooth non è disponibile
-                        Toast.makeText(requireContext(), "Nessuna app Bluetooth disponibile", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            }
-        });
-
-        getView().findViewById(R.id.salute_button).setOnClickListener(new View.OnClickListener()
-        {
+        getView().findViewById(R.id.salute_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -319,9 +273,9 @@ public class Fragment_profile_animale extends Fragment
                 // Costruisci la stringa di testo per la condivisione
                 String shareText =
                         nome + "\n " +
-                        razza + "\n " +
-                        sesso + "\n " +
-                        proprietario;
+                                razza + "\n " +
+                                sesso + "\n " +
+                                proprietario;
 
                 // Crea l'intent per la condivisione
                 Intent sendIntent = new Intent();
@@ -332,26 +286,65 @@ public class Fragment_profile_animale extends Fragment
             }
         });
 
-        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener()
-        {
+        getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_Spese.class);
-                intent.putExtra("ANIMAL_CODE",idAnimal);
-                startActivity(intent);            }
+                intent.putExtra("ANIMAL_CODE", idAnimal);
+                startActivity(intent);
+            }
         });
 
-        getView().findViewById(R.id.multimedia).setOnClickListener(new View.OnClickListener()
-        {
+        getView().findViewById(R.id.multimedia).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
-                intent.putExtra("ANIMAL_CODE",idAnimal);
-                startActivity(intent);            }
+                intent.putExtra("ANIMAL_CODE", idAnimal);
+                startActivity(intent);
+            }
+        });
+
+        getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                if (bluetoothAdapter == null) {
+                    Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                checkBluetoothPermissions();
+                if (!bluetoothAdapter.isEnabled()) {
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                } else {
+                    // Crea l'intent da inviare tramite Bluetooth
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, idAnimal);
+
+                    // Verifica se il dispositivo supporta il Bluetooth
+                    if (bluetoothAdapter.isEnabled()) {
+                        // Ottieni il dispositivo Bluetooth selezionato dall'utente
+                        BluetoothDevice selectedDevice = getSelectedBluetoothDevice();
+
+                        // Verifica se il dispositivo selezionato è valido
+                        if (selectedDevice != null) {
+                            // Invia l'intent tramite Bluetooth
+                            sendIntentViaBluetooth(shareIntent, selectedDevice);
+                        } else {
+                            Toast.makeText(getActivity(), "Nessun dispositivo Bluetooth selezionato", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getActivity(), "Bluetooth non abilitato", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
         });
     }
-    private void checkBluetoothPermissions()
-    {
+
+
+    private void checkBluetoothPermissions() {
         // Check for Bluetooth permissions
         if (ContextCompat.checkSelfPermission(getActivity(), "android.permission.BLUETOOTH") != PackageManager.PERMISSION_GRANTED) {
             // Permission not granted, request it
@@ -390,5 +383,74 @@ public class Fragment_profile_animale extends Fragment
                 Toast.makeText(getActivity(), "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private BluetoothDevice getSelectedBluetoothDevice() {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null) {
+            Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        // Verifica se il Bluetooth è abilitato
+        if (!bluetoothAdapter.isEnabled()) {
+            Toast.makeText(getActivity(), "Abilita il Bluetooth per selezionare un dispositivo", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        // Ottieni la lista dei dispositivi Bluetooth associati
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return requestPermissions();
+        }
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        if (pairedDevices.isEmpty()) {
+            Toast.makeText(getActivity(), "Nessun dispositivo Bluetooth associato", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        // Crea una lista di nomi dei dispositivi Bluetooth
+        List<String> deviceNames = new ArrayList<>();
+        final List<BluetoothDevice> devices = new ArrayList<>();
+        for (BluetoothDevice device : pairedDevices) {
+            deviceNames.add(device.getName());
+            devices.add(device);
+        }
+
+        // Mostra la finestra di dialogo di scelta del dispositivo
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Seleziona un dispositivo Bluetooth")
+                .setItems(deviceNames.toArray(new CharSequence[0]), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position) {
+                        // Restituisci il dispositivo Bluetooth selezionato dall'utente
+                        BluetoothDevice selectedDevice = devices.get(position);
+                        // Puoi eseguire altre azioni con il dispositivo selezionato se necessario
+                    }
+                })
+                .setNegativeButton("Annulla", null)
+                .show();
+
+        return null;
+    }
+
+
+    private void sendIntentViaBluetooth(Intent intent, BluetoothDevice device) {
+        // Crea l'intent per l'invio tramite Bluetooth
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, intent.getStringExtra(Intent.EXTRA_TEXT));
+
+        // Imposta il pacchetto dell'app Bluetooth predefinita
+        sendIntent.setPackage("com.android.bluetooth");
+
+        // Avvia l'activity per l'invio tramite Bluetooth
+        startActivity(sendIntent);
     }
 }

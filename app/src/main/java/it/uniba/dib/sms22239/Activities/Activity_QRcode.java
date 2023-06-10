@@ -12,14 +12,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -40,10 +38,10 @@ import com.google.firebase.database.ValueEventListener;
 import it.uniba.dib.sms22239.BluetoothReceiver;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbar;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbar1;
-import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-public class Activity_QRcode extends AppCompatActivity {
+public class Activity_QRcode extends AppCompatActivity
+{
     ConstraintLayout constraintLayout;
     private CodeScanner mCodeScanner;
     private static final int CAMERA_PERMISSION_REQUEST = 100;
