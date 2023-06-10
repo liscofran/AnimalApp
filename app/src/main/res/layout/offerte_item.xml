@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/logoIv"
-            android:text="Offerte"
+            android:text="@string/offerte"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:layout_below="@+id/titleTv"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/logoIv"
-            android:text="Oggetto"
+            android:text="@string/oggetto"
             android:textColor="@color/black"
             android:textSize="22sp" />
 

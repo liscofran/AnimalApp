@@ -6,11 +6,11 @@
         <group android:checkableBehavior="single">
             <item android:id="@+id/profile"
                 android:icon="@drawable/ic_profile2"
-                android:title="Profilo"/>
+                android:title="@string/Profile"/>
             <item
                 android:icon="@drawable/ic_offer"
                 android:id="@+id/offerta"
-                android:title="Offerta"/>
+                android:title="@string/offerta"/>
             <item
                 android:icon="@drawable/ic_search"
                 android:id="@+id/search"
@@ -22,17 +22,17 @@
     <item
         android:icon="@drawable/ic_share"
         android:id="@+id/share"
-        android:title="Condividi"/>
+        android:title="@string/condividi"/>
 
     <item
         android:icon="@drawable/ic_baseline_settings_24"
         android:id="@+id/setting"
-        android:title="Impostazioni"/>
+        android:title="@string/impostazioni"/>
 
     <item
         android:icon="@drawable/ic_lingua"
         android:id="@+id/lingua"
-        android:title="Lingua"/>
+        android:title="@string/lingua"/>
 
     <item
         android:icon="@drawable/ic_baseline_exit_to_app_24"
