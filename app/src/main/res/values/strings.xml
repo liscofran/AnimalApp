@@ -164,5 +164,38 @@
     <string name="else_">Oppure:</string>
     //activity qrgenerate
     <string name="qrgene">QR Code generato</string>
+    //activity register
+    <string name="conf_pass">Conferma Password</string>
+    <string name="hai_acc">Hai già un account?</string>
+    //activity_registrazione_animale
+    <string name="Reg_an">Registrazione Animale</string>
+    <string name="razza">Razza</string>
+    <string name="patologie">Patologie</string>
+    <string name="Preferenze_cibo">Preferenze cibo</string>
+    <string name="luogo">Luogo</string>
+    <string name="sesso">Sesso</string>
+    <string name="maschio">maschio</string>
+    <string name="femmina">femmina</string>
+    //activity reset
+    <string name="rec_pass">Recupera Password</string>
+    <string name="inserisci_mail1">Inserisci email a cui inviare le istruzioni per il recupero della password</string>
+    <string name="conf_em">Conferma Email</string>
+    <string name="inv_em">Invia Email</string>
+    //activity scheda veterinario
+    <string name="Area_Veterinario">Area Veterinario</string>
+    //activity segnalazione offerte
+    <string name="segnalazioni">Segnalazioni</string>
+    <string name="mie_segn">Mie Segnalazioni</string>
+    <string name="r_s">Ricerca Segnalazioni</string>
+    <string name="offerte">Offerte</string>
+    <string name="crea_off">Crea Offerta</string>
+    <string name="mie_off">Mie Offerte</string>
+    <string name="ric_off">Ricerca Offerte</string>
+    <string name="crea_se">Crea Segnalazione</string>
+    <string name="appuntamento">Appuntamento</string>
+    <string name="data_pre">Data prenotazione</string>
+    <string name="animale">Animale</string>
+    <string name="Diagnosi">Diagnosi</string> //fatto fino a fragment edit appuntamento veterinario
+
 </resources>
 

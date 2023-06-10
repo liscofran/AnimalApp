@@ -453,4 +453,16 @@ public class Fragment_profile_animale extends Fragment {
         // Avvia l'activity per l'invio tramite Bluetooth
         startActivity(sendIntent);
     }
+
+    private BluetoothDevice requestPermissions() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // Permission not granted, request it
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_PERMISSION_BLUETOOTH);
+        } else {
+            // Permission already granted, return null
+            return null;
+        }
+        return null;
+    }
+
 }

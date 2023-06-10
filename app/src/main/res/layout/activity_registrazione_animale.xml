@@ -27,7 +27,7 @@
                 android:id="@+id/register_animal_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Registrazione Animale"
+                android:text="@string/Reg_an"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
-                android:hint="Nome"
+                android:hint="@string/nome1"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -66,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
-                android:hint="Razza"
+                android:hint="@string/razza"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -81,7 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
-                android:hint="Patologie"
+                android:hint="@string/patologie"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -95,7 +95,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
-                android:hint="Preferenze cibo"
+                android:hint="@string/Preferenze_cibo"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button_v4"
-                android:hint="Luogo"
+                android:hint="@string/luogo"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -123,7 +123,7 @@
                 android:id="@+id/register_animal_sex_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sesso"
+                android:text="@string/sesso"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="18sp"
@@ -149,13 +149,13 @@
                     android:id="@+id/register_animal_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Maschio" />
+                    android:text="@string/maschio" />
 
                 <RadioButton
                     android:id="@+id/register_animal_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Femmina" />
+                    android:text="@string/femmina" />
 
             </RadioGroup>
 
