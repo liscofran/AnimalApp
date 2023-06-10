@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,13 +37,12 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_diagnosi_veterinario extends Fragment {
 
-    private ImageButton backButton;
     private ImageView imageView;
-    private TextView dataEditText;
-    private TextView orarioInizioEditText;
-    private TextView orarioFineEditText;
-    private TextView nomCognPropEditText;
-    private TextView animaleEditText;
+    private EditText dataEditText;
+    private EditText orarioInizioEditText;
+    private EditText orarioFineEditText;
+    private EditText nomCognPropEditText;
+    private EditText animaleEditText;
     private Spinner statoEsameSpinner;
     private String idAnimale;
     private String idProprietario;
@@ -176,8 +174,8 @@ public class Fragment_diagnosi_veterinario extends Fragment {
             }
         }, 500);
 
-        ImageView elimina = view.findViewById(R.id.eliminaButton);
-        elimina.setOnClickListener(new View.OnClickListener() {
+        ImageButton eliminaButton = view.findViewById(R.id.eliminaButton);
+        eliminaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

@@ -4,23 +4,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-<PreferenceCategory android:title="Screen Orientation">
+<PreferenceCategory android:title="Orientamento dello schermo">
     <ListPreference
         android:defaultValue="false"
         android:key="ORIENTATION"
         android:entries="@array/items_name"
         android:entryValues="@array/Items_value"
-        android:title="Orientation"
+        android:title="Orientamento"
         android:icon="@drawable/ic_screen_rotation"/>
 
 </PreferenceCategory>
+
     <PreferenceCategory
-        android:title="About">
+        android:title="Lingua">
         <Preference
-            android:title="Chi siamo"
-            android:key="About_Us"
-            android:icon="@drawable/ic_info"/>
+            android:title="Lingua"
+            android:key="Lingua"
+            android:icon="@drawable/ic_lingua"/>
     </PreferenceCategory>
+
     <PreferenceCategory
         android:title="Logout">
         <Preference

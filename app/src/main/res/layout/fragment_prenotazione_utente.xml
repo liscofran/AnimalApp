@@ -17,6 +17,22 @@
         app:layout_constraintTop_toTopOf="@id/guideline62" />
 
     <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Prenotazione"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toTopOf="@id/imageView2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
+    <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,7 +41,6 @@
         android:text="Data prenotazione"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:drawableLeftCompat="@drawable/ic_baseline_date_range_24"
         app:layout_constraintTop_toBottomOf="@id/guideline1"
         app:layout_constraintLeft_toLeftOf="@id/guideline5"

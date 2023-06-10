@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import it.uniba.dib.sms22239.Activities.Activity_Chi_Siamo;
 import it.uniba.dib.sms22239.Activities.Activity_Main;
 
 public class Preference extends PreferenceActivity
@@ -70,14 +69,7 @@ public class Preference extends PreferenceActivity
             }
         });
 
-        android.preference.Preference about_us = findPreference("About_Us");
-        about_us.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(android.preference.Preference preference) {
-                startActivity(new Intent(Preference.this, Activity_Chi_Siamo.class));
-                return true;
-            }
-        });
+
 
         android.preference.Preference logout = findPreference("Logout");
         logout.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {

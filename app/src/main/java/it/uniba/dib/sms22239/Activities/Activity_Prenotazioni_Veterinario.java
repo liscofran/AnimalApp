@@ -35,19 +35,12 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
     private ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
     private String id_veterinario;
     private String idAnimale;
+    ImageButton backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prenotazioni_veterinario);
-
-        ImageButton backBtn2 = findViewById(R.id.back);
-        backBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +81,14 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Scheda_Veterinario.class));
+            }
+        });
+
+        backbutton = findViewById(R.id.back);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 

@@ -38,7 +38,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Fragment_esame_animale extends Fragment {
     private ImageButton backButton;
-    private MaterialTextView imageView;
+    private ImageView imageView;
     private MaterialTextView dataEditText;
     private MaterialTextView orarioInizioEditText;
     private MaterialTextView orarioFineEditText;
@@ -56,9 +56,13 @@ public class Fragment_esame_animale extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_esame_animale, container, false);
 
-
-
         backButton = view.findViewById(R.id.back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
         imageView = view.findViewById(R.id.imageView2);
         dataEditText = view.findViewById(R.id.data);
         orarioInizioEditText = view.findViewById(R.id.orario_inizio);
