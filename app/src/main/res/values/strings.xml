@@ -154,5 +154,15 @@
     <string name="prenotazione">prenotazione</string>
     //activity prenotazione appuntamenti utente
     <string name="calendari_disponibili">Calendari Disponibili</string>
+    <string name="appuntamenti">Appuntamenti</string>
+    <string name="prenotazioni">Prenotazioni</string>
+    <string name="calendario_prenotazione">Calendario Prenotazione</string>
+    //activity proprietà
+    <string name="save">salva</string>
+    //activity qrcode
+    <string name="qrcode">Scansione QR Code:</string>
+    <string name="else_">Oppure:</string>
+    //activity qrgenerate
+    <string name="qrgene">QR Code generato</string>
 </resources>
 
