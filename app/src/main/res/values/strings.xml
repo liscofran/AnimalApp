@@ -92,7 +92,6 @@
         <item>Controllo</item>
 
     </string-array>
-
     <string name="title_activity_veterinario">Veterinario_Activity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -124,12 +123,17 @@
     //activitiy calendario app animali
     <string name ="calendario1">Calendario</string>
     //activity chi siamo
+    <string name="orientamento">Orientamento dello schermo</string>
+    <string name="lingua1">Lingua</string>
     <string name="chi_siamo">Pagina chi siamo</string>
     //activity crea oggetto spesa
     <string name="aggiungi_ogg">Aggiungi Oggetto</string>
     <string name="nome1">Nome</string>
     <string name="prezzo">Prezzo</string>
     <string name="quantity">quantità</string>
+    <string name="sel22">Seleziona Lingua</string>
+    <string name="orientamento1">Orientamento</string>
+
     <string name="Date">Data (GG-MM-AAAA)</string>
     //activity crea offerta e crea segnalazione
     <string name="crea_offerta">crea offerta</string>

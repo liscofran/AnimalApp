@@ -3,6 +3,8 @@ package it.uniba.dib.sms22239;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
@@ -10,6 +12,8 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 import it.uniba.dib.sms22239.Activities.Activity_Main;
 
@@ -36,6 +40,7 @@ public class Preference extends PreferenceActivity
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
             LP.setSummary(LP.getEntry());
         } else if ("2".equals(orien)) {
+
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             LP.setSummary(LP.getEntry());
         } else if ("3".equals(orien)) {
@@ -70,7 +75,6 @@ public class Preference extends PreferenceActivity
         });
 
 
-
         android.preference.Preference logout = findPreference("Logout");
         logout.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
             @Override
@@ -79,7 +83,46 @@ public class Preference extends PreferenceActivity
                 return true;
             }
         });
+
+        ListPreference languagePreference = (ListPreference) findPreference("language");
+        String selectedLanguage = sp.getString("language", "it");
+        languagePreference.setEntries(R.array.language_entries);
+        languagePreference.setEntryValues(R.array.language_values);
+        languagePreference.setDefaultValue("it");
+        languagePreference.setSummary(languagePreference.getEntry());
+        languagePreference.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(android.preference.Preference preference, Object newValue) {
+                String selectedLanguage = (String) newValue;
+                setLocale(selectedLanguage);
+                recreateActivity();
+                return true;
+            }
+        });
     }
+
+    private void setLocale(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.putString("language", language);
+        editor.apply();
+
+        Intent refreshIntent = new Intent(this, Preference.class);
+        startActivity(refreshIntent);
+        finish();
+    }
+
+    private void recreateActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onResume() {

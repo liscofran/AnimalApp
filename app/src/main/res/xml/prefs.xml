@@ -4,23 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-<PreferenceCategory android:title="Orientamento dello schermo">
+<PreferenceCategory android:title="@string/orientamento">
     <ListPreference
         android:defaultValue="false"
         android:key="ORIENTATION"
         android:entries="@array/items_name"
         android:entryValues="@array/Items_value"
-        android:title="Orientamento"
+        android:title="@string/orientamento1"
         android:icon="@drawable/ic_screen_rotation"/>
 
 </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Lingua">
-        <Preference
-            android:title="Lingua"
-            android:key="Lingua"
-            android:icon="@drawable/ic_lingua"/>
+        android:title="@string/lingua1">
+        <ListPreference
+            android:key="language"
+            android:title="@string/lingua1"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"
+            android:dialogTitle="@string/sel22"
+            android:defaultValue="it"
+            android:icon="@drawable/ic_lingua" />
     </PreferenceCategory>
 
     <PreferenceCategory
