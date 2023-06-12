@@ -150,14 +150,6 @@ public class Fragment_profile_veterinario extends Fragment
             }
         });
 
-        Button backBtn = getView().findViewById(R.id.back);
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                getActivity().onBackPressed();
-            }
-        });
 
         getView().findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
             @Override

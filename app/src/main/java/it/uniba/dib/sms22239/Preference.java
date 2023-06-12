@@ -33,48 +33,6 @@ public class Preference extends PreferenceActivity
     {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        ListPreference LP = (ListPreference) findPreference("ORIENTATION");
-
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-            LP.setSummary(LP.getEntry());
-        } else if ("2".equals(orien)) {
-
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            LP.setSummary(LP.getEntry());
-        } else if ("3".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            LP.setSummary(LP.getEntry());
-        }
-
-        LP.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(android.preference.Preference prefs, Object obj) {
-
-                String items = (String) obj;
-                if (prefs.getKey().equals("ORIENTATION")) {
-                    switch (items) {
-                        case "1":
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-                            break;
-                        case "2":
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                            break;
-                        case "3":
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                            break;
-                    }
-
-                    ListPreference LPP = (ListPreference) prefs;
-                    LPP.setSummary(LPP.getEntries()[LPP.findIndexOfValue(items)]);
-
-                }
-                return true;
-            }
-        });
-
-
         android.preference.Preference logout = findPreference("Logout");
         logout.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
             @Override

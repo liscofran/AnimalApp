@@ -6,16 +6,7 @@
     <PreferenceCategory android:title="IMPOSTAZIONI">
     </PreferenceCategory>
 
-<PreferenceCategory android:title="@string/orientamento">
-    <ListPreference
-        android:defaultValue="false"
-        android:key="ORIENTATION"
-        android:entries="@array/items_name"
-        android:entryValues="@array/Items_value"
-        android:title="@string/orientamento1"
-        android:icon="@drawable/ic_screen_rotation"/>
 
-</PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/lingua1">

@@ -202,15 +202,6 @@
             app:layout_constraintTop_toTopOf="@+id/guideline16" />
 
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/baseline_arrow_back_24"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline61"
             android:layout_width="wrap_content"
