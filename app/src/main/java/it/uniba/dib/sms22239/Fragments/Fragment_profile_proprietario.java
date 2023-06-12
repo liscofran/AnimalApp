@@ -90,16 +90,6 @@ public class Fragment_profile_proprietario extends Fragment
             }
         });
 
-
-        Button backBtn = getView().findViewById(R.id.back);
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                getActivity().onBackPressed();
-            }
-        });
-
         // Recupera i dati dal database e popola le viste
         mDatabase.addValueEventListener(new ValueEventListener()
         {

@@ -9,6 +9,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_profile_proprietario;
 import it.uniba.dib.sms22239.Preference;
@@ -28,6 +30,14 @@ public class Activity_Profile_Proprietario_Ente extends AppCompatActivity
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_proprietario());
         fragmentTransaction.commit();
+
+        ImageButton backBtn2 = findViewById(R.id.back);
+        backBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
