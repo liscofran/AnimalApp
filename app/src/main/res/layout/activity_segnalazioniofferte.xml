@@ -69,6 +69,23 @@
         app:layout_constraintTop_toTopOf="@+id/h10"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <TextView
+        android:id="@+id/titolo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:text="@string/Annunci"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toolbar" />
+
     <TextView
         android:id="@+id/Segnalazioni"
         android:layout_width="0dp"
