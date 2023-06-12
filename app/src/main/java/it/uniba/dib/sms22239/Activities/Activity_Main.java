@@ -33,18 +33,18 @@ public class Activity_Main extends AppCompatActivity
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     ImageView btnGuest,btnGuest2,btnGuest3;
-    String c1= getString(R.string.a23);
-    String c2= getString(R.string.b1);
-    String c3= getString(R.string.b2);
-    String c4= getString(R.string.b3);
-    String c5= getString(R.string.b4);
-
+    String c1;
+    String c2;
+    String c3;
+    String c4;
+    String c5;
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        c1 = getString(R.string.a23);
         if(currentUser != null){
 
             Toast.makeText(Activity_Main.this, c1 + currentUser.getEmail(),
@@ -134,7 +134,10 @@ public class Activity_Main extends AppCompatActivity
     {
         String email=inputEmail.getText().toString();
         String password=inputPassword.getText().toString();
-
+        c2 = getString(R.string.b1);
+        c3 = getString(R.string.b2);
+        c4 = getString(R.string.b3);
+        c5 = getString(R.string.b4);
         if(!email.matches(emailPattern))
         {
             inputEmail.setError(c2);

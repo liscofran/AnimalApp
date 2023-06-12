@@ -27,7 +27,7 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Home extends AppCompatActivity
 {
     FirebaseAuth mAuth;
-    String c1= getString(R.string.a3);
+    String c1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -68,6 +68,7 @@ public class Activity_Home extends AppCompatActivity
 
     protected void autenticazione()
     {
+        c1 = getString(R.string.a3);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
