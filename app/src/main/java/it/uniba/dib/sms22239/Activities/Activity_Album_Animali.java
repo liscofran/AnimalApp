@@ -34,6 +34,11 @@ public class Activity_Album_Animali extends AppCompatActivity {
     FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
     FirebaseRecyclerAdapterAnimale.OnItemClickListener listener;
+    String c5= getString(R.string.selezionaan);
+    String c4= getString(R.string.a1);
+    String c3= getString(R.string.conferma);
+    String c2= getString(R.string.annulla);
+    String c1= getString(R.string.a2);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,18 +135,18 @@ public class Activity_Album_Animali extends AppCompatActivity {
                 Animale animale = mainAdapter.getItem(position);
                 String animalId = animale.Id;
                 new AlertDialog.Builder(Activity_Album_Animali.this)
-                        .setTitle("Selezione Animale")
-                        .setMessage("Sei sicuro di voler selezionare questo animale?")
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                        .setTitle(c5)
+                        .setMessage(c4)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(Activity_Album_Animali.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Album_Animali.this, c1, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
                                 intent.putExtra("ANIMAL_CODE",animalId);
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+                        .setNegativeButton(c2, null)
                         .show();
             }
         });
@@ -178,18 +183,18 @@ public class Activity_Album_Animali extends AppCompatActivity {
                     Animale animale = filteredList.get(position);
                     String animalId = animale.Id;
                     new AlertDialog.Builder(Activity_Album_Animali.this)
-                            .setTitle("Selezione Animale")
-                            .setMessage("Sei sicuro di voler selezionare questo animale?")
-                            .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            .setTitle(c5)
+                            .setMessage(c4)
+                            .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(Activity_Album_Animali.this, "Animale selezionato con successo!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Activity_Album_Animali.this, c1, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
                                     intent.putExtra("ANIMAL_CODE",animalId);
                                     startActivity(intent);
                                 }
                             })
-                            .setNegativeButton("Annulla", null)
+                            .setNegativeButton(c2, null)
                             .show();
                 }
             });

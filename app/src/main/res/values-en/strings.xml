@@ -215,6 +215,9 @@ Enter the email address to send the password recovery instructions</string>
     <string name="ins_p">Enter the VAT number</string>
     <string name="ins_n">Insert Name..</string>
     <string name="ins_c">Insert Surname</string>
+    <string name="cogn1">surname </string>
+    <string name="cf">Tax ID code </string>
+
     <string name="ins_cf">Enter Tax Code…</string>
     <string name="ins_ts">Enter your degree</string>
     <string name="ituoiani">Your Animals </string>
@@ -225,7 +228,7 @@ Enter the email address to send the password recovery instructions</string>
     <string name="tipoes">Exam type</string>
     <string name="insnomeim">Enter Image name</string>
     <string name="annullap">Cancel booking</string>
-    <string name="rela">Relation</string>
+    <string name="rela">Relation </string>
     <string name="rsnp">Company name not present</string>
     <string name="tipnp">Type not present</string>
     <string name="sedelegnp">Registered office not present</string>
@@ -249,4 +252,31 @@ Enter the email address to send the password recovery instructions</string>
     <string name="condividi">Share</string>
     <string name="impostazioni">Settings</string>
     <string name="lingua">language</string>
+    <string name="elimina_profile"> Delete Profile</string>
+    <string name="sss">Are you sure you want to delete the profile?</string>
+    <string name="conferma">confirm</string>
+    <string name="aa">User successfully deleted!</string>
+    <string name="annulla">cancel</string>
+    <string name="selezionaan">Select Animal</string>
+    <string name="a1">Are you sure you want to select this animal?</string>
+    <string name="a2">Animal selected successfully!</string>
+    <string name="a3">Operation cancelled: </string>
+    <string name="a4">What kind of relationship do these 2 animals have?</string>
+    <string name="a5">updated successfully!</string>
+    <string name="app1">Invalid appointment id</string>
+    <string name="aaaa">Object successfully saved</string>
+    <string name="a23">Logged in for: </string>
+    <string name="b1">Enter a correct email:</string>
+    <string name="b2">login successful </string>
+    <string name="b3">Enter an appropriate password:</string>
+    <string name="b4">Please wait while logging in...</string>
+    <string name="b5">invalid choice </string>
+    <string name="b6">Appointment registered successfully! </string>
+    <string name="c2">Modification successful</string>
+    <string name="qr1">QRcode successfully scanned</string>
+    <string name="bt1">Bluetooth permissions denied</string>
+    <string name="bbb">passwords do not match </string>
+    <string name="aac">Please wait while registering...</string>
+    <string name="aacc">Registration</string>
+    <string name="acd">Complete your profile!</string>
 </resources>

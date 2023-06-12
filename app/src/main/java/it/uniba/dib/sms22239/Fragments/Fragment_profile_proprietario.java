@@ -37,7 +37,15 @@ import it.uniba.dib.sms22239.R;
 
 
 public class Fragment_profile_proprietario extends Fragment
-{
+{   String nomea= getString(R.string.nome1);
+    String cognomea= getString(R.string.cogn1);
+    String cf= getString(R.string.cf);
+    String c1= getString(R.string.annulla);
+    String c2= getString(R.string.elimina_profile);
+    String c3= getString(R.string.conferma);
+    String c4= getString(R.string.sss);
+    String c5= getString(R.string.aa);
+
     private FirebaseAuth mAuth;
     private TextView mNomeTextView;
     private TextView mCognomeTextView;
@@ -100,10 +108,11 @@ public class Fragment_profile_proprietario extends Fragment
                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
+
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText("Nome: " + name);
-                mCognomeTextView.setText("Cognome: " + cognome);
-                mcodfiscaleTextView.setText("Cod. Fiscale: " + codfiscale);
+                mNomeTextView.setText(nomea +" : "+ name);
+                mCognomeTextView.setText(cognomea +" : " + cognome);
+                mcodfiscaleTextView.setText(cf + " : " + codfiscale);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
@@ -117,19 +126,19 @@ public class Fragment_profile_proprietario extends Fragment
             public void onClick(View v) {
 
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Elimina profilo")
-                        .setMessage("Sei sicuro di voler eliminare il profilo?")
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                        .setTitle(c2)
+                        .setMessage(c4)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mDatabase.removeValue();
                                 user.delete();
-                                Toast.makeText(getActivity(), "Utente eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), c5, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(), Activity_Main.class);
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+                        .setNegativeButton(c1, null)
                         .show();
             }
         });

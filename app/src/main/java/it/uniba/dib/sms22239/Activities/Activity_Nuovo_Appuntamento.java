@@ -36,6 +36,8 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
     String idVeterinario;
     private String idAppuntamento;
     private FirebaseFirestore db;
+    String c1= getString(R.string.b6);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +139,7 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
 
                                 Appuntamento appuntamento = new Appuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, idAppuntamento);
                                 appuntamento.writeNewAppuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, appuntamento);
-                                Toast.makeText(Activity_Nuovo_Appuntamento.this, "Appuntamento registrato con successo!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Nuovo_Appuntamento.this, c1, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Activity_Nuovo_Appuntamento.this, Activity_Appuntamenti_Veterinario.class);
                                 startActivity(intent);
                             }

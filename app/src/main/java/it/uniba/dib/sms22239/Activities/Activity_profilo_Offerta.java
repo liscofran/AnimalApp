@@ -34,6 +34,7 @@ public class Activity_profilo_Offerta extends AppCompatActivity
     String id_utente;
     String id_utente_offerta;
     String flag;
+    String c1= getString(R.string.a3);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class Activity_profilo_Offerta extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+                Log.e("Firebase", c1 + error.getMessage());
             }
         });
     }

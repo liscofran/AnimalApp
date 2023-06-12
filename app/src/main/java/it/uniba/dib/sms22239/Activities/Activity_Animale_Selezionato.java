@@ -37,6 +37,13 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
     FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
     String idAnimale;
+    String c1= getString(R.string.selezionaan);
+    String c2= getString(R.string.a4);
+    String c3= getString(R.string.conferma);
+    String c4= getString(R.string.rela);
+    String c5= getString(R.string.a5);
+    String c6= getString(R.string.annulla);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,14 +183,14 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
 
                 // creazione dell'AlertDialog con lo spinner
                 new AlertDialog.Builder(Activity_Animale_Selezionato.this)
-                        .setTitle("Selezione Animale")
-                        .setMessage("Che tipo di relazione hanno questi 2 animali?")
+                        .setTitle(c1)
+                        .setMessage(c2)
                         .setView(spinner)
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this, "Relazione "+ selectedOption + " aggiornata con successo!" , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this,  c4+ selectedOption + c5 , Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
                                 mDatabase.child("idAnimalerelazione").setValue(animalId);
@@ -195,7 +202,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                                 startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+                        .setNegativeButton(c6, null)
                         .show();
             }
         });
@@ -228,14 +235,14 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
 
                 // creazione dell'AlertDialog con lo spinner
                 new AlertDialog.Builder(Activity_Animale_Selezionato.this)
-                        .setTitle("Selezione Animale")
-                        .setMessage("Che tipo di relazione hanno questi 2 animali?")
+                        .setTitle(c1)
+                        .setMessage(c2)
                         .setView(spinner)
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this, "Relazione "+ selectedOption + " aggiornata con successo!" , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ selectedOption + c5, Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
                                 mDatabase.child("idAnimalerelazione").setValue(animalId);
@@ -248,7 +255,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                                 startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+                        .setNegativeButton(c6, null)
                         .show();
             }
         });

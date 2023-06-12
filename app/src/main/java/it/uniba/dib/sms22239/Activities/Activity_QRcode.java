@@ -53,6 +53,10 @@ public class Activity_QRcode extends AppCompatActivity
     private BluetoothReceiver bluetoothReceiver;
     String flag;
     ImageButton back;
+    String c1= getString(R.string.a3);
+    String c2= getString(R.string.qr1);
+    String c3= getString(R.string.bt1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +92,7 @@ public class Activity_QRcode extends AppCompatActivity
 
                             Intent intent2 = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
                             intent2.putExtra("ANIMAL_CODE", animalCode);
-                            Toast.makeText(Activity_QRcode.this, "QRcode scansionato con successo", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();
                             startActivity(intent2);
 
                             // Unregister il BroadcastReceiver dopo aver completato le operazioni
@@ -126,7 +130,7 @@ public class Activity_QRcode extends AppCompatActivity
     public void startAnimalActivity() {
         Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
         intent.putExtra("ANIMAL_CODE", qrCodeResult);
-        Toast.makeText(Activity_QRcode.this, "QRcode scansionato con successo", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
@@ -183,7 +187,7 @@ public class Activity_QRcode extends AppCompatActivity
                 }
                 else {
                     // Autorizzazioni Bluetooth negate, gestisci di conseguenza (es. mostra un messaggio di avviso)
-                    Toast.makeText(getApplicationContext(), "Autorizzazioni Bluetooth negate", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), c3, Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
@@ -222,7 +226,7 @@ public class Activity_QRcode extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+                Log.e("Firebase", c1 + error.getMessage());
             }
         });
     }

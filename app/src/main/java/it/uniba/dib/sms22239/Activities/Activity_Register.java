@@ -38,6 +38,14 @@ public class Activity_Register extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     String selectedItem;
+    String c1= getString(R.string.b1);
+    String c2= getString(R.string.b3);
+    String c3= getString(R.string.bbb);
+    String c4= getString(R.string.aac);
+    String c5= getString(R.string.aacc);
+    String c6= getString(R.string.acd);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -97,18 +105,18 @@ public class Activity_Register extends AppCompatActivity {
 
         if(!email.matches(emailPattern))
         {
-            inputEmail.setError("Inserisci Un'email corretta");
+            inputEmail.setError(c1);
             inputEmail.requestFocus();
         } else if(password.isEmpty() || password.length()<6)
         {
-            inputPassword.setError("Inserisci una password appropriata");
+            inputPassword.setError(c2);
         } else if(!password.equals(confirmPassword))
         {
-            inputCConformPassword.setError("La password di conferma non è uguale");
+            inputCConformPassword.setError(c3);
         } else
         {
-            progressDialog.setMessage("Attendi durante la registrazione...");
-            progressDialog.setTitle("Registrazione");
+            progressDialog.setMessage(c4);
+            progressDialog.setTitle(c5);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
 
@@ -141,7 +149,7 @@ public class Activity_Register extends AppCompatActivity {
 
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        Toast.makeText(Activity_Register.this, "Completa il tuo profilo !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Register.this, c6, Toast.LENGTH_SHORT).show();
                     }else
                     {
                         progressDialog.dismiss();

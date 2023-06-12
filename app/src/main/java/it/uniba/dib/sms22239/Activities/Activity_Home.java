@@ -27,6 +27,7 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Home extends AppCompatActivity
 {
     FirebaseAuth mAuth;
+    String c1= getString(R.string.a3);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -122,7 +123,7 @@ public class Activity_Home extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+                Log.e("Firebase", c1 + error.getMessage());
             }
         });
     }

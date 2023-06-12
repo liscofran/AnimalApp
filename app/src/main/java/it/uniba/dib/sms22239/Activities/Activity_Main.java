@@ -33,6 +33,12 @@ public class Activity_Main extends AppCompatActivity
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     ImageView btnGuest,btnGuest2,btnGuest3;
+    String c1= getString(R.string.a23);
+    String c2= getString(R.string.b1);
+    String c3= getString(R.string.b2);
+    String c4= getString(R.string.b3);
+    String c5= getString(R.string.b4);
+
 
     @Override
     public void onStart() {
@@ -41,7 +47,7 @@ public class Activity_Main extends AppCompatActivity
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
 
-            Toast.makeText(Activity_Main.this, "Login eseguito per: " + currentUser.getEmail(),
+            Toast.makeText(Activity_Main.this, c1 + currentUser.getEmail(),
                     Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(Activity_Main.this, Activity_Home.class);
@@ -131,14 +137,14 @@ public class Activity_Main extends AppCompatActivity
 
         if(!email.matches(emailPattern))
         {
-            inputEmail.setError("Inserisci un'email corretta:");
+            inputEmail.setError(c2);
             inputEmail.requestFocus();
         } else if(password.isEmpty() || password.length()<6)
         {
-            inputPassword.setError("Inserisci una password appropriata:");
+            inputPassword.setError(c4);
         }else
         {
-            progressDialog.setMessage("Per favore attendi durante il login...");
+            progressDialog.setMessage(c5);
             progressDialog.setTitle("Login");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
@@ -151,7 +157,7 @@ public class Activity_Main extends AppCompatActivity
                     {
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        Toast.makeText(Activity_Main.this, "Login avvenuto con successo!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Main.this, c3, Toast.LENGTH_SHORT).show();
                     }else
                     {
                         progressDialog.dismiss();

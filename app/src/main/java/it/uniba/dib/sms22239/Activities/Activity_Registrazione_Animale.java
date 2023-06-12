@@ -210,7 +210,7 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
 
                 if (mUploadTask != null && mUploadTask.isInProgress())
                 {
-                    Toast.makeText(Activity_Registrazione_Animale.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Animale.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

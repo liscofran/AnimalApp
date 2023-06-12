@@ -25,6 +25,7 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
     EditText inputNome, inputPrezzo, inputQuantita;
     Button inputData;
     ImageButton backbutton;
+    String c1= getString(R.string.aaaa);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
                 String data = inputData.getText().toString();
 
                 og.writeNewOggetto(og, nome,prezzo,quantita,data, idAnimal);
-                Toast.makeText(Activity_Crea_Oggetto_Spesa.this,"Oggetto salvato con successo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Crea_Oggetto_Spesa.this,c1, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Activity_Crea_Oggetto_Spesa.this, Activity_Spese.class);
                 intent.putExtra("ANIMAL_CODE",idAnimal);
                 startActivity(intent);

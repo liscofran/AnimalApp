@@ -40,6 +40,13 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
     private String selectedItem;
     private String type = "Esame";
     private String idAppuntamento;
+    String c1= getString(R.string.data_app);
+    String c2= getString(R.string.Ora_start);
+    String c3= getString(R.string.ora_fine);
+    String c4= getString(R.string.Dottore);
+    String c5= getString(R.string.app1);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +75,9 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
                 id_veterinario = dataSnapshot.child("id_veterinario").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                DataTextView.setText("Data Appuntamento: " + data);
-                OraInizioTextView.setText("Orario Inizio:  " + orario_inizio);
-                OraFineTextView.setText("Orario Fine: " + orario_fine);
+                DataTextView.setText(c1+":" + data);
+                OraInizioTextView.setText(c2+":" + orario_inizio);
+                OraFineTextView.setText(c3+":" + orario_fine);
 
 
                 Handler handler2 = new Handler(Looper.getMainLooper());
@@ -89,7 +96,7 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
 
                                     String cognome_veterinario = dataSnapshot.child("cognome").getValue(String.class);
 
-                                    CognomeVeterinarioTextView.setText("Dottor: " + cognome_veterinario);
+                                    CognomeVeterinarioTextView.setText(c4+":" + cognome_veterinario);
 
                                 }
 
@@ -101,7 +108,7 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
 
                         } else {
                             // Handle the case when idAppuntamento is null
-                            Toast.makeText(Activity_Appuntamento_Animale.this, "Id appuntamento non valido", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Appuntamento_Animale.this, c5, Toast.LENGTH_SHORT).show();
                         }
 
                     }
