@@ -2,6 +2,8 @@ package it.uniba.dib.sms22239.Activities;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -75,33 +77,30 @@ public class Activity_QRcode extends AppCompatActivity
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                if (bluetoothAdapter == null) {
-                    Toast.makeText(getApplicationContext(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                // BroadcastReceiver per ricevere l'intent inviato tramite Bluetooth
+                BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        // Controlla l'azione dell'intent per identificare l'intent desiderato
+                        if (intent.getAction().equals("collegamento")) {
+                            // Estrai i dati dall'intent
+                            String animalCode = intent.getStringExtra("ANIMAL_CODE");
 
-                // Verifica delle autorizzazioni Bluetooth
-                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
-                    // Richiedi le autorizzazioni necessarie
-                    ActivityCompat.requestPermissions(Activity_QRcode.this,
-                            new String[]{Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN},
-                            REQUEST_BLUETOOTH_PERMISSIONS);
-                    return;
-                }
+                            Intent intent2 = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
+                            intent2.putExtra("ANIMAL_CODE", animalCode);
+                            Toast.makeText(Activity_QRcode.this, "QRcode scansionato con successo", Toast.LENGTH_SHORT).show();
+                            startActivity(intent2);
 
-                if (!bluetoothAdapter.isEnabled()) {
-                    // Il Bluetooth non è abilitato, richiedi all'utente di abilitarlo
-                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                } else {
-                    // Avvia il ricevitore Bluetooth
-                    bluetoothReceiver = new BluetoothReceiver();
-                    IntentFilter intentFilter = new IntentFilter();
-                    intentFilter.addAction(Intent.ACTION_SEND);
-                    registerReceiver(bluetoothReceiver, intentFilter);
-                }
+                            // Unregister il BroadcastReceiver dopo aver completato le operazioni
+                            unregisterReceiver(this);
+                        }
+                    }
+                };
+
+                // Registra il BroadcastReceiver per l'intent ricevuto tramite Bluetooth
+                IntentFilter filter = new IntentFilter();
+                filter.addAction("nome_dell_azione");  // Sostituisci con il nome dell'azione desiderata
+                registerReceiver(bluetoothReceiver, filter);
             }
         });
 

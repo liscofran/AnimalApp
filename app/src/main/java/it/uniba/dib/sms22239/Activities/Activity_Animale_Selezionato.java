@@ -128,6 +128,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                         .build();
 
         mainAdapter = new FirebaseRecyclerAdapterAnimale(options,null);
+
     }
 
     @Override

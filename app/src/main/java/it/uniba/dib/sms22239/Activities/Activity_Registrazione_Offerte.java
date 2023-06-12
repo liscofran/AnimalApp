@@ -81,7 +81,7 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
         submitBtn = findViewById(R.id.submitBtn);
         mImageView = findViewById(R.id.image_view);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("Offerte");
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("Offerte");
 
         allegato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,15 +170,15 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                 checkEnte = ente.isChecked();
                 checkVeterinario = veterinario.isChecked();
 
+                off.writeOfferta(off, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
+                Toast.makeText(Activity_Registrazione_Offerte.this, "Offerta registrata con successo", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class);
+                intent.putExtra("OFFERTA_CODE", off.idOfferta);
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile(off);
                 }
-                off.writeOfferta(off, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
-                Toast.makeText(Activity_Registrazione_Offerte.this, "Offerta registrato con successo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class);
-                intent.putExtra("OFFERTA_CODE", off.idOfferta);
                 startActivity(intent);
             }
         });
@@ -207,7 +207,7 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
 
     private void uploadFile(Offerta offerta) {
         if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(offerta.idOfferta);
+            StorageReference fileReference = mStorageRef.child(offerta.idOfferta+".jpg");
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
