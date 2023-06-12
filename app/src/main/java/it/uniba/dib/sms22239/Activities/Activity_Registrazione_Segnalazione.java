@@ -96,7 +96,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
         locbtn=findViewById(R.id.modificaBtn);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
-        mStorageRef = FirebaseStorage.getInstance().getReference("Segnalazioni");
+        //mStorageRef = FirebaseStorage.getInstance().getReference().child("Segnalazioni");
         allegato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,19 +216,17 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 checkEnte = ente.isChecked();
                 checkVeterinario = veterinario.isChecked();
 
-
-                if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
-                } else {
-                    uploadFile(sgn);
-                }
-
                 if(latitude !=0)
                 {
                     sgn.writeSegnalazione(sgn,latitude,longitude, oggetto, provincia, descrizione, checkProprietario, checkEnte, checkVeterinario);
-                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Segnalazione registrato con successo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Segnalazione registrata con successo", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class);
                     intent.putExtra("SEGNALAZIONE_CODE", sgn.idSegnalazione);
+                    if (mUploadTask != null && mUploadTask.isInProgress()) {
+                        Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uploadFile(sgn);
+                    }
                     startActivity(intent);
                 }
                 else
@@ -262,7 +260,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
 
     private void uploadFile(Segnalazione segnalazione) {
         if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(segnalazione.idSegnalazione);
+            StorageReference fileReference = FirebaseStorage.getInstance().getReference().child("/Segnalazioni").child(segnalazione.idSegnalazione+ ".jpg");
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

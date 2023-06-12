@@ -1,12 +1,18 @@
 package it.uniba.dib.sms22239.Fragments;
 
 import static android.app.Activity.RESULT_OK;
+import static android.bluetooth.BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,14 +59,17 @@ import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_profile_animale extends Fragment {
-    private static final int DISCOVERABLE_DURATION = 300; // Durata della modalità di scoperta in secondi (es. 300 secondi = 5 minuti)
+
+    private static final int REQUEST_ENABLE_BT = 1;
+    private static final int REQUEST_DISCOVERABLE = 3;
+    private static final int REQUEST_PERMISSION_BLUETOOTH = 2;
+    private static final int DISCOVERABLE_DURATION = 300;
     private TextView mNomeTextView, mrazzaTextView, msessoTextView, nomecognomeprop, statusTextView, casaluogoTextView, relazioneTextView;
     private String idUtente, idAnimal, relazione;
     private BluetoothDevice selectedBluetoothDevice;
     String relazioneconidAnimale, nomeAnimaleRelazione;
     private ImageView profilo;
     public CircleImageView qrbutton, appre, shareButton;
-    private static final int REQUEST_ENABLE_BT = 1, REQUEST_PERMISSION_BLUETOOTH = 2;
     protected ImageButton backBtn;
     DatabaseReference mDatabase2;
 
@@ -317,38 +326,136 @@ public class Fragment_profile_animale extends Fragment {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 } else {
-                    // Crea l'intent da inviare tramite Bluetooth
-                    Intent shareIntent = new Intent();
-                    shareIntent.setAction(Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, idAnimal);
-
-                    // Verifica se il dispositivo supporta il Bluetooth
-                    if (bluetoothAdapter.isEnabled()) {
-                        // Ottieni il dispositivo Bluetooth selezionato dall'utente
-                        BluetoothDevice selectedDevice = getSelectedBluetoothDevice();
-
-                        // Verifica se il dispositivo selezionato è valido
-                        if (selectedDevice != null) {
-                            // Invia l'intent tramite Bluetooth
-                            sendIntentViaBluetooth(shareIntent, selectedDevice);
-                        } else {
-                            Toast.makeText(getActivity(), "Nessun dispositivo Bluetooth selezionato", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getActivity(), "Bluetooth non abilitato", Toast.LENGTH_SHORT).show();
-                    }
+                    // Avvia la ricerca dei dispositivi Bluetooth
+                    startBluetoothDiscovery();
                 }
             }
         });
+
+    }
+
+    private void startBluetoothDiscovery() {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null) {
+            Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Verifica se il Bluetooth è abilitato
+        if (!bluetoothAdapter.isEnabled()) {
+            Toast.makeText(getActivity(), "Abilita il Bluetooth per iniziare la ricerca", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Verifica se la modalità di scoperta è già attiva
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_PERMISSION_BLUETOOTH);
+            return;
+        }
+        if (bluetoothAdapter.getScanMode() != BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            // Avvia la modalità di scoperta
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, DISCOVERABLE_DURATION);
+            startActivityForResult(discoverableIntent, REQUEST_DISCOVERABLE);
+        } else {
+            // La modalità di scoperta è già attiva, avvia la ricerca dei dispositivi
+            startDeviceDiscovery();
+        }
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ENABLE_BT) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Bluetooth abilitato, avvia la ricerca dei dispositivi
+                startBluetoothDiscovery();
+            } else {
+                // Bluetooth non abilitato, mostra un messaggio o gestisci di conseguenza
+                Toast.makeText(getActivity(), "Bluetooth non abilitato", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == REQUEST_DISCOVERABLE) {
+            if (resultCode == DISCOVERABLE_DURATION) {
+                // La modalità di scoperta è stata attivata con successo, avvia la ricerca dei dispositivi
+                startDeviceDiscovery();
+            } else {
+                // Modalità di scoperta non attivata, mostra un messaggio o gestisci di conseguenza
+                Toast.makeText(getActivity(), "Modalità di scoperta non attivata", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    private void startDeviceDiscovery() {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null) {
+            Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Verifica se il Bluetooth è abilitato
+        if (!bluetoothAdapter.isEnabled()) {
+            Toast.makeText(getActivity(), "Abilita il Bluetooth per iniziare la ricerca", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Avvia la ricerca dei dispositivi
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_PERMISSION_BLUETOOTH);
+            return;
+        }
+        bluetoothAdapter.startDiscovery();
+
+        // Registra un BroadcastReceiver per ricevere le informazioni sui dispositivi trovati
+        BroadcastReceiver discoveryReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+
+                if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    // Un dispositivo è stato trovato
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    // Puoi ottenere ulteriori informazioni sul dispositivo come il nome e l'indirizzo MAC
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_PERMISSION_BLUETOOTH);
+                        return;
+                    }
+                    String deviceName = device.getName();
+                    String deviceAddress = device.getAddress();
+
+                    // Fai qualcosa con le informazioni del dispositivo trovato
+                    // ...
+
+                    // Invia un intent con la stringa 'animalId'
+                    Intent animalIdIntent = new Intent("collegamento");
+                    animalIdIntent.putExtra("ANIMAL_CODE", idAnimal);
+                    getActivity().startActivity(animalIdIntent);
+
+                } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                    // La ricerca dei dispositivi è terminata
+                    // Puoi eseguire ulteriori azioni dopo la fine della ricerca
+                    // ...
+
+                    // Assicurati di unregister il BroadcastReceiver dopo aver completato le operazioni
+                    getActivity().unregisterReceiver(this);
+                }
+            }
+        };
+
+        // Registra il BroadcastReceiver per le azioni ACTION_FOUND e ACTION_DISCOVERY_FINISHED
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        getActivity().registerReceiver(discoveryReceiver, filter);
+    }
+
     private void checkBluetoothPermissions() {
         // Check for Bluetooth permissions
-        if (ContextCompat.checkSelfPermission(getActivity(), "android.permission.BLUETOOTH") != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             // Permission not granted, request it
-            ActivityCompat.requestPermissions(getActivity(), new String[]{"android.permission.BLUETOOTH"}, REQUEST_PERMISSION_BLUETOOTH);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_PERMISSION_BLUETOOTH);
         } else {
             // Permission already granted, proceed with Bluetooth usage
             Toast.makeText(getActivity(), "Bluetooth pronto all'uso", Toast.LENGTH_SHORT).show();
@@ -369,100 +476,4 @@ public class Fragment_profile_animale extends Fragment {
             }
         }
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if (resultCode == RESULT_OK) {
-                // Bluetooth enabled, check for Bluetooth permissions
-                checkBluetoothPermissions();
-            } else {
-                // Bluetooth not enabled, show message or handle accordingly
-                Toast.makeText(getActivity(), "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private BluetoothDevice getSelectedBluetoothDevice() {
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (bluetoothAdapter == null) {
-            Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-
-        // Verifica se il Bluetooth è abilitato
-        if (!bluetoothAdapter.isEnabled()) {
-            Toast.makeText(getActivity(), "Abilita il Bluetooth per selezionare un dispositivo", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-
-        // Ottieni la lista dei dispositivi Bluetooth associati
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return requestPermissions();
-        }
-        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-        if (pairedDevices.isEmpty()) {
-            Toast.makeText(getActivity(), "Nessun dispositivo Bluetooth associato", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-
-        // Crea una lista di nomi dei dispositivi Bluetooth
-        List<String> deviceNames = new ArrayList<>();
-        final List<BluetoothDevice> devices = new ArrayList<>();
-        for (BluetoothDevice device : pairedDevices) {
-            deviceNames.add(device.getName());
-            devices.add(device);
-        }
-
-        // Mostra la finestra di dialogo di scelta del dispositivo
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Seleziona un dispositivo Bluetooth")
-                .setItems(deviceNames.toArray(new CharSequence[0]), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int position) {
-                        // Restituisci il dispositivo Bluetooth selezionato dall'utente
-                        BluetoothDevice selectedDevice = devices.get(position);
-                        // Puoi eseguire altre azioni con il dispositivo selezionato se necessario
-                    }
-                })
-                .setNegativeButton("Annulla", null)
-                .show();
-
-        return null;
-    }
-
-
-    private void sendIntentViaBluetooth(Intent intent, BluetoothDevice device) {
-        // Crea l'intent per l'invio tramite Bluetooth
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.setType("text/plain");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, intent.getStringExtra(Intent.EXTRA_TEXT));
-
-        // Imposta il pacchetto dell'app Bluetooth predefinita
-        sendIntent.setPackage("com.android.bluetooth");
-
-        // Avvia l'activity per l'invio tramite Bluetooth
-        startActivity(sendIntent);
-    }
-
-    private BluetoothDevice requestPermissions() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            // Permission not granted, request it
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_PERMISSION_BLUETOOTH);
-        } else {
-            // Permission already granted, return null
-            return null;
-        }
-        return null;
-    }
-
 }
