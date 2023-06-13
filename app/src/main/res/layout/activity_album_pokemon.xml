@@ -26,7 +26,7 @@
         android:id="@+id/titolo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Album Animali"
+        android:text="@string/album_animali"
         android:textColor="@color/black"
         android:padding="10dp"
         android:textSize="20dp"
