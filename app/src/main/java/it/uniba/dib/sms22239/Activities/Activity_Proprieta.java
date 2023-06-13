@@ -32,7 +32,6 @@ public class Activity_Proprieta extends AppCompatActivity
     private Spinner spinner;
     String selectedItem;
     private String proprietarioid;
-    String c1= getString(R.string.c2);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +178,8 @@ public class Activity_Proprieta extends AppCompatActivity
                 if(desc != null) {
                     Db2.child("descprop").setValue(desc);
                 }
+                String c1= getString(R.string.c2);
+
                 Toast.makeText(Activity_Proprieta.this, c1, Toast.LENGTH_SHORT).show();
             }
         });

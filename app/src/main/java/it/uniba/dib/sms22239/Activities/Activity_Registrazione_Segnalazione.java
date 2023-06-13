@@ -131,8 +131,9 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                     ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                 }
                 else
-                {
-                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "verrà utilizzata la posizione attuale, controlla su Google Maps", Toast.LENGTH_SHORT).show();
+                {                       String c1= getString(R.string.gm1);
+
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, c1, Toast.LENGTH_SHORT).show();
                     LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -217,21 +218,21 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 checkVeterinario = veterinario.isChecked();
 
                 if(latitude !=0)
-                {
+                {       String c2= getString(R.string.gm2);
                     sgn.writeSegnalazione(sgn,latitude,longitude, oggetto, provincia, descrizione, checkProprietario, checkEnte, checkVeterinario);
-                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Segnalazione registrata con successo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, c2, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Activity_Registrazione_Segnalazione.this, Activity_Segnalazioni_Offerte.class);
                     intent.putExtra("SEGNALAZIONE_CODE", sgn.idSegnalazione);
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
-                        Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                     } else {
                         uploadFile(sgn);
                     }
                     startActivity(intent);
                 }
                 else
-                {
-                    Toast.makeText(Activity_Registrazione_Segnalazione.this, "Posizione non disponibile", Toast.LENGTH_SHORT).show();
+                {                        String c3= getString(R.string.gm3);
+                    Toast.makeText(Activity_Registrazione_Segnalazione.this, c3, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -266,7 +267,8 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(Activity_Registrazione_Segnalazione.this, "Upload avvenuto con successo", Toast.LENGTH_LONG).show();
+                            String c4= getString(R.string.ups);
+                            Toast.makeText(Activity_Registrazione_Segnalazione.this, c4, Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -333,7 +335,8 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+                String c5= getString(R.string.a3);
+                Log.e("Firebase", c5 + error.getMessage());
             }
         });
     }

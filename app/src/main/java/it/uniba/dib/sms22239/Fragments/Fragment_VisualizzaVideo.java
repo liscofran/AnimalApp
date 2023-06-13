@@ -202,7 +202,14 @@ public class Fragment_VisualizzaVideo extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
+                        String c1= getString(R.string.ev);
+                        String c2= getString(R.string.ev1);
+                        String c3= getString(R.string.conferma);
+                        String c4= getString(R.string.ev2);
+                        String c5= getString(R.string.annulla);
+
                         new AlertDialog.Builder(getActivity())
+
                                 .setTitle("Elimina video")
                                 .setMessage("Sei sicuro di voler eliminare il video?")
                                 .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
@@ -235,7 +242,9 @@ public class Fragment_VisualizzaVideo extends Fragment {
 
                 DownloadManager downloadManager = (DownloadManager) itemView.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
                 downloadManager.enqueue(request);
-                Toast.makeText(itemView.getContext(), "Download avvenuto con successo", Toast.LENGTH_SHORT).show();
+                String c6= getString(R.string.dwn);
+
+                Toast.makeText(itemView.getContext(), c6, Toast.LENGTH_SHORT).show();
             }
 
             private void deleteVideo(Video video)
@@ -249,14 +258,16 @@ public class Fragment_VisualizzaVideo extends Fragment {
                         mVideoList.remove(video);
                         mAdapter.notifyDataSetChanged();
                         mProgressBar.setVisibility(View.GONE); // nascondere la ProgressBar dopo l'eliminazione
-                        Toast.makeText(itemView.getContext(), "Video eliminato con successo", Toast.LENGTH_SHORT).show();
+                        String c7= getString(R.string.ev2);
+                        Toast.makeText(itemView.getContext(), c7, Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // errore durante l'eliminazione, mostrare un messaggio di errore
                         mProgressBar.setVisibility(View.GONE);
-                        Toast.makeText(itemView.getContext(), "Errore durante l'eliminazione del video", Toast.LENGTH_SHORT).show();
+                        String c8= getString(R.string.ev3);
+                        Toast.makeText(itemView.getContext(), c8, Toast.LENGTH_SHORT).show();
                     }
                 });
             }

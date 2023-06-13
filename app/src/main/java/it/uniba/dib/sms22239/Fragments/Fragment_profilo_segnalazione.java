@@ -106,7 +106,8 @@ public class Fragment_profilo_segnalazione extends Fragment
             @Override
             public void onClick(View v) {
                 mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
-                Toast.makeText(getActivity(), "Segnalazione eliminata con successo!", Toast.LENGTH_SHORT).show();
+                String c10= getString(R.string.se23);
+                Toast.makeText(getActivity(), c10, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), Activity_Home.class);
                 startActivity(intent);
             }
@@ -188,8 +189,8 @@ public class Fragment_profilo_segnalazione extends Fragment
             @Override
             public void onClick(View view)
             {
-
-                String label = "Posizione della Segnalazione"; // Nome del pin sulla mappa
+                String c1= getString(R.string.se22);
+                String label = c1; // Nome del pin sulla mappa
                 String uriBegin = "geo:" + latitude + "," + longitude;
                 String query = latitude + "," + longitude + "(" + label + ")";
                 String encodedQuery = Uri.encode(query);

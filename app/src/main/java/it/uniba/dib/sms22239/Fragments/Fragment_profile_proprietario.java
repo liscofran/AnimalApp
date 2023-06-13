@@ -37,14 +37,8 @@ import it.uniba.dib.sms22239.R;
 
 
 public class Fragment_profile_proprietario extends Fragment
-{   String nomea= getString(R.string.nome1);
-    String cognomea= getString(R.string.cogn1);
-    String cf= getString(R.string.cf);
-    String c1= getString(R.string.annulla);
-    String c2= getString(R.string.elimina_profile);
-    String c3= getString(R.string.conferma);
-    String c4= getString(R.string.sss);
-    String c5= getString(R.string.aa);
+{
+
 
     private FirebaseAuth mAuth;
     private TextView mNomeTextView;
@@ -108,7 +102,9 @@ public class Fragment_profile_proprietario extends Fragment
                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
 
-
+                String nomea= getString(R.string.nome1);
+                String cognomea= getString(R.string.cogn1);
+                String cf= getString(R.string.cf);
                 //set delle variabili recuperate al layout
                 mNomeTextView.setText(nomea +" : "+ name);
                 mCognomeTextView.setText(cognomea +" : " + cognome);
@@ -124,7 +120,11 @@ public class Fragment_profile_proprietario extends Fragment
         getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String c1= getString(R.string.annulla);
+                String c2= getString(R.string.elimina_profile);
+                String c3= getString(R.string.conferma);
+                String c4= getString(R.string.sss);
+                String c5= getString(R.string.aa);
                 new AlertDialog.Builder(getActivity())
                         .setTitle(c2)
                         .setMessage(c4)

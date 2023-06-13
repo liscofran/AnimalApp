@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import it.uniba.dib.sms22239.Activities.Activity_Appuntamento;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
+import it.uniba.dib.sms22239.R;
 
 public class Fragment_App_Dialog extends DialogFragment {
     private ArrayList<Appuntamento> appuntamenti;
@@ -34,7 +35,8 @@ public class Fragment_App_Dialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Appuntamenti del " + data);
+        String c1= getString(R.string.apd);
+        builder.setTitle(c1 + data);
 
         // Creiamo una lista degli appuntamenti
         ListView listView = new ListView(getActivity());
@@ -77,7 +79,8 @@ public class Fragment_App_Dialog extends DialogFragment {
                     intent.putExtra("ANIMAL_CODE", idAnimale);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getActivity(), "Errore: appuntamento non trovato", Toast.LENGTH_SHORT).show();
+                    String c2= getString(R.string.apd1);
+                    Toast.makeText(getActivity(), c2, Toast.LENGTH_SHORT).show();
                 }
             }
             });

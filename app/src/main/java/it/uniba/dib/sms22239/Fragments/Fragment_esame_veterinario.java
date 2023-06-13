@@ -204,18 +204,24 @@ public class Fragment_esame_veterinario extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Conferma eliminazione");
-                builder.setMessage("Sei sicuro di voler eliminare questa prenotazione?");
-                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                String c1= getString(R.string.ce);
+                String c2= getString(R.string.ce1);
+                String c3= getString(R.string.si);
+
+                builder.setTitle(c1);
+                builder.setMessage(c2);
+                builder.setPositiveButton(c3, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
-                        Toast.makeText(getActivity(), "Prenotazione eliminata con successo!", Toast.LENGTH_SHORT).show();
+                        String c4= getString(R.string.ce5);
+                        Toast.makeText(getActivity(), c4, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("No", null);
+                String c7= getString(R.string.no);
+                builder.setNegativeButton(c7, null);
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

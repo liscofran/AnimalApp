@@ -95,21 +95,29 @@ public class Fragment_profile_ente extends Fragment
         getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String c1= getString(R.string.elimina_profile);
+                String c2= getString(R.string.sss);
+                String c3= getString(R.string.conferma);
+                String c5= getString(R.string.annulla);
 
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Elimina profilo")
-                        .setMessage("Sei sicuro di voler eliminare il profilo?")
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+
+                        .setTitle(c1)
+                        .setMessage(c2)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mDatabase.removeValue();
                                 user.delete();
-                                Toast.makeText(getActivity(), "Ente eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                String c4= getString(R.string.ee);
+
+                                Toast.makeText(getActivity(), c4, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(), Activity_Main.class);
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+
+                        .setNegativeButton(c5, null)
                         .show();
             }
         });
@@ -136,10 +144,15 @@ public class Fragment_profile_ente extends Fragment
 
 
                 //set delle variabili recuperate al layout
-                mragionesociale.setText("Ragione sociale: " + ragsociale);
-                mtipoTextView.setText("Tipo: " + tipo);
-                msedelegaleTextView.setText("Sede Legale: " + sedelegale);
-                mpiva.setText("Partita IVA: " + piva);
+                String c6= getString(R.string.rs);
+                String c7= getString(R.string.tp);
+                String c8= getString(R.string.sls);
+                String c9= getString(R.string.piv);
+
+                mragionesociale.setText(c6 + ragsociale);
+                mtipoTextView.setText(c7 + tipo);
+                msedelegaleTextView.setText(c8 + sedelegale);
+                mpiva.setText(c9 + piva);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)

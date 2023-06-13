@@ -169,13 +169,13 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                 checkProprietario = proprietario.isChecked();
                 checkEnte = ente.isChecked();
                 checkVeterinario = veterinario.isChecked();
-
+                String c1= getString(R.string.ofs);
                 off.writeOfferta(off, oggetto, provincia, descrizione,checkProprietario,checkEnte,checkVeterinario);
-                Toast.makeText(Activity_Registrazione_Offerte.this, "Offerta registrata con successo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Registrazione_Offerte.this, c1, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Activity_Registrazione_Offerte.this, Activity_Segnalazioni_Offerte.class);
                 intent.putExtra("OFFERTA_CODE", off.idOfferta);
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progresso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Registrazione_Offerte.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile(off);
                 }
@@ -213,7 +213,8 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(Activity_Registrazione_Offerte.this, "Upload completato", Toast.LENGTH_LONG).show();
+                            String c2= getString(R.string.ups);
+                            Toast.makeText(Activity_Registrazione_Offerte.this, c2, Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -229,7 +230,8 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                         }
                     });
         } else {
-            Toast.makeText(this, "Nessun file selezionato", Toast.LENGTH_SHORT).show();
+            String c3= getString(R.string.nf);
+            Toast.makeText(this, c3, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -267,7 +269,8 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+                String c4= getString(R.string.a3);
+                Log.e("Firebase", c4 + error.getMessage());
             }
         });
     }

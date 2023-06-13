@@ -149,26 +149,33 @@ public class Fragment_VisualizzaTesto extends Fragment {
             deleteImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
-                {
+                {String c1= getString(R.string.ent);
+                    String c2= getString(R.string.ent2);
+                    String c3= getString(R.string.conferma);
+                    String c4= getString(R.string.ent3);
+                    String c5= getString(R.string.annulla);
                     new AlertDialog.Builder(getActivity())
-                            .setTitle("Elimina testo")
-                            .setMessage("Sei sicuro di voler eliminare il testo?")
-                            .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+
+
+                            .setTitle(c1)
+                            .setMessage(c2)
+                            .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     deleteFile(testo);
-                                    Toast.makeText(getActivity(), "Testo eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), c4, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
                                     startActivity(intent.putExtra("ANIMAL_CODE",idAnimale));
                                 }
                             })
-                            .setNegativeButton("Annulla", null)
+                            .setNegativeButton(c5, null)
                             .show();
                 }
             });
         }
     }
     private void downloadFile(String fileName) {
+        String c9= getString(R.string.edt);
 
         String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
         StorageReference fileRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi/" + fileName);
@@ -177,22 +184,27 @@ public class Fragment_VisualizzaTesto extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "text/plain");
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(Intent.createChooser(intent, "Apri il file con..."));
-        }).addOnFailureListener(e -> Log.e("TAG", "Errore durante il download del file", e));
+            String c8= getString(R.string.ent4);
+
+            startActivity(Intent.createChooser(intent, c8));
+        }).addOnFailureListener(e -> Log.e("TAG", c9, e));
     }
 
     private void deleteFile(Testo testo) {
         String idAnimale = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
         StorageReference fileRef = FirebaseStorage.getInstance().getReference("Animali").child(idAnimale).child("Testi").child(testo.getNome());
+        String c11= getString(R.string.enr);
 
         // Elimina il file dallo Storage di Firebase
         fileRef.delete().addOnSuccessListener(aVoid -> {
-            Log.d("TAG", "File eliminato dallo Storage di Firebase: " + testo.getNome());
+            String c10= getString(R.string.fes);
+
+            Log.d("TAG", c10 + testo.getNome());
 
             // Rimuovi l'elemento dalla lista della recyclerView
             fileListAdapter.removeFile(testo);
             fileListAdapter.notifyDataSetChanged();
-        }).addOnFailureListener(e -> Log.e("TAG", "Errore durante l'eliminazione del file", e));
+        }).addOnFailureListener(e -> Log.e("TAG", c11, e));
     }
 
 }

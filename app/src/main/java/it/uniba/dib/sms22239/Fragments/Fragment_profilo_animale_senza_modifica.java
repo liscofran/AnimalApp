@@ -110,10 +110,14 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
                 idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText("Nome:" + nome);
-                mrazzaTextView.setText("Razza: " + razza);
-                msessoTextView.setText("Sesso: " +sesso);
-                mluogoTextView.setText("Luogo: " +luogo);
+                String c9= getString(R.string.nome1);
+                String c10= getString(R.string.razza);
+                String c11= getString(R.string.sesso);
+                String c13= getString(R.string.luogo);
+                mNomeTextView.setText(c9+":" + nome);
+                mrazzaTextView.setText(c10+":"+ razza);
+                msessoTextView.setText(c11+":" +sesso);
+                mluogoTextView.setText(c13+":" +luogo);
                 mstatusTextView.setText("Status: " +status);
 
                 // Recupera i dati dal secondo riferimento al database e popola le viste
@@ -125,8 +129,9 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
                         String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
 
                         //set delle variabili recuperate al layout
+                        String c12= getString(R.string.proprietario);
 
-                        nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
+                        nomecognomeprop.setText(c12+":"+ nome + " " + cognome);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

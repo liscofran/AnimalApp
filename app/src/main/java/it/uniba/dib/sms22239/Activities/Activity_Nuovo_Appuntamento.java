@@ -36,7 +36,6 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
     String idVeterinario;
     private String idAppuntamento;
     private FirebaseFirestore db;
-    String c1= getString(R.string.b6);
 
 
     @Override
@@ -136,6 +135,7 @@ public class Activity_Nuovo_Appuntamento extends AppCompatActivity {
                                 String ora_inizio_string = ora_inizio.format(formatter);
                                 String ora_fine_string = ora_fine.format(formatter);
 
+                                String c1= getString(R.string.b6);
 
                                 Appuntamento appuntamento = new Appuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, idAppuntamento);
                                 appuntamento.writeNewAppuntamento(idVeterinario, ora_inizio_string, ora_fine_string, data, appuntamento);

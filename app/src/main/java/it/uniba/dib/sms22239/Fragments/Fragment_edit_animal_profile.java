@@ -126,7 +126,9 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getActivity(), "Scelta non valida", Toast.LENGTH_SHORT).show();
+                String c5= getString(R.string.b5);
+
+                Toast.makeText(getActivity(), c5, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -189,7 +191,9 @@ public class Fragment_edit_animal_profile extends Fragment {
                 mDatabase.child("prop").setValue(selectedItem);
 
                 updateFile();
-                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
+                String c4= getString(R.string.c2);
+
+                Toast.makeText(getActivity(), c4, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), Activity_Animali.class);
                 startActivity(intent);
             }

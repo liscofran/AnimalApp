@@ -197,7 +197,9 @@ public class Fragment_edit_offerta extends Fragment {
                 updateFile(mDatabase);
 
                 Intent intent = new Intent(getActivity(), Activity_Segnalazioni_Offerte.class);
-                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
+                String c5= getString(R.string.c2);
+
+                Toast.makeText(getActivity(),c5, Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

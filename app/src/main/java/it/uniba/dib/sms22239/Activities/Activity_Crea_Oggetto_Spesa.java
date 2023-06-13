@@ -25,7 +25,6 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
     EditText inputNome, inputPrezzo, inputQuantita;
     Button inputData;
     ImageButton backbutton;
-    String c1= getString(R.string.aaaa);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +103,7 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String c1= getString(R.string.aaaa);
 
                 Oggetto_Spesa og = new Oggetto_Spesa();
                 String nome = inputNome.getText().toString();

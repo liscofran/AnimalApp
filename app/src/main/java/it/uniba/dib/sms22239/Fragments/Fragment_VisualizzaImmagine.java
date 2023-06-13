@@ -90,7 +90,9 @@ public class Fragment_VisualizzaImmagine extends Fragment
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            Toast.makeText(getActivity(), "Caricamento non avvenuto con successo", Toast.LENGTH_SHORT).show();
+                            String c1= getString(R.string.cin);
+
+                            Toast.makeText(getActivity(), c1, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -159,19 +161,25 @@ public class Fragment_VisualizzaImmagine extends Fragment
             mDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String c2= getString(R.string.ei);
+                    String c3= getString(R.string.ei2);
+                    String c4= getString(R.string.conferma);
+                    String c5= getString(R.string.ei3);
+                    String c6= getString(R.string.annulla);
+
                     new AlertDialog.Builder(getActivity())
-                            .setTitle("Elimina immagine")
-                            .setMessage("Sei sicuro di voler eliminare l'immagine?")
-                            .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+                            .setTitle(c2)
+                            .setMessage(c3)
+                            .setPositiveButton(c4, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     deleteImage(image);
-                                    Toast.makeText(getActivity(), "Immagine eliminata con successo!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), c5, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(), Activity_Multimedia.class);
                                     startActivity(intent.putExtra("ANIMAL_CODE",idAnimale));
                                 }
                             })
-                            .setNegativeButton("Annulla", null)
+                            .setNegativeButton(c6, null)
                             .show();
                 }
             });
@@ -194,7 +202,9 @@ public class Fragment_VisualizzaImmagine extends Fragment
 
             DownloadManager downloadManager = (DownloadManager) itemView.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
             downloadManager.enqueue(request);
-            Toast.makeText(itemView.getContext(), "Download avvenuto con successo", Toast.LENGTH_SHORT).show();
+            String c5= getString(R.string.dwn);
+
+            Toast.makeText(itemView.getContext(), c5, Toast.LENGTH_SHORT).show();
         }
 
         private void deleteImage(Image image)
@@ -209,12 +219,15 @@ public class Fragment_VisualizzaImmagine extends Fragment
                     // Rimuovi l'immagine dal RecyclerView
                     mImageList.remove(image);
                     mAdapter.notifyDataSetChanged();
-                    Toast.makeText(itemView.getContext(), "Immagine eliminata con successo", Toast.LENGTH_SHORT).show();
+                    String c6= getString(R.string.ei3);
+                    Toast.makeText(itemView.getContext(), c6, Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(itemView.getContext(), "Eliminazione non riuscita", Toast.LENGTH_SHORT).show();
+                    String c7= getString(R.string.enr);
+
+                    Toast.makeText(itemView.getContext(), c7, Toast.LENGTH_SHORT).show();
                 }
             });
         }

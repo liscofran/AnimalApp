@@ -114,13 +114,17 @@ public class Fragment_profile_veterinario extends Fragment
                 String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
                 String email = dataSnapshot.child("email").getValue(String.class);
                 String titoloStudio = dataSnapshot.child("titolo_studio").getValue(String.class);
+                String c6= getString(R.string.nome1);
+                String c7= getString(R.string.cogn1);
+                String c8= getString(R.string.cf);
+                String c9= getString(R.string.ts);
 
                 //set delle variabili recuperate al layout
-                mNomeTextView.setText("Nome: " + name);
-                mCognomeTextView.setText("Cognome: " + cognome);
-                mcodfiscaleTextView.setText("Cod. Fiscale: " +codfiscale);
+                mNomeTextView.setText(c6+":" + name);
+                mCognomeTextView.setText(c7+":" + cognome);
+                mcodfiscaleTextView.setText(c8+":" +codfiscale);
                 memailTextView.setText("Email: " +email);
-                mtitolostudioTextView.setText("Tit. studio: " +titoloStudio);
+                mtitolostudioTextView.setText(c9 +titoloStudio);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -131,21 +135,28 @@ public class Fragment_profile_veterinario extends Fragment
         getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String c1= getString(R.string.elimina_profile);
+                String c2= getString(R.string.sss);
+                String c3= getString(R.string.conferma);
+                String c4= getString(R.string.ve);
+                String c5= getString(R.string.annulla);
+
 
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Elimina profilo")
-                        .setMessage("Sei sicuro di voler eliminare il profilo?")
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+
+                        .setTitle(c1)
+                        .setMessage(c2)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mDatabase.removeValue();
                                 user.delete();
-                                Toast.makeText(getActivity(), "Veterinario eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(),c4, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(), Activity_Main.class);
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+                        .setNegativeButton(c5, null)
                         .show();
             }
         });

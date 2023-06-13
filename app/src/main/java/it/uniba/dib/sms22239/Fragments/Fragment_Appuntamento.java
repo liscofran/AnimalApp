@@ -72,9 +72,13 @@ public class Fragment_Appuntamento extends Fragment {
                 String orario_fine = dataSnapshot.child("orario_fine").getValue(String.class);
 
                 //set delle variabili recuperate al layout
-                DataTextView .setText("Data Appuntamento: " + data);
-                OraInizioTextView.setText("Orario Inizio:  " + orario_inizio);
-                OraFineTextView.setText("Orario Fine: " + orario_fine);
+                String c1= getString(R.string.data_app);
+                String c2= getString(R.string.ora_inizio2);
+                String c3= getString(R.string.ora_fine);
+
+                DataTextView .setText(c1 + data);
+                OraInizioTextView.setText(c2 + orario_inizio);
+                OraFineTextView.setText(c3+ orario_fine);
 
             }
 
@@ -98,9 +102,13 @@ public class Fragment_Appuntamento extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Conferma eliminazione");
-                builder.setMessage("Sei sicuro di voler eliminare questo appuntamento?");
-                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                String c4= getString(R.string.ce);
+                String c5= getString(R.string.ce1);
+                String c6= getString(R.string.si);
+
+                builder.setTitle(c4);
+                builder.setMessage(c5);
+                builder.setPositiveButton(c6, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mDatabase1.removeValue(); // rimuovi la tupla dal database Firebase
@@ -120,12 +128,16 @@ public class Fragment_Appuntamento extends Fragment {
                                 // Gestisci l'errore di cancellazione
                             }
                         });
-                        Toast.makeText(getActivity(), "Appuntamento eliminato con successo!", Toast.LENGTH_SHORT).show();
+                        String c6= getString(R.string.ce2);
+
+                        Toast.makeText(getActivity(), c6, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class);
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("No", null);
+                String c7= getString(R.string.no);
+
+                builder.setNegativeButton(c7, null);
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

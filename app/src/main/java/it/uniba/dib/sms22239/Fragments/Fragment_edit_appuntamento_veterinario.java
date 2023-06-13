@@ -94,7 +94,9 @@ public class Fragment_edit_appuntamento_veterinario extends Fragment {
 
                 // Torna all'activity precedente
                 Intent intent = new Intent(getActivity(), Activity_Appuntamenti_Veterinario.class);
-                Toast.makeText(getActivity(), "Modifica avvenuta con successo", Toast.LENGTH_LONG).show();
+                String c5= getString(R.string.c2);
+
+                Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

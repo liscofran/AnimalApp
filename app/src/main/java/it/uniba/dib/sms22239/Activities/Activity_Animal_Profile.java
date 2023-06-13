@@ -34,7 +34,7 @@ public class Activity_Animal_Profile extends AppCompatActivity
     protected String id_utente;
     protected String id_utente_animale;
     String flag;
-    String c1= getString(R.string.a3);
+    String c1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +150,7 @@ public class Activity_Animal_Profile extends AppCompatActivity
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                c1= getString(R.string.a3);
                 // Gestisci l'evento di annullamento
                 Log.e("Firebase", c1 + error.getMessage());
             }

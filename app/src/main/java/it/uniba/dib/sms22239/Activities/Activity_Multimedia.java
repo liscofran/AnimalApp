@@ -20,7 +20,6 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Multimedia extends AppCompatActivity
 {
     private String selectedItem;
-    String c1= getString(R.string.b5);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +106,8 @@ public class Activity_Multimedia extends AppCompatActivity
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                String c1= getString(R.string.b5);
+
                 Toast.makeText(Activity_Multimedia.this, c1, Toast.LENGTH_SHORT).show();
             }
         });

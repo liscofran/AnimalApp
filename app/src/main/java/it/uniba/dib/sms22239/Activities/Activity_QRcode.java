@@ -53,10 +53,8 @@ public class Activity_QRcode extends AppCompatActivity
     private BluetoothReceiver bluetoothReceiver;
     String flag;
     ImageButton back;
-    String c1= getString(R.string.a3);
-    String c2= getString(R.string.qr1);
-    String c3= getString(R.string.bt1);
 
+    String c2,c3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +79,7 @@ public class Activity_QRcode extends AppCompatActivity
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                c2= getString(R.string.qr1);
                 // BroadcastReceiver per ricevere l'intent inviato tramite Bluetooth
                 BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
                     @Override
@@ -187,6 +186,7 @@ public class Activity_QRcode extends AppCompatActivity
                 }
                 else {
                     // Autorizzazioni Bluetooth negate, gestisci di conseguenza (es. mostra un messaggio di avviso)
+                    c3= getString(R.string.bt1);
                     Toast.makeText(getApplicationContext(), c3, Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -226,6 +226,7 @@ public class Activity_QRcode extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
+                String c1= getString(R.string.a3);
                 Log.e("Firebase", c1 + error.getMessage());
             }
         });

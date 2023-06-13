@@ -40,11 +40,7 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
     private String selectedItem;
     private String type = "Esame";
     private String idAppuntamento;
-    String c1= getString(R.string.data_app);
-    String c2= getString(R.string.Ora_start);
-    String c3= getString(R.string.ora_fine);
-    String c4= getString(R.string.Dottore);
-    String c5= getString(R.string.app1);
+
 
 
 
@@ -68,7 +64,11 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
         mDatabase1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                String c1= getString(R.string.data_app);
+                String c2= getString(R.string.Ora_start);
+                String c3= getString(R.string.ora_fine);
+                String c4= getString(R.string.Dottore);
+                String c5= getString(R.string.app1);
                 data = dataSnapshot.child("data").getValue(String.class);
                 orario_inizio = dataSnapshot.child("orario_inizio").getValue(String.class);
                 orario_fine = dataSnapshot.child("orario_fine").getValue(String.class);

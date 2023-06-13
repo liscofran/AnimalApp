@@ -93,7 +93,9 @@ public class Fragment_profilo_offerta extends Fragment
             @Override
             public void onClick(View v) {
                 mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
-                Toast.makeText(getActivity(), "Offerta eliminata con successo!", Toast.LENGTH_SHORT).show();
+                String c10= getString(R.string.ofe);
+
+                Toast.makeText(getActivity(), c10, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), Activity_Home.class);
                 startActivity(intent);
             }

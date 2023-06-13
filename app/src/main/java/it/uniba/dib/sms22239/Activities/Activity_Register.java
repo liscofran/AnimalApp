@@ -38,12 +38,9 @@ public class Activity_Register extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     String selectedItem;
-    String c1= getString(R.string.b1);
-    String c2= getString(R.string.b3);
-    String c3= getString(R.string.bbb);
-    String c4= getString(R.string.aac);
-    String c5= getString(R.string.aacc);
-    String c6= getString(R.string.acd);
+
+
+
 
 
 
@@ -102,7 +99,11 @@ public class Activity_Register extends AppCompatActivity {
         String confirmPassword=inputCConformPassword.getText().toString();
         flag = true;
 
-
+        String c1= getString(R.string.b1);
+        String c2= getString(R.string.b3);
+        String c3= getString(R.string.bbb);
+        String c4= getString(R.string.aac);
+        String c5= getString(R.string.aacc);
         if(!email.matches(emailPattern))
         {
             inputEmail.setError(c1);
@@ -149,6 +150,7 @@ public class Activity_Register extends AppCompatActivity {
 
                         progressDialog.dismiss();
                         sendUserToNextActivity();
+                        String c6= getString(R.string.acd);
                         Toast.makeText(Activity_Register.this, c6, Toast.LENGTH_SHORT).show();
                     }else
                     {

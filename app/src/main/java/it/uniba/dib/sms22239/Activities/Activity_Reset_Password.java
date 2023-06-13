@@ -65,11 +65,12 @@ public class Activity_Reset_Password extends AppCompatActivity
 
         //valida i dati p.es non deve essere vuoto e in formato valido
         if(email.isEmpty())
-        {
-            Toast.makeText(this,"Inserisci Email...", Toast.LENGTH_SHORT).show();
+        {       String c6= getString(R.string.gm2);
+            Toast.makeText(this,c6, Toast.LENGTH_SHORT).show();
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
-            Toast.makeText(this,"Formato della mail non valida",Toast.LENGTH_SHORT).show();
+            String c7= getString(R.string.fme);
+            Toast.makeText(this,c7,Toast.LENGTH_SHORT).show();
         }else
         {
             recoverPassword();
@@ -77,9 +78,10 @@ public class Activity_Reset_Password extends AppCompatActivity
     }
 
     private void recoverPassword()
-    {
+    {               String c3= getString(R.string.inserisci_mail1);
+
         //visualizza Progress
-        progressDialog.setMessage("Invio istruzioni di recupero password a " + email);
+        progressDialog.setMessage(c3 + email);
         progressDialog.show();
 
         //ottieni recupero
@@ -88,8 +90,10 @@ public class Activity_Reset_Password extends AppCompatActivity
             public void onSuccess(Void unused) {
                 //inviati
                 progressDialog.dismiss();
-                Toast.makeText(Activity_Reset_Password.this, "Istruzioni per il reset della password inviati a " + email, Toast.LENGTH_SHORT).show();
-                Toast.makeText(Activity_Reset_Password.this,"Password cambiata con successo a " + email,Toast.LENGTH_LONG).show();
+                String c9= getString(R.string.rpw);
+                String c10= getString(R.string.rpw2);
+                Toast.makeText(Activity_Reset_Password.this, c9 + email, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Reset_Password.this,c10 + email,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Activity_Reset_Password.this, Activity_Main.class);
                 startActivity(intent);
 
@@ -99,7 +103,8 @@ public class Activity_Reset_Password extends AppCompatActivity
             public void onFailure(@NonNull Exception e) {
                 //invio fallito
                 progressDialog.dismiss();
-                Toast.makeText(Activity_Reset_Password.this,"Invio delle istruzioni fallito" + e.getMessage(),Toast.LENGTH_SHORT).show();
+                String c11= getString(R.string.isf);
+                Toast.makeText(Activity_Reset_Password.this,c11 + e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }

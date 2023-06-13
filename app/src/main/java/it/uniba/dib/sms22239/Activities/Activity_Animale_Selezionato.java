@@ -37,12 +37,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
     FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
     String idAnimale;
-    String c1= getString(R.string.selezionaan);
-    String c2= getString(R.string.a4);
-    String c3= getString(R.string.conferma);
-    String c4= getString(R.string.rela);
-    String c5= getString(R.string.a5);
-    String c6= getString(R.string.annulla);
+    String c1,c2,c3,c4,c5,c6;
 
 
     @Override
@@ -173,6 +168,12 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
         RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(filteredList, new RecyclerAdapterAnimale.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                c1= getString(R.string.selezionaan);
+                c2= getString(R.string.a4);
+                c3= getString(R.string.conferma);
+                c4= getString(R.string.rela);
+                c5= getString(R.string.a5);
+                c6= getString(R.string.annulla);
                 Animale animale =  filteredList.get(position);
                 String animalId = animale.Id;
                 String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};

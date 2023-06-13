@@ -46,7 +46,6 @@ public class Activity_Offerte extends AppCompatActivity {
     FirebaseUser mUser;
     ImageButton backbutton;
     String flag;
-    String c1= getString(R.string.a3);
 
 
     @Override
@@ -186,6 +185,8 @@ public class Activity_Offerte extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                String c1= getString(R.string.a3);
+
                 // Gestisci l'evento di annullamento
                 Log.e("Firebase", c1 + error.getMessage());
             }

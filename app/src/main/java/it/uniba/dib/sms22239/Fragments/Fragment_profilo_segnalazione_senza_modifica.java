@@ -156,8 +156,8 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
             @Override
             public void onClick(View view)
             {
-
-                String label = "Posizione della Segnalazione"; // Nome del pin sulla mappa
+                String c1= getString(R.string.se22);
+                String label = c1; // Nome del pin sulla mappa
                 String uriBegin = "geo:" + latitude + "," + longitude;
                 String query = latitude + "," + longitude + "(" + label + ")";
                 String encodedQuery = Uri.encode(query);

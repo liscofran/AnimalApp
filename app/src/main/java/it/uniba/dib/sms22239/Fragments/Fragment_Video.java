@@ -87,7 +87,8 @@ public class Fragment_Video extends Fragment {
             Uri selectedVideoUri = data.getData();
             String Nome_video = Nome_Video.getText().toString();
             uploadVideoToFirebase(selectedVideoUri, Nome_video);
-            Toast.makeText(getActivity(), "Upload completato", Toast.LENGTH_SHORT).show();
+            String c1= getString(R.string.ups);
+            Toast.makeText(getActivity(), c1, Toast.LENGTH_SHORT).show();
 
         }
     }

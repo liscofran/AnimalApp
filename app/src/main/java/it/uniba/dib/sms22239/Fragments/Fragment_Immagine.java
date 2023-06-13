@@ -64,12 +64,14 @@ public class Fragment_Immagine extends Fragment
                     // L'immagine è stata selezionata con successo
                     mImageUri = result;
                     ImageUpload();
-                    Toast.makeText(getActivity(), "Immagine caricata con successo", Toast.LENGTH_LONG).show();
+                    String c1= getString(R.string.icss);
+                    Toast.makeText(getActivity(), c1, Toast.LENGTH_LONG).show();
                 }
                 else
                 {
                     // L'utente ha annullato la selezione dell'immagine
-                    Toast.makeText(getActivity(), "Selezione immagine annullata", Toast.LENGTH_LONG).show();
+                    String c2= getString(R.string.icss2);
+                    Toast.makeText(getActivity(), c2, Toast.LENGTH_LONG).show();
                 }
             }
         });

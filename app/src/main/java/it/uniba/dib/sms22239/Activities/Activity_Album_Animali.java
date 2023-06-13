@@ -34,11 +34,7 @@ public class Activity_Album_Animali extends AppCompatActivity {
     FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
     FirebaseRecyclerAdapterAnimale.OnItemClickListener listener;
-    String c5= getString(R.string.selezionaan);
-    String c4= getString(R.string.a1);
-    String c3= getString(R.string.conferma);
-    String c2= getString(R.string.annulla);
-    String c1= getString(R.string.a2);
+    String c5,c4,c3,c2,c1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +104,7 @@ public class Activity_Album_Animali extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newText) {
@@ -132,6 +129,11 @@ public class Activity_Album_Animali extends AppCompatActivity {
         mainAdapter = new FirebaseRecyclerAdapterAnimale(options, new FirebaseRecyclerAdapterAnimale.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                c5= getString(R.string.selezionaan);
+                c4= getString(R.string.a1);
+                c3= getString(R.string.conferma);
+                c2= getString(R.string.annulla);
+                c1= getString(R.string.a2);
                 Animale animale = mainAdapter.getItem(position);
                 String animalId = animale.Id;
                 new AlertDialog.Builder(Activity_Album_Animali.this)

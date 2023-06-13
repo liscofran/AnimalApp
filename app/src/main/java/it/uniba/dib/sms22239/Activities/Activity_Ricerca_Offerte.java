@@ -240,7 +240,9 @@ public class Activity_Ricerca_Offerte extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                Log.e("Firebase", "Operazione annullata: " + error.getMessage());
+                String c1= getString(R.string.a3);
+
+                Log.e("Firebase", c1 + error.getMessage());
             }
         });
     }

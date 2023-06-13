@@ -128,19 +128,28 @@ public class Fragment_profile_animale extends Fragment {
         getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String c1= getString(R.string.ea1);
+                String c2= getString(R.string.ea2);
+                String c3= getString(R.string.conferma);
+                String c4= getString(R.string.annulla);
+                String c5= getString(R.string.ea3);
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("Elimina animale")
-                        .setMessage("Sei sicuro di voler eliminare l'animale?")
-                        .setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+
+
+                        .setTitle(c1)
+                        .setMessage(c2)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mDatabase.removeValue();
-                                Toast.makeText(getActivity(), "Animale eliminato con successo!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), c5, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(), Activity_Home.class);
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("Annulla", null)
+
+
+                        .setNegativeButton(c4, null)
                         .show();
             }
         });
@@ -169,7 +178,9 @@ public class Fragment_profile_animale extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
-                            relazioneTextView.setText("Relazione: " + relazione + " con " + nomeAnimaleRelazione);
+                            String c6= getString(R.string.rela);
+                            String c7= getString(R.string.con);
+                            relazioneTextView.setText(c6+":"+ relazione + c7 + nomeAnimaleRelazione);
                         }
 
                         @Override
@@ -178,17 +189,23 @@ public class Fragment_profile_animale extends Fragment {
                         }
                     });
                 } else {
-                    relazioneTextView.setText("Nessuna relazione");
+                    String c8= getString(R.string.nr);
+
+                    relazioneTextView.setText(c8);
                 }
 
 
                 //set delle variabili recuperate al layout
+                String c9= getString(R.string.nome1);
+                String c10= getString(R.string.razza);
+                String c11= getString(R.string.sesso);
+                String c13= getString(R.string.luogo);
 
-                mNomeTextView.setText("Nome: " + name);
-                mrazzaTextView.setText("Razza: " + razza);
-                msessoTextView.setText("Sesso: " + sesso);
-                statusTextView.setText("Status: " + status);
-                casaluogoTextView.setText("Luogo: " + luogo);
+                mNomeTextView.setText(c9+":" + name);
+                mrazzaTextView.setText(c10+":"+ razza);
+                msessoTextView.setText(c11+":" + sesso);
+                statusTextView.setText("status:" + status);
+                casaluogoTextView.setText(c13+":" + luogo);
 
             }
 
@@ -205,8 +222,8 @@ public class Fragment_profile_animale extends Fragment {
                 String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
                 String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
                 //set delle variabili recuperate al layout
-
-                nomecognomeprop.setText("Proprietario: " + nome + " " + cognome);
+                String c12= getString(R.string.proprietario);
+                nomecognomeprop.setText(c12+":" + nome + " " + cognome);
             }
 
             @Override
@@ -318,7 +335,8 @@ public class Fragment_profile_animale extends Fragment {
             public void onClick(View view) {
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (bluetoothAdapter == null) {
-                    Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+                    String c14= getString(R.string.bt22);
+                    Toast.makeText(getActivity(), c14, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 checkBluetoothPermissions();
@@ -337,13 +355,16 @@ public class Fragment_profile_animale extends Fragment {
     private void startBluetoothDiscovery() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+            String c14= getString(R.string.bt22);
+            Toast.makeText(getActivity(), c14, Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Verifica se il Bluetooth è abilitato
         if (!bluetoothAdapter.isEnabled()) {
-            Toast.makeText(getActivity(), "Abilita il Bluetooth per iniziare la ricerca", Toast.LENGTH_SHORT).show();
+            String c15= getString(R.string.bt21);
+
+            Toast.makeText(getActivity(), c15, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -373,16 +394,20 @@ public class Fragment_profile_animale extends Fragment {
                 // Bluetooth abilitato, avvia la ricerca dei dispositivi
                 startBluetoothDiscovery();
             } else {
+                String c16= getString(R.string.bt23);
+
                 // Bluetooth non abilitato, mostra un messaggio o gestisci di conseguenza
-                Toast.makeText(getActivity(), "Bluetooth non abilitato", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), c16, Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == REQUEST_DISCOVERABLE) {
             if (resultCode == DISCOVERABLE_DURATION) {
                 // La modalità di scoperta è stata attivata con successo, avvia la ricerca dei dispositivi
                 startDeviceDiscovery();
             } else {
+                String c17= getString(R.string.bt24);
+
                 // Modalità di scoperta non attivata, mostra un messaggio o gestisci di conseguenza
-                Toast.makeText(getActivity(), "Modalità di scoperta non attivata", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -391,13 +416,17 @@ public class Fragment_profile_animale extends Fragment {
     private void startDeviceDiscovery() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            Toast.makeText(getActivity(), "Bluetooth non supportato dal dispositivo in uso", Toast.LENGTH_SHORT).show();
+            String c17= getString(R.string.bt22);
+
+            Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Verifica se il Bluetooth è abilitato
         if (!bluetoothAdapter.isEnabled()) {
-            Toast.makeText(getActivity(), "Abilita il Bluetooth per iniziare la ricerca", Toast.LENGTH_SHORT).show();
+            String c17= getString(R.string.bt21);
+
+            Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -458,7 +487,9 @@ public class Fragment_profile_animale extends Fragment {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_PERMISSION_BLUETOOTH);
         } else {
             // Permission already granted, proceed with Bluetooth usage
-            Toast.makeText(getActivity(), "Bluetooth pronto all'uso", Toast.LENGTH_SHORT).show();
+            String c17= getString(R.string.bt25);
+
+            Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -168,7 +168,8 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(Activity_Registrazione_Animale.this, "Scelta non valida", Toast.LENGTH_SHORT).show();
+                String c1= getString(R.string.b5);
+                Toast.makeText(Activity_Registrazione_Animale.this, c1, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -216,9 +217,9 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                 {
                     uploadFile(ani,tmp);
                 }
-
+                String c2= getString(R.string.an1);
                 ani.writeNewAnimal(tmp, ani, nome, razza, patologie, preferenzecibo, currentUser.getUid(), sesso, data, prop, luogo);
-                Toast.makeText(Activity_Registrazione_Animale.this, "Animale registrato con successo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Registrazione_Animale.this, c2, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Activity_Registrazione_Animale.this, Activity_Home.class);
                 intent.putExtra("ANIMAL_CODE", ani.Id);
                 startActivity(intent);
@@ -298,8 +299,8 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                                     mProgressBar.setProgress(0);
                                 }
                             }, 500);
-
-                            Toast.makeText(Activity_Registrazione_Animale.this, "Upload avvenuto con successo", Toast.LENGTH_LONG).show();
+                            String c3= getString(R.string.ups);
+                            Toast.makeText(Activity_Registrazione_Animale.this, c3, Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -317,8 +318,9 @@ public class Activity_Registrazione_Animale extends AppCompatActivity
                     });
         }
         else
-        {
-            Toast.makeText(this, "Nessun file selezionato", Toast.LENGTH_SHORT).show();
+        {                       String c4= getString(R.string.nf);
+
+            Toast.makeText(this, c4, Toast.LENGTH_SHORT).show();
         }
     }
 }
