@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Fragment_profile_proprietario">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/second_relative_layout"
         android:layout_width="match_parent"
@@ -137,6 +142,17 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <ImageButton
+            android:id="@+id/inv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/delete"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/edit_button" />
+
+        <ImageButton
             android:id="@+id/delete"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -167,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.05" />
+            app:layout_constraintGuide_percent="0.08" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline66"
@@ -181,8 +197,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.30" />
+            app:layout_constraintGuide_percent="0.3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+</ScrollView>
 
 </FrameLayout>
