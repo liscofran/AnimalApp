@@ -60,15 +60,17 @@
         android:drawableLeft="@drawable/ic_baseline_edit_calendar_24"
         android:drawablePadding="10dp"
         android:gravity="center"
-        android:padding="20dp"
         android:hint="@string/appuntamenti"
+        android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/prenotazioni"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineleft"
         app:layout_constraintLeft_toLeftOf="@id/guideline15"
         app:layout_constraintRight_toRightOf="@id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guidelineright"
         app:layout_constraintTop_toBottomOf="@id/guideline66" />
 
 
@@ -125,5 +127,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
