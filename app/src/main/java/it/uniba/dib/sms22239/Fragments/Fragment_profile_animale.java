@@ -59,6 +59,7 @@ import it.uniba.dib.sms22239.Activities.Activity_PrenotazioniAppuntamenti_Utente
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
 import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.Models.Ente;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 
@@ -167,9 +168,18 @@ public class Fragment_profile_animale extends Fragment {
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
                             if(task.isSuccessful()) {
                                 Proprietario prop = task.getResult().getValue(Proprietario.class);
+                                if (prop.classe == "Proprietario")
+                                {
                                 //set delle variabili recuperate al layout
                                 String c12= getString(R.string.proprietario);
                                 nomecognomeprop.setText(c12+":" + prop.nome + " " + prop.cognome);
+                                }
+                                else {
+                                    Ente ent = task.getResult().getValue(Ente.class);
+                                    //set delle variabili recuperate al layout
+                                    String c12= getString(R.string.proprietario);
+                                    nomecognomeprop.setText(c12+":" + ent.ragione_sociale);
+                                }
                             }
                         }
                     });
