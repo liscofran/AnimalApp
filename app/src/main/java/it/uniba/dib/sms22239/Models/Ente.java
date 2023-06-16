@@ -6,6 +6,8 @@ public class Ente extends User
 {
     public String ragione_sociale;
     public String partita_iva;
+    public String tipo;
+    public String sede_legale;
 
     public Ente() {
 

@@ -20,6 +20,7 @@ import it.uniba.dib.sms22239.Activities.Activity_Main;
 public class Preference extends PreferenceActivity
 {
     FirebaseAuth mAuth;
+    String selectedLanguage;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -32,7 +33,6 @@ public class Preference extends PreferenceActivity
     private void Load_setting()
     {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
         android.preference.Preference logout = findPreference("Logout");
         logout.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class Preference extends PreferenceActivity
         });
 
         ListPreference languagePreference = (ListPreference) findPreference("language");
-        String selectedLanguage = sp.getString("language", "it");
+        selectedLanguage = sp.getString("language", "it");
         languagePreference.setEntries(R.array.language_entries);
         languagePreference.setEntryValues(R.array.language_values);
         languagePreference.setDefaultValue("it");
@@ -51,7 +51,7 @@ public class Preference extends PreferenceActivity
         languagePreference.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(android.preference.Preference preference, Object newValue) {
-                String selectedLanguage = (String) newValue;
+                selectedLanguage = (String) newValue;
                 setLocale(selectedLanguage);
                 recreateActivity();
                 return true;

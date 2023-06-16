@@ -5,7 +5,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Proprietario extends User
 {
     public String nome;
+    public String email;
+    public String password;
     public String cognome;
+    public String classe;
+    public String codice_fiscale;
 
     public Proprietario() {
 

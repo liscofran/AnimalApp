@@ -19,7 +19,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +35,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Main;
+import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -92,28 +95,20 @@ public class Fragment_profile_proprietario extends Fragment
             }
         });
 
-        // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child("cognome").getValue(String.class);
-                String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Proprietario prop = task.getResult().getValue(Proprietario.class);
 
-                String nomea= getString(R.string.nome1);
-                String cognomea= getString(R.string.cogn1);
-                String cf= getString(R.string.cf);
-                //set delle variabili recuperate al layout
-                mNomeTextView.setText(nomea +" : "+ name);
-                mCognomeTextView.setText(cognomea +" : " + cognome);
-                mcodfiscaleTextView.setText(cf + " : " + codfiscale);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+                    String nome = getString(R.string.nome1);
+                    String cognome = getString(R.string.cogn1);
+                    String cf = getString(R.string.cf);
 
+                    mNomeTextView.setText(nome +" : "+ prop.nome);
+                    mCognomeTextView.setText(cognome +" : " + prop.cognome);
+                    mcodfiscaleTextView.setText(cf + " : " + prop.codice_fiscale);
+                }
             }
         });
 

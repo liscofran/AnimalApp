@@ -20,7 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +35,8 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Activities.Activity_Main;
+import it.uniba.dib.sms22239.Models.Ente;
+import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -122,35 +126,22 @@ public class Fragment_profile_ente extends Fragment
             }
         });
 
-
-
-        // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                String ragsociale = dataSnapshot.child("ragione_sociale").getValue(String.class);
-                String tipo = dataSnapshot.child("tipo").getValue(String.class);
-                String sedelegale = dataSnapshot.child("sede_legale").getValue(String.class);
-                String piva = dataSnapshot.child("p_iva").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Ente ente = task.getResult().getValue(Ente.class);
 
+                    String c6= getString(R.string.rs);
+                    String c7= getString(R.string.tp);
+                    String c8= getString(R.string.sls);
+                    String c9= getString(R.string.piv);
 
-                //set delle variabili recuperate al layout
-                String c6= getString(R.string.rs);
-                String c7= getString(R.string.tp);
-                String c8= getString(R.string.sls);
-                String c9= getString(R.string.piv);
-
-                mragionesociale.setText(c6 + ragsociale);
-                mtipoTextView.setText(c7 + tipo);
-                msedelegaleTextView.setText(c8 + sedelegale);
-                mpiva.setText(c9 + piva);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
-
+                    mragionesociale.setText(c6 + ente.ragione_sociale);
+                    mtipoTextView.setText(c7 + ente.tipo);
+                    msedelegaleTextView.setText(c8 + ente.sede_legale);
+                    mpiva.setText(c9 + ente.partita_iva);
+                }
             }
         });
 
