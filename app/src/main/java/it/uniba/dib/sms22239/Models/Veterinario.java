@@ -7,6 +7,9 @@ public class Veterinario extends User
     public String nome;
     public String cognome;
     public String partita_iva;
+    public String codice_fiscale;
+    public String email;
+    public String titolo_studio;
 
     public Veterinario() {
 

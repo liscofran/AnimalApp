@@ -34,7 +34,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +58,8 @@ import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_PrenotazioniAppuntamenti_Utente;
 import it.uniba.dib.sms22239.Activities.Activity_QRGenerate;
 import it.uniba.dib.sms22239.Activities.Activity_Spese;
+import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_profile_animale extends Fragment {
@@ -72,7 +76,6 @@ public class Fragment_profile_animale extends Fragment {
     public CircleImageView qrbutton, appre, shareButton;
     protected ImageButton backBtn;
     DatabaseReference mDatabase2;
-
     public Fragment_profile_animale() {
 
     }
@@ -154,46 +157,44 @@ public class Fragment_profile_animale extends Fragment {
             }
         });
 
-        // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String razza = dataSnapshot.child("razza").getValue(String.class);
-                String sesso = dataSnapshot.child("sesso").getValue(String.class);
-                idUtente = dataSnapshot.child("Id_utente").getValue(String.class);
-                String status = dataSnapshot.child("prop").getValue(String.class);
-                String luogo = dataSnapshot.child("luogo").getValue(String.class);
-                relazione = dataSnapshot.child("relazione").getValue(String.class);
-
-                if (!Objects.equals(relazione, "Nessuna")) {
-                    relazioneconidAnimale = dataSnapshot.child("idAnimalerelazione").getValue(String.class);
-
-
-                    mDatabase2 = FirebaseDatabase.getInstance().getReference().child("Animale").child(relazioneconidAnimale);
-
-                    mDatabase2.addValueEventListener(new ValueEventListener() {
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Animale ani = task.getResult().getValue(Animale.class);
+                    mDatabase1.child(ani.Id_utente).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
-                            String c6= getString(R.string.rela);
-                            String c7= getString(R.string.con);
-                            relazioneTextView.setText(c6+":"+ relazione + c7 + nomeAnimaleRelazione);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if(task.isSuccessful()) {
+                                Proprietario prop = task.getResult().getValue(Proprietario.class);
+                                //set delle variabili recuperate al layout
+                                String c12= getString(R.string.proprietario);
+                                nomecognomeprop.setText(c12+":" + prop.nome + " " + prop.cognome);
+                            }
                         }
                     });
+
+                    if (!Objects.equals(relazione, "Nessuna")) {
+                        Animale ani2 = task.getResult().getValue(Animale.class);
+
+                        mDatabase1.child(ani2.Id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if(task.isSuccessful()) {
+
+                            //nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
+                            String c6= getString(R.string.rela);
+                            String c7= getString(R.string.con);
+                            relazioneTextView.setText(c6+":"+ ani.relazione + c7 + ani2.nome);
+                                }
+                            }
+                        });
+
                 } else {
                     String c8= getString(R.string.nr);
 
                     relazioneTextView.setText(c8);
                 }
-
 
                 //set delle variabili recuperate al layout
                 String c9= getString(R.string.nome1);
@@ -201,37 +202,15 @@ public class Fragment_profile_animale extends Fragment {
                 String c11= getString(R.string.sesso);
                 String c13= getString(R.string.luogo);
 
-                mNomeTextView.setText(c9+":" + name);
-                mrazzaTextView.setText(c10+":"+ razza);
-                msessoTextView.setText(c11+":" + sesso);
-                statusTextView.setText("status:" + status);
-                casaluogoTextView.setText(c13+":" + luogo);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                mNomeTextView.setText(c9+":" + ani.nome);
+                mrazzaTextView.setText(c10+":"+ ani.razza);
+                msessoTextView.setText(c11+":" + ani.sesso);
+                statusTextView.setText("status:" + ani.prop);
+                statusTextView.setText("status:" + ani.prop);
+                casaluogoTextView.setText(c13+":" + ani.luogo);
+                }
             }
         });
-
-        // Recupera i dati dal secondo riferimento al database e popola le viste
-        mDatabase1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String nome = dataSnapshot.child(idUtente).child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child(idUtente).child("cognome").getValue(String.class);
-                //set delle variabili recuperate al layout
-                String c12= getString(R.string.proprietario);
-                nomecognomeprop.setText(c12+":" + nome + " " + cognome);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
 
         //Bottoni dell'animale
         appre.setOnClickListener(new View.OnClickListener() {

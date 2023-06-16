@@ -24,7 +24,9 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +41,7 @@ import com.squareup.picasso.Picasso;
 import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.Adapters.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
+import it.uniba.dib.sms22239.Models.Veterinario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -105,30 +108,24 @@ public class Fragment_profile_veterinario extends Fragment
             }
         });
 
-        // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child("cognome").getValue(String.class);
-                String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
-                String email = dataSnapshot.child("email").getValue(String.class);
-                String titoloStudio = dataSnapshot.child("titolo_studio").getValue(String.class);
-                String c6= getString(R.string.nome1);
-                String c7= getString(R.string.cogn1);
-                String c8= getString(R.string.cf);
-                String c9= getString(R.string.ts);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Veterinario vet = task.getResult().getValue(Veterinario.class);
+                    String c6= getString(R.string.nome1);
+                    String c7= getString(R.string.cogn1);
+                    String c8= getString(R.string.cf);
+                    String c9= getString(R.string.ts);
 
-                //set delle variabili recuperate al layout
-                mNomeTextView.setText(c6+":" + name);
-                mCognomeTextView.setText(c7+":" + cognome);
-                mcodfiscaleTextView.setText(c8+":" +codfiscale);
-                memailTextView.setText("Email: " +email);
-                mtitolostudioTextView.setText(c9 +titoloStudio);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    //set delle variabili recuperate al layout
+                    mNomeTextView.setText(c6+":" + vet.nome);
+                    mCognomeTextView.setText(c7+":" + vet.cognome);
+                    mcodfiscaleTextView.setText(c8+":" + vet.codice_fiscale);
+                    memailTextView.setText("Email: " + vet.email);
+                    mtitolostudioTextView.setText(c9 + vet.titolo_studio);
 
+                }
             }
         });
 
