@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,9 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_profile_animale;
 import it.uniba.dib.sms22239.Fragments.Fragment_profilo_animale_senza_modifica;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbar;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbar1;
-import it.uniba.dib.sms22239.Preference;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Animal_Profile extends AppCompatActivity
@@ -135,17 +133,25 @@ public class Activity_Animal_Profile extends AppCompatActivity
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar1());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
                     fragmentTransaction.commit();
                     flag = "veterinario";
                 }
-                else
+                else if(classe.equals("Proprietario"))
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
                     fragmentTransaction.commit();
-                    flag = "altro";
+                    flag = "proprietario";
+                }
+                else if(classe.equals("Ente"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
+                    fragmentTransaction.commit();
+                    flag = "ente";
                 }
             }
             @Override

@@ -1,7 +1,6 @@
 package it.uniba.dib.sms22239.Activities;
 
 import android.Manifest;
-import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,8 +37,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.BluetoothReceiver;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbar;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbar1;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_QRcode extends AppCompatActivity
@@ -208,26 +208,36 @@ public class Activity_QRcode extends AppCompatActivity
 
 
                 // Verifica il valore dell'attributo "classe"
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 if (classe.equals("Veterinario"))
                 {
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar1());
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
                     fragmentTransaction.commit();
                     flag = "veterinario";
                 }
+                else if(classe.equals("Proprietario"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
+                    fragmentTransaction.commit();
+                    flag = "proprietario";
+                }
                 else
                 {
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar());
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
                     fragmentTransaction.commit();
-                    flag = "altro";
+                    flag = "ente";
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                String c1= getString(R.string.a3);
-                Log.e("Firebase", c1 + error.getMessage());
+                String c4= getString(R.string.a3);
+                Log.e("Firebase", c4 + error.getMessage());
             }
         });
     }

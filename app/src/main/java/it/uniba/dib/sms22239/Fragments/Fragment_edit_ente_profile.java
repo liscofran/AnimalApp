@@ -174,16 +174,6 @@ public class Fragment_edit_ente_profile extends Fragment {
             }
         });
 
-        Button backBtn = getView().findViewById(R.id.back);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_ente());
-                fragmentTransaction.commit();
-            }
-        });
 
         // Imposta un listener di clic sul pulsante di salvataggio del profilo
         saveProfileButton.setOnClickListener(new View.OnClickListener()

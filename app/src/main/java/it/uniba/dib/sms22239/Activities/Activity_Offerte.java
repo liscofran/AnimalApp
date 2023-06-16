@@ -23,17 +23,15 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterOfferte;
 import it.uniba.dib.sms22239.Adapters.RecyclerAdapterOfferta;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbar;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbar1;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
 import it.uniba.dib.sms22239.Models.Offerta;
-import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Offerte extends AppCompatActivity {
@@ -170,7 +168,7 @@ public class Activity_Offerte extends AppCompatActivity {
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar1());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
                     fragmentTransaction.commit();
                     flag = "veterinario";
                 }
@@ -178,7 +176,7 @@ public class Activity_Offerte extends AppCompatActivity {
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbar());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
                     fragmentTransaction.commit();
                     flag = "altro";
                 }

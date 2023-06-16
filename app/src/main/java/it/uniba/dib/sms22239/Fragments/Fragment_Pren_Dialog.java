@@ -59,7 +59,6 @@ public class Fragment_Pren_Dialog extends DialogFragment {
             }
         }
 
-
         // Aggiungiamo le prenotazioni alla lista
         ArrayList<String> listItems = new ArrayList<>(prenotazioniList);
 

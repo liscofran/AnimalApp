@@ -1,17 +1,27 @@
 package it.uniba.dib.sms22239.Activities;
 
 import android.content.DialogInterface;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -22,6 +32,9 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
 import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterAnimale;
 import it.uniba.dib.sms22239.Adapters.RecyclerAdapterAnimale;
@@ -30,6 +43,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Album_Animali extends AppCompatActivity {
 
+    String flag;
     RecyclerView recyclerView;
     FirebaseRecyclerAdapterAnimale mainAdapter;
     SearchView searchView;
@@ -41,8 +55,6 @@ public class Activity_Album_Animali extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album_pokemon);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -52,48 +64,7 @@ public class Activity_Album_Animali extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Activity_Album_Animali.this, Activity_Home.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Album_Animali.this, Activity_Profile_Proprietario_Ente.class));
-            }
-        });
-
-        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Album_Animali.this, Activity_Segnalazioni_Offerte.class));
-            }
-        });
-
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Album_Animali.this, Activity_Animali.class));
-            }
-        });
-
-        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Album_Animali.this, Activity_QRcode.class));
-            }
-        });
-
-        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Album_Animali.this, Preference.class));
-            }
-        });
+        autenticazione();
 
         recyclerView = findViewById(R.id.recyclerviewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -202,4 +173,52 @@ public class Activity_Album_Animali extends AppCompatActivity {
             });
             recyclerView.setAdapter(adapter);
         }
+
+    protected void autenticazione()
+    {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+        Query query = myRef.orderByChild("classe");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Recupera il valore dell'attributo "classe"
+                String classe = snapshot.child("classe").getValue(String.class);
+
+
+                // Verifica il valore dell'attributo "classe"
+                if (classe.equals("Veterinario"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
+                    fragmentTransaction.commit();
+                    flag = "veterinario";
+                }
+                else if(classe.equals("Proprietario"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
+                    fragmentTransaction.commit();
+                    flag = "proprietario";
+                }
+                else
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
+                    fragmentTransaction.commit();
+                    flag = "ente";
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Gestisci l'evento di annullamento
+                String c4= getString(R.string.a3);
+                Log.e("Firebase", c4 + error.getMessage());
+            }
+        });
+    }
 }

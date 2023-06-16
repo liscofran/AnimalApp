@@ -153,13 +153,6 @@
             android:name=".Preference"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Chi_Siamo"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Activities.Activity_Profile_Proprietario_Ente"
             android:exported="false"
             android:parentActivityName=".Activities.Activity_Home">

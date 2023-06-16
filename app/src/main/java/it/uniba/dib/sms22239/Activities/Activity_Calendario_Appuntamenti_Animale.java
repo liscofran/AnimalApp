@@ -2,17 +2,23 @@ package it.uniba.dib.sms22239.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -20,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_App_Dialog;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
 import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
@@ -27,6 +36,7 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Calendario_Appuntamenti_Animale extends AppCompatActivity {
 
+    String flag;
     private CalendarView calendarView;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabase1;
@@ -50,48 +60,7 @@ public class Activity_Calendario_Appuntamenti_Animale extends AppCompatActivity 
             }
         });
 
-        findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Activity_Calendario_Appuntamenti_Animale.this, Activity_Home.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Appuntamenti_Animale.this, Activity_Profile_Proprietario_Ente.class));
-            }
-        });
-
-        findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Appuntamenti_Animale.this, Activity_Segnalazioni_Offerte.class));
-            }
-        });
-
-        findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Appuntamenti_Animale.this, Activity_Animali.class));
-            }
-        });
-
-        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Appuntamenti_Animale.this, Activity_QRcode.class));
-            }
-        });
-
-        findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Activity_Calendario_Appuntamenti_Animale.this, Preference.class));
-            }
-        });
+        autenticazione();
 
         calendarView = findViewById(R.id.simpleCalendarView);
 
@@ -159,6 +128,55 @@ public class Activity_Calendario_Appuntamenti_Animale extends AppCompatActivity 
                 // Crea la finestra di dialogo degli appuntamenti
                 Fragment_App_Dialog dialog = new Fragment_App_Dialog(appuntamenti,  data, idAnimale);
                 dialog.show(getSupportFragmentManager(), "appuntamento_dialog");
+            }
+        });
+    }
+
+    protected void autenticazione()
+    {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+        Query query = myRef.orderByChild("classe");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Recupera il valore dell'attributo "classe"
+                String classe = snapshot.child("classe").getValue(String.class);
+
+
+                // Verifica il valore dell'attributo "classe"
+                if (classe.equals("Veterinario"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
+                    fragmentTransaction.commit();
+                    flag = "veterinario";
+                }
+                else if(classe.equals("Proprietario"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
+                    fragmentTransaction.commit();
+                    flag = "proprietario";
+                }
+                else if(classe.equals("Ente"))
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
+                    fragmentTransaction.commit();
+                    flag = "ente";
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Gestisci l'evento di annullamento
+                String c1= getString(R.string.a3);
+
+                Log.e("Firebase", c1 + error.getMessage());
             }
         });
     }
