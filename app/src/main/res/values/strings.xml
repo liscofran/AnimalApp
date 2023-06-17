@@ -136,7 +136,7 @@
 
     <string name="Date">Data (GG-MM-AAAA)</string>
     //activity crea offerta e crea segnalazione
-    <string name="crea_offerta">crea offerta</string>
+    <string name="crea_offerta">Crea offerta</string>
     <string name="ins_prov">Inserisci provincia..</string>
     <string name="ins_ogg">Inserisci oggetto..</string>
     <string name="ins_desc">Inserisci descrizione..</string>
@@ -162,7 +162,7 @@
     <string name="prenotazioni">Prenotazioni</string>
     <string name="calendario_prenotazione">Calendario Prenotazione</string>
     //activity proprietà
-    <string name="save">salva</string>
+    <string name="save">Salva</string>
     //activity qrcode
     <string name="qrcode">Scansione QR Code:</string>
     <string name="else_">Oppure:</string>
@@ -201,8 +201,8 @@
     <string name="animale">Animale</string>
     <string name="Diagnosi">Diagnosi</string>
 
-        <string name ="utente">utente</string>
-        <string name= "prov">provincia</string>
+        <string name ="utente">Utente</string>
+        <string name= "prov">Provincia</string>
         <string name="modifica_foto">Modifica foto</string>
         <string name="oggetto">Oggetto</string>
         <string name="descrizione">descrizione</string>
@@ -212,11 +212,11 @@
     <string name="ins_p">Inserisci la partita iva</string>
     <string name="ins_n">Inserisci Nome...</string>
     <string name="ins_c">Inserisci Cognome...</string>
-    <string name="cogn1">cognome </string>
+    <string name="cogn1">Cognome </string>
     <string name="ins_cf">Inserisci Codice Fiscale...</string>
     <string name="ins_ts">Inserisci il titolo di studio</string>
     <string name="ituoiani">I tuoi animali </string>
-    <string name="album">album</string>
+    <string name="album">Album</string>
     <string name="scannerizza">Scannerizza ora</string>
     <string name="Annunci">Annunci</string>
     <string name="statoes">Stato Esame</string>
@@ -237,29 +237,29 @@
     <string name="cf">Codice Fiscale</string>
     <string name="emdc">Email da compilare</string>
     <string name="tdc">Titolo di studio da compilare</string>
-    <string name="nessuna">nessuna</string>
+    <string name="nessuna">Nessuna</string>
     <string name="Salute">Salute</string>
     <string name="ins_nt">Inserire il nome del testo</string>
     <string name="ins_nv">Inserire il nome del video</string>
     <string name="segnalazione">Segnalazione</string>
     <string name="data1">Data</string>
-    <string name="offerta">offerta</string>
+    <string name="offerta">Offerta</string>
     <string name="cerca">Cerca</string>
     <string name="condividi">Condividi</string>
     <string name="impostazioni">Impostazioni</string>
     <string name="lingua">Lingua</string>
     <string name="elimina_profile"> Elimina Profilo</string>
     <string name="sss">Sei sicuro di voler eliminare il profilo?</string>
-    <string name="conferma">conferma</string>
+    <string name="conferma">Conferma</string>
     <string name="aa">Utente eliminato con successo!</string>
-    <string name="annulla">annulla</string>
+    <string name="annulla">Annulla</string>
     <string name="selezionaan">Selezione Animale</string>
     <string name="a1">Sei sicuro di voler selezionare questo animale?</string>
     <string name="a2">Animale selezionato con successo!</string>
     <string name="a3">Operazione annullata: </string>
     <string name="a4">Che tipo di relazione hanno questi 2 animali?</string>
-    <string name="a5">aggiornata con successo!</string>
-    <string name="app1">Id appuntamento non valido</string>
+    <string name="a5">Aggiornata con successo!</string>
+    <string name="app1">ID appuntamento non valido</string>
     <string name="aaaa">Oggetto salvato con successo</string>
     <string name="a23">Login eseguito per: </string>
     <string name="b1">Inserisci un email corretta:</string>
@@ -271,7 +271,7 @@
     <string name="c2">Modifica avvenuta con successo</string>
     <string name="qr1">QRcode scansionato con successo</string>
     <string name="bt1">Autorizzazioni Bluetooth negate</string>
-    <string name="bbb">le password non coincidono </string>
+    <string name="bbb">Le password non coincidono </string>
     <string name="aac">Attendi durante la registrazione...</string>
     <string name="aacc">Registrazione</string>
     <string name="acd">Completa il tuo profilo !</string>
@@ -286,10 +286,10 @@
     <string name="fme">Formato della mail non valida</string>
     <string name="rpw">Istruzioni per il reset della password inviati a </string>
     <string name="rpw2">Password cambiata con successo a </string>
-    <string name="isf">invio delle istruzioni fallito </string>
+    <string name="isf">Invio delle istruzioni fallito </string>
     <string name="apd1">Error: appointment not found</string>
     <string name="apd">Appuntamento del </string>
-    <string name="ce">conferma eliminazione</string>
+    <string name="ce">Conferma eliminazione</string>
     <string name="ce1">Sei sicuro di voler eliminare questo appuntamento?</string>
     <string name="si">Si</string>
     <string name="ce2">Appuntamento eliminato con successo</string>
@@ -301,29 +301,29 @@
     <string name="ea1">Elimina animale</string>
     <string name="ea2">Sei sicuro di voler eliminare l animale?</string>
     <string name="ea3">Animale eliminato con successo!</string>
-    <string name="con">con</string>
+    <string name="con">Con</string>
     <string name="nr">Nessuna Relazione</string>
     <string name="bt21">Abilita il Bluetooth per iniziare la ricerca</string>
     <string name="bt22">Bluetooth non supportato dal dispositivo in uso</string>
     <string name="bt23">Bluetooth non abilitato</string>
     <string name="bt24">Modalità di scoperta non attivata</string>
     <string name="bt25">Bluetooth pronto all uso</string>
-    <string name="ee">ente eliminato con successo</string>
+    <string name="ee">Ente eliminato con successo</string>
     <string name="rs">Ragione sociale :</string>
     <string name="tp">Tipo:</string>
     <string name="sls">Sede Legale:</string>
     <string name="piv">Partita Iva:</string>
     <string name="ts">Titolo di studio :</string>
-    <string name="ve">veterinario eliminato con successo</string>
-    <string name="ofe">offerta eliminata con successo</string>
+    <string name="ve">Veterinario eliminato con successo</string>
+    <string name="ofe">Offerta eliminata con successo</string>
     <string name="se23">Segnalazione eliminata con successo</string>
     <string name="se22">Posizione della segnalazione:</string>
-    <string name="fcs">file caricato con successo</string>
-    <string name="cin">caricamento non riuscito</string>
+    <string name="fcs">File caricato con successo</string>
+    <string name="cin">Caricamento non riuscito</string>
     <string name="ei">Elimina immagine</string>
     <string name="ei2">Sei sicuro di voler eliminare l immagine ?</string>
-    <string name="ei3">immagine eliminata con successo</string>
-    <string name="dwn">download effettuato con successo</string>
+    <string name="ei3">Immagine eliminata con successo</string>
+    <string name="dwn">Download effettuato con successo</string>
     <string name="enr">Eliminazione non riuscita</string>
     <string name="ent">Elimina Testo</string>
     <string name="ent2">Sei sicuro di voler eliminare il testo</string>
@@ -335,5 +335,6 @@
     <string name="ev1">Sei sicuro di voler eliminare il video ?</string>
     <string name="ev2">Video Eliminato con successo</string>
     <string name="ev3">Errore durante eliminazione del video</string>
+
 </resources>
 

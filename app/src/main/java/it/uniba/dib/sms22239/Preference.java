@@ -96,7 +96,7 @@ public class Preference extends PreferenceActivity
     private void irMain() {
         Intent intent = new Intent(Preference.this, Activity_Main.class);
         startActivity(intent);
-        Toast.makeText(Preference.this, "Logout effettuato con successo", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Preference.this, "Logout", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

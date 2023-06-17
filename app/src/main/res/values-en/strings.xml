@@ -122,7 +122,7 @@
     <string name ="data_app">Appointment date</string>
     <string name ="ora_fine">End time</string>
     <string name ="Dottore">Doctor </string>
-    <string name ="prenotati">book</string>
+    <string name ="prenotati">Book</string>
     <string name="orientamento">Screen Orientation</string>
     <string name="lingua1">Language</string>
     <string name="sel22">Select Language</string>
@@ -130,9 +130,9 @@
     //activitiy calendario app animali
     <string name ="calendario1">Calendar</string>
     //activity chi siamo
-    <string name="chi_siamo">about us</string>
+    <string name="chi_siamo">About us</string>
     //activity crea oggetto spesa
-    <string name="aggiungi_ogg">add object</string>
+    <string name="aggiungi_ogg">Add object</string>
     <string name="nome1">Name</string>
     <string name="prezzo">Price</string>
     <string name="quantity">Quantity</string>
@@ -146,42 +146,42 @@
     <string name="proprietario">Owner</string>
     <string name="ente">Entity</string>
     <string name="veterinario">Veterinarian</string>
-    <string name="crea_segnalazione">create report</string>
+    <string name="crea_segnalazione">Create report</string>
     //activity main
-    <string name="password_forgot">forgot password?</string>
-    <string name="registrati">sign in</string>
+    <string name="password_forgot">Forgot password?</string>
+    <string name="registrati">Sign in</string>
     //activity multimedia
     <string name="entra_ospite">Or enter as guest:</string>
     <string name="seleziona_file">select type of file:</string>
     //activity nuovo appuntamento
-    <string name="seleziona2">select date</string>
+    <string name="seleziona2">Select date</string>
     <string name="ora_inizio2">Start time</string>
     //activity prenotazione veterinario
-    <string name="prenotazione">reservation</string>
+    <string name="prenotazione">Reservation</string>
     //activity prenotazione appuntamenti utente
     <string name="calendari_disponibili">Calendars available</string>
-    <string name="appuntamenti">appointments</string>
-    <string name="prenotazioni">reservations</string>
+    <string name="appuntamenti">Appointments</string>
+    <string name="prenotazioni">Reservations</string>
     <string name="calendario_prenotazione">Booking Calendar</string>
     //activity proprietà
-    <string name="save">save</string>
+    <string name="save">Save</string>
     //activity qrcode
     <string name="qrcode">Scan QR Code:</string>
-    <string name="else_">else:</string>
+    <string name="else_">Else:</string>
     //activity qrgenerate
     <string name="qrgene">QR Code generated</string>
     //activity register
     <string name="conf_pass">Confirm Password</string>
     <string name="hai_acc">Do you already have an account?</string>
     //activity_registrazione_animale
-    <string name="Reg_an">animal registration</string>
+    <string name="Reg_an">Animal registration</string>
     <string name="razza">Breed</string>
     <string name="patologie">Pathologies</string>
-    <string name="Preferenze_cibo">food preferences</string>
+    <string name="Preferenze_cibo">Food preferences</string>
     <string name="luogo">Place</string>
-    <string name="sesso">gender</string>
-    <string name="maschio">male</string>
-    <string name="femmina">female</string>
+    <string name="sesso">Gender</string>
+    <string name="maschio">Male</string>
+    <string name="femmina">Female</string>
     //activity reset
     <string name="rec_pass">Recovery Password</string>
     <string name="inserisci_mail1">
@@ -205,23 +205,23 @@ Enter the email address to send the password recovery instructions</string>
     <string name="Diagnosi">Diagnosis</string>
 
     <string name ="utente">User</string>
-    <string name= "prov">province</string>
+    <string name= "prov">Province</string>
     <string name="modifica_foto">Modify photo</string>
     <string name="oggetto">Object</string>
-    <string name="descrizione">description</string>
+    <string name="descrizione">Description</string>
     <string name="Modifica">Modify</string>
     <string name="ins_r">Enter the company name.. </string>
     <string name="ins_ss">Enter the registered office</string>
     <string name="ins_p">Enter the VAT number</string>
     <string name="ins_n">Insert Name..</string>
     <string name="ins_c">Insert Surname</string>
-    <string name="cogn1">surname </string>
+    <string name="cogn1">Surname </string>
     <string name="cf">Tax ID code </string>
 
     <string name="ins_cf">Enter Tax Code…</string>
     <string name="ins_ts">Enter your degree</string>
     <string name="ituoiani">Your Animals </string>
-    <string name="album">album</string>
+    <string name="album">Album</string>
     <string name="scannerizza">Scan now</string>
     <string name="Annunci">Ads</string>
     <string name="statoes">Exam status</string>
@@ -241,28 +241,28 @@ Enter the email address to send the password recovery instructions</string>
     <string name="cfdc">Tax code to fill in</string>
     <string name="emdc">Email to fill out</string>
     <string name="tdc">Degree to fill in</string>
-    <string name="nessuna">none</string>
+    <string name="nessuna">None</string>
     <string name="Salute">Health</string>
     <string name="ins_nt">Enter the name of the text</string>
     <string name="ins_nv">Enter the name of the video</string>
     <string name="segnalazione">Report</string>
     <string name="data1">Date</string>
-    <string name="offerta">offer</string>
+    <string name="offerta">Offer</string>
     <string name="cerca">Search</string>
     <string name="condividi">Share</string>
     <string name="impostazioni">Settings</string>
     <string name="lingua">language</string>
     <string name="elimina_profile"> Delete Profile</string>
     <string name="sss">Are you sure you want to delete the profile?</string>
-    <string name="conferma">confirm</string>
+    <string name="conferma">Confirm</string>
     <string name="aa">User successfully deleted!</string>
-    <string name="annulla">cancel</string>
+    <string name="annulla">Cancel</string>
     <string name="selezionaan">Select Animal</string>
     <string name="a1">Are you sure you want to select this animal?</string>
     <string name="a2">Animal selected successfully!</string>
     <string name="a3">Operation cancelled: </string>
     <string name="a4">What kind of relationship do these 2 animals have?</string>
-    <string name="a5">updated successfully!</string>
+    <string name="a5">Updated successfully!</string>
     <string name="app1">Invalid appointment id</string>
     <string name="aaaa">Object successfully saved</string>
     <string name="a23">Logged in for: </string>
@@ -270,12 +270,12 @@ Enter the email address to send the password recovery instructions</string>
     <string name="b2">login successful </string>
     <string name="b3">Enter an appropriate password:</string>
     <string name="b4">Please wait while logging in...</string>
-    <string name="b5">invalid choice </string>
+    <string name="b5">Invalid choice </string>
     <string name="b6">Appointment registered successfully! </string>
     <string name="c2">Modification successful</string>
     <string name="qr1">QRcode successfully scanned</string>
     <string name="bt1">Bluetooth permissions denied</string>
-    <string name="bbb">passwords do not match </string>
+    <string name="bbb">Passwords do not match </string>
     <string name="aac">Please wait while registering...</string>
     <string name="aacc">Registration</string>
     <string name="acd">Complete your profile!</string>
@@ -283,17 +283,17 @@ Enter the email address to send the password recovery instructions</string>
     <string name="ups">Upload successful</string>
     <string name="nf">No file selected</string>
     <string name="ofs">Offer successfully registered</string>
-    <string name="gm1">your current location will be used, check Google Maps</string>
+    <string name="gm1">Your current location will be used, check Google Maps</string>
     <string name="gm2">Successfully reported</string>
     <string name="gm3">Location unavailable</string>
     <string name="aa2">Enter Email..</string>
     <string name="fme">Invalid email format</string>
     <string name="rpw">Password reset instructions sent to </string>
     <string name="rpw2">Password successfully changed to </string>
-    <string name="isf">sending instructions failed </string>
-    <string name="apd1">Errore: appuntamento non trovato</string>
+    <string name="isf">Sending instructions failed </string>
+    <string name="apd1">Error: appointment not found</string>
     <string name="apd">Appointment of </string>
-    <string name="ce">confirm deletion</string>
+    <string name="ce">Confirm deletion</string>
     <string name="ce1">Are you sure you want to delete this appointment?</string>
     <string name="si">Yes</string>
     <string name="ce2">Appointment successfully deleted</string>
@@ -305,29 +305,29 @@ Enter the email address to send the password recovery instructions</string>
     <string name="ea1">Delete pet</string>
     <string name="ea2">Are you sure you want to delete the pet?</string>
     <string name="ea3">Pet deleted successfully!</string>
-    <string name="con">with</string>
+    <string name="con">With</string>
     <string name="nr">No Relationship</string>
     <string name="bt21">Enable Bluetooth to start searching</string>
     <string name="bt22">Bluetooth not supported by your device</string>
     <string name="bt23">Bluetooth not enabled</string>
     <string name="bt24">Discovery mode not activated</string>
     <string name="bt25">Bluetooth ready to use</string>
-    <string name="ee">entity deleted successfully</string>
+    <string name="ee">Entity deleted successfully</string>
     <string name="rs">Company name :</string>
     <string name="tp">Type:</string>
     <string name="sls">Registered office:</string>
     <string name="piv">VAT number:</string>
     <string name="ts">Academic qualification :</string>
-    <string name="ve">vet successfully deleted</string>
-    <string name="ofe">offer successfully deleted</string>
+    <string name="ve">Vet successfully deleted</string>
+    <string name="ofe">Offer successfully deleted</string>
     <string name="se23">Report successfully deleted</string>
     <string name="se22">Location of message:</string>
-    <string name="fcs">file uploaded successfully</string>
-    <string name="cin">upload failed</string>
+    <string name="fcs">File uploaded successfully</string>
+    <string name="cin">Upload failed</string>
     <string name="ei">Delete image</string>
     <string name="ei2">Are you sure you want to delete the image?</string>
-    <string name="ei3">image successfully deleted</string>
-    <string name="dwn">download successful</string>
+    <string name="ei3">Image successfully deleted</string>
+    <string name="dwn">Download successful</string>
     <string name="enr">Delete failed</string>
     <string name="ent">Delete Text</string>
     <string name="ent2">Are you sure you want to delete the text</string>
@@ -339,4 +339,5 @@ Enter the email address to send the password recovery instructions</string>
     <string name="ev1">Are you sure you want to delete the video?</string>
     <string name="ev2">Video successfully deleted</string>
     <string name="ev3">Error deleting video</string>
+
 </resources>

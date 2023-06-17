@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="IMPOSTAZIONI">
+    <PreferenceCategory android:title="@string/impostazioni">
     </PreferenceCategory>
 
 
@@ -16,7 +16,6 @@
             android:entries="@array/language_entries"
             android:entryValues="@array/language_values"
             android:dialogTitle="@string/sel22"
-            android:defaultValue="it"
             android:icon="@drawable/ic_lingua" />
     </PreferenceCategory>
 
