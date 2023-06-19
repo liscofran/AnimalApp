@@ -73,6 +73,7 @@ public class Fragment_profile_animale extends Fragment {
     private String idUtente, idAnimal, relazione;
     private BluetoothDevice selectedBluetoothDevice;
     String relazioneconidAnimale, nomeAnimaleRelazione;
+    private String idRelazione;
     private ImageView profilo;
     public CircleImageView qrbutton, appre, shareButton;
     protected ImageButton backBtn;
@@ -163,6 +164,29 @@ public class Fragment_profile_animale extends Fragment {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(task.isSuccessful()) {
                     Animale ani = task.getResult().getValue(Animale.class);
+                    idRelazione = ani.idAnimaleRelazione;
+                    DatabaseReference mDatabase3 = FirebaseDatabase.getInstance().getReference().child("Animale").child(idRelazione);
+
+                    if (!Objects.equals(ani.relazione, "Nessuna")) {
+
+                        mDatabase3.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    Animale ani2 = task.getResult().getValue(Animale.class);
+                                    //nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
+                                    String c6= getString(R.string.rela);
+                                    String c7= getString(R.string.con);
+                                    relazioneTextView.setText(c6+":"+ ani.relazione + " " + c7 + " " + ani2.nome);
+                                }
+                            }
+                        });
+
+                    } else {
+                        String c8= getString(R.string.nr);
+
+                        relazioneTextView.setText(c8);
+                    }
                     mDatabase1.child(ani.Id_utente).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -183,28 +207,6 @@ public class Fragment_profile_animale extends Fragment {
                             }
                         }
                     });
-
-                    if (!Objects.equals(relazione, "Nessuna")) {
-                        Animale ani2 = task.getResult().getValue(Animale.class);
-
-                        mDatabase1.child(ani2.Id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                if(task.isSuccessful()) {
-
-                            //nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
-                            String c6= getString(R.string.rela);
-                            String c7= getString(R.string.con);
-                            relazioneTextView.setText(c6+":"+ ani.relazione + " " + c7 + " " + ani2.nome);
-                                }
-                            }
-                        });
-
-                } else {
-                    String c8= getString(R.string.nr);
-
-                    relazioneTextView.setText(c8);
-                }
 
                 //set delle variabili recuperate al layout
                 String c9= getString(R.string.nome1);

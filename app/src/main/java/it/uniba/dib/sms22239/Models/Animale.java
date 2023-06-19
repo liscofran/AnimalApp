@@ -19,7 +19,6 @@ public class Animale
     public String descprop;
     public String luogo;
     public String relazione;
-
     public String idAnimaleRelazione;
 
     public Animale()
