@@ -168,7 +168,7 @@ public class Fragment_profile_animale extends Fragment {
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
                             if(task.isSuccessful()) {
                                 Proprietario prop = task.getResult().getValue(Proprietario.class);
-                                if (prop.classe == "Proprietario")
+                                if (prop.classe.equals("Proprietario"))
                                 {
                                 //set delle variabili recuperate al layout
                                 String c12= getString(R.string.proprietario);
@@ -195,7 +195,7 @@ public class Fragment_profile_animale extends Fragment {
                             //nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
                             String c6= getString(R.string.rela);
                             String c7= getString(R.string.con);
-                            relazioneTextView.setText(c6+":"+ ani.relazione + c7 + ani2.nome);
+                            relazioneTextView.setText(c6+":"+ ani.relazione + " " + c7 + " " + ani2.nome);
                                 }
                             }
                         });
