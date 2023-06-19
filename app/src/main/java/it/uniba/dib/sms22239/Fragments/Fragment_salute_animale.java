@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
+import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.R;
 
@@ -34,6 +36,7 @@ public class Fragment_salute_animale extends Fragment
     private EditText mPrefciboEditText;
     private ImageButton saveProfileButton, backBtn;
     private String idAnimal;
+    Bundle bundle = new Bundle();
 
     public Fragment_salute_animale()
     {
@@ -73,6 +76,8 @@ public class Fragment_salute_animale extends Fragment
             }
         });
 
+
+
         mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -84,6 +89,9 @@ public class Fragment_salute_animale extends Fragment
 
                 mPatologieEditText.setText(ani.patologie);
                 mPrefciboEditText.setText(ani.preferenzecibo);
+
+
+                    bundle.putString("ANIMAL_CODE",ani.Id);
                 }
             }
         });
@@ -103,10 +111,12 @@ public class Fragment_salute_animale extends Fragment
                 mDatabase.child("patologie").setValue(newPatologie);
                 mDatabase.child("preferenzecibo").setValue(newPrefcibo);
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
-                fragmentTransaction.commit();
+
+                Intent intent = new Intent(getActivity(), Activity_Home.class);
+                String c5= getString(R.string.c2);
+
+                Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
+                startActivity(intent);
             }
         });
     }

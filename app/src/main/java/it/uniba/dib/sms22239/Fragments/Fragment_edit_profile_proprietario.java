@@ -182,7 +182,6 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 mDatabase.child("codice_fiscale").setValue(newCodfiscale);
 
 
-
                 updateFile(user);
 
                 Intent intent = new Intent(getActivity(), Activity_Home.class);
