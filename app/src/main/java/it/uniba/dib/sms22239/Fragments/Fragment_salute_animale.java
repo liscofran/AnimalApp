@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
+import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_salute_animale extends Fragment
@@ -70,23 +73,18 @@ public class Fragment_salute_animale extends Fragment
             }
         });
 
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //recupero dati e assegnazione alle variabili
-                String patologie = dataSnapshot.child("patologie").getValue(String.class);
-                String prefcibo = dataSnapshot.child("preferenzecibo").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Animale ani = task.getResult().getValue(Animale.class);
 
-                //set delle variabili recuperate al layout
-                mPatologieEditText.setText(patologie);
-                mPrefciboEditText.setText(prefcibo);
-            }
+                    String patologie = getString(R.string.patologie);
+                    String preferenzecibo = getString(R.string.Preferenze_cibo);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                mPatologieEditText.setText(ani.patologie);
+                mPrefciboEditText.setText(ani.preferenzecibo);
+                }
             }
         });
 
