@@ -36,6 +36,7 @@ import it.uniba.dib.sms22239.R;
 public class Activity_Multimedia extends AppCompatActivity
 {
     private String selectedItem,flag;
+    private String c1,c2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class Activity_Multimedia extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
+        c1 = getString(R.string.immagine);
+        c2 = getString(R.string.testo);
+
         //Spinner Tipo di Media
         Spinner spinner = findViewById(R.id.spinner1);
         spinner.setPrompt("");
@@ -60,29 +64,30 @@ public class Activity_Multimedia extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedItem = (String) parent.getItemAtPosition(position);
-                switch(selectedItem)
+                if(selectedItem.equals(c1))
                 {
-                    case "Immagine":
-                        Fragment_Immagine immagineFragment = new Fragment_Immagine();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frame, immagineFragment)
-                                .commit();
-                        break;
-                    case "Testo":
-                        Fragment_Testo testoFragment = new Fragment_Testo();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frame, testoFragment)
-                                .commit();
-                        break;
-                    case "Video":
-                        Fragment_Video videoFragment = new Fragment_Video();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frame, videoFragment)
-                                .commit();
-                        break;
-                    default:
-                        onNothingSelected(parent);
-                        break;
+                    Fragment_Immagine immagineFragment = new Fragment_Immagine();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame, immagineFragment)
+                            .commit();
+                }
+                else if(selectedItem.equals(c2))
+                {
+                    Fragment_Testo testoFragment = new Fragment_Testo();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame, testoFragment)
+                            .commit();
+                }
+                else if(selectedItem.equals("Video"))
+                {
+                    Fragment_Video videoFragment = new Fragment_Video();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame, videoFragment)
+                            .commit();
+                }
+                else
+                {
+                    onNothingSelected(parent);
                 }
             }
             @Override

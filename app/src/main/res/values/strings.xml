@@ -227,6 +227,9 @@
     <string name="album_animali">Album animali</string>
     <string name="Crea_animale">Crea animali</string>
     <string name="Cerca_animale">Cerca animali</string>
+    //activity_multimedia
+    <string name="immagine">Immagine</string>
+    <string name="testo">Testo</string>
     //activity appuntamenti utente-veterinario
     <string name ="Calendario_Appuntamenti">Calendario Appuntamenti</string>
     <string name ="Ora_start">Ora di inizio</string>

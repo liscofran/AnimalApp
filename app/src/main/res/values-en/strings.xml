@@ -114,8 +114,11 @@
     <string name="Animali">Animals</string>
     <string name="Miei_animali">My animals</string>
     <string name="album_animali">Animals Album</string>
-    <string name="Crea_animale">Create Animal</string>
-    <string name="Cerca_animale">Search Animal</string>
+    <string name="Crea_animale">Create Animals</string>
+    <string name="Cerca_animale">Search Animals</string>
+    //activity_multimedia
+    <string name="immagine">Image</string>
+    <string name="testo">Text</string>
     //activity appuntamenti utente-veterinario
     <string name ="Calendario_Appuntamenti">Appointments Calendar</string>
     <string name ="Ora_start">Start time</string>
@@ -193,11 +196,11 @@ Enter the email address to send the password recovery instructions</string>
     //activity segnalazione offerte
     <string name="segnalazioni">Reports</string>
     <string name="mie_segn">My Reports</string>
-    <string name="r_s">Search Report</string>
-    <string name="offerte">Offer</string>
+    <string name="r_s">Search Reports</string>
+    <string name="offerte">Offers</string>
     <string name="crea_off">Create Offer</string>
     <string name="mie_off">My offers</string>
-    <string name="ric_off">Search offer</string>
+    <string name="ric_off">Search offers</string>
     <string name="crea_se">Create Report</string>
     <string name="appuntamento">Appointment</string>
     <string name="data_pre">Appointment date</string>
@@ -223,7 +226,7 @@ Enter the email address to send the password recovery instructions</string>
     <string name="ituoiani">Your Animals </string>
     <string name="album">Album</string>
     <string name="scannerizza">Scan now</string>
-    <string name="Annunci">Ads</string>
+    <string name="Annunci">Announcements</string>
     <string name="statoes">Exam status</string>
     <string name="tipoes">Exam type</string>
     <string name="insnomeim">Enter Image name</string>
