@@ -79,16 +79,14 @@ public class Fragment_diagnosi_animale extends Fragment {
                     String data = dataSnapshot.child("Data").getValue(String.class);
                     String orarioInizio = dataSnapshot.child("orario_inizio").getValue(String.class);
                     String orarioFine = dataSnapshot.child("orario_fine").getValue(String.class);
-                    id_veterinario = dataSnapshot.child("id_veterinario").getValue(String.class);                    idAnimale = dataSnapshot.child("id_animale").getValue(String.class);
+                    id_veterinario = dataSnapshot.child("id_veterinario").getValue(String.class);
+                    idAnimale = dataSnapshot.child("id_animale").getValue(String.class);
                     String diagnosi = dataSnapshot.child("Diagnosi").getValue(String.class);
 
                     dataEditText.setText(data);
                     orarioInizioEditText.setText(orarioInizio);
                     orarioFineEditText.setText(orarioFine);
                     diagnosiEditText.setText(diagnosi);
-
-
-
 
                 }
             }
@@ -141,7 +139,7 @@ public class Fragment_diagnosi_animale extends Fragment {
                                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                                 String c7= getString(R.string.Dottore);
 
-                                veterinarioEditText.setText(c7 + cognome);
+                                veterinarioEditText.setText(c7 + ": " + cognome);
 
 
                             }

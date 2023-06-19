@@ -138,10 +138,10 @@ public class Fragment_profile_ente extends Fragment
                     String c8= getString(R.string.sls);
                     String c9= getString(R.string.piv);
 
-                    mragionesociale.setText(c6 + ente.ragione_sociale);
-                    mtipoTextView.setText(c7 + ente.tipo);
-                    msedelegaleTextView.setText(c8 + ente.sede_legale);
-                    mpiva.setText(c9 + ente.p_iva);
+                    mragionesociale.setText(c6 + ": " + ente.ragione_sociale);
+                    mtipoTextView.setText(c7 + ": " + ente.tipo);
+                    msedelegaleTextView.setText(c8 + ": " + ente.sede_legale);
+                    mpiva.setText(c9 + ": " + ente.p_iva);
                 }
             }
         });

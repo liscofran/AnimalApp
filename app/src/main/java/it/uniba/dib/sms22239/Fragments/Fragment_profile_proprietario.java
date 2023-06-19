@@ -105,9 +105,9 @@ public class Fragment_profile_proprietario extends Fragment
                     String cognome = getString(R.string.cogn1);
                     String cf = getString(R.string.cf);
 
-                    mNomeTextView.setText(nome +" : "+ prop.nome);
-                    mCognomeTextView.setText(cognome +" : " + prop.cognome);
-                    mcodfiscaleTextView.setText(cf + " : " + prop.codice_fiscale);
+                    mNomeTextView.setText(nome + ": " + prop.nome);
+                    mCognomeTextView.setText(cognome + ": " + prop.cognome);
+                    mcodfiscaleTextView.setText(cf + ": " + prop.codice_fiscale);
                 }
             }
         });

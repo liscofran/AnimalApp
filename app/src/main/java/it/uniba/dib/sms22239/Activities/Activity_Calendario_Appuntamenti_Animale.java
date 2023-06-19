@@ -56,7 +56,8 @@ public class Activity_Calendario_Appuntamenti_Animale extends AppCompatActivity 
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent(Activity_Calendario_Appuntamenti_Animale.this,Activity_PrenotazioniAppuntamenti_Utente.class);
+                startActivity(intent);
             }
         });
 

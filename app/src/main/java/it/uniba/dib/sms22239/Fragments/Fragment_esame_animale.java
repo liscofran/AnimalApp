@@ -146,7 +146,7 @@ public class Fragment_esame_animale extends Fragment {
                                 String cognome = dataSnapshot.child("cognome").getValue(String.class);
                                 String c5= getString(R.string.Dottore);
 
-                                veterinarioEditText.setText(c5 + cognome);
+                                veterinarioEditText.setText(c5 + ": " + cognome);
 
                             }
 

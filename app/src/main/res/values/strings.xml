@@ -232,11 +232,12 @@
     <string name="testo">Testo</string>
     //activity appuntamenti utente-veterinario
     <string name ="Calendario_Appuntamenti">Calendario Appuntamenti</string>
+    <string name ="Calendario_Prenotazione">Calendario Prenotazione</string>
     <string name ="Ora_start">Ora di inizio</string>
     <string name ="data_app">Data appuntamento</string>
     <string name ="ora_fine">Ora di fine</string>
     <string name ="Dottore">Dottor </string>
-    <string name ="prenotati">prenotati</string>
+    <string name ="prenotati">Prenotati</string>
     //activitiy calendario app animali
     <string name ="calendario1">Calendario</string>
     //activity chi siamo
@@ -247,7 +248,7 @@
     <string name="aggiungi_ogg">Aggiungi Oggetto</string>
     <string name="nome1">Nome</string>
     <string name="prezzo">Prezzo</string>
-    <string name="quantity">quantità</string>
+    <string name="quantity">Quantità</string>
     <string name="sel22">Seleziona Lingua</string>
     <string name="orientamento1">Orientamento</string>
 
@@ -406,6 +407,8 @@
     <string name="isf">Invio delle istruzioni fallito </string>
     <string name="apd1">Error: appointment not found</string>
     <string name="apd">Appuntamento del </string>
+    <string name="esame">Esame </string>
+    <string name="diagnosi">Diagnosi </string>
     <string name="ce">Conferma eliminazione</string>
     <string name="ce1">Sei sicuro di voler eliminare questo appuntamento?</string>
     <string name="si">Si</string>

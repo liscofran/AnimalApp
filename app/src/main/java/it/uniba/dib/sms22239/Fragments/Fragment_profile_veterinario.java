@@ -119,11 +119,11 @@ public class Fragment_profile_veterinario extends Fragment
                     String c9= getString(R.string.ts);
 
                     //set delle variabili recuperate al layout
-                    mNomeTextView.setText(c6+":" + vet.nome);
-                    mCognomeTextView.setText(c7+":" + vet.cognome);
-                    mcodfiscaleTextView.setText(c8+":" + vet.codice_fiscale);
+                    mNomeTextView.setText(c6 + ": " + vet.nome);
+                    mCognomeTextView.setText(c7 + ": " + vet.cognome);
+                    mcodfiscaleTextView.setText(c8 + ": " + vet.codice_fiscale);
                     memailTextView.setText("Email: " + vet.email);
-                    mtitolostudioTextView.setText(c9 + vet.titolo_studio);
+                    mtitolostudioTextView.setText(c9 + ": " + vet.titolo_studio);
 
                 }
             }

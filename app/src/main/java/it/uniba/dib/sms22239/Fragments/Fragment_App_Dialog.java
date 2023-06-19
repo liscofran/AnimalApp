@@ -36,7 +36,7 @@ public class Fragment_App_Dialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         String c1= getString(R.string.apd);
-        builder.setTitle(c1 + data);
+        builder.setTitle(c1 + ": "  + data);
 
         // Creiamo una lista degli appuntamenti
         ListView listView = new ListView(getActivity());

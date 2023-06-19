@@ -1,5 +1,6 @@
 package it.uniba.dib.sms22239.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,11 +38,22 @@ public class Activity_Multimedia extends AppCompatActivity
 {
     private String selectedItem,flag;
     private String c1,c2;
+    ImageButton backbutton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multimedia);
+
+        backbutton = findViewById(R.id.backBtn);
+
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         autenticazione();
     }

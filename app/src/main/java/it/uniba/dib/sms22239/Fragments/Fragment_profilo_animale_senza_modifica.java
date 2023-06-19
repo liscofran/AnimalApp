@@ -114,10 +114,10 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
                 String c10= getString(R.string.razza);
                 String c11= getString(R.string.sesso);
                 String c13= getString(R.string.luogo);
-                mNomeTextView.setText(c9+":" + nome);
-                mrazzaTextView.setText(c10+":"+ razza);
-                msessoTextView.setText(c11+":" +sesso);
-                mluogoTextView.setText(c13+":" +luogo);
+                mNomeTextView.setText(c9 + ": " + nome);
+                mrazzaTextView.setText(c10 + ": " + razza);
+                msessoTextView.setText(c11 + ": " +sesso);
+                mluogoTextView.setText(c13 + ": " +luogo);
                 mstatusTextView.setText("Status: " +status);
 
                 // Recupera i dati dal secondo riferimento al database e popola le viste
@@ -131,7 +131,7 @@ public class Fragment_profilo_animale_senza_modifica extends Fragment
                         //set delle variabili recuperate al layout
                         String c12= getString(R.string.proprietario);
 
-                        nomecognomeprop.setText(c12+":"+ nome + " " + cognome);
+                        nomecognomeprop.setText(c12 + ": " + nome + " " + cognome);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

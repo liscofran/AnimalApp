@@ -181,7 +181,7 @@ public class Fragment_profile_animale extends Fragment {
                                     //nomeAnimaleRelazione = dataSnapshot.child("nome").getValue(String.class);
                                      c6= getString(R.string.rela);
                                      c7= getString(R.string.con);
-                                    relazioneTextView.setText(c6+":"+ ani.relazione + " " + c7 + " " + ani2.nome);
+                                    relazioneTextView.setText(c6 + ": "+ ani.relazione + " " + c7 + " " + ani2.nome);
                                 }
                             }
                         });
@@ -200,13 +200,13 @@ public class Fragment_profile_animale extends Fragment {
                                 {
                                 //set delle variabili recuperate al layout
                                  c12= getString(R.string.proprietario);
-                                nomecognomeprop.setText(c12+":" + prop.nome + " " + prop.cognome);
+                                nomecognomeprop.setText(c12 + ": " + prop.nome + " " + prop.cognome);
                                 }
                                 else {
                                     Ente ent = task.getResult().getValue(Ente.class);
                                     //set delle variabili recuperate al layout
                                      c12= getString(R.string.proprietario);
-                                    nomecognomeprop.setText(c12+":" + ent.ragione_sociale);
+                                    nomecognomeprop.setText(c12 + ": " + ent.ragione_sociale);
                                 }
                             }
                         }
@@ -218,12 +218,12 @@ public class Fragment_profile_animale extends Fragment {
                  c11= getString(R.string.sesso);
                  c13= getString(R.string.luogo);
 
-                mNomeTextView.setText(c9+":" + ani.nome);
-                mrazzaTextView.setText(c10+":"+ ani.razza);
-                msessoTextView.setText(c11+":" + ani.sesso);
+                mNomeTextView.setText(c9 + ": " + ani.nome);
+                mrazzaTextView.setText(c10 + ": "+ ani.razza);
+                msessoTextView.setText(c11 + ": " + ani.sesso);
                 statusTextView.setText("status:" + ani.prop);
                 statusTextView.setText("status:" + ani.prop);
-                casaluogoTextView.setText(c13+":" + ani.luogo);
+                casaluogoTextView.setText(c13 + ": " + ani.luogo);
                 }
             }
         });

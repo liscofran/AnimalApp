@@ -121,6 +121,7 @@
     <string name="testo">Text</string>
     //activity appuntamenti utente-veterinario
     <string name ="Calendario_Appuntamenti">Appointments Calendar</string>
+    <string name ="Calendario_Prenotazione">Bookings Calendar</string>
     <string name ="Ora_start">Start time</string>
     <string name ="data_app">Appointment date</string>
     <string name ="ora_fine">End time</string>
@@ -131,7 +132,7 @@
     <string name="sel22">Select Language</string>
     <string name="orientamento1">Orientation</string>
     //activitiy calendario app animali
-    <string name ="calendario1">Calendar</string>
+    <string name ="calendario1">Appointments Calendar</string>
     //activity chi siamo
     <string name="chi_siamo">About us</string>
     //activity crea oggetto spesa
@@ -296,6 +297,8 @@ Enter the email address to send the password recovery instructions</string>
     <string name="isf">Sending instructions failed </string>
     <string name="apd1">Error: appointment not found</string>
     <string name="apd">Appointment of </string>
+    <string name="esame">Exam </string>
+    <string name="diagnosi">Diagnosis </string>
     <string name="ce">Confirm deletion</string>
     <string name="ce1">Are you sure you want to delete this appointment?</string>
     <string name="si">Yes</string>

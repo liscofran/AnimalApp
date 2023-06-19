@@ -76,9 +76,9 @@ public class Fragment_Appuntamento extends Fragment {
                 String c2= getString(R.string.ora_inizio2);
                 String c3= getString(R.string.ora_fine);
 
-                DataTextView .setText(c1 + data);
-                OraInizioTextView.setText(c2 + orario_inizio);
-                OraFineTextView.setText(c3+ orario_fine);
+                DataTextView .setText(c1 + ": " + data);
+                OraInizioTextView.setText(c2 + ": " + orario_inizio);
+                OraFineTextView.setText(c3 + ": " + orario_fine);
 
             }
 
