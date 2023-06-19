@@ -90,6 +90,120 @@
         <item>Sterilizzazione</item>
         <item>Intervento</item>
         <item>Controllo</item>
+    </string-array>
+
+    <string-array name="province">
+        <item>AG</item>
+        <item>AL</item>
+        <item>AN</item>
+        <item>AO</item>
+        <item>AR</item>
+        <item>AP</item>
+        <item>AT</item>
+        <item>AV</item>
+        <item>BA</item>
+        <item>BT</item>
+        <item>BL</item>
+        <item>BN</item>
+        <item>BG</item>
+        <item>BI</item>
+        <item>BO</item>
+        <item>BZ</item>
+        <item>BS</item>
+        <item>BR</item>
+        <item>CA</item>
+        <item>CL</item>
+        <item>CB</item>
+        <item>CI</item>
+        <item>CE</item>
+        <item>CT</item>
+        <item>CZ</item>
+        <item>CH</item>
+        <item>CO</item>
+        <item>CS</item>
+        <item>CR</item>
+        <item>KR</item>
+        <item>CN</item>
+        <item>EN</item>
+        <item>FM</item>
+        <item>FE</item>
+        <item>FI</item>
+        <item>FG</item>
+        <item>FC</item>
+        <item>FR</item>
+        <item>GE</item>
+        <item>GO</item>
+        <item>GR</item>
+        <item>IM</item>
+        <item>IS</item>
+        <item>SP</item>
+        <item>AQ</item>
+        <item>LT</item>
+        <item>LE</item>
+        <item>LC</item>
+        <item>LI</item>
+        <item>LO</item>
+        <item>LU</item>
+        <item>MC</item>
+        <item>MN</item>
+        <item>MS</item>
+        <item>MT</item>
+        <item>ME</item>
+        <item>MI</item>
+        <item>MO</item>
+        <item>MB</item>
+        <item>NA</item>
+        <item>NO</item>
+        <item>NU</item>
+        <item>OG</item>
+        <item>OT</item>
+        <item>OR</item>
+        <item>PD</item>
+        <item>PA</item>
+        <item>PR</item>
+        <item>PV</item>
+        <item>PG</item>
+        <item>PU</item>
+        <item>PE</item>
+        <item>PC</item>
+        <item>PI</item>
+        <item>PT</item>
+        <item>PN</item>
+        <item>PZ</item>
+        <item>PO</item>
+        <item>RG</item>
+        <item>RA</item>
+        <item>RC</item>
+        <item>RE</item>
+        <item>RI</item>
+        <item>RN</item>
+        <item>RM</item>
+        <item>RO</item>
+        <item>SA</item>
+        <item>VS</item>
+        <item>SS</item>
+        <item>SV</item>
+        <item>SI</item>
+        <item>SR</item>
+        <item>SO</item>
+        <item>TA</item>
+        <item>TE</item>
+        <item>TR</item>
+        <item>TO</item>
+        <item>OG</item>
+        <item>TP</item>
+        <item>TN</item>
+        <item>TV</item>
+        <item>TS</item>
+        <item>UD</item>
+        <item>VA</item>
+        <item>VE</item>
+        <item>VB</item>
+        <item>VC</item>
+        <item>VR</item>
+        <item>VV</item>
+        <item>VI</item>
+        <item>VT</item>
 
     </string-array>
     <string name="title_activity_veterinario">Veterinario_Activity</string>
@@ -144,7 +258,7 @@
     <string name="proprietario">Proprietario</string>
     <string name="ente">Ente</string>
     <string name="veterinario">Veterinario</string>
-    <string name="crea_segnalazione">crea segnalazione</string>
+    <string name="crea_segnalazione">Crea segnalazione</string>
 //activity main
     <string name="password_forgot">Password Dimenticata?</string>
     <string name="registrati">Registrati</string>
@@ -155,7 +269,7 @@
     <string name="seleziona2">Seleziona Data</string>
     <string name="ora_inizio2">Orario Inizio</string>
     //activity prenotazione veterinario
-    <string name="prenotazione">prenotazione</string>
+    <string name="prenotazione">Prenotazione</string>
     //activity prenotazione appuntamenti utente
     <string name="calendari_disponibili">Calendari Disponibili</string>
     <string name="appuntamenti">Appuntamenti</string>

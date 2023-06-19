@@ -39,20 +39,19 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/provinciatext"
+        app:layout_constraintBottom_toTopOf="@id/provinciaspinner"
         app:layout_constraintTop_toBottomOf="@id/h15" />
 
-
-    <EditText
-        android:id="@+id/provinciatext"
+    <AutoCompleteTextView
+        android:id="@+id/provinciaspinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_v7"
         android:padding="10dp"
         android:hint="@string/ins_prov"
         android:textSize="15dp"
         app:drawableLeftCompat="@drawable/baseline_location_city_24"
         android:drawablePadding="10dp"
+        android:background="@drawable/custom_button_v7"
         app:layout_constraintTop_toBottomOf="@+id/offerta"
         app:layout_constraintLeft_toLeftOf="@id/guideline10"
         app:layout_constraintRight_toRightOf="@id/guideline9"
@@ -88,7 +87,7 @@
         app:layout_constraintBottom_toTopOf="@id/text_view_description"
         app:layout_constraintLeft_toLeftOf="@id/guideline7"
         app:layout_constraintRight_toRightOf="@id/guideline9"
-        app:layout_constraintTop_toBottomOf="@id/provinciatext" />
+        app:layout_constraintTop_toBottomOf="@id/provinciaspinner" />
 
     <TextView
         android:id="@+id/text_view_description"

@@ -152,7 +152,7 @@
     <string name="registrati">Sign in</string>
     //activity multimedia
     <string name="entra_ospite">Or enter as guest:</string>
-    <string name="seleziona_file">select type of file:</string>
+    <string name="seleziona_file">Select type of file:</string>
     //activity nuovo appuntamento
     <string name="seleziona2">Select date</string>
     <string name="ora_inizio2">Start time</string>

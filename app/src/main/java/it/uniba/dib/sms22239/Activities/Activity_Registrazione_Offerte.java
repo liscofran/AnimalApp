@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -49,7 +51,8 @@ import it.uniba.dib.sms22239.R;
 
 public class Activity_Registrazione_Offerte extends AppCompatActivity {
 
-    EditText inputOggetto, inputProvincia, inputDescrizione;
+    EditText inputOggetto, inputDescrizione;
+    AutoCompleteTextView provinciaAutoText;
     CheckBox proprietario, ente, veterinario;
     boolean checkProprietario, checkEnte, checkVeterinario;
     ImageButton allegato,photoBtn,submitBtn,backBtn2;
@@ -70,7 +73,9 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
         autenticazione();
 
         inputOggetto = findViewById(R.id.oggettotext);
-        inputProvincia = findViewById(R.id.provinciatext);
+        provinciaAutoText = findViewById(R.id.provinciaspinner);
+        ArrayAdapter<CharSequence> provinciaAdapter = ArrayAdapter.createFromResource(this, R.array.province, android.R.layout.simple_spinner_item);
+        provinciaAutoText.setAdapter(provinciaAdapter);
         inputDescrizione = findViewById(R.id.descrizione);
 
         allegato = findViewById(R.id.allegatoBtn);
@@ -161,7 +166,7 @@ public class Activity_Registrazione_Offerte extends AppCompatActivity {
                 Offerta off = new Offerta();
 
                 String oggetto = inputOggetto.getText().toString();
-                String provincia = inputProvincia.getText().toString();
+                String provincia = provinciaAutoText.getText().toString();
                 String descrizione = inputDescrizione.getText().toString();
                 checkProprietario = proprietario.isChecked();
                 checkEnte = ente.isChecked();

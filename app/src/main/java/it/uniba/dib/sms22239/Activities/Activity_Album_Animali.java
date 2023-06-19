@@ -75,7 +75,6 @@ public class Activity_Album_Animali extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newText) {
@@ -107,19 +106,24 @@ public class Activity_Album_Animali extends AppCompatActivity {
                 c1= getString(R.string.a2);
                 Animale animale = mainAdapter.getItem(position);
                 String animalId = animale.Id;
-                new AlertDialog.Builder(Activity_Album_Animali.this)
-                        .setTitle(c5)
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Album_Animali.this);
+                builder.setTitle(c5)
                         .setMessage(c4)
                         .setPositiveButton(c3, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(Activity_Album_Animali.this, c1, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
-                                intent.putExtra("ANIMAL_CODE",animalId);
+                                intent.putExtra("ANIMAL_CODE", animalId);
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton(c2, null)
+                        .setNegativeButton(c2, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
                         .show();
             }
         });
@@ -138,44 +142,45 @@ public class Activity_Album_Animali extends AppCompatActivity {
         mainAdapter.stopListening();
     }
 
-        private void mysearch(String str)
-        {
-            List<Animale> filteredList = new ArrayList<>();
+    private void mysearch(String str) {
+        List<Animale> filteredList = new ArrayList<>();
 
-            for (Animale animale : mainAdapter.getSnapshots())
-            {
-                if (animale != null && animale.nome.startsWith(str))
-                {
-                    filteredList.add(animale);
-                }
+        for (Animale animale : mainAdapter.getSnapshots()) {
+            if (animale != null && animale.nome.startsWith(str)) {
+                filteredList.add(animale);
             }
-
-            RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(filteredList, new RecyclerAdapterAnimale.OnItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    Animale animale = filteredList.get(position);
-                    String animalId = animale.Id;
-                    new AlertDialog.Builder(Activity_Album_Animali.this)
-                            .setTitle(c5)
-                            .setMessage(c4)
-                            .setPositiveButton(c3, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(Activity_Album_Animali.this, c1, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
-                                    intent.putExtra("ANIMAL_CODE",animalId);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton(c2, null)
-                            .show();
-                }
-            });
-            recyclerView.setAdapter(adapter);
         }
 
-    protected void autenticazione()
-    {
+        RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(filteredList, new RecyclerAdapterAnimale.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Animale animale = filteredList.get(position);
+                String animalId = animale.Id;
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Album_Animali.this);
+                builder.setTitle(c5)
+                        .setMessage(c4)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(Activity_Album_Animali.this, c1, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Activity_Album_Animali.this, Activity_Animale_Selezionato.class);
+                                intent.putExtra("ANIMAL_CODE", animalId);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(c2, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+        recyclerView.setAdapter(adapter);
+    }
+
+    protected void autenticazione() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
@@ -188,24 +193,19 @@ public class Activity_Album_Animali extends AppCompatActivity {
 
 
                 // Verifica il valore dell'attributo "classe"
-                if (classe.equals("Veterinario"))
-                {
+                if (classe.equals("Veterinario")) {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
                     fragmentTransaction.commit();
                     flag = "veterinario";
-                }
-                else if(classe.equals("Proprietario"))
-                {
+                } else if (classe.equals("Proprietario")) {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
                     fragmentTransaction.commit();
                     flag = "proprietario";
-                }
-                else
-                {
+                } else {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
@@ -213,10 +213,11 @@ public class Activity_Album_Animali extends AppCompatActivity {
                     flag = "ente";
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Gestisci l'evento di annullamento
-                String c4= getString(R.string.a3);
+                String c4 = getString(R.string.a3);
                 Log.e("Firebase", c4 + error.getMessage());
             }
         });

@@ -29,6 +29,7 @@ import java.util.List;
 
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterOfferte;
 import it.uniba.dib.sms22239.Adapters.RecyclerAdapterOfferta;
+import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
 import it.uniba.dib.sms22239.Models.Offerta;
@@ -172,13 +173,21 @@ public class Activity_Offerte extends AppCompatActivity {
                     fragmentTransaction.commit();
                     flag = "veterinario";
                 }
-                else
+                else if(classe.equals("Proprietario"))
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
                     fragmentTransaction.commit();
-                    flag = "altro";
+                    flag = "proprietario";
+                }
+                else
+                {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
+                    fragmentTransaction.commit();
+                    flag = "ente";
                 }
             }
             @Override

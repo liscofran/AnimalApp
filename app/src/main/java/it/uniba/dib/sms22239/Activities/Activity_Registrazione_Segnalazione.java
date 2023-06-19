@@ -16,6 +16,8 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -57,7 +59,8 @@ import it.uniba.dib.sms22239.R;
 import it.uniba.dib.sms22239.Models.Segnalazione;
 
 public class Activity_Registrazione_Segnalazione extends AppCompatActivity implements LocationListener {
-    EditText oggettoText, provinciaText, Descrizione;
+    EditText oggettoText, Descrizione;
+    AutoCompleteTextView provinciaAutoText;
     CheckBox proprietario, ente, veterinario;
     boolean checkProprietario, checkEnte, checkVeterinario;
     private static final int PERMISSION_REQUEST_LOCATION = 1;
@@ -154,7 +157,9 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
 
 
         oggettoText = findViewById(R.id.oggettotext);
-        provinciaText = findViewById(R.id.provinciatext);
+        provinciaAutoText = findViewById(R.id.provinciaspinner);
+        ArrayAdapter<CharSequence> provinciaAdapter = ArrayAdapter.createFromResource(this, R.array.province, android.R.layout.simple_spinner_item);
+        provinciaAutoText.setAdapter(provinciaAdapter);
         Descrizione = findViewById(R.id.descrizione);
 
         proprietario = findViewById(R.id.check_box1);
@@ -208,7 +213,7 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
                 Segnalazione sgn = new Segnalazione();
 
                 String oggetto = oggettoText.getText().toString();
-                String provincia = provinciaText.getText().toString();
+                String provincia = provinciaAutoText.getText().toString();
                 String descrizione = Descrizione.getText().toString();
                 checkProprietario = proprietario.isChecked();
                 checkEnte = ente.isChecked();
