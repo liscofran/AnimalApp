@@ -1,6 +1,7 @@
 package it.uniba.dib.sms22239.Activities;
 
 import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -79,6 +80,21 @@ public class Activity_QRcode extends AppCompatActivity
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                if (bluetoothAdapter != null) {
+                    if (!bluetoothAdapter.isEnabled()) {
+                        if (ContextCompat.checkSelfPermission(Activity_QRcode.this, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED) {
+                            // L'app ha l'autorizzazione, avvia l'intent di attivazione del Bluetooth
+                            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                        } else {
+                            // L'app non ha l'autorizzazione, richiedi all'utente di concedere l'autorizzazione
+                            ActivityCompat.requestPermissions(Activity_QRcode.this, new String[]{Manifest.permission.BLUETOOTH}, REQUEST_BLUETOOTH_PERMISSIONS);
+                        }
+
+                    }
+                }
+
                 c2= getString(R.string.qr1);
                 // BroadcastReceiver per ricevere l'intent inviato tramite Bluetooth
                 BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
@@ -88,7 +104,6 @@ public class Activity_QRcode extends AppCompatActivity
                         if (intent.getAction().equals("collegamento")) {
                             // Estrai i dati dall'intent
                             String animalCode = intent.getStringExtra("ANIMAL_CODE");
-
                             Intent intent2 = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
                             intent2.putExtra("ANIMAL_CODE", animalCode);
                             Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();
@@ -99,12 +114,7 @@ public class Activity_QRcode extends AppCompatActivity
                         }
                     }
                 };
-
-                // Registra il BroadcastReceiver per l'intent ricevuto tramite Bluetooth
-                IntentFilter filter = new IntentFilter();
-                filter.addAction("nome_dell_azione");  // Sostituisci con il nome dell'azione desiderata
-                registerReceiver(bluetoothReceiver, filter);
-            }
+              }
         });
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -181,7 +191,7 @@ public class Activity_QRcode extends AppCompatActivity
                     // Autorizzazioni Bluetooth ottenute, avvia il ricevitore Bluetooth
                     bluetoothReceiver = new BluetoothReceiver();
                     IntentFilter intentFilter = new IntentFilter();
-                    intentFilter.addAction(Intent.ACTION_SEND);
+                    intentFilter.addAction("collegamento");
                     registerReceiver(bluetoothReceiver, intentFilter);
                 }
                 else {
