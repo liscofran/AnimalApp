@@ -164,7 +164,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this,  c4+ selectedOption + c5 , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ " " +selectedOption + " " + c5, Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
                                 mDatabase.child("idAnimaleRelazione").setValue(animalId);
@@ -216,7 +216,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ " " +selectedOption + c5, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ " " +selectedOption + " " + c5, Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
                                 mDatabase.child("idAnimaleRelazione").setValue(animalId);
