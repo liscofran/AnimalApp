@@ -56,13 +56,12 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album_pokemon);
 
-
         ImageButton backBtn2 = findViewById(R.id.back);
-
         idAnimale = getIntent().getStringExtra("ANIMAL_CODE");
 
         backBtn2.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +79,8 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -103,6 +103,12 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
 
         mainAdapter = new FirebaseRecyclerAdapterAnimale(options,null);
 
+        c1= getString(R.string.selezionaan);
+        c2= getString(R.string.a4);
+        c3= getString(R.string.conferma);
+        c4= getString(R.string.rela);
+        c5= getString(R.string.a5);
+        c6= getString(R.string.annulla);
     }
 
     @Override
@@ -140,12 +146,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
         RecyclerAdapterAnimale adapter = new RecyclerAdapterAnimale(filteredList, new RecyclerAdapterAnimale.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                c1= getString(R.string.selezionaan);
-                c2= getString(R.string.a4);
-                c3= getString(R.string.conferma);
-                c4= getString(R.string.rela);
-                c5= getString(R.string.a5);
-                c6= getString(R.string.annulla);
+
                 Animale animale =  filteredList.get(position);
                 String animalId = animale.Id;
                 String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};
@@ -166,12 +167,12 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                                 Toast.makeText(Activity_Animale_Selezionato.this,  c4+ selectedOption + c5 , Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
-                                mDatabase.child("idAnimalerelazione").setValue(animalId);
+                                mDatabase.child("idAnimaleRelazione").setValue(animalId);
                                 mDatabase.child("relazione").setValue(selectedOption);
 
                                 DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Animale").child(animalId);
                                 mDatabase1.child("relazione").setValue(selectedOption);
-                                mDatabase1.child("idAnimalerelazione").setValue(idAnimale);
+                                mDatabase1.child("idAnimaleRelazione").setValue(idAnimale);
                                 startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
                             }
                         })
@@ -215,16 +216,16 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ selectedOption + c5, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ " " +selectedOption + c5, Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
-                                mDatabase.child("idAnimalerelazione").setValue(animalId);
+                                mDatabase.child("idAnimaleRelazione").setValue(animalId);
                                 mDatabase.child("relazione").setValue(selectedOption);
 
 
                                 DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Animale").child(animalId);
                                 mDatabase1.child("relazione").setValue(selectedOption);
-                                mDatabase1.child("idAnimalerelazione").setValue(idAnimale);
+                                mDatabase1.child("idAnimaleRelazione").setValue(idAnimale);
                                 startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
                             }
                         })

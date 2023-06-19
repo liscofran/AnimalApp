@@ -81,7 +81,6 @@ public class Preference extends PreferenceActivity
         startActivity(intent);
     }
 
-
     @Override
     protected void onResume() {
         Load_setting();

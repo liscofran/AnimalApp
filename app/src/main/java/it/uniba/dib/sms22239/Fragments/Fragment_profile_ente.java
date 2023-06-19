@@ -34,6 +34,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import it.uniba.dib.sms22239.Activities.Activity_Ente;
 import it.uniba.dib.sms22239.Activities.Activity_Main;
 import it.uniba.dib.sms22239.Models.Ente;
 import it.uniba.dib.sms22239.Models.Proprietario;
@@ -140,7 +141,7 @@ public class Fragment_profile_ente extends Fragment
                     mragionesociale.setText(c6 + ente.ragione_sociale);
                     mtipoTextView.setText(c7 + ente.tipo);
                     msedelegaleTextView.setText(c8 + ente.sede_legale);
-                    mpiva.setText(c9 + ente.partita_iva);
+                    mpiva.setText(c9 + ente.p_iva);
                 }
             }
         });

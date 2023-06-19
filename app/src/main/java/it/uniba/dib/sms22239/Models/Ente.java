@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Ente extends User
 {
     public String ragione_sociale;
-    public String partita_iva;
+    public String p_iva;
     public String tipo;
     public String sede_legale;
 
