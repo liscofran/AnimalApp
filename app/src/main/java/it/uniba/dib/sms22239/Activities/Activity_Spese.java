@@ -61,6 +61,7 @@ public class Activity_Spese extends AppCompatActivity {
     FirebaseUser mUser;
     List<Oggetto_Spesa> filteredList;
     String idAnimal, selectedItem;
+    ImageButton add_item_Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,15 @@ public class Activity_Spese extends AppCompatActivity {
         idAnimal = getIntent().getStringExtra("ANIMAL_CODE");
         selectedItem = "";
         filteredList = new ArrayList<>();
+
+        add_item_Button = findViewById(R.id.add_item_button);
+        add_item_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Spese.this, Activity_Crea_Oggetto_Spesa.class);
+                startActivity(intent);
+            }
+        });
 
         autenticazione();
 

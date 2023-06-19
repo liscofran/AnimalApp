@@ -60,7 +60,8 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(Activity_Crea_Oggetto_Spesa.this,Activity_Spese.class);
+                startActivity(intent);
             }
         });
 
