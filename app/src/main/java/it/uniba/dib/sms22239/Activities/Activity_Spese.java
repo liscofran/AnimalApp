@@ -77,17 +77,20 @@ public class Activity_Spese extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_Spese.this, Activity_Crea_Oggetto_Spesa.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
                 startActivity(intent);
             }
         });
 
-        autenticazione();
+
 
         ImageButton backBtn2 = findViewById(R.id.back);
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent(Activity_Spese.this,Activity_Animal_Profile.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
+                startActivity(intent);
             }
         });
 
@@ -96,22 +99,16 @@ public class Activity_Spese extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchView = findViewById(R.id.searchView);
 
-    }
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        FirebaseRecyclerOptions<Oggetto_Spesa> options =
+                new FirebaseRecyclerOptions.Builder<Oggetto_Spesa>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("id_animale").equalTo(idAnimal),Oggetto_Spesa.class)
+                        .build();
+        mainAdapterSpese = new FirebaseRecyclerAdapterSpese(options, new FirebaseRecyclerAdapterSpese.OnItemClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String newText) {
-                mysearch(newText);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                mysearch(newText);
-                return false;
+            public void onItemClick(int position) {
             }
         });
 
@@ -143,21 +140,27 @@ public class Activity_Spese extends AppCompatActivity {
             }
         });
 
+        recyclerView.setAdapter(mainAdapterSpese);
+        autenticazione();
+    }
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        FirebaseRecyclerOptions<Oggetto_Spesa> options =
-                new FirebaseRecyclerOptions.Builder<Oggetto_Spesa>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Oggetti").orderByChild("id_animale").equalTo(idAnimal),Oggetto_Spesa.class)
-                        .build();
-        mainAdapterSpese = new FirebaseRecyclerAdapterSpese(options, new FirebaseRecyclerAdapterSpese.OnItemClickListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onItemClick(int position) {
+            public boolean onQueryTextSubmit(String newText) {
+                mysearch(newText);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mysearch(newText);
+                return false;
             }
         });
-
-        recyclerView.setAdapter(mainAdapterSpese);
     }
 
     @Override
@@ -300,17 +303,8 @@ public class Activity_Spese extends AppCompatActivity {
                 // Recupera il valore dell'attributo "classe"
                 String classe = snapshot.child("classe").getValue(String.class);
 
-
                 // Verifica il valore dell'attributo "classe"
-                if (classe.equals("Veterinario"))
-                {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
-                    fragmentTransaction.commit();
-                    flag = "veterinario";
-                }
-                else if(classe.equals("Proprietario"))
+                if(classe.equals("Proprietario"))
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

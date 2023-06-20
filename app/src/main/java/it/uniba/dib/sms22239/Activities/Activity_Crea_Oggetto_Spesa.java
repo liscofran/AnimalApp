@@ -61,6 +61,7 @@ public class Activity_Crea_Oggetto_Spesa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_Crea_Oggetto_Spesa.this,Activity_Spese.class);
+                intent.putExtra("ANIMAL_CODE",idAnimal);
                 startActivity(intent);
             }
         });
