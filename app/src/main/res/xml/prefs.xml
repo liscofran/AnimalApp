@@ -11,12 +11,11 @@
     <PreferenceCategory
         android:title="@string/lingua1">
         <ListPreference
-            android:key="language"
+            android:key="Language"
             android:title="@string/lingua1"
             android:entries="@array/language_entries"
             android:entryValues="@array/language_values"
-            android:dialogTitle="@string/sel22"
-            android:icon="@drawable/ic_lingua" />
+            android:defaultValue="en" />
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -345,5 +345,6 @@ Enter the email address to send the password recovery instructions</string>
     <string name="ev1">Are you sure you want to delete the video?</string>
     <string name="ev2">Video successfully deleted</string>
     <string name="ev3">Error deleting video</string>
+    <string name="no1">New Object</string>
 
 </resources>

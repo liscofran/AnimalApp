@@ -70,7 +70,7 @@
         android:background="@drawable/custom_button_v4"
         android:padding="10dp"
         android:src="@drawable/ic_baseline_add_24"
-        android:text="Nuovo oggetto"
+        android:text="@string/no1"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_toolbar"/>
 

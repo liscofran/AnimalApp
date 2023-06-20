@@ -41,39 +41,8 @@ public class Preference extends PreferenceActivity
                 return true;
             }
         });
-
-        ListPreference languagePreference = (ListPreference) findPreference("language");
-        selectedLanguage = sp.getString("language", "it");
-        languagePreference.setEntries(R.array.language_entries);
-        languagePreference.setEntryValues(R.array.language_values);
-        languagePreference.setDefaultValue("it");
-        languagePreference.setSummary(languagePreference.getEntry());
-        languagePreference.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(android.preference.Preference preference, Object newValue) {
-                selectedLanguage = (String) newValue;
-                setLocale(selectedLanguage);
-                recreateActivity();
-                return true;
-            }
-        });
     }
 
-    private void setLocale(String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Resources resources = getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        editor.putString("language", language);
-        editor.apply();
-
-        Intent refreshIntent = new Intent(this, Preference.class);
-        startActivity(refreshIntent);
-        finish();
-    }
 
     private void recreateActivity() {
         Intent intent = getIntent();
@@ -97,5 +66,7 @@ public class Preference extends PreferenceActivity
         startActivity(intent);
         Toast.makeText(Preference.this, "Logout", Toast.LENGTH_SHORT).show();
         finish();
+
     }
+
 }

@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/imgId"
-            android:text="Animal"
+            android:text="@string/animale"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />

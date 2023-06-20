@@ -21,19 +21,19 @@
         android:id="@+id/start_time_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ora inizio" />
+        android:text="@string/Ora_start" />
 
     <TextView
         android:id="@+id/end_time_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ora fine" />
+        android:text="@string/ora_fine" />
 
     <TextView
         android:id="@+id/date_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data" />
+        android:text="@string/data1" />
 
 </LinearLayout>
 
