@@ -1,5 +1,7 @@
 package it.uniba.dib.sms22239.Activities;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -18,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_Ente;
 import it.uniba.dib.sms22239.Fragments.Fragment_Proprietario;
@@ -40,14 +44,17 @@ public class Activity_Home extends AppCompatActivity
     private void Load_setting()
     {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
+        String language = sp.getString("language", "it");
+        setLocale(language);
+    }
+
+    private void setLocale(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
     @Override

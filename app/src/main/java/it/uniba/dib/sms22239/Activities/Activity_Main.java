@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +23,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Locale;
 
 import it.uniba.dib.sms22239.R;
 
@@ -56,6 +62,22 @@ public class Activity_Main extends AppCompatActivity
         }
     }
 
+    private void Load_setting()
+    {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String language = sp.getString("language", "it");
+        setLocale(language);
+    }
+
+    private void setLocale(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -73,6 +95,7 @@ public class Activity_Main extends AppCompatActivity
         progressDialog= new ProgressDialog(this);
         mAuth= FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
+        Load_setting();
 
         createnewAccount.setOnClickListener(new View.OnClickListener() {
             @Override

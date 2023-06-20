@@ -9,11 +9,14 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -37,25 +41,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 import it.uniba.dib.sms22239.BluetoothReceiver;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
+import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_QRcode extends AppCompatActivity
 {
-    ConstraintLayout constraintLayout;
+    private ConstraintLayout constraintLayout;
     private CodeScanner mCodeScanner;
     private static final int CAMERA_PERMISSION_REQUEST = 100;
     private String qrCodeResult;
     private static final int REQUEST_BLUETOOTH_PERMISSIONS = 1001;
     private static final int REQUEST_ENABLE_BT = 1002;
     private BluetoothReceiver bluetoothReceiver;
-    String flag;
-    ImageButton back;
-
-    String c2,c3;
+    private SharedPreferences sharedPreferences;
+    private String flag;
+    private ImageButton back;
+    private String c2,c3;
+    private SwitchMaterial switch1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,35 @@ public class Activity_QRcode extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        switch1 = findViewById(R.id.switch2);
+
+        //Switch
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String switch1Value = sharedPreferences.getString("language", "it");
+        switch1.setChecked(switch1Value.equals("it"));
+
+        //Switch Musica
+        switch1.setOnCheckedChangeListener(null);
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                if(isChecked)
+                {
+                    editor.putString("language", "it");
+                    editor.apply();
+                    setLocale("it");
+                    recreateActivity();
+                } else
+                {
+                    editor.putString("language", "en");
+                    editor.apply();
+                    setLocale("en");
+                    recreateActivity();
+                }
             }
         });
 
@@ -130,10 +167,25 @@ public class Activity_QRcode extends AppCompatActivity
         }
     }
 
+    private void setLocale(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         mCodeScanner.startPreview();
+    }
+
+    private void recreateActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 
     public void startAnimalActivity() {
