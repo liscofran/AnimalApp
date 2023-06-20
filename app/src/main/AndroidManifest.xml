@@ -70,6 +70,9 @@
             android:name=".Activities.Activity_Appuntamento_Animale"
             android:exported="false" />
         <activity
+            android:name=".Activities.Activity_settings"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_Calendario_Appuntamenti_Animale"
             android:exported="false" />
         <activity
@@ -153,7 +156,7 @@
             android:name=".Preference"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Profile_Proprietario_Ente"
+            android:name=".Activities.Activity_Profile_Proprietario"
             android:exported="false"
             android:parentActivityName=".Activities.Activity_Home">
             <meta-data

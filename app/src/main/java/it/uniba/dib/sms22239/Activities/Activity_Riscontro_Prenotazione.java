@@ -37,7 +37,7 @@ public class Activity_Riscontro_Prenotazione extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Riscontro_Prenotazione.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Riscontro_Prenotazione.this, Activity_Profile_Proprietario.class));
             }
         });
 

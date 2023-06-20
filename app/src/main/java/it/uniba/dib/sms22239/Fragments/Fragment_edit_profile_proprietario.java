@@ -2,9 +2,6 @@ package it.uniba.dib.sms22239.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
-import static com.google.common.io.Files.getFileExtension;
-
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,23 +9,18 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,19 +31,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.UUID;
-
 import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
-import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Segnalazione;
+import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario;
 import it.uniba.dib.sms22239.Models.Proprietario;
-import it.uniba.dib.sms22239.Models.Segnalazione;
 import it.uniba.dib.sms22239.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -125,7 +112,7 @@ public class Fragment_edit_profile_proprietario extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Activity_Profile_Proprietario_Ente.class);
+                Intent intent = new Intent(getActivity(), Activity_Profile_Proprietario.class);
                 startActivity(intent);
             }
         });

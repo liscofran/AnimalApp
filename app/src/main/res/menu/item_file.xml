@@ -25,7 +25,7 @@
         android:title="@string/condividi"/>
 
     <item
-        android:icon="@drawable/ic_baseline_settings_24"
+        android:icon="@drawable/ic_baseline_settings_24_nero"
         android:id="@+id/setting"
         android:title="@string/impostazioni"/>
 

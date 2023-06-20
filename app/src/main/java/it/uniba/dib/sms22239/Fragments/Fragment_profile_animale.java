@@ -221,8 +221,7 @@ public class Fragment_profile_animale extends Fragment {
                     mNomeTextView.setText(c9 + ": " + ani.nome);
                     mrazzaTextView.setText(c10 + ": " + ani.razza);
                     msessoTextView.setText(c11 + ": " + ani.sesso);
-                    statusTextView.setText("status:" + ani.prop);
-                    statusTextView.setText("status:" + ani.prop);
+                    statusTextView.setText("status: " + ani.prop);
                     casaluogoTextView.setText(c13 + ": " + ani.luogo);
                 }
             }

@@ -34,7 +34,7 @@
     <!-- Opzioni Registrazione -->
     <string-array name="reg_options">
         <item>Owner</item>
-        <item>Entity</item>
+        <item>Institution</item>
         <item>Veterinarian</item>
     </string-array>
 
@@ -50,6 +50,20 @@
         <item>My Property</item>
         <item>In stock</item>
         <item>Assisted</item>
+    </string-array>
+
+    <!-- Opzioni Lingua -->
+    <string-array name="lingua_options">
+        <item>Language</item>
+        <item>Italian</item>
+        <item>English</item>
+    </string-array>
+
+    <!-- Opzioni Relazione -->
+    <string-array name="relazione_options">
+        <item>Not compatible</item>
+        <item>Friends</item>
+        <item>Cohabiting</item>
     </string-array>
 
     <!-- Opzioni Tipo di Media -->
@@ -109,7 +123,9 @@
     </string>
     <string name="title_activity_maps">MapsActivity</string>
 
-
+    //activity_settings
+    <string name="Italiano">Italian</string>
+    <string name="Inglese">English</string>
     //activity_animali
     <string name="Animali">Animals</string>
     <string name="Miei_animali">My animals</string>
@@ -148,7 +164,7 @@
     <string name="ins_desc">Enter description..</string>
     <string name="visible">To whom it must be visible:</string>
     <string name="proprietario">Owner</string>
-    <string name="ente">Entity</string>
+    <string name="ente">Institution</string>
     <string name="veterinario">Veterinarian</string>
     <string name="crea_segnalazione">Create report</string>
     //activity main
@@ -233,6 +249,9 @@ Enter the email address to send the password recovery instructions</string>
     <string name="insnomeim">Enter Image name</string>
     <string name="annullap">Cancel booking</string>
     <string name="rela">Relation </string>
+    <string name="non_compatibile">Not compatible</string>
+    <string name="amici">Friends</string>
+    <string name="conviventi">Cohabiting</string>
     <string name="rsnp">Company name not present</string>
     <string name="tipnp">Type not present</string>
     <string name="sedelegnp">Registered office not present</string>
@@ -255,7 +274,7 @@ Enter the email address to send the password recovery instructions</string>
     <string name="cerca">Search</string>
     <string name="condividi">Share</string>
     <string name="impostazioni">Settings</string>
-    <string name="lingua">language</string>
+    <string name="lingua">Language</string>
     <string name="elimina_profile"> Delete Profile</string>
     <string name="sss">Are you sure you want to delete the profile?</string>
     <string name="conferma">Confirm</string>
@@ -306,7 +325,10 @@ Enter the email address to send the password recovery instructions</string>
     <string name="no">No</string>
     <string name="ce4">Are you sure you want to delete this reservation?</string>
     <string name="ce5">Reservation successfully deleted</string>
-    <string name="icss">image uploaded successfully</string>
+    <string name="ce6">Reservation saved with success</string>
+    <string name="dati_esame">Exam data booking</string>
+    <string name="dati_diagnosi">Exam data booking</string>
+    <string name="icss">Image uploaded successfully</string>
     <string name="icss2">Image selection canceled</string>
     <string name="ea1">Delete pet</string>
     <string name="ea2">Are you sure you want to delete the pet?</string>
@@ -319,11 +341,11 @@ Enter the email address to send the password recovery instructions</string>
     <string name="bt24">Discovery mode not activated</string>
     <string name="bt25">Bluetooth ready to use</string>
     <string name="ee">Entity deleted successfully</string>
-    <string name="rs">Company name :</string>
-    <string name="tp">Type:</string>
-    <string name="sls">Registered office:</string>
-    <string name="piv">VAT number:</string>
-    <string name="ts">Academic qualification :</string>
+    <string name="rs">Company name</string>
+    <string name="tp">Type</string>
+    <string name="sls">Registered office</string>
+    <string name="piv">VAT number</string>
+    <string name="ts">Academic qualification</string>
     <string name="ve">Vet successfully deleted</string>
     <string name="ofe">Offer successfully deleted</string>
     <string name="se23">Report successfully deleted</string>
@@ -336,7 +358,7 @@ Enter the email address to send the password recovery instructions</string>
     <string name="dwn">Download successful</string>
     <string name="enr">Delete failed</string>
     <string name="ent">Delete Text</string>
-    <string name="ent2">Are you sure you want to delete the text</string>
+    <string name="ent2">Are you sure you want to delete the text?</string>
     <string name="ent3">Text successfully deleted</string>
     <string name="ent4">Open file with...</string>
     <string name="edt">Error downloading file..</string>

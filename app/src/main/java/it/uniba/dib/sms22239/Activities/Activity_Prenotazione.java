@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_Appuntamento;
 import it.uniba.dib.sms22239.Fragments.Fragment_diagnosi_veterinario;
 import it.uniba.dib.sms22239.Fragments.Fragment_esame_veterinario;
 import it.uniba.dib.sms22239.Preference;
@@ -49,7 +48,7 @@ public class Activity_Prenotazione extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Prenotazione.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Prenotazione.this, Activity_Profile_Proprietario.class));
             }
         });
 

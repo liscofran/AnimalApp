@@ -41,7 +41,6 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
 import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Adapters.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;

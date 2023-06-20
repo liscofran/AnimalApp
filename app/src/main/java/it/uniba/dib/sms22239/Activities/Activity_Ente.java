@@ -39,7 +39,6 @@ public class Activity_Ente extends AppCompatActivity
         setContentView(R.layout.activity_ente);
         Load_setting();
 
-
         autenticazione();
 
         FragmentManager fragmentManager = getSupportFragmentManager();

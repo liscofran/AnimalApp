@@ -50,6 +50,20 @@
         <item>Assistito</item>
     </string-array>
 
+    <!-- Opzioni Lingua -->
+    <string-array name="lingua_options">
+        <item>Lingua</item>
+        <item>Italiano</item>
+        <item>Inglese</item>
+    </string-array>
+
+    <!-- Opzioni Relazione -->
+    <string-array name="relazione_options">
+        <item>Non compatibile</item>
+        <item>Amici</item>
+        <item>Conviventi</item>
+    </string-array>
+
     <!-- Opzioni Tipo di Media -->
     <string-array name="media_options">
         <item>Testo</item>
@@ -220,7 +234,9 @@
     </string>
     <string name="title_activity_maps">MapsActivity</string>
 
-
+    //activity_settings
+    <string name="Italiano">Italiano</string>
+    <string name="Inglese">Inglese</string>
     //activity_animali
     <string name="Animali">Animali</string>
     <string name="Miei_animali">Miei animali</string>
@@ -342,6 +358,9 @@
     <string name="insnomeim">Inserire nome dell Immagine</string>
     <string name="annullap">Annulla prenotazione</string>
     <string name="rela">Relazione </string>
+    <string name="non_compatibile">Non compatibile</string>
+    <string name="amici">Amici</string>
+    <string name="conviventi">Conviventi</string>
     <string name="rsnp">Ragione Sociale non presente</string>
     <string name="tipnp">Tipo non presente</string>
     <string name="sedelegnp">Sede legale non presente</string>
@@ -384,7 +403,7 @@
     <string name="b2">login eseguito con successo </string>
     <string name="b3">Inserisci una password appropriata:</string>
     <string name="b4">Per favore attendi durante il login...</string>
-    <string name="b5">scelta non valida </string>
+    <string name="b5">Scelta non valida </string>
     <string name="b6">Appuntamento registrato con successo! </string>
     <string name="c2">Modifica avvenuta con successo</string>
     <string name="qr1">QRcode scansionato con successo</string>
@@ -416,6 +435,9 @@
     <string name="no">No</string>
     <string name="ce4">Sei sicuro di voler eliminare questa prenotazione?</string>
     <string name="ce5">Prenotazione eliminata con successo</string>
+    <string name="ce6">Prenotazione salvata con successo</string>
+    <string name="dati_esame">Prenotazione dati esame</string>
+    <string name="dati_diagnosi">Diagnosis data reservation</string>
     <string name="icss">immagine caricata con successo</string>
     <string name="icss2">Selezione immagine annullata</string>
     <string name="ea1">Elimina animale</string>
@@ -427,13 +449,13 @@
     <string name="bt22">Bluetooth non supportato dal dispositivo in uso</string>
     <string name="bt23">Bluetooth non abilitato</string>
     <string name="bt24">Modalità di scoperta non attivata</string>
-    <string name="bt25">Bluetooth pronto all uso</string>
+    <string name="bt25">Bluetooth pronto all\'uso</string>
     <string name="ee">Ente eliminato con successo</string>
-    <string name="rs">Ragione sociale :</string>
-    <string name="tp">Tipo:</string>
-    <string name="sls">Sede Legale:</string>
-    <string name="piv">Partita Iva:</string>
-    <string name="ts">Titolo di studio :</string>
+    <string name="rs">Ragione sociale</string>
+    <string name="tp">Tipo</string>
+    <string name="sls">Sede Legale</string>
+    <string name="piv">Partita Iva</string>
+    <string name="ts">Titolo di studio</string>
     <string name="ve">Veterinario eliminato con successo</string>
     <string name="ofe">Offerta eliminata con successo</string>
     <string name="se23">Segnalazione eliminata con successo</string>
@@ -441,12 +463,12 @@
     <string name="fcs">File caricato con successo</string>
     <string name="cin">Caricamento non riuscito</string>
     <string name="ei">Elimina immagine</string>
-    <string name="ei2">Sei sicuro di voler eliminare l immagine ?</string>
+    <string name="ei2">Sei sicuro di voler eliminare l\'immagine?</string>
     <string name="ei3">Immagine eliminata con successo</string>
     <string name="dwn">Download effettuato con successo</string>
     <string name="enr">Eliminazione non riuscita</string>
     <string name="ent">Elimina Testo</string>
-    <string name="ent2">Sei sicuro di voler eliminare il testo</string>
+    <string name="ent2">Sei sicuro di voler eliminare il testo?</string>
     <string name="ent3">Testo eliminato con successo</string>
     <string name="ent4">Apri il file con...</string>
     <string name="edt">Errore durante il download del file..</string>

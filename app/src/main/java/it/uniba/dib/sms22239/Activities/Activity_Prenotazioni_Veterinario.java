@@ -22,9 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_App_Dialog;
 import it.uniba.dib.sms22239.Fragments.Fragment_Pren_Dialog;
-import it.uniba.dib.sms22239.Models.Appuntamento;
 import it.uniba.dib.sms22239.Models.Prenotazione;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
@@ -53,7 +51,7 @@ public class Activity_Prenotazioni_Veterinario extends AppCompatActivity {
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Prenotazioni_Veterinario.this, Activity_Profile_Proprietario.class));
             }
         });
 

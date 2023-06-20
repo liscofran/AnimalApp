@@ -86,7 +86,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/qr"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/ic_baseline_settings_24"/>
+            android:src="@drawable/ic_baseline_settings_24_bianco"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.Toolbar>

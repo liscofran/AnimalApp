@@ -149,12 +149,13 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
 
                 Animale animale =  filteredList.get(position);
                 String animalId = animale.Id;
-                String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};
+
 
                 // creazione dello spinner
                 Spinner spinner = new Spinner(Activity_Animale_Selezionato.this);
-                spinner.setAdapter(new ArrayAdapter<String>(Activity_Animale_Selezionato.this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
-
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Animale_Selezionato.this, R.array.relazione_options, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
                 // creazione dell'AlertDialog con lo spinner
                 new AlertDialog.Builder(Activity_Animale_Selezionato.this)
                         .setTitle(c1)
@@ -164,7 +165,7 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String selectedOption = spinner.getSelectedItem().toString();
-                                Toast.makeText(Activity_Animale_Selezionato.this, c4+ " " +selectedOption + " " + c5, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Animale_Selezionato.this, c4 + " " + selectedOption + " " + c5, Toast.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
                                 mDatabase.child("idAnimaleRelazione").setValue(animalId);
@@ -201,11 +202,12 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
             {
                 Animale animale =  ListSenzaAnimale.get(position);
                 String animalId = animale.Id;
-                String[] spinnerOptions = {"Non compatibile", "Amici", "Conviventi"};
 
                 // creazione dello spinner
                 Spinner spinner = new Spinner(Activity_Animale_Selezionato.this);
-                spinner.setAdapter(new ArrayAdapter<String>(Activity_Animale_Selezionato.this, android.R.layout.simple_spinner_dropdown_item, spinnerOptions));
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Animale_Selezionato.this, R.array.relazione_options, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
 
                 // creazione dell'AlertDialog con lo spinner
                 new AlertDialog.Builder(Activity_Animale_Selezionato.this)

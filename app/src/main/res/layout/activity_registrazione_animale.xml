@@ -170,8 +170,6 @@
                 android:id="@+id/spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/register_animal_birthdate"
-                android:layout_alignParentStart="true"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
                 android:layout_marginTop="20dp"

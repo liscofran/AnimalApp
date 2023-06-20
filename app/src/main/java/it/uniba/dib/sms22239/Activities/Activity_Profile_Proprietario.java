@@ -9,14 +9,13 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import it.uniba.dib.sms22239.Fragments.Fragment_profile_proprietario;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
-public class Activity_Profile_Proprietario_Ente extends AppCompatActivity
+public class Activity_Profile_Proprietario extends AppCompatActivity
 {
 
     @Override
@@ -42,7 +41,7 @@ public class Activity_Profile_Proprietario_Ente extends AppCompatActivity
         findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Home.class);
+                Intent intent = new Intent(Activity_Profile_Proprietario.this, Activity_Home.class);
                 startActivity(intent);
             }
         });
@@ -50,35 +49,35 @@ public class Activity_Profile_Proprietario_Ente extends AppCompatActivity
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(Activity_Profile_Proprietario.this, Activity_Profile_Proprietario.class));
             }
         });
 
         findViewById(R.id.annunci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Segnalazioni_Offerte.class));
+                startActivity(new Intent(Activity_Profile_Proprietario.this, Activity_Segnalazioni_Offerte.class));
             }
         });
 
         findViewById(R.id.pet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_Animali.class));
+                startActivity(new Intent(Activity_Profile_Proprietario.this, Activity_Animali.class));
             }
         });
 
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Activity_QRcode.class));
+                startActivity(new Intent(Activity_Profile_Proprietario.this, Activity_QRcode.class));
             }
         });
 
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Profile_Proprietario_Ente.this, Preference.class));
+                startActivity(new Intent(Activity_Profile_Proprietario.this, Activity_settings.class));
             }
         });
 

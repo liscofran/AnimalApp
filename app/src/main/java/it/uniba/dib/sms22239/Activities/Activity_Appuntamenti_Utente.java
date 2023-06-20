@@ -63,7 +63,7 @@ public class Activity_Appuntamenti_Utente extends AppCompatActivity {
             findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Activity_Appuntamenti_Utente.this, Activity_Profile_Proprietario_Ente.class));
+                    startActivity(new Intent(Activity_Appuntamenti_Utente.this, Activity_Profile_Proprietario.class));
                 }
             });
 

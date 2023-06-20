@@ -21,6 +21,7 @@ import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Activity_Scheda_Veterinario;
 import it.uniba.dib.sms22239.Activities.Activity_Segnalazioni_Offerte;
+import it.uniba.dib.sms22239.Activities.Activity_settings;
 import it.uniba.dib.sms22239.Preference;
 import it.uniba.dib.sms22239.R;
 
@@ -97,7 +98,7 @@ public class Fragment_Veterinario extends Fragment {
         getView().findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Preference.class));
+                startActivity(new Intent(getActivity(), Activity_settings.class));
             }
         });
 

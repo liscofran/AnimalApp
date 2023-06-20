@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Activities.Activity_Calendario_Prenotazioni_Animale;
+import it.uniba.dib.sms22239.Activities.Activity_Nuovo_Appuntamento;
 import it.uniba.dib.sms22239.Activities.Activity_Prenotazioni_Veterinario;
 import it.uniba.dib.sms22239.R;
 
@@ -227,9 +228,7 @@ public class Fragment_esame_veterinario extends Fragment {
             }
         });
 
-
-
-        ImageView salvaButton = view.findViewById(R.id.salvaButton); // Sostituisci R.id.salva_button con l'ID effettivo del tuo pulsante "salva"
+        ImageView salvaButton = view.findViewById(R.id.salvaButton);
 
         salvaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,14 +243,10 @@ public class Fragment_esame_veterinario extends Fragment {
                 // Avvia l'ActivityPrenotazioneVeterinario
                 Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
                 startActivity(intent);
-
-                // Chiudi l'Activity corrente (se necessario)
-                getActivity().finish();
+                String c5= getString(R.string.ce6);
+               Toast.makeText(getActivity(),c5, Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
         return view;
     }
 }

@@ -211,6 +211,8 @@ public class Fragment_diagnosi_veterinario extends Fragment {
                 databaseRef.child("diagnosi").setValue(nuovaDiagnosi);
                 Intent intent = new Intent(getActivity(), Activity_Prenotazioni_Veterinario.class);
                 startActivity(intent);
+                String c5= getString(R.string.ce6);
+                Toast.makeText(getActivity(),c5, Toast.LENGTH_SHORT).show();
             }
         });
 

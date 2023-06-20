@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
-import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario_Ente;
+import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Activity_Segnalazioni_Offerte;
-import it.uniba.dib.sms22239.Preference;
+import it.uniba.dib.sms22239.Activities.Activity_settings;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_toolbarProprietario extends Fragment {
@@ -50,7 +50,7 @@ public class Fragment_toolbarProprietario extends Fragment {
         view.findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Activity_Profile_Proprietario_Ente.class));
+                startActivity(new Intent(getActivity(), Activity_Profile_Proprietario.class));
             }
         });
 
@@ -78,7 +78,7 @@ public class Fragment_toolbarProprietario extends Fragment {
         view.findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Preference.class));
+                startActivity(new Intent(getActivity(), Activity_settings.class));
             }
         });
 
