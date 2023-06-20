@@ -202,8 +202,6 @@ public class Fragment_diagnosi_veterinario extends Fragment {
             }
         });
 
-
-
         ImageButton salvaButton = view.findViewById(R.id.salva);
         salvaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,10 +215,6 @@ public class Fragment_diagnosi_veterinario extends Fragment {
         });
 
 
-
-
-
-        // Aggiungi eventuali altri listener o codice di gestione qui
 
         return view;
     }

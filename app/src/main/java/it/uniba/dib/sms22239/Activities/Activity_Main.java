@@ -51,7 +51,10 @@ public class Activity_Main extends AppCompatActivity
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         c1 = getString(R.string.a23);
-        if(currentUser != null){
+
+
+        if(currentUser != null)
+        {
 
             Toast.makeText(Activity_Main.this, c1 + currentUser.getEmail(),
                     Toast.LENGTH_SHORT).show();
@@ -82,6 +85,7 @@ public class Activity_Main extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Load_setting();
         setContentView(R.layout.activity_main);
         createnewAccount=findViewById(R.id.createNewAccount);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -95,7 +99,7 @@ public class Activity_Main extends AppCompatActivity
         progressDialog= new ProgressDialog(this);
         mAuth= FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
-        Load_setting();
+
 
         createnewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +155,12 @@ public class Activity_Main extends AppCompatActivity
             }
         });
 
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        Load_setting();
     }
 
     private void perforLogin()

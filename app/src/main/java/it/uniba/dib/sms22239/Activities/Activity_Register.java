@@ -28,21 +28,15 @@ import it.uniba.dib.sms22239.Models.Veterinario;
 
 public class Activity_Register extends AppCompatActivity {
 
-    TextView alreadyHaveaccount;
-    EditText inputEmail,inputPassword,inputCConformPassword;
-    Button btnRegister;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    ProgressDialog progressDialog;
-    Spinner spinner;
-    Boolean flag;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    String selectedItem;
-
-
-
-
-
+    private TextView alreadyHaveaccount;
+    private EditText inputEmail,inputPassword,inputCConformPassword;
+    private Button btnRegister;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private ProgressDialog progressDialog;
+    private Spinner spinner;
+    private Boolean flag;
+    private FirebaseAuth mAuth;
+    private String selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +52,6 @@ public class Activity_Register extends AppCompatActivity {
         btnRegister=findViewById(it.uniba.dib.sms22239.R.id.btnRegister);
         progressDialog= new ProgressDialog(this);
         mAuth= FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
 
         alreadyHaveaccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,12 +115,12 @@ public class Activity_Register extends AppCompatActivity {
             progressDialog.show();
 
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
 
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
                     if(task.isSuccessful() && flag)
                     {
                         switch(selectedItem)
