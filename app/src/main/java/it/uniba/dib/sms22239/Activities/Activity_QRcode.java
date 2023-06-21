@@ -74,42 +74,12 @@ public class Activity_QRcode extends AppCompatActivity
 
         // Toolbar
         constraintLayout = findViewById(R.id.home_constraint_layout); // Importante per il tema
-        loadSettings();
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        switch1 = findViewById(R.id.switch2);
-
-        //Switch
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String switch1Value = sharedPreferences.getString("language", "it");
-        switch1.setChecked(switch1Value.equals("it"));
-
-        //Switch Musica
-        switch1.setOnCheckedChangeListener(null);
-        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if(isChecked)
-                {
-                    editor.putString("language", "it");
-                    editor.apply();
-                    setLocale("it");
-                    recreateActivity();
-                } else
-                {
-                    editor.putString("language", "en");
-                    editor.apply();
-                    setLocale("en");
-                    recreateActivity();
-                }
             }
         });
 
@@ -202,25 +172,6 @@ public class Activity_QRcode extends AppCompatActivity
             unregisterReceiver(bluetoothReceiver);
         }
         super.onPause();
-    }
-
-    private void loadSettings() {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isNightMode = sp.getBoolean("NIGHT", false);
-        if (isNightMode) {
-            constraintLayout.setBackgroundColor(Color.parseColor("#222222"));
-        } else {
-            constraintLayout.setBackgroundColor(Color.parseColor("#ffffff"));
-        }
-
-        String orientation = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orientation)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orientation)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orientation)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
     }
 
     @Override

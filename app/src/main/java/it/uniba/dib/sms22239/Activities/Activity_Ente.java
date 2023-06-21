@@ -37,7 +37,6 @@ public class Activity_Ente extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ente);
-        Load_setting();
 
         autenticazione();
 
@@ -55,24 +54,9 @@ public class Activity_Ente extends AppCompatActivity
         });
     }
 
-    private void Load_setting()
-    {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-    }
-
     @Override
     protected void onResume()
     {
-        Load_setting();
         super.onResume();
     }
 

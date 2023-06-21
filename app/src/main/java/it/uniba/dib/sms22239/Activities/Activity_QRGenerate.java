@@ -71,29 +71,14 @@ public class Activity_QRGenerate extends AppCompatActivity
         }
         mAuth = FirebaseAuth.getInstance();
 
-        Load_setting();
 
 
 
     }
 
-    private void Load_setting()
-    {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        } else if ("3".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-    }
 
     @Override
     protected void onResume() {
-        Load_setting();
         super.onResume();
     }
 
