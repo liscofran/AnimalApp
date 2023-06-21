@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Activity_Settings;
 import it.uniba.dib.sms22239.Activities.Proprietari.Activity_Profilo_Proprietario;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
 import it.uniba.dib.sms22239.Activities.Annunci.Activity_Menu_Annunci;
@@ -92,7 +93,7 @@ public class Activity_Appuntamento_Veterinario_Animale extends AppCompatActivity
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Appuntamento_Veterinario_Animale.this, Preference.class));
+                startActivity(new Intent(Activity_Appuntamento_Veterinario_Animale.this, Activity_Settings.class));
             }
         });
 

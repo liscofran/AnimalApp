@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_QRcode;
+import it.uniba.dib.sms22239.Activities.Activity_Settings;
 import it.uniba.dib.sms22239.Activities.Annunci.Activity_Menu_Annunci;
 import it.uniba.dib.sms22239.R;
 
@@ -77,7 +78,7 @@ public class Activity_Scheda_Veterinario extends AppCompatActivity {
         findViewById(R.id.impostazioni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Activity_Scheda_Veterinario.this, Preference.class));
+                startActivity(new Intent(Activity_Scheda_Veterinario.this, Activity_Settings.class));
             }
         });
 
