@@ -1,12 +1,11 @@
 package it.uniba.dib.sms22239.Fragments;
 
-import static android.app.Activity.RESULT_OK;
 import static android.bluetooth.BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION;
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,21 +37,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.uniba.dib.sms22239.Activities.Activity_Calendario_Appuntamenti_Animale;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Multimedia;
 import it.uniba.dib.sms22239.Activities.Activity_PrenotazioniAppuntamenti_Utente;
@@ -88,6 +83,7 @@ public class Fragment_profile_animale extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             idAnimal = savedInstanceState.getString("ANIMAL_CODE");
+
         }
         super.onCreate(savedInstanceState);
     }
@@ -347,25 +343,9 @@ public class Fragment_profile_animale extends Fragment {
                 if (!bluetoothAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                    openBluetoothSettings();
                 }
-                else
-                {   Intent discoverableIntent= new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                    discoverableIntent.putExtra(EXTRA_DISCOVERABLE_DURATION,300);
-                    startActivity(discoverableIntent);
-                    Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
 
-                    if (pairedDevices.size() > 0) {
-                        // There are paired devices. Get the name and address of each paired device.
-                        for (BluetoothDevice device : pairedDevices) {
-                            String deviceName = device.getName();
-                            String deviceHardwareAddress = device.getAddress(); // MAC address
-                        }
-                    }
-
-
-                    bluetoothAdapter.startDiscovery();
-                    Toast.makeText(getActivity(), "ciao", Toast.LENGTH_SHORT).show();
-                }
             }
         });
 
@@ -394,6 +374,14 @@ public class Fragment_profile_animale extends Fragment {
             }
 
         }
+    }
+
+    private void openBluetoothSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+        intent.putExtra("ANIMAL_CODE",idAnimal);
+        startActivity(intent);
+
     }
 
 }
