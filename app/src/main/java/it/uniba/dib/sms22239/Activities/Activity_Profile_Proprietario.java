@@ -23,7 +23,6 @@ public class Activity_Profile_Proprietario extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
-        Load_setting();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -83,24 +82,9 @@ public class Activity_Profile_Proprietario extends AppCompatActivity
 
     }
 
-    private void Load_setting()
-    {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String orien = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orien)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-    }
-
     @Override
     protected void onResume()
     {
-        Load_setting();
         super.onResume();
     }
 }
