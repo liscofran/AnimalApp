@@ -192,11 +192,9 @@ public class Fragment_edit_segnalazione extends Fragment {
                 mDatabase.child("oggetto").setValue(newOggetto);
                 updateFile(mDatabase);
 
-                Intent intent = new Intent(getActivity(), Activity_Segnalazioni_Offerte.class);
                 String c5= getString(R.string.c2);
-
                 Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
-                startActivity(intent);
+
             }
         });
     }
@@ -223,7 +221,8 @@ public class Fragment_edit_segnalazione extends Fragment {
         StorageReference imagesRef = storageRef.child("Segnalazioni/" + idSegnalazione + ".jpg");
 
         // Se l'utente ha selezionato un'immagine, caricala nello storage
-        if (mImageUri != null) {
+        if (mImageUri != null)
+        {
             // Crea un nome di file univoco per l'immagine
             String fileName = idSegnalazione + ".jpg";
 
@@ -251,9 +250,20 @@ public class Fragment_edit_segnalazione extends Fragment {
                         // Aggiorna l'URL dell'immagine nel database
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Segnalazioni").child(idSegnalazione);
                         mDatabase.child("immagine").setValue(downloadUri.toString());
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                        startActivity(getActivity().getIntent());
+                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
             });
+        }
+        else
+        {
+            getActivity().finish();
+            getActivity().overridePendingTransition(0, 0);
+            startActivity(getActivity().getIntent());
+            getActivity().overridePendingTransition(0, 0);
         }
     }
 }
