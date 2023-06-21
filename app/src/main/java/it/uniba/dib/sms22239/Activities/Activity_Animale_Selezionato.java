@@ -174,7 +174,9 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                                 DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Animale").child(animalId);
                                 mDatabase1.child("relazione").setValue(selectedOption);
                                 mDatabase1.child("idAnimaleRelazione").setValue(idAnimale);
-                                startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
+                                Intent intent = new Intent(Activity_Animale_Selezionato.this, Activity_Animal_Profile.class);
+                                intent.putExtra("ANIMAL_CODE",idAnimale);
+                                startActivity(intent);
                             }
                         })
                         .setNegativeButton(c6, null)
@@ -228,7 +230,9 @@ public class Activity_Animale_Selezionato extends AppCompatActivity {
                                 DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("Animale").child(animalId);
                                 mDatabase1.child("relazione").setValue(selectedOption);
                                 mDatabase1.child("idAnimaleRelazione").setValue(idAnimale);
-                                startActivity(new Intent(Activity_Animale_Selezionato.this, Activity_Home.class));
+                                Intent intent = new Intent(Activity_Animale_Selezionato.this, Activity_Animal_Profile.class);
+                                intent.putExtra("ANIMAL_CODE",idAnimale);
+                                startActivity(intent);
                             }
                         })
                         .setNegativeButton(c6, null)
