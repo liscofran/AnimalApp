@@ -43,6 +43,7 @@ import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
 import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.Models.Ente;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_edit_animal_profile extends Fragment {
@@ -192,10 +193,6 @@ public class Fragment_edit_animal_profile extends Fragment {
                 String c4= getString(R.string.c2);
 
                 Toast.makeText(getActivity(), c4, Toast.LENGTH_LONG).show();
-                getActivity().finish();
-                getActivity().overridePendingTransition(0, 0);
-                startActivity(getActivity().getIntent());
-                getActivity().overridePendingTransition(0, 0);
             }
         });
     }
@@ -248,9 +245,20 @@ public class Fragment_edit_animal_profile extends Fragment {
                         // Aggiorna l'URL dell'immagine nel database
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
                         mDatabase.child("immagine").setValue(downloadUri.toString());
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                        startActivity(getActivity().getIntent());
+                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
             });
+        }
+        else
+        {
+            getActivity().finish();
+            getActivity().overridePendingTransition(0, 0);
+            startActivity(getActivity().getIntent());
+            getActivity().overridePendingTransition(0, 0);
         }
     }
 }

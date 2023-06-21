@@ -169,10 +169,6 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 String c5= getString(R.string.c2);
                 Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
 
-                getActivity().finish();
-                getActivity().overridePendingTransition(0, 0);
-                startActivity(getActivity().getIntent());
-                getActivity().overridePendingTransition(0, 0);
             }
         });
     }
@@ -228,9 +224,20 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                         // Aggiorna l'URL dell'immagine nel database
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
                         mDatabase.child("immagine").setValue(downloadUri.toString());
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                        startActivity(getActivity().getIntent());
+                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
             });
+        }
+        else
+        {
+            getActivity().finish();
+            getActivity().overridePendingTransition(0, 0);
+            startActivity(getActivity().getIntent());
+            getActivity().overridePendingTransition(0, 0);
         }
     }
 

@@ -40,6 +40,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Models.Ente;
 import it.uniba.dib.sms22239.R;
 
 
@@ -140,28 +141,25 @@ public class Fragment_edit_ente_profile extends Fragment {
             }
         });
         // Recupera i dati dal database e popola i campi
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //recupero dati e assegnazione alle variabili
-                String ragsociale = dataSnapshot.child("ragione_sociale").getValue(String.class);
-                String sedelegale = dataSnapshot.child("sede_legale").getValue(String.class);
-                String piva = dataSnapshot.child("p_iva").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Ente ent = task.getResult().getValue(Ente.class);
 
-                //set delle variabili recuperate al layout
-                mragionesociale.setText(ragsociale);
-                msedelegaleTextView.setText(sedelegale);
-                mpivaTextView.setText(piva);
-            }
+                    String ragsociale = ent.ragione_sociale;
+                    String sedelegale = ent.sede_legale;
+                    String piva = ent.p_iva;
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
+                    //set delle variabili recuperate al layout
+                    mragionesociale.setText(ragsociale);
+                    msedelegaleTextView.setText(sedelegale);
+                    mpivaTextView.setText(piva);
+                }
             }
         });
+
         //modificare l'immagine
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,9 +252,20 @@ public class Fragment_edit_ente_profile extends Fragment {
                         // Aggiorna l'URL dell'immagine nel database
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
                         mDatabase.child("immagine").setValue(downloadUri.toString());
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                        startActivity(getActivity().getIntent());
+                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
             });
+        }
+        else
+        {
+            getActivity().finish();
+            getActivity().overridePendingTransition(0, 0);
+            startActivity(getActivity().getIntent());
+            getActivity().overridePendingTransition(0, 0);
         }
     }
 }

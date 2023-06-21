@@ -44,6 +44,7 @@ import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Profilo_Veterinario;
 import it.uniba.dib.sms22239.Adapters.Animal_View_Holder;
 import it.uniba.dib.sms22239.Models.Proprietario;
+import it.uniba.dib.sms22239.Models.Veterinario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -132,26 +133,24 @@ public class Fragment_edit_veterinario extends Fragment {
             }
         });
 
-        // Recupera i dati dal database e popola i campi
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //recupero dati e assegnazione alle variabili
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child("cognome").getValue(String.class);
-                String titolostudio = dataSnapshot.child("titolo_studio").getValue(String.class);
-                String codicefiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Veterinario vet= task.getResult().getValue(Veterinario.class);
 
-                //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mCognomeTextView.setText(cognome);
-                mtitolostudioTextView.setText(titolostudio);
-                mcfTextView.setText(codicefiscale);
-            }
+                    //recupero dati e assegnazione alle variabili
+                    String name = vet.nome;
+                    String cognome = vet.cognome;
+                    String titolostudio = vet.titolo_studio;
+                    String codicefiscale = vet.codice_fiscale;
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                    //set delle variabili recuperate al layout
+                    mNomeTextView.setText(name);
+                    mCognomeTextView.setText(cognome);
+                    mtitolostudioTextView.setText(titolostudio);
+                    mcfTextView.setText(codicefiscale);
+                }
             }
         });
 
@@ -194,11 +193,8 @@ public class Fragment_edit_veterinario extends Fragment {
 
                 updateFile(user);
 
-                Intent intent = new Intent(getActivity(), Activity_Home.class);
                 String c5= getString(R.string.c2);
-
                 Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
-                startActivity(intent);
 
             }
         });
@@ -255,9 +251,20 @@ public class Fragment_edit_veterinario extends Fragment {
                         // Aggiorna l'URL dell'immagine nel database
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
                         mDatabase.child("immagine").setValue(downloadUri.toString());
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0, 0);
+                        startActivity(getActivity().getIntent());
+                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
             });
+        }
+        else
+        {
+            getActivity().finish();
+            getActivity().overridePendingTransition(0, 0);
+            startActivity(getActivity().getIntent());
+            getActivity().overridePendingTransition(0, 0);
         }
     }
 }
