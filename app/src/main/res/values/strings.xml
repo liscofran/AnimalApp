@@ -339,7 +339,7 @@
         <string name= "prov">Provincia</string>
         <string name="modifica_foto">Modifica foto</string>
         <string name="oggetto">Oggetto</string>
-        <string name="descrizione">descrizione</string>
+        <string name="descrizione">Descrizione</string>
     <string name="Modifica">Modifica</string>
     <string name="ins_r">Inserisci la ragione sociale..</string>
     <string name="ins_ss">Inserisci la sede legale</string>
