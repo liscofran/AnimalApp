@@ -18,7 +18,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,11 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import it.uniba.dib.sms22239.Models.Ente;
+import it.uniba.dib.sms22239.Models.Offerta;
+import it.uniba.dib.sms22239.Models.Proprietario;
+import it.uniba.dib.sms22239.Models.Segnalazione;
+import it.uniba.dib.sms22239.Models.Veterinario;
 import it.uniba.dib.sms22239.R;
 
 
@@ -45,6 +52,8 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
     private CircleImageView Immaginesegnalazione;
     String id_utente;
     String nomeEcognome;
+    DatabaseReference mDatabase;
+    DatabaseReference mDatabase1;
 
     public Fragment_profilo_segnalazione_senza_modifica() {
         // Required empty public constructor
@@ -72,8 +81,6 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
         String idSegnalazione = requireActivity().getIntent().getStringExtra("SEGNALAZIONE_CODE");
 
         FirebaseUser user = mAuth.getCurrentUser();
-        DatabaseReference mDatabase;
-        DatabaseReference mDatabase1;
 
         // Recupera il riferimento al database
         mDatabase = database.getInstance().getReference().child("Segnalazioni").child(idSegnalazione);
@@ -110,45 +117,56 @@ public class Fragment_profilo_segnalazione_senza_modifica extends Fragment
         });
 
         // Recupera i dati dal database e popola le viste
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                String descrizione = dataSnapshot.child("descrizione").getValue(String.class);
-                String provincia = dataSnapshot.child("provincia").getValue(String.class);
-                String oggetto = dataSnapshot.child("oggetto").getValue(String.class);
-                latitude=dataSnapshot.child("latitude").getValue(double.class);
-                longitude=dataSnapshot.child("longitude").getValue(double.class);
-                id_utente = dataSnapshot.child("uid").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Segnalazione sen = task.getResult().getValue(Segnalazione.class);
 
-                //set delle variabili recuperate al layout
-                mDescrizioneTextView.setText(descrizione);
-                mProvinciaTextView.setText(provincia);
-                mOggettoTextView.setText(oggetto);
-            }
+                    String descrizione = sen.descrizione;
+                    String provincia = sen.provincia;
+                    String oggetto = sen.oggetto;
+                    id_utente = sen.uid;
+                    mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(id_utente);
+                    mDatabase1.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if(task.isSuccessful()) {
+                                Proprietario user = task.getResult().getValue(Proprietario.class);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+                                if(user.classe.equals("Proprietario"))
+                                {
+                                    Proprietario prop = task.getResult().getValue(Proprietario.class);
+                                    String nome_utente = prop.nome;
+                                    String cognome_utente = prop.cognome;
+                                    nomeEcognome = nome_utente + " " + cognome_utente;
+                                    utente.setText(nomeEcognome);
+                                }
+                                else if(user.classe.equals("Ente"))
+                                {
+                                    Ente ente = task.getResult().getValue(Ente.class);
+                                    String rag = ente.ragione_sociale;
+                                    utente.setText(rag);
+                                }
+                                else
+                                {
+                                    Veterinario vet = task.getResult().getValue(Veterinario.class);
+                                    String nome_utente = vet.nome;
+                                    String cognome_utente = vet.cognome;
+                                    nomeEcognome = nome_utente + " " + cognome_utente;
+                                    utente.setText(nomeEcognome);
+                                }
 
-            }
-        });
+                            }
+                        }
+                    });
 
-        mDatabase1.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                String nome_utente = dataSnapshot.child(id_utente).child("nome").getValue(String.class);
-                String cognome_utente = dataSnapshot.child(id_utente).child("cognome").getValue(String.class);
-                nomeEcognome = nome_utente + " " + cognome_utente;
-                utente.setText(nomeEcognome);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+                    //set delle variabili recuperate al layout
 
+                    mDescrizioneTextView.setText(descrizione);
+                    mProvinciaTextView.setText(provincia);
+                    mOggettoTextView.setText(oggetto);
+                }
             }
         });
         mapBtn.setOnClickListener((new View.OnClickListener()
