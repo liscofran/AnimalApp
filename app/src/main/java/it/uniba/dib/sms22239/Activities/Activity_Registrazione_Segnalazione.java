@@ -94,8 +94,6 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
         submitBtn = findViewById(R.id.submitBtn);
         mImageView = findViewById(R.id.image_view);
         locbtn=findViewById(R.id.modificaBtn);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        provider = locationManager.getBestProvider(new Criteria(), false);
         //mStorageRef = FirebaseStorage.getInstance().getReference().child("Segnalazioni");
         allegato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,27 +120,33 @@ public class Activity_Registrazione_Segnalazione extends AppCompatActivity imple
             }
         });
 
-        locbtn.setOnClickListener(new View.OnClickListener() {
+        locbtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 isMapOpen = false;
+
                 if (ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Activity_Registrazione_Segnalazione.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 {
                     ActivityCompat.requestPermissions(Activity_Registrazione_Segnalazione.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                 }
                 else
-                {                       String c1= getString(R.string.gm1);
-
+                {
+                    String c1= getString(R.string.gm1);
                     Toast.makeText(Activity_Registrazione_Segnalazione.this, c1, Toast.LENGTH_SHORT).show();
                     LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
                     if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                         startActivity(intent);
-
+                    }
+                    else
+                    {
+                        provider = locationManager.getBestProvider(new Criteria(), false);
+                        locationManager.requestLocationUpdates(provider, 0L, (float) 0, (LocationListener) Activity_Registrazione_Segnalazione.this);
                     }
                 }
-                locationManager.requestLocationUpdates(provider, 0L, (float) 0, (LocationListener) Activity_Registrazione_Segnalazione.this);
-
             }
         });
 
