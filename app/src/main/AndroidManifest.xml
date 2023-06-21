@@ -56,109 +56,103 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".Activities.Activity_Maps"
+            android:name=".Activities.Annunci.Activity_Maps"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".Activities.Activity_Album_Animali"
+            android:name=".Activities.Animali.Activity_Album_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Animale_Selezionato"
+            android:name=".Activities.Animali.Activity_Animale_Selezionato_Album"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_profilo_Offerta"
+            android:name=".Activities.Annunci.Activity_Profilo_Offerta"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Appuntamento_Animale"
+            android:name=".Activities.Animali.Activity_Appuntamento_Animale"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_settings"
+            android:name=".Activities.Activity_Settings"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Calendario_Appuntamenti_Animale"
+            android:name=".Activities.Animali.Activity_Calendario_Appuntamenti_Animale"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Appuntamento"
+            android:name=".Activities.Veterinari.Activity_Appuntamento_Veterinario_Animale"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Nuovo_Appuntamento"
+            android:name=".Activities.Veterinari.Activity_Nuovo_Appuntamento"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Appuntamenti_Veterinario"
+            android:name=".Activities.Veterinari.Activity_Calendario_Appuntamenti_Veterinario"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Scheda_Veterinario"
+            android:name=".Activities.Veterinari.Activity_Scheda_Veterinario"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Profilo_Segnalazione"
+            android:name=".Activities.Annunci.Activity_Profilo_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Profilo_Veterinario"
+            android:name=".Activities.Veterinari.Activity_Profilo_Veterinario"
             android:exported="false"
             android:label="@string/title_activity_veterinario"
             android:theme="@style/Theme.AnimalApp.NoActionBar" />
         <activity
-            android:name=".Activities.Activity_Miei_Animali"
+            android:name=".Activities.Animali.Activity_Miei_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Ricerca_Animali"
+            android:name=".Activities.Animali.Activity_Ricerca_Animali"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Segnalazione"
+            android:name=".Activities.Annunci.Activity_Mie_Segnalazioni"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Registrazione_Offerte"
+            android:name=".Activities.Annunci.Activity_Registrazione_Offerte"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Offerte"
+            android:name=".Activities.Annunci.Activity_Mie_Offerte"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Ricerca_Offerte"
+            android:name=".Activities.Annunci.Activity_Ricerca_Offerte"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Registrazione_Segnalazione"
+            android:name=".Activities.Annunci.Activity_Registrazione_Segnalazione"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Ricerca_Segnalazioni"
+            android:name=".Activities.Annunci.Activity_Ricerca_Segnalazioni"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Multimedia"
+            android:name=".Activities.Animali.Activity_Multimedia"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Animali"
+            android:name=".Activities.Animali.Activity_Menu_Animali"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_QRcode"
             android:exported="false"
             android:label="Scansione QRCode" />
         <activity
-            android:name=".Activities.Activity_Segnalazioni_Offerte"
+            android:name=".Activities.Annunci.Activity_Menu_Annunci"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Proprieta"
+            android:name=".Activities.Enti.Activity_Ente"
             android:exported="false" />
         <activity
-            android:name=".Activities.Activity_Ente"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Activity_Animal_Profile"
+            android:name=".Activities.Animali.Activity_Profilo_Animale"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activities.Activity_Registrazione_Animale"
+            android:name=".Activities.Animali.Activity_Registrazione_Animale"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activities.Activity_QRGenerate"
+            android:name=".Activities.Animali.Activity_QRGenerate"
             android:exported="true" />
         <activity
             android:name=".Activities.Activity_Reset_Password"
             android:exported="false" />
         <activity
-            android:name=".Preference"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Activity_Profile_Proprietario"
+            android:name=".Activities.Proprietari.Activity_Profilo_Proprietario"
             android:exported="false"
             android:parentActivityName=".Activities.Activity_Home">
             <meta-data
@@ -180,14 +174,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.Activity_Spese"
+            android:name=".Activities.Animali.Activity_Spese"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.Activity_Crea_Oggetto_Spesa"
+            android:name=".Activities.Animali.Activity_Crea_Oggetto_Spesa"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -207,19 +201,19 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.Activity_Prenotazioni_Veterinario">
+            android:name=".Activities.Veterinari.Activity_Calendario_Prenotazioni_Veterinario">
         </activity>
         <activity
-            android:name=".Activities.Activity_Prenotazione">
+            android:name=".Activities.Veterinari.Activity_Prenotazione_Veterinario">
         </activity>
         <activity
-            android:name=".Activities.Activity_PrenotazioniAppuntamenti_Utente">
+            android:name=".Activities.Animali.Activity_Prenotazioni_Appuntamenti_Animale">
         </activity>
         <activity
-            android:name=".Activities.Activity_Calendario_Prenotazioni_Animale">
+            android:name=".Activities.Animali.Activity_Calendario_Prenotazioni_Animale">
         </activity>
         <activity
-            android:name=".Activities.Activity_Prenotazione_Animale">
+            android:name=".Activities.Animali.Activity_Prenotazione_Animale">
         </activity>
         <meta-data
             android:name="preloaded_fonts"

@@ -5,8 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
-import it.uniba.dib.sms22239.Activities.Activity_QRcode;
+import it.uniba.dib.sms22239.Activities.Animali.Activity_Profilo_Animale;
 
 public class BluetoothReceiver extends BroadcastReceiver {
     @Override
@@ -43,7 +42,7 @@ public class BluetoothReceiver extends BroadcastReceiver {
             // Intent ricevuto tramite Bluetooth, puoi gestire l'azione successiva qui
             String idAnimal = intent.getStringExtra("ANIMAL_CODE");
             if (idAnimal != null) {
-                Intent intent1=new Intent(context, Activity_Animal_Profile.class);
+                Intent intent1=new Intent(context, Activity_Profilo_Animale.class);
                 intent1.putExtra("ANIMAL_CODE", idAnimal);
                 context.startActivity(intent1);            }
         }

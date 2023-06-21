@@ -4,13 +4,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,9 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
-import it.uniba.dib.sms22239.Fragments.Fragment_Ente;
-import it.uniba.dib.sms22239.Fragments.Fragment_Proprietario;
-import it.uniba.dib.sms22239.Fragments.Fragment_Veterinario;
+import it.uniba.dib.sms22239.Fragments.Enti.Fragment_Ente;
+import it.uniba.dib.sms22239.Fragments.Proprietari.Fragment_Proprietario;
+import it.uniba.dib.sms22239.Fragments.Veterinari.Fragment_Veterinario;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Home extends AppCompatActivity

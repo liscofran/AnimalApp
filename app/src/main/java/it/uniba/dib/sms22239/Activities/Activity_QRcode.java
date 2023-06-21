@@ -7,16 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -43,27 +39,24 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
+import it.uniba.dib.sms22239.Activities.Animali.Activity_Profilo_Animale;
 import it.uniba.dib.sms22239.BluetoothReceiver;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
-import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
-import it.uniba.dib.sms22239.Preference;
+import it.uniba.dib.sms22239.Fragments.Enti.Fragment_Toolbar_Ente;
+import it.uniba.dib.sms22239.Fragments.Proprietari.Fragment_Toolbar_Proprietario;
+import it.uniba.dib.sms22239.Fragments.Veterinari.Fragment_Toolbar_Veterinario;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_QRcode extends AppCompatActivity
 {
-    private ConstraintLayout constraintLayout;
     private CodeScanner mCodeScanner;
     private static final int CAMERA_PERMISSION_REQUEST = 100;
     private String qrCodeResult;
     private static final int REQUEST_BLUETOOTH_PERMISSIONS = 1001;
     private static final int REQUEST_ENABLE_BT = 1002;
     private BluetoothReceiver bluetoothReceiver;
-    private SharedPreferences sharedPreferences;
     private String flag;
     private ImageButton back;
     private String c2,c3;
-    private SwitchMaterial switch1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +64,6 @@ public class Activity_QRcode extends AppCompatActivity
         setContentView(R.layout.activity_qrcode);
 
         autenticazione();
-
-        // Toolbar
-        constraintLayout = findViewById(R.id.home_constraint_layout); // Importante per il tema
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +101,7 @@ public class Activity_QRcode extends AppCompatActivity
                         if (intent.getAction().equals("collegamento")) {
                             // Estrai i dati dall'intent
                             String animalCode = intent.getStringExtra("ANIMAL_CODE");
-                            Intent intent2 = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
+                            Intent intent2 = new Intent(Activity_QRcode.this, Activity_Profilo_Animale.class);
                             intent2.putExtra("ANIMAL_CODE", animalCode);
                             Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();
                             startActivity(intent2);
@@ -137,30 +127,15 @@ public class Activity_QRcode extends AppCompatActivity
         }
     }
 
-    private void setLocale(String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Resources resources = getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         mCodeScanner.startPreview();
     }
 
-    private void recreateActivity() {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-    }
-
     public void startAnimalActivity() {
         c2= getString(R.string.qr1);
-        Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
+        Intent intent = new Intent(Activity_QRcode.this, Activity_Profilo_Animale.class);
         intent.putExtra("ANIMAL_CODE", qrCodeResult);
         Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();
         startActivity(intent);
@@ -226,7 +201,7 @@ public class Activity_QRcode extends AppCompatActivity
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarVeterinario());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_Toolbar_Veterinario());
                     fragmentTransaction.commit();
                     flag = "veterinario";
                 }
@@ -234,7 +209,7 @@ public class Activity_QRcode extends AppCompatActivity
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarProprietario());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_Toolbar_Proprietario());
                     fragmentTransaction.commit();
                     flag = "proprietario";
                 }
@@ -242,7 +217,7 @@ public class Activity_QRcode extends AppCompatActivity
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_toolbarEnte());
+                    fragmentTransaction.replace(R.id.fragment_toolbar, new Fragment_Toolbar_Ente());
                     fragmentTransaction.commit();
                     flag = "ente";
                 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_salute_animale">
+    tools:context=".Fragments.Animali.Fragment_Salute_Animale">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/second_relative_layout"

@@ -1,0 +1,116 @@
+package it.uniba.dib.sms22239.Fragments.Animali;
+
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.R;
+
+public class Fragment_Salute_Animale extends Fragment
+{
+    private EditText mPatologieEditText;
+    private EditText mPrefciboEditText;
+    private ImageButton saveProfileButton, backBtn;
+    private String idAnimal;
+    protected Bundle bundle = new Bundle();
+
+    public Fragment_Salute_Animale()
+    {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        return inflater.inflate(R.layout.fragment_salute_animale, container, false);
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        idAnimal = requireActivity().getIntent().getStringExtra("ANIMAL_CODE");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
+
+        saveProfileButton = getView().findViewById(R.id.salva);
+        mPatologieEditText = getView().findViewById(R.id.patologie);
+        mPrefciboEditText = getView().findViewById(R.id.preferenze_cibo);
+        backBtn = getView().findViewById(R.id.back);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment_Profilo_Animale fragment = new Fragment_Profilo_Animale();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+
+
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task)
+            {
+                if(task.isSuccessful())
+                {
+                    Animale ani = task.getResult().getValue(Animale.class);
+                    mPatologieEditText.setText(ani.patologie);
+                    mPrefciboEditText.setText(ani.preferenzecibo);
+                    bundle.putString("ANIMAL_CODE",ani.Id);
+                }
+            }
+        });
+
+        saveProfileButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // Salva i dati del profilo e torna all'activity precedente
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimal);
+
+                //prende i dati inseriti in input e gli assegna alle variabili temporanee
+                String newPatologie = mPatologieEditText.getText().toString();
+                String newPrefcibo = mPrefciboEditText.getText().toString();
+
+                //modifica e salva i dati anche sul database
+                mDatabase.child("patologie").setValue(newPatologie);
+                mDatabase.child("preferenzecibo").setValue(newPrefcibo);
+
+                String c5= getString(R.string.c2);
+
+                Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+                startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0, 0);
+            }
+        });
+    }
+}
