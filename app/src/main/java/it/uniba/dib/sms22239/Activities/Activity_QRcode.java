@@ -102,7 +102,7 @@ public class Activity_QRcode extends AppCompatActivity
                     }
                 }
 
-                c2= getString(R.string.qr1);
+
                 // BroadcastReceiver per ricevere l'intent inviato tramite Bluetooth
                 BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
                     @Override
@@ -159,6 +159,7 @@ public class Activity_QRcode extends AppCompatActivity
     }
 
     public void startAnimalActivity() {
+        c2= getString(R.string.qr1);
         Intent intent = new Intent(Activity_QRcode.this, Activity_Animal_Profile.class);
         intent.putExtra("ANIMAL_CODE", qrCodeResult);
         Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();

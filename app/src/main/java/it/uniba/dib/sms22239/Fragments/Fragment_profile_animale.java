@@ -340,12 +340,15 @@ public class Fragment_profile_animale extends Fragment {
                     Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
                 }
 
-                if (!bluetoothAdapter.isEnabled()) {
+                if (!bluetoothAdapter.isEnabled())
+                {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                }
+                else
+                {
                     openBluetoothSettings();
                 }
-
             }
         });
 
@@ -362,6 +365,10 @@ public class Fragment_profile_animale extends Fragment {
                 // Bluetooth non abilitato, mostra un messaggio o gestisci di conseguenza
                 Toast.makeText(getActivity(), c16, Toast.LENGTH_SHORT).show();
             }
+            else
+            {
+                openBluetoothSettings();
+            }
         }
 
         if (requestCode == REQUEST_DISCOVERABLE)
@@ -372,16 +379,20 @@ public class Fragment_profile_animale extends Fragment {
                 // Modalità di scoperta non attivata, mostra un messaggio o gestisci di conseguenza
                 Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
             }
+            else
+            {
+                openBluetoothSettings();
+            }
 
         }
     }
 
-    private void openBluetoothSettings() {
+    private void openBluetoothSettings()
+    {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
         intent.putExtra("ANIMAL_CODE",idAnimal);
         startActivity(intent);
-
     }
 
 }
