@@ -386,7 +386,7 @@ public class Fragment_Profilo_Animale extends Fragment {
     {
         // Register for broadcasts when a device is discovered.
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        registerReceiver(receiver, filter);
+        //registerReceiver(receiver, filter);
     }
 
 }
