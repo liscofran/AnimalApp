@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 
 import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Activities.Activity_Profile_Proprietario;
+import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -117,27 +118,23 @@ public class Fragment_edit_profile_proprietario extends Fragment {
             }
         });
 
-        // Recupera i dati dal database e popola i campi
-        mDatabase.addValueEventListener(new ValueEventListener()
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>()
         {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            public void onComplete(@NonNull Task<DataSnapshot> task)
             {
-                //recupero dati e assegnazione alle variabili
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String cognome = dataSnapshot.child("cognome").getValue(String.class);
-                String codfiscale = dataSnapshot.child("codice_fiscale").getValue(String.class);
+                if(task.isSuccessful())
+                {
+                    Proprietario prop = task.getResult().getValue(Proprietario.class);
+                    String name = prop.nome;
+                    String cognome = prop.cognome;
+                    String codfiscale = prop.codice_fiscale;
 
-                //set delle variabili recuperate al layout
-                editName.setText(name);
-                editCognome.setText(cognome);
-                editcodfiscale.setText(codfiscale);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
+                    //set delle variabili recuperate al layout
+                    editName.setText(name);
+                    editCognome.setText(cognome);
+                    editcodfiscale.setText(codfiscale);
+                }
             }
         });
 
@@ -156,7 +153,6 @@ public class Fragment_edit_profile_proprietario extends Fragment {
             {
                 // Salva i dati del profilo e torna all'activity precedente
                 DatabaseReference mDatabase = database.getInstance().getReference().child("User").child(user.getUid());
-                Proprietario prp = new Proprietario();
 
                 //prende i dati inseriti in input e gli assegna alle variabili temporanee
                 String newName = editName.getText().toString();
@@ -168,16 +164,15 @@ public class Fragment_edit_profile_proprietario extends Fragment {
                 mDatabase.child("nome").setValue(newName);
                 mDatabase.child("codice_fiscale").setValue(newCodfiscale);
 
-
                 updateFile(user);
 
-                Intent intent = new Intent(getActivity(), Activity_Home.class);
                 String c5= getString(R.string.c2);
-
                 Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
-                startActivity(intent);
 
-
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+                startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0, 0);
             }
         });
     }

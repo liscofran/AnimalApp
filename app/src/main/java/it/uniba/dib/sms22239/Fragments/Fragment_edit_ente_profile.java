@@ -195,11 +195,10 @@ public class Fragment_edit_ente_profile extends Fragment {
 
                 updateFile(user);
 
-                Intent intent = new Intent(getActivity(), Activity_Home.class);
                 String c5= getString(R.string.c2);
 
                 Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
-                startActivity(intent);
+
             }
         });
     }

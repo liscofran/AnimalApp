@@ -148,30 +148,4 @@ public class Fragment_profile_proprietario extends Fragment
             }
         });
     }
-                    //codice vecchio , onresume pensato per aggiornare l'immagine di profilo appena clicchi su salva
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        mAuth = FirebaseAuth.getInstance();
-//        FirebaseUser user = mAuth.getCurrentUser();
-//
-//        // Verifica che la variabile profilo non sia nulla
-//        if (profilo != null) {
-//            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-//            StorageReference imagesRef = storageRef.child("Proprietari/" + user.getUid() + ".jpg");
-//
-//            imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                @Override
-//                public void onSuccess(Uri uri) {
-//                    String imageUrl = uri.toString();
-//                    // Invalida la cache per l'immagine
-//                    Picasso.get().invalidate(imageUrl);
-//                    // Usa Picasso per caricare l'immagine nell'ImageView
-//                    Picasso.get().load(imageUrl).into(profilo);
-//                    Picasso.get().resumeTag(imagesRef);
-//                }
-//            });
-//        }
-//    }
 }
