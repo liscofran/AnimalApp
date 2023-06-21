@@ -2,7 +2,6 @@ package it.uniba.dib.sms22239.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 import static android.bluetooth.BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -350,7 +349,20 @@ public class Fragment_profile_animale extends Fragment {
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 }
                 else
-                {
+                {   Intent discoverableIntent= new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                    discoverableIntent.putExtra(EXTRA_DISCOVERABLE_DURATION,300);
+                    startActivity(discoverableIntent);
+                    Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+
+                    if (pairedDevices.size() > 0) {
+                        // There are paired devices. Get the name and address of each paired device.
+                        for (BluetoothDevice device : pairedDevices) {
+                            String deviceName = device.getName();
+                            String deviceHardwareAddress = device.getAddress(); // MAC address
+                        }
+                    }
+
+
                     bluetoothAdapter.startDiscovery();
                     Toast.makeText(getActivity(), "ciao", Toast.LENGTH_SHORT).show();
                 }
