@@ -36,7 +36,7 @@ public class Fragment_salute_animale extends Fragment
     private EditText mPrefciboEditText;
     private ImageButton saveProfileButton, backBtn;
     private String idAnimal;
-    Bundle bundle = new Bundle();
+    protected Bundle bundle = new Bundle();
 
     public Fragment_salute_animale()
     {
@@ -78,25 +78,23 @@ public class Fragment_salute_animale extends Fragment
 
 
 
-        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>()
+        {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()) {
+            public void onComplete(@NonNull Task<DataSnapshot> task)
+            {
+                if(task.isSuccessful())
+                {
                     Animale ani = task.getResult().getValue(Animale.class);
-
-                    String patologie = getString(R.string.patologie);
-                    String preferenzecibo = getString(R.string.Preferenze_cibo);
-
-                mPatologieEditText.setText(ani.patologie);
-                mPrefciboEditText.setText(ani.preferenzecibo);
-
-
+                    mPatologieEditText.setText(ani.patologie);
+                    mPrefciboEditText.setText(ani.preferenzecibo);
                     bundle.putString("ANIMAL_CODE",ani.Id);
                 }
             }
         });
 
-        saveProfileButton.setOnClickListener(new View.OnClickListener() {
+        saveProfileButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
@@ -111,12 +109,13 @@ public class Fragment_salute_animale extends Fragment
                 mDatabase.child("patologie").setValue(newPatologie);
                 mDatabase.child("preferenzecibo").setValue(newPrefcibo);
 
-
-                Intent intent = new Intent(getActivity(), Activity_Home.class);
                 String c5= getString(R.string.c2);
 
                 Toast.makeText(getActivity(), c5, Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+                startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0, 0);
             }
         });
     }

@@ -17,9 +17,10 @@ public class Ente extends User
         ente.email = email;
         ente.password= password;
         ente.classe="Ente";
+        ente.userId = id;
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("User").child(id).setValue(ente);
-        ente.userId = id;
+
     }
 }

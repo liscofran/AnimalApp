@@ -19,9 +19,9 @@ public class Proprietario extends User
         prop.email = email;
         prop.password= password;
         prop.classe="Proprietario";
+        prop.userId = id;
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("User").child(id).setValue(prop);
-        prop.userId = id;
     }
 }

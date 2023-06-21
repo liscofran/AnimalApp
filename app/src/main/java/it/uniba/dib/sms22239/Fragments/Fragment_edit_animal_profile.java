@@ -42,6 +42,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Animal_Profile;
 import it.uniba.dib.sms22239.Activities.Activity_Animali;
 import it.uniba.dib.sms22239.Activities.Activity_Registrazione_Animale;
+import it.uniba.dib.sms22239.Models.Animale;
 import it.uniba.dib.sms22239.R;
 
 public class Fragment_edit_animal_profile extends Fragment {
@@ -143,34 +144,31 @@ public class Fragment_edit_animal_profile extends Fragment {
             }
         });
 
-        // Recupera i dati dal database e popola i campi
-        mDatabase.addValueEventListener(new ValueEventListener()
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>()
         {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            public void onComplete(@NonNull Task<DataSnapshot> task)
             {
-                //recupero dati e assegnazione alle variabili
-                String name = dataSnapshot.child("nome").getValue(String.class);
-                String razza = dataSnapshot.child("razza").getValue(String.class);
-                String sesso = dataSnapshot.child("sesso").getValue(String.class);
-                //String status = dataSnapshot.child("status").getValue(String.class);
-                String luogo = dataSnapshot.child("luogo").getValue(String.class);
+                if(task.isSuccessful())
+                {
+                    Animale ani = task.getResult().getValue(Animale.class);
+                    String name = ani.nome;
+                    String razza = ani.razza;
+                    String sesso = ani.sesso;
+                    String luogo = ani.luogo;
 
-                //set delle variabili recuperate al layout
-                mNomeTextView.setText(name);
-                mrazzaTextView.setText(razza);
-                msessoTextView.setText(sesso);
-                mluogoTextView.setText(luogo);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                    //set delle variabili recuperate al layout
+                    mNomeTextView.setText(name);
+                    mrazzaTextView.setText(razza);
+                    msessoTextView.setText(sesso);
+                    mluogoTextView.setText(luogo);
+                }
             }
         });
 
         // Imposta un listener di clic sul pulsante di salvataggio del profilo
-        saveProfileButton.setOnClickListener(new View.OnClickListener() {
+        saveProfileButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
@@ -194,8 +192,10 @@ public class Fragment_edit_animal_profile extends Fragment {
                 String c4= getString(R.string.c2);
 
                 Toast.makeText(getActivity(), c4, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getActivity(), Activity_Animali.class);
-                startActivity(intent);
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+                startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0, 0);
             }
         });
     }

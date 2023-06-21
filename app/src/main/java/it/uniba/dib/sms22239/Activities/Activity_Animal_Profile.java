@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,8 @@ import it.uniba.dib.sms22239.Fragments.Fragment_profilo_animale_senza_modifica;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarEnte;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarProprietario;
 import it.uniba.dib.sms22239.Fragments.Fragment_toolbarVeterinario;
+import it.uniba.dib.sms22239.Models.Animale;
+import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Animal_Profile extends AppCompatActivity
@@ -48,54 +52,42 @@ public class Activity_Animal_Profile extends AppCompatActivity
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Animale").child(idAnimale);
         DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
 
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //recupero dati e assegnazione alle variabili
-                id_utente_animale = dataSnapshot.child("Id_utente").getValue(String.class);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    Animale ani = task.getResult().getValue(Animale.class);
+                    //recupero dati e assegnazione alle variabili
+                    id_utente_animale = ani.Id_utente;
 
-                mDatabase1.addValueEventListener(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
-                        //recupero dati e assegnazione alle variabili
-                        id_utente = dataSnapshot.child(user.getUid()).getKey();
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    mDatabase1.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                Proprietario prop = task.getResult().getValue(Proprietario.class);
+                                //recupero dati e assegnazione alle variabili
+                                id_utente = prop.userId;
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                        //Se l'utente che sta accedendo al profilo dell'animale è il proprietario permette di accedere
-                        //a modifiche e dati ulteriori
+                                //Se l'utente che sta accedendo al profilo dell'animale è il proprietario permette di accedere
+                                //a modifiche e dati ulteriori
 
-                        if(id_utente_animale.equals(id_utente))
-                        {
-                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
-                            fragmentTransaction.commit();
-
+                                if (id_utente_animale.equals(id_utente)) {
+                                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_profile_animale());
+                                    fragmentTransaction.commit();
+                                } else {
+                                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_animale_senza_modifica());
+                                    fragmentTransaction.commit();
+                                }
+                            }
                         }
-                        else
-                        {
-                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_profilo_animale_senza_modifica());
-                            fragmentTransaction.commit();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error)
-                    {
-
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
+                    });
+                }
             }
         });
     }
+
 
     protected void autenticazione()
     {
