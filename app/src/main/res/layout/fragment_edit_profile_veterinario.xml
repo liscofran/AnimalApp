@@ -141,8 +141,8 @@
 
         <ImageButton
             android:id="@+id/save_profile_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/custom_button_v4"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_save_24"

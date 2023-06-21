@@ -1,11 +1,13 @@
 package it.uniba.dib.sms22239.Fragments.Annunci;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -32,6 +34,8 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.uniba.dib.sms22239.Activities.Activity_Home;
+import it.uniba.dib.sms22239.Activities.Annunci.Activity_Mie_Offerte;
+import it.uniba.dib.sms22239.Activities.Annunci.Activity_Mie_Segnalazioni;
 import it.uniba.dib.sms22239.Models.Ente;
 import it.uniba.dib.sms22239.Models.Proprietario;
 import it.uniba.dib.sms22239.Models.Segnalazione;
@@ -106,11 +110,25 @@ public class Fragment_Profilo_Segnalazione extends Fragment
         getView().findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase.removeValue(); // rimuovi la tupla dal database Firebase
-                String c10= getString(R.string.se23);
-                Toast.makeText(getActivity(), c10, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Activity_Home.class);
-                startActivity(intent);
+                String c1 = getString(R.string.segn_elimina);
+                String c2 = getString(R.string.segn_sicuro_elimina);
+                String c3 = getString(R.string.conferma);
+                String c4 = getString(R.string.annulla);
+                String c5= getString(R.string.se23);
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(c1)
+                        .setMessage(c2)
+                        .setPositiveButton(c3, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mDatabase.removeValue();
+                                Toast.makeText(getActivity(), c5, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(), Activity_Home.class);
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton(c4, null)
+                        .show();
+
             }
         });
 
@@ -118,7 +136,8 @@ public class Fragment_Profilo_Segnalazione extends Fragment
         {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                Intent intent = new Intent(getActivity(), Activity_Mie_Segnalazioni.class);
+                startActivity(intent);
             }
         });
 

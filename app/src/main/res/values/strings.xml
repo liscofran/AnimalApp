@@ -249,6 +249,8 @@
     //activity appuntamenti utente-veterinario
     <string name ="Calendario_Appuntamenti">Calendario Appuntamenti</string>
     <string name ="Calendario_Prenotazione">Calendario Prenotazione</string>
+    <string name ="Prenotazione_esame">Prenotazione esame effettuata con successo</string>
+    <string name ="Prenotazione_diagnosi">Prenotazione diagnosi effettuata con successo</string>
     <string name ="Ora_start">Ora di inizio</string>
     <string name ="data_app">Data appuntamento</string>
     <string name ="ora_fine">Ora di fine</string>
@@ -457,7 +459,11 @@
     <string name="piv">Partita Iva</string>
     <string name="ts">Titolo di studio</string>
     <string name="ve">Veterinario eliminato con successo</string>
+    <string name="ofe_elimina">Elimina offerta</string>
+    <string name="ofe_sicuro_elimina">Sei sicuro di voler eliminare l\'offerta?</string>
     <string name="ofe">Offerta eliminata con successo</string>
+    <string name="segn_elimina">Elimina segnalazione</string>
+    <string name="segn_sicuro_elimina">Sei sicuro di voler eliminare la segnalazione?</string>
     <string name="se23">Segnalazione eliminata con successo</string>
     <string name="se22">Posizione della segnalazione:</string>
     <string name="fcs">File caricato con successo</string>

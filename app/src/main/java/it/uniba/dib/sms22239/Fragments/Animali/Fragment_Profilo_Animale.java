@@ -135,8 +135,6 @@ public class Fragment_Profilo_Animale extends Fragment {
                 String c4 = getString(R.string.annulla);
                 String c5 = getString(R.string.ea3);
                 new AlertDialog.Builder(getActivity())
-
-
                         .setTitle(c1)
                         .setMessage(c2)
                         .setPositiveButton(c3, new DialogInterface.OnClickListener() {
@@ -211,7 +209,7 @@ public class Fragment_Profilo_Animale extends Fragment {
                     mNomeTextView.setText(c9 + ": " + ani.nome);
                     mrazzaTextView.setText(c10 + ": " + ani.razza);
                     msessoTextView.setText(c11 + ": " + ani.sesso);
-                    statusTextView.setText("status: " + ani.prop);
+                    statusTextView.setText("Status: " + ani.prop);
                     casaluogoTextView.setText(c13 + ": " + ani.luogo);
                 }
             }

@@ -138,6 +138,8 @@
     //activity appuntamenti utente-veterinario
     <string name ="Calendario_Appuntamenti">Appointments Calendar</string>
     <string name ="Calendario_Prenotazione">Bookings Calendar</string>
+    <string name ="Prenotazione_esame">Exam booking successfully completed</string>
+    <string name ="Prenotazione_diagnosi">Diagnosis booking made successfully</string>
     <string name ="Ora_start">Start time</string>
     <string name ="data_app">Appointment date</string>
     <string name ="ora_fine">End time</string>
@@ -347,7 +349,11 @@ Enter the email address to send the password recovery instructions</string>
     <string name="piv">VAT number</string>
     <string name="ts">Academic qualification</string>
     <string name="ve">Vet successfully deleted</string>
+    <string name="ofe_elimina">Delete offer</string>
+    <string name="ofe_sicuro_elimina">Are you sure you want to delete the offer?</string>
     <string name="ofe">Offer successfully deleted</string>
+    <string name="segn_elimina">Delete report</string>
+    <string name="segn_sicuro_elimina">Are you sure you want to delete the report?</string>
     <string name="se23">Report successfully deleted</string>
     <string name="se22">Location of message:</string>
     <string name="fcs">File uploaded successfully</string>

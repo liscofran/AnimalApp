@@ -169,21 +169,22 @@ public class Activity_Appuntamento_Animale extends AppCompatActivity {
                 findViewById(R.id.prenotati).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                    String prenotazione_esame = getString(R.string.Prenotazione_esame);
+                    String prenotazione_diagnosi = getString(R.string.Prenotazione_diagnosi);
 
                         if (type == "Esame") {
                             Prenotazione_Esame p_e = new Prenotazione_Esame();
                             p_e.writeNewPrenotazione(p_e, idAnimale, idAppuntamento, data, orario_inizio, orario_fine, id_veterinario);
                             Intent intent = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Appuntamenti_Animale.class);
                             startActivity(intent);
-                            Toast.makeText(Activity_Appuntamento_Animale.this, "Prenotazione esame effettuata con successo", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Appuntamento_Animale.this, prenotazione_esame, Toast.LENGTH_SHORT).show();
 
                         } else {
                             Prenotazione_Diagnosi p_d = new Prenotazione_Diagnosi();
                             p_d.writeNewPrenotazione(p_d, idAnimale, idAppuntamento, data, orario_inizio, orario_fine, id_veterinario);
                             Intent intent2 = new Intent(Activity_Appuntamento_Animale.this, Activity_Calendario_Appuntamenti_Animale.class);
                             startActivity(intent2);
-                            Toast.makeText(Activity_Appuntamento_Animale.this, "Prenotazione diagnosi effettuata con successo", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Appuntamento_Animale.this, prenotazione_diagnosi, Toast.LENGTH_SHORT).show();
                         }
 
                     }

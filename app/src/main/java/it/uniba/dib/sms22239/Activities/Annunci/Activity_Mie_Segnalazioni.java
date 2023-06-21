@@ -58,7 +58,8 @@ public class Activity_Mie_Segnalazioni extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(Activity_Mie_Segnalazioni.this, Activity_Menu_Annunci.class);
+                startActivity(intent);
             }
         });
 

@@ -185,12 +185,14 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.95" />
 
-            <Button
+
+            <ImageButton
                 android:id="@+id/save_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/prova4"
-                android:text="Salva"
+                android:background="@drawable/custom_button_v4"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_save_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -224,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.28" />
+                app:layout_constraintGuide_percent="0.29" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline66"

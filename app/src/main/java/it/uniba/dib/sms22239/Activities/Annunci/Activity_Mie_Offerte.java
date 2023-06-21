@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniba.dib.sms22239.Activities.Activity_Home;
 import it.uniba.dib.sms22239.Adapters.FirebaseRecyclerAdapterOfferte;
 import it.uniba.dib.sms22239.Adapters.RecyclerAdapterOfferta;
 import it.uniba.dib.sms22239.Fragments.Enti.Fragment_Toolbar_Ente;
@@ -58,7 +59,8 @@ public class Activity_Mie_Offerte extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(Activity_Mie_Offerte.this, Activity_Menu_Annunci.class);
+                startActivity(intent);
             }
         });
 

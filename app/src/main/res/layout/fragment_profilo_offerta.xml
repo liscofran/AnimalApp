@@ -198,18 +198,17 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
 
-        <Button
+        <ImageButton
             android:id="@+id/edit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/prova4"
-            android:text="@string/Modifica"
+            android:background="@drawable/custom_button_v4"
+            android:padding="5dp"
+            android:src="@drawable/ic_edit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/delete"
             app:layout_constraintTop_toTopOf="@+id/guidelineLowestHorizontal" />
-
-
 
         <Button
             android:id="@+id/back"

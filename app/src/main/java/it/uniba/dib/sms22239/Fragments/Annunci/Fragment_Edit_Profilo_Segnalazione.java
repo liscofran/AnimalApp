@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,7 +96,7 @@ public class Fragment_Edit_Profilo_Segnalazione extends Fragment {
         EditText editOggetto = getView().findViewById(R.id.oggetto);
         TextView edit = getView().findViewById(R.id.edit);
 
-        Button saveProfileButton = getView().findViewById(R.id.save_button);
+        ImageButton saveProfileButton = getView().findViewById(R.id.save_button);
         mDescrizioneTextView = getView().findViewById(R.id.segnalazione_descrizione);
         mProvinciaTextView = getView().findViewById(R.id.segnalazione_provincia);
         mOggettoTextView =  getView().findViewById(R.id.oggetto);
