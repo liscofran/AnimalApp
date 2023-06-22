@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -294,6 +295,7 @@ public class Fragment_Profilo_Animale extends Fragment {
             }
         });
 
+
         getView().findViewById(R.id.spese_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -315,33 +317,13 @@ public class Fragment_Profilo_Animale extends Fragment {
         getView().findViewById(R.id.bluetooth_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-                if (bluetoothAdapter == null) {
-                    c14 = getString(R.string.bt22);
-                    Toast.makeText(getActivity(), c14, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED)
-                {
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_PERMISSION_BLUETOOTH);
-                }
-                else
-                {
-                    c17= getString(R.string.bt25);
-                    Toast.makeText(getActivity(), c17, Toast.LENGTH_SHORT).show();
-                }
-
-                if (!bluetoothAdapter.isEnabled())
-                {
-                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                }
-                else
-                {
-                    openBluetoothSettings();
-                }
+                // Crea l'intent per la condivisione
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, idAnimal);
+                sendIntent.putExtra(Intent.EXTRA_TITLE, "prova.html");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
             }
         });
 

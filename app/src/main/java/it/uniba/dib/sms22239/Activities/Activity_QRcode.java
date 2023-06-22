@@ -1,6 +1,7 @@
 package it.uniba.dib.sms22239.Activities;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +11,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -37,6 +41,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Locale;
 
 import it.uniba.dib.sms22239.Activities.Animali.Activity_Profilo_Animale;
@@ -57,6 +67,9 @@ public class Activity_QRcode extends AppCompatActivity
     private String flag;
     private ImageButton back;
     private String c2,c3;
+    private DownloadManager downloadManager;
+    private long downloadId;
+    private BroadcastReceiver downloadReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,41 +90,37 @@ public class Activity_QRcode extends AppCompatActivity
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                if (bluetoothAdapter != null) {
-                    if (!bluetoothAdapter.isEnabled()) {
-                        if (ContextCompat.checkSelfPermission(Activity_QRcode.this, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED) {
-                            // L'app ha l'autorizzazione, avvia l'intent di attivazione del Bluetooth
-                            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                        } else {
-                            // L'app non ha l'autorizzazione, richiedi all'utente di concedere l'autorizzazione
-                            ActivityCompat.requestPermissions(Activity_QRcode.this, new String[]{Manifest.permission.BLUETOOTH}, REQUEST_BLUETOOTH_PERMISSIONS);
-                        }
 
+                try {
+                    File downloadDir = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "prova.html");
+
+                    File file = new File(downloadDir, "prova.html");
+
+
+                    FileInputStream fis = new FileInputStream(file);
+                    BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+                    StringBuilder content = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        content.append(line);
                     }
+                    br.close();
+
+                    // Fai qualcosa con il contenuto del file
+
+                    String fileContent = content.toString();
+                    Intent intent = new Intent(Activity_QRcode.this,Activity_Profilo_Animale.class);
+                    intent.putExtra("ANIMAL_CODE",fileContent);
+                    startActivity(intent);
+
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(Activity_QRcode.this, "file not found", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    Toast.makeText(Activity_QRcode.this, "file not found ioexception", Toast.LENGTH_SHORT).show();
                 }
 
+            }
 
-                // BroadcastReceiver per ricevere l'intent inviato tramite Bluetooth
-                BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        // Controlla l'azione dell'intent per identificare l'intent desiderato
-                        if (intent.getAction().equals("collegamento")) {
-                            // Estrai i dati dall'intent
-                            String animalCode = intent.getStringExtra("ANIMAL_CODE");
-                            Intent intent2 = new Intent(Activity_QRcode.this, Activity_Profilo_Animale.class);
-                            intent2.putExtra("ANIMAL_CODE", animalCode);
-                            Toast.makeText(Activity_QRcode.this, c2, Toast.LENGTH_SHORT).show();
-                            startActivity(intent2);
-
-                            // Unregister il BroadcastReceiver dopo aver completato le operazioni
-                            unregisterReceiver(this);
-                        }
-                    }
-                };
-              }
         });
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -229,5 +238,37 @@ public class Activity_QRcode extends AppCompatActivity
                 Log.e("Firebase", c4 + error.getMessage());
             }
         });
+
+    }
+    private void startDownload() throws IOException {
+
+        File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(downloadDir, "bluetooth_content_share.html");
+
+        FileInputStream fis = new FileInputStream(file);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+        StringBuilder content = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            content.append(line);
+        }
+        br.close();
+
+        String fileContent = content.toString();
+        Intent intent = new Intent(Activity_QRcode.this,Activity_Profilo_Animale.class);
+        intent.putExtra("ANIMAL_CODE",fileContent);
+        startActivity(intent);
+
+
+        // Crea una richiesta di download
+//        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(String.valueOf(downloadDir)));
+//        request.setTitle("bluetooth_content_share.html");
+//        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "bluetooth_content_share.html");
+//
+//        // Avvia il download
+//        downloadId = downloadManager.enqueue(request);
+
+
+
     }
 }
