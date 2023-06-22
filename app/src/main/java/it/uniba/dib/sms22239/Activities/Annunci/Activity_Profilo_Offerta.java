@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,9 @@ import it.uniba.dib.sms22239.Fragments.Annunci.Fragment_Profilo_Offerta_Senza_Mo
 import it.uniba.dib.sms22239.Fragments.Enti.Fragment_Toolbar_Ente;
 import it.uniba.dib.sms22239.Fragments.Proprietari.Fragment_Toolbar_Proprietario;
 import it.uniba.dib.sms22239.Fragments.Veterinari.Fragment_Toolbar_Veterinario;
+import it.uniba.dib.sms22239.Models.Ente;
+import it.uniba.dib.sms22239.Models.Proprietario;
+import it.uniba.dib.sms22239.Models.Veterinario;
 import it.uniba.dib.sms22239.R;
 
 public class Activity_Profilo_Offerta extends AppCompatActivity
@@ -64,29 +69,28 @@ public class Activity_Profilo_Offerta extends AppCompatActivity
             }
         });
 
-        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener()
-        {
+        mDatabase1.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //recupero dati e assegnazione alle variabili
-                id_utente = dataSnapshot.child(user.getUid()).getKey();
-                if(id_utente_offerta.equals(id_utente)){
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_Profilo_Offerta());
-                    fragmentTransaction.commit();
-                }
-                else{
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_Profilo_Offerta_Senza_Modifica());
-                    fragmentTransaction.commit();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+                    Proprietario user = task.getResult().getValue(Proprietario.class);
 
+                    //recupero dati e assegnazione alle variabili
+                    id_utente = user.userId;
+                    if(id_utente_offerta.equals(id_utente)){
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new Fragment_Profilo_Offerta());
+                        fragmentTransaction.commit();
+                    }
+                    else{
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new Fragment_Profilo_Offerta_Senza_Modifica());
+                        fragmentTransaction.commit();
+                    }
+
+                }
             }
         });
     }
